@@ -6,44 +6,37 @@ set tabstop=4 shiftwidth=4 expandtab
 set number
 set laststatus=2
 
-" testing...
+" Personal preferences
 set nowrap
 set showcmd
 set showmatch
-
 set incsearch
 set hlsearch
 set ignorecase smartcase
 set directory=/tmp/
-
 set autoread
 set autoindent
-
 set display=lastline
-
 set splitright
 set splitbelow
-
 set spell
 
+" Ctrl+movement
 nmap <C-J> <C-W>j
 nmap <C-K> <C-W>k
 nmap <C-H> <C-W>h
 nmap <C-L> <C-W>l
 
-
-
-
-
+" Vundle Support
 set rtp+=~/.vim/bundle/Vundle.vim
+
 " Mouse Support
 set mouse=a
 
-
 " Vundle Plugins
-
 call vundle#begin()
 
+" Generic Plugins
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -60,14 +53,13 @@ Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
+
 call vundle#end()            
 
-" Plugin Configuration
+" Ctrl-n for NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
-
 " Themeing
-
 syntax enable
 set background=dark
 colorscheme jellybeans 
@@ -82,6 +74,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = "distinguished"
 
 let NERDTreeIgnore = ['\.meta$']
+let NERDTreeShowHidden = 1
 
 "YCM Config
 
