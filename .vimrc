@@ -39,6 +39,7 @@ call vundle#begin()
 " Generic Plugins
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
@@ -56,29 +57,30 @@ Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()            
 
-" Ctrl-n for NERDTree
+" NERDTree Config
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.meta$']
+let NERDTreeShowHidden = 1
+
+" NERDCommenter Config
+let g:NERDSpaceDelims = 1
+inoremap <C-_> :call NERDComment(0,"toggle")<CR>
+vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
+nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 
 " Themeing
 syntax enable
 set background=dark
 colorscheme jellybeans 
-
 set shortmess=a
 let g:bufferline_echo=0
 set cmdheight=2
-
 filetype plugin indent on   
-
 let g:airline_powerline_fonts = 1
 let g:airline_theme = "distinguished"
-
-let NERDTreeIgnore = ['\.meta$']
-let NERDTreeShowHidden = 1
+set t_Co=256
 
 "YCM Config
 
 "let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 "let g:ycm_server_python_interpretor = 'python2.7'
-
-set t_Co=256
