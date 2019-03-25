@@ -20,4 +20,6 @@ alias unitydebug='adb logcat -s Unity PackageManager dalvikvm DEBUG'
 alias fs='nautilus . &'
 
 eval $(dircolors -b $HOME/.dircolors)
+
+# Web Apps Ruby
 eval "$(rbenv init -)"
