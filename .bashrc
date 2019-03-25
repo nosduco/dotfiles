@@ -19,6 +19,8 @@ alias aur='yay'
 alias unitydebug='adb logcat -s Unity PackageManager dalvikvm DEBUG'
 alias fs='nautilus . &'
 
+export HUNTER_ROOT=$HOME/.hunter
+
 eval $(dircolors -b $HOME/.dircolors)
 
 # Web Apps Ruby
