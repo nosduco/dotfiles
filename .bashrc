@@ -1,12 +1,7 @@
-#
 # ~/.bashrc
-#
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-
-# alias ls='ls --color=auto'
-alias 144='bash ~/Scripts/144.sh'
 
 export PATH=$PATH:"/opt/android-sdk/platform-tools:$HOME/.yarn/bin:$HOME/.cargo/bin:$HOME/.config/composer/vendor/bin"
 export ANDROID_SDK_ROOT="/opt/android-sdk"
@@ -25,7 +20,6 @@ alias packer-io='packer'
 alias ls='lsd'
 alias androidem='/opt/android-sdk/emulator/emulator @$(/opt/android-sdk/emulator/emulator -list-avds)'
 alias oc='code . && exit'
-
 
 export HUNTER_ROOT=$HOME/.hunter
 
