@@ -30,4 +30,6 @@ alias oc='code . && exit'
 export HUNTER_ROOT=$HOME/.hunter
 
 eval $(dircolors -b $HOME/.dircolors)
+
+# Web Apps Ruby
 eval "$(rbenv init -)"
