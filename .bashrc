@@ -5,10 +5,12 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
+# alias ls='ls --color=auto'
 alias 144='bash ~/Scripts/144.sh'
 
-export PATH=$PATH:$HOME"/Android/Sdk/platform-tools:$HOME/.yarn/bin:$HOME/.cargo/bin"
+export PATH=$PATH:"/opt/android-sdk/platform-tools:$HOME/.yarn/bin:$HOME/.cargo/bin:$HOME/.config/composer/vendor/bin"
+export ANDROID_SDK_ROOT="/opt/android-sdk"
+export ANDROID_SDK="/opt/android-sdk"
 
 alias svim='sudo vim -u ~/.vimrc'
 alias ll='ls -l' 
@@ -18,6 +20,12 @@ alias windows='sudo grub-reboot 1 && sudo reboot'
 alias aur='yay'
 alias unitydebug='adb logcat -s Unity PackageManager dalvikvm DEBUG'
 alias fs='nautilus . &'
+alias clonehero='sudo $HOME/Games/clonehero/clonehero'
+alias packer-io='packer'
+alias ls='lsd'
+alias androidem='/opt/android-sdk/emulator/emulator @$(/opt/android-sdk/emulator/emulator -list-avds)'
+alias oc='code . && exit'
+
 
 export HUNTER_ROOT=$HOME/.hunter
 

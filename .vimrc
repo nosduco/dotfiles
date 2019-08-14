@@ -46,8 +46,12 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ap/vim-css-color'
 Plugin 'othree/xml.vim'
-Plugin 'pangloss/vim-javascript'
+
+" JavaScript
 Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'isruslan/vim-es6'
+Plugin 'maksimr/vim-jsbeautify'
 
 " Auto-completion
 Plugin 'OmniSharp/omnisharp-vim'
