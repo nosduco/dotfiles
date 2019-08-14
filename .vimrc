@@ -6,6 +6,8 @@ set tabstop=4 shiftwidth=4 expandtab
 set number
 set laststatus=2
 
+set ttimeoutlen=0
+
 " Personal preferences
 set nowrap
 set showcmd
