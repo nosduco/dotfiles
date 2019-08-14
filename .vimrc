@@ -85,6 +85,11 @@ filetype plugin indent on
 let g:airline_powerline_fonts = 1
 let g:airline_theme = "distinguished"
 set t_Co=256
+highlight Directory ctermfg=5
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeQuitOnOpen = 1
+let g:NERDTreeChDirMode = 2
 
 "YCM Config
 
