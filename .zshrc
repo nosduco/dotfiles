@@ -52,7 +52,7 @@ ZSH_THEME=""
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast vi-mode dirhistory dockeri pip sudo yarn wd virtualenv)
+plugins=(gitfast vi-mode dirhistory docker pip sudo yarn wd virtualenv)
 
 source $ZSH/oh-my-zsh.sh
 
