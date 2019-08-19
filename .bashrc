@@ -6,6 +6,7 @@
 export PATH=$PATH:"/opt/android-sdk/platform-tools:$HOME/.yarn/bin:$HOME/.cargo/bin:$HOME/.config/composer/vendor/bin"
 export ANDROID_SDK_ROOT="/opt/android-sdk"
 export ANDROID_SDK="/opt/android-sdk"
+export JDK_HOME="/usr/lib/jvm/java-12-openjdk"
 
 alias svim='sudo -E vim'
 alias ll='ls -l' 

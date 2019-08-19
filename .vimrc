@@ -9,6 +9,7 @@ set laststatus=2
 " TMUX Fix
 set ttimeoutlen=0
 
+
 " Personal preferences
 set nowrap
 set showcmd
@@ -34,48 +35,68 @@ nmap <C-K> <C-W>k
 nmap <C-H> <C-W>h
 nmap <C-L> <C-W>l
 
-" Vundle Support
-set rtp+=~/.vim/bundle/Vundle.vim
-
 " Mouse Support
 set mouse=a
 
-" Vundle Plugins
-call vundle#begin()
+" COC
+set hidden
+set nobackup
+set nowritebackup
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <c-space> coc#refresh()
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+nmap <C-S-F>  <Plug>(coc-fix-current)
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+
+" Install vim-plug if not exist
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Plugins
+call plug#begin('~/.vim/plugged')
 
 " Generic Plugins
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tpope/vim-fugitive'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ap/vim-css-color'
-Plugin 'othree/xml.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ap/vim-css-color'
+Plug 'othree/xml.vim'
 
 " JavaScript
-Plugin 'mxw/vim-jsx'
-Plugin 'othree/yajs.vim'
-Plugin 'dense-analysis/ale'
-" Plugin 'pangloss/vim-javascript'
-" Plugin 'isruslan/vim-es6'
-" Plugin 'maksimr/vim-jsbeautify'
+Plug 'mxw/vim-jsx'
+Plug 'othree/yajs.vim'
 
-" Auto-completion
-Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'tpope/vim-dispatch'
-" Plugin 'scrooloose/syntastic'
-Plugin 'Valloric/YouCompleteMe'
+" COC
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Themeing
-Plugin 'mhartington/oceanic-next'
+Plug 'mhartington/oceanic-next'
 
-call vundle#end()            
+call plug#end()
+" END PLUGINS
 
-" Javascript Config 
+" ALE Config
 let g:ale_linters = {
             \    'javascript': ['eslint', 'prettier'],
             \    'scss': ['prettier'],
@@ -88,6 +109,7 @@ let g:ale_fixers = {
   \}
 
 let g:ale_fix_on_save = 1
+nmap <C-F> <Plug>(ale_fix)
 
 " NERDTree Config
 map <C-n> :NERDTreeToggle<CR>
@@ -104,27 +126,14 @@ inoremap <C-_> :call NERDComment(0,"toggle")<CR>
 vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 
-" ALE Key  
-nmap <C-F> <Plug>(ale_fix)
-
 " Themeing
 syntax enable
 set t_Co=256
-" if exists('+termguicolors')
-  " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  " set termguicolors
-" endif
 colorscheme OceanicNext
-highlight Directory ctermfg=5
-
-" colorscheme jellybeans 
-
-" set background=dark
 let g:airline_powerline_fonts = 1
 let g:airline_theme = "distinguished"
 let s:green = "AE403F"
-
+highlight Directory ctermfg=5
 hi Normal guibg=NONE ctermbg=NONE
 highlight NonText guibg=NONE ctermbg=NONE
 highlight LineNr guibg=NONE ctermbg=NONE
