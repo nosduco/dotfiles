@@ -7,7 +7,7 @@ export PATH=$PATH:"/opt/android-sdk/platform-tools:$HOME/.yarn/bin:$HOME/.cargo/
 export ANDROID_SDK_ROOT="/opt/android-sdk"
 export ANDROID_SDK="/opt/android-sdk"
 
-alias svim='sudo vim -u ~/.vimrc'
+alias svim='sudo -E vim'
 alias ll='ls -l' 
 alias la='ls -al'
 alias fucking='sudo'

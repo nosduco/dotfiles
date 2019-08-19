@@ -78,11 +78,13 @@ call vundle#end()
 " Javascript Config 
 let g:ale_linters = {
             \    'javascript': ['eslint', 'prettier'],
-            \    'scss': ['prettier']
+            \    'scss': ['prettier'],
+            \    'python': ['flake8', 'pylint']
             \}
 let g:ale_fixers = {
   \'javascript': ['eslint', 'prettier'],
-  \'scss': ['prettier']
+  \'scss': ['prettier'],
+  \'python': ['autopep8', 'yapf']
   \}
 
 let g:ale_fix_on_save = 1
