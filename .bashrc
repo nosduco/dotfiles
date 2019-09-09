@@ -22,6 +22,9 @@ alias ls='lsd'
 alias androidem='/opt/android-sdk/emulator/emulator @$(/opt/android-sdk/emulator/emulator -list-avds)'
 alias oc='code . && exit'
 
+# Anaconda - Data Mining
+source /opt/anaconda/bin/activate root
+
 export HUNTER_ROOT=$HOME/.hunter
 
 eval $(dircolors -b $HOME/.dircolors)

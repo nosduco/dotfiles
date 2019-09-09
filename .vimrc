@@ -86,12 +86,14 @@ Plug 'othree/xml.vim'
 " JavaScript
 Plug 'mxw/vim-jsx'
 Plug 'othree/yajs.vim'
+Plug 'briancollins/vim-jst'
 
 " COC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Themeing
 Plug 'mhartington/oceanic-next'
+Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 " END PLUGINS
@@ -129,7 +131,15 @@ nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 " Themeing
 syntax enable
 set t_Co=256
-colorscheme OceanicNext
+
+
+set termguicolors
+" colorscheme OceanicNext
+let ayucolor="mirage"
+colorscheme ayu
+"
+"
+"
 let g:airline_powerline_fonts = 1
 let g:airline_theme = "distinguished"
 let s:green = "AE403F"
