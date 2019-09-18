@@ -28,7 +28,10 @@ source /opt/anaconda/bin/activate root
 
 export HUNTER_ROOT=$HOME/.hunter
 
+# Firefox Touch Support
+export MOZ_USE_XINPUT2=1
+
 eval $(dircolors -b $HOME/.dircolors)
 
 # Web Apps Ruby
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
