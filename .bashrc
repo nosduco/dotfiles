@@ -21,6 +21,7 @@ alias packer-io='packer'
 alias ls='lsd'
 alias androidem='/opt/android-sdk/emulator/emulator @$(/opt/android-sdk/emulator/emulator -list-avds)'
 alias oc='code . && exit'
+alias grep='grep --color=always'
 
 # Anaconda - Data Mining
 source /opt/anaconda/bin/activate root
