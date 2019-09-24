@@ -73,7 +73,7 @@ call plug#begin('~/.vim/plugged')
 
 " Generic Plugins
 Plug 'scrooloose/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -92,7 +92,6 @@ Plug 'briancollins/vim-jst'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Themeing
-Plug 'mhartington/oceanic-next'
 Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
@@ -122,6 +121,8 @@ let NERDTreeDirArrows = 1
 let NERDTreeQuitOnOpen = 1
 let g:NERDTreeChDirMode = 2
 
+set lazyredraw
+
 " NERDCommenter Config
 let g:NERDSpaceDelims = 1
 inoremap <C-_> :call NERDComment(0,"toggle")<CR>
@@ -134,7 +135,6 @@ set t_Co=256
 
 
 set termguicolors
-" colorscheme OceanicNext
 let ayucolor="mirage"
 colorscheme ayu
 "
