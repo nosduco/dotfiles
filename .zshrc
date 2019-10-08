@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=/usr/share/oh-my-zsh/
 source ~/.bashrc
 
 ZSH_THEME="refined"
