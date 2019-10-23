@@ -58,7 +58,7 @@ endfunction
 
 inoremap <silent><expr> <c-space> coc#refresh()
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-nmap <C-S-F>  <Plug>(coc-fix-current)
+nmap <C-F>  <Plug>(coc-fix-current)
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 
 " Install vim-plug if not exist
@@ -85,11 +85,15 @@ Plug 'othree/xml.vim'
 
 " JavaScript
 Plug 'mxw/vim-jsx'
-Plug 'othree/yajs.vim'
+Plug 'herringtondarkholme/yats.vim'
+" Plug 'othree/yajs.vim'
 Plug 'briancollins/vim-jst'
 
 " COC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" GraphQL
+Plug 'jparise/vim-graphql'
 
 " Themeing
 Plug 'ayu-theme/ayu-vim'
