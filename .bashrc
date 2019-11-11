@@ -6,7 +6,7 @@
 export PATH=$PATH:"/opt/android-sdk/platform-tools:$HOME/.yarn/bin:$HOME/.cargo/bin:$HOME/.config/composer/vendor/bin"
 export ANDROID_SDK_ROOT="/opt/android-sdk"
 export ANDROID_SDK="/opt/android-sdk"
-export JDK_HOME="/usr/lib/jvm/java-12-openjdk"
+export JDK_HOME="/usr/lib/jvm/java-13-openjdk"
 export EDITOR=vim
 
 alias svim='sudo -E vim'
@@ -18,6 +18,9 @@ alias aur='yay'
 alias fs='nautilus . &'
 alias androidem='/opt/android-sdk/emulator/emulator @$(/opt/android-sdk/emulator/emulator -list-avds)'
 alias grep='grep --color=always'
+
+# Garden - Kubernetes
+export PATH=$PATH:~/.garden/bin
 
 # Anaconda - Data Mining
 source /opt/anaconda/bin/activate root
