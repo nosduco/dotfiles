@@ -16,19 +16,9 @@ alias ls='lsd'
 alias fucking='sudo'
 alias aur='yay'
 alias fs='nautilus . &'
-alias androidem='/opt/android-sdk/emulator/emulator @$(/opt/android-sdk/emulator/emulator -list-avds)'
 alias grep='grep --color=always'
-
-# Garden - Kubernetes
-export PATH=$PATH:~/.garden/bin
-
-# Anaconda - Data Mining
-source /opt/anaconda/bin/activate root
 
 # C - Hunter Support
 export HUNTER_ROOT=$HOME/.hunter
 
 eval $(dircolors -b $HOME/.dircolors)
-
-# Web Apps Ruby
-# eval "$(rbenv init -)"
