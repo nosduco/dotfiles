@@ -58,7 +58,6 @@ endfunction
 
 inoremap <silent><expr> <c-space> coc#refresh()
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-nmap <C-F>  <Plug>(coc-fix-current)
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 
 " Install vim-plug if not exist
@@ -73,7 +72,7 @@ call plug#begin('~/.vim/plugged')
 
 " Generic Plugins
 Plug 'scrooloose/nerdtree'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -86,7 +85,6 @@ Plug 'othree/xml.vim'
 " JavaScript
 Plug 'mxw/vim-jsx'
 Plug 'herringtondarkholme/yats.vim'
-" Plug 'othree/yajs.vim'
 Plug 'briancollins/vim-jst'
 
 " COC
@@ -101,20 +99,7 @@ Plug 'ayu-theme/ayu-vim'
 call plug#end()
 " END PLUGINS
 
-" ALE Config
-let g:ale_linters = {
-            \    'javascript': ['eslint', 'prettier'],
-            \    'scss': ['prettier'],
-            \    'python': ['flake8', 'pylint']
-            \}
-let g:ale_fixers = {
-  \'javascript': ['eslint', 'prettier'],
-  \'scss': ['prettier'],
-  \'python': ['autopep8', 'yapf']
-  \}
-
-let g:ale_fix_on_save = 1
-nmap <C-F> <Plug>(ale_fix)
+nmap <C-F> :call CocActionAsync('runCommand', 'eslint.executeAutofix')<CR>
 
 " NERDTree Config
 map <C-n> :NERDTreeToggle<CR>
