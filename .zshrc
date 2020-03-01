@@ -8,7 +8,7 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
 # Plugins
-plugins=(gitfast vi-mode dirhistory docker pip sudo yarn wd virtualenv)
+plugins=(gitfast vi-mode dirhistory docker pip sudo yarn wd kubectl virtualenv)
 
 # oh-my-zsh
 source $ZSH/oh-my-zsh.sh
