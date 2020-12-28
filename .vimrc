@@ -9,7 +9,6 @@ set laststatus=2
 " TMUX Fix
 set ttimeoutlen=0
 
-
 " Personal preferences
 set nowrap
 set showcmd
@@ -35,10 +34,17 @@ nmap <C-K> <C-W>k
 nmap <C-H> <C-W>h
 nmap <C-L> <C-W>l
 
+" [] / Ctrl+[] tab movement
+" nnoremap <C-[> :tabprevious<CR>
+" nnoremap <C-]> :tabnext<CR>
+" nnoremap <C-{> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+" nnoremap <C-}> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
+nnoremap <C-{> :tabprevious<CR>
+nnoremap <C-}> :tabnext<CR>
+
 " Mouse Support
 set mouse=a
 
-" COC
 set hidden
 set nobackup
 set nowritebackup
@@ -56,10 +62,6 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <c-space> coc#refresh()
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-
 " Install vim-plug if not exist
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -67,39 +69,98 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Plugins
+" START PLUGINS
 call plug#begin('~/.vim/plugged')
 
-" Generic Plugins
-Plug 'scrooloose/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdcommenter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Utilities
 Plug 'ap/vim-css-color'
-Plug 'othree/xml.vim'
+Plug 'tpope/vim-surround'
 
-" JavaScript
-Plug 'mxw/vim-jsx'
-Plug 'herringtondarkholme/yats.vim'
-Plug 'briancollins/vim-jst'
+" Git
+Plug 'tpope/vim-fugitive'
+
+" Files
+Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Comments
+Plug 'scrooloose/nerdcommenter'
+
+" JavaScript and Typescript
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'jparise/vim-graphql'
+
+" Markup
+Plug 'othree/xml.vim'
 
 " COC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" GraphQL
-Plug 'jparise/vim-graphql'
-
-" Themeing
+" Theming
 Plug 'ayu-theme/ayu-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'luochen1990/rainbow'
 
 call plug#end()
 " END PLUGINS
 
+" ; for fuzzy find file
+map ; :Files<CR>
+
+" Ctrl+F for ESLint Auto Fix
 nmap <C-F> :call CocActionAsync('runCommand', 'eslint.executeAutofix')<CR>
+
+" Ctrl+I for Code Autocomplete
+nmap <C-I> <Plug>(coc-codeaction)
+
+" Show autocomplete on Tab
+inoremap <silent><expr> <S-Tab> coc#refresh()
+
+
+" COC Configuration
+inoremap <silent><expr> <c-space> coc#refresh()
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-prettier', 'coc-eslint', 'coc-css', 'coc-git', 'coc-highlight', 'coc-html', 'coc-markdownlint', 'coc-prisma', 'coc-spell-checker', 'coc-yaml', 'coc-yank', 'coc-xml', 'coc-sh', 'coc-go']
+" coc-graphql
+
+" GoTo Code Nav
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Turn on rainbow parenthesis
+let g:rainbow_active = 1
+
+" Fix for NERDTree rainbow parenthesis collision
+let g:rainbow_conf = {
+\	'separately': {
+\		'nerdtree': 0,
+\	}
+\}
 
 " NERDTree Config
 map <C-n> :NERDTreeToggle<CR>
@@ -108,9 +169,21 @@ let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeQuitOnOpen = 1
+let NERDTreeMapOpenInTab='t'
 let g:NERDTreeChDirMode = 2
-
 set lazyredraw
+
+" Integrated Terminal
+" turn terminal to normal mode with escape
+tnoremap <Esc> <C-\><C-n>
+" start terminal in insert mode
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+" open terminal on ctrl+t
+function! OpenTerminal()
+  split term://bash
+  resize 10
+endfunction
+nnoremap <c-t> :call OpenTerminal()<CR>"
 
 " NERDCommenter Config
 let g:NERDSpaceDelims = 1
@@ -118,17 +191,15 @@ inoremap <C-_> :call NERDComment(0,"toggle")<CR>
 vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 
+" Fuzzy Finder
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
 " Themeing
 syntax enable
 set t_Co=256
-
-
 set termguicolors
-let ayucolor="mirage"
+let ayucolor="dark"
 colorscheme ayu
-"
-"
-"
 let g:airline_powerline_fonts = 1
 let g:airline_theme = "distinguished"
 let s:green = "AE403F"
@@ -138,4 +209,3 @@ highlight NonText guibg=NONE ctermbg=NONE
 highlight LineNr guibg=NONE ctermbg=NONE
 highlight ExtraWhitespace guibg=NONE ctermbg=NONE
 highlight EndOfBuffer guibg=NONE ctermbg=NONE
-
