@@ -1,6 +1,5 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/usr/share/oh-my-zsh/
-source ~/.bashrc
 
 ZSH_THEME="refined"
 
@@ -13,6 +12,9 @@ plugins=(gitfast vi-mode dirhistory docker pip sudo yarn wd kubectl virtualenv)
 # oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
+# bashrc
+source ~/.bashrc
+
 # User configuration
 export MANPATH="/usr/local/man:$MANPATH"
 export LANG=en_US.UTF-8
@@ -21,3 +23,4 @@ export LANG=en_US.UTF-8
 repo_information() {
     echo "%F{yellow}${vcs_info_msg_0_%%/.} %F{8}$vcs_info_msg_1_`git_dirty` $vcs_info_msg_2_%f"
 }
+
