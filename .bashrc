@@ -31,6 +31,10 @@ export PATH=$PATH:$HOME/.config/composer/vendor/bin
 # Go
 export PATH=$PATH:$HOME/go/bin
 
+# Node
+source /usr/share/nvm/init-nvm.sh
+export PATH=$PATH:$(yarn global bin)
+
 # Android Studio
 export ANDROID_HOME=$HOME/Android/Sdk
 export ANDROID_SDK_ROOT=$HOME/Android/Sdk

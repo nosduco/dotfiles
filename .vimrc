@@ -22,7 +22,7 @@ set autoindent
 set display=lastline
 set splitright
 set splitbelow
-set spell
+" set spell
 set shortmess=a
 let g:bufferline_echo=0
 set cmdheight=1
@@ -34,13 +34,35 @@ nmap <C-K> <C-W>k
 nmap <C-H> <C-W>h
 nmap <C-L> <C-W>l
 
+
+" Firefox Tab Navigation
+nnoremap <C-S-Tab> :tabprevious<CR>
+nnoremap <C-Tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-S-Tab> <Esc>:tabprevious<CR>i
+inoremap <C-Tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
+
+" coc Tab Autocomplete
+nmap <Tab> coc#refresh()
+
+" Tab Movement (for Tabs)
+" CTRL-Tab ->
+" noremap <C-Tab> :<C-U>tabnext<CR>
+" inoremap <C-Tab> <C-\><C-N>:tabnext<CR>
+" cnoremap <C-Tab> <C-C>:tabnext<CR>
+" CTRL-SHIFT-TAB <-
+" noremap <C-S-Tab> :<C-U>tabprevious<CR>
+" inoremap <C-S-Tab> <C-\><C-N>:tabprevious<CR>
+" cnoremap <C-S-Tab> <C-C>:tabprevious<CR>
+
 " [] / Ctrl+[] tab movement
 " nnoremap <C-[> :tabprevious<CR>
 " nnoremap <C-]> :tabnext<CR>
 " nnoremap <C-{> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 " nnoremap <C-}> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
-nnoremap <C-{> :tabprevious<CR>
-nnoremap <C-}> :tabnext<CR>
+"nnoremap <C-{> :tabprevious<CR>
+"nnoremap <C-}> :tabnext<CR>
 
 " Mouse Support
 set mouse=a
@@ -51,10 +73,10 @@ set nowritebackup
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+      " \ pumvisible() ? "\<C-n>" :
+      " \ <SID>check_back_space() ? "\<TAB>" :
+      " \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -75,6 +97,9 @@ call plug#begin('~/.vim/plugged')
 " Utilities
 Plug 'ap/vim-css-color'
 Plug 'tpope/vim-surround'
+
+" Navigation
+Plug 'christoomey/vim-tmux-navigator'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -112,7 +137,7 @@ call plug#end()
 " END PLUGINS
 
 " ; for fuzzy find file
-map ; :Files<CR>
+map <space> :Files<CR>
 
 " Ctrl+F for ESLint Auto Fix
 nmap <C-F> :call CocActionAsync('runCommand', 'eslint.executeAutofix')<CR>
@@ -121,14 +146,15 @@ nmap <C-F> :call CocActionAsync('runCommand', 'eslint.executeAutofix')<CR>
 nmap <C-I> <Plug>(coc-codeaction)
 
 " Show autocomplete on Tab
-inoremap <silent><expr> <S-Tab> coc#refresh()
+" inoremap <silent><expr> <S-Tab> coc#refresh()
+" nnoremap <S-Tab> coc#refresh()
 
 
 " COC Configuration
 inoremap <silent><expr> <c-space> coc#refresh()
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-prettier', 'coc-eslint', 'coc-css', 'coc-git', 'coc-highlight', 'coc-html', 'coc-markdownlint', 'coc-prisma', 'coc-spell-checker', 'coc-yaml', 'coc-yank', 'coc-xml', 'coc-sh', 'coc-go']
+let g:coc_global_extensions = ['coc-yank', 'coc-spell-checker', 'coc-snippets', 'coc-prettier', 'coc-json', 'coc-html', 'coc-highlight', 'coc-git', 'coc-eslint', 'coc-yaml', 'coc-xml', 'coc-tsserver', 'coc-sh', 'coc-python', 'coc-omnisharp', 'coc-markdownlint', 'coc-java', 'coc-go', 'coc-css']
 " coc-graphql
 
 " GoTo Code Nav
@@ -175,15 +201,15 @@ set lazyredraw
 
 " Integrated Terminal
 " turn terminal to normal mode with escape
-tnoremap <Esc> <C-\><C-n>
+tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<C-\><C-n>"
 " start terminal in insert mode
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 " open terminal on ctrl+t
 function! OpenTerminal()
-  split term://bash
+  split term://zsh
   resize 10
 endfunction
-nnoremap <c-t> :call OpenTerminal()<CR>"
+" nnoremap <c-t> :call OpenTerminal()<CR>"
 
 " NERDCommenter Config
 let g:NERDSpaceDelims = 1
@@ -192,7 +218,7 @@ vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 
 " Fuzzy Finder
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+" let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " Themeing
 syntax enable
