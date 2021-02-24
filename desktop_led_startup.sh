@@ -1,6 +1,5 @@
 #!/bin/bash
 COLOR=${1:-FF2300}
-echo $COLOR
 echo Setting colors for Corsair AIO Cooler
 liquidctl set led color fixed $COLOR
 echo Setting colors for Razer Mamba Elite Mouse
