@@ -34,35 +34,9 @@ nmap <C-K> <C-W>k
 nmap <C-H> <C-W>h
 nmap <C-L> <C-W>l
 
-
-" Firefox Tab Navigation
-nnoremap <C-S-Tab> :tabprevious<CR>
-nnoremap <C-Tab>   :tabnext<CR>
+" Tab keybinds
 nnoremap <C-t>     :tabnew<CR>
-inoremap <C-S-Tab> <Esc>:tabprevious<CR>i
-inoremap <C-Tab>   <Esc>:tabnext<CR>i
 inoremap <C-t>     <Esc>:tabnew<CR>
-
-" coc Tab Autocomplete
-nmap <Tab> coc#refresh()
-
-" Tab Movement (for Tabs)
-" CTRL-Tab ->
-" noremap <C-Tab> :<C-U>tabnext<CR>
-" inoremap <C-Tab> <C-\><C-N>:tabnext<CR>
-" cnoremap <C-Tab> <C-C>:tabnext<CR>
-" CTRL-SHIFT-TAB <-
-" noremap <C-S-Tab> :<C-U>tabprevious<CR>
-" inoremap <C-S-Tab> <C-\><C-N>:tabprevious<CR>
-" cnoremap <C-S-Tab> <C-C>:tabprevious<CR>
-
-" [] / Ctrl+[] tab movement
-" nnoremap <C-[> :tabprevious<CR>
-" nnoremap <C-]> :tabnext<CR>
-" nnoremap <C-{> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-" nnoremap <C-}> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
-"nnoremap <C-{> :tabprevious<CR>
-"nnoremap <C-}> :tabnext<CR>
 
 " Mouse Support
 set mouse=a
@@ -73,10 +47,10 @@ set nowritebackup
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
-" inoremap <silent><expr> <TAB>
-      " \ pumvisible() ? "\<C-n>" :
-      " \ <SID>check_back_space() ? "\<TAB>" :
-      " \ coc#refresh()
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -199,18 +173,6 @@ let NERDTreeMapOpenInTab='t'
 let g:NERDTreeChDirMode = 2
 set lazyredraw
 
-" Integrated Terminal
-" turn terminal to normal mode with escape
-tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<C-\><C-n>"
-" start terminal in insert mode
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-" open terminal on ctrl+t
-function! OpenTerminal()
-  split term://zsh
-  resize 10
-endfunction
-" nnoremap <c-t> :call OpenTerminal()<CR>"
-
 " NERDCommenter Config
 let g:NERDSpaceDelims = 1
 inoremap <C-_> :call NERDComment(0,"toggle")<CR>
@@ -228,6 +190,7 @@ let ayucolor="dark"
 colorscheme ayu
 let g:airline_powerline_fonts = 1
 let g:airline_theme = "distinguished"
+let g:airline#extensions#tabline#enabled = 1
 let s:green = "AE403F"
 highlight Directory ctermfg=5
 hi Normal guibg=NONE ctermbg=NONE
