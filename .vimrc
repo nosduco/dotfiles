@@ -95,6 +95,9 @@ Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jparise/vim-graphql'
 
+" Golang
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 " Markup
 Plug 'othree/xml.vim'
 
@@ -114,7 +117,8 @@ call plug#end()
 map <space> :Files<CR>
 
 " Ctrl+F for ESLint Auto Fix
-nmap <C-F> :call CocActionAsync('runCommand', 'eslint.executeAutofix')<CR>
+" nmap <C-F> :call CocActionAsync('runCommand', 'eslint.executeAutofix')<CR>
+nmap <C-F> :call CocActionAsync('format')<CR>
 
 " Ctrl+I for Code Autocomplete
 nmap <C-I> <Plug>(coc-codeaction)
@@ -128,8 +132,7 @@ nmap <C-I> <Plug>(coc-codeaction)
 inoremap <silent><expr> <c-space> coc#refresh()
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-let g:coc_global_extensions = ['coc-yank', 'coc-spell-checker', 'coc-snippets', 'coc-prettier', 'coc-json', 'coc-html', 'coc-highlight', 'coc-git', 'coc-eslint', 'coc-yaml', 'coc-xml', 'coc-tsserver', 'coc-sh', 'coc-python', 'coc-omnisharp', 'coc-markdownlint', 'coc-java', 'coc-go', 'coc-css']
-" coc-graphql
+let g:coc_global_extensions = ['coc-yank', 'coc-spell-checker', 'coc-snippets', 'coc-prettier', 'coc-json', 'coc-html', 'coc-highlight', 'coc-git', 'coc-eslint', 'coc-yaml', 'coc-xml', 'coc-tsserver', 'coc-sh', 'coc-python', 'coc-omnisharp', 'coc-markdownlint', 'coc-java', 'coc-css']
 
 " GoTo Code Nav
 nmap <silent> gd <Plug>(coc-definition)

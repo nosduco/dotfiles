@@ -47,7 +47,9 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 eval $(dircolors -b $HOME/.dircolors)
 
 # Aliases
-alias svim='sudo -E vim'
+alias svim='sudo -E nvim'
+alias svi='sudo -E nvim'
+alias vi='nvim'
 alias ll='ls -l' 
 alias lla='ls -la'
 alias la='ls -a'
