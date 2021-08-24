@@ -3,8 +3,29 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Default Editor
-export EDITOR=vim
+# Mac/Linux Configurations
+if [ "$(uname)" == "Darwin" ]; then
+  # Editor
+  export EDITOR=nvim
+
+  # Directory Colors
+  eval $(gdircolors -b $HOME/.dircolors)
+
+  # Custom Grep
+  alias grep='ggrep --color=always'
+else 
+  # Editor
+  export EDITOR=vim
+
+  # Directory Colors
+  eval $(gdircolors -b $HOME/.dircolors)
+
+  # Custom Grep
+  alias grep='grep --color=always'
+
+  # Node
+  source /usr/share/nvm/init-nvm.sh
+fi
 
 # Override rm for trash
 alias rm=trash
@@ -32,7 +53,6 @@ export PATH=$PATH:$HOME/.config/composer/vendor/bin
 export PATH=$PATH:$HOME/go/bin
 
 # Node
-source /usr/share/nvm/init-nvm.sh
 export PATH=$PATH:$(yarn global bin)
 
 # Android Studio
@@ -42,9 +62,6 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# Directory Colors
-eval $(dircolors -b $HOME/.dircolors)
 
 # Aliases
 alias svim='sudo -E nvim'
@@ -59,7 +76,6 @@ alias aur='paru'
 alias fs='nautilus . &'
 alias androidem='/opt/android-sdk/emulator/emulator @$(/opt/android-sdk/emulator/emulator -list-avds)'
 alias unitydebug='adb logcat -s Unity PackageManager dalvikvm DEBUG'
-alias grep='grep --color=always'
 alias windows='sudo grub-reboot 1 && sudo reboot'
 alias we='curl wttr.in\?0nqF'
 

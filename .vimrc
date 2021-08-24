@@ -98,6 +98,9 @@ Plug 'jparise/vim-graphql'
 " Golang
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+" Terraform
+Plug 'hashivim/vim-terraform'
+
 " Markup
 Plug 'othree/xml.vim'
 
@@ -115,6 +118,9 @@ call plug#end()
 
 " ; for fuzzy find file
 map <space> :Files<CR>
+
+" Terraform format on save
+let g:terraform_fmt_on_save = 1
 
 " Ctrl+F for ESLint Auto Fix
 " nmap <C-F> :call CocActionAsync('runCommand', 'eslint.executeAutofix')<CR>
