@@ -4,7 +4,7 @@
 [[ $- != *i* ]] && return
 
 # Mac/Linux Configurations
-if [ "$(uname)" == "Darwin" ]; then
+if [ "$(uname)" = "Darwin" ]; then
   # Editor
   export EDITOR=nvim
 
@@ -13,6 +13,12 @@ if [ "$(uname)" == "Darwin" ]; then
 
   # Custom Grep
   alias grep='ggrep --color=always'
+
+  # Open File System
+  alias fs='open .'
+
+  export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 else 
   # Editor
   export EDITOR=vim
@@ -25,6 +31,9 @@ else
 
   # Node
   source /usr/share/nvm/init-nvm.sh
+
+  # Open File System
+  alias fs='nautilus . &'
 fi
 
 # Override rm for trash
@@ -73,7 +82,6 @@ alias la='ls -a'
 alias lt='ls --tree'
 alias fucking='sudo'
 alias aur='paru'
-alias fs='nautilus . &'
 alias androidem='/opt/android-sdk/emulator/emulator @$(/opt/android-sdk/emulator/emulator -list-avds)'
 alias unitydebug='adb logcat -s Unity PackageManager dalvikvm DEBUG'
 alias windows='sudo grub-reboot 1 && sudo reboot'

@@ -26,11 +26,11 @@ repo_information() {
 }
 
 # Mac Configurations
-if [ "$(uname)" == "Darwin" ]; then
+if [ "$(uname)" = "Darwin" ]; then
   alias vim='nvim'
 
-  if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-  fi
+#  if command -v pyenv 1>/dev/null 2>&1; then
+#    eval "$(pyenv init -)"
+#  fi
 fi
 

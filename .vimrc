@@ -187,6 +187,9 @@ let g:NERDSpaceDelims = 1
 inoremap <C-_> :call NERDComment(0,"toggle")<CR>
 vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
+"inoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
+"vnoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
+"nnoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
 
 " Fuzzy Finder
 " let $FZF_DEFAULT_COMMAND = 'ag -g ""'
