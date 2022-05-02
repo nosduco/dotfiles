@@ -8,7 +8,7 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
 # Plugins
-plugins=(gitfast vi-mode dirhistory docker pip zsh-nvm sudo yarn wd virtualenv tmux)
+plugins=(gitfast vi-mode dirhistory docker pip zsh-nvm sudo yarn wd virtualenv tmux zsh-autosuggestions zsh-syntax-highlighting)
 
 # oh-my-zsh
 source $ZSH/oh-my-zsh.sh
