@@ -24,7 +24,8 @@ else
   export EDITOR=vim
 
   # Directory Colors
-  eval $(gdircolors -b $HOME/.dircolors)
+  #eval $(gdircolors -b $HOME/.dircolors)
+  eval $(dircolors -b $HOME/.dircolors)
 
   # Custom Grep
   alias grep='grep --color=always'
