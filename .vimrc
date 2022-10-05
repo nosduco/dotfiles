@@ -185,6 +185,7 @@ set lazyredraw
 
 " NERDCommenter Config
 let g:NERDSpaceDelims = 1
+let g:NERDTrimTrailingWhitespace = 1
 inoremap <C-_> :call NERDComment(0,"toggle")<CR>
 vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
@@ -214,8 +215,6 @@ endif
 " Themeing
 syntax enable
 set t_Co=256
-"let ayucolor="dark"
-"colorscheme ayu
 
 " Gruvbox
 let g:airline_powerline_fonts = 1
