@@ -34,10 +34,6 @@ nmap <C-K> <C-W>k
 nmap <C-H> <C-W>h
 nmap <C-L> <C-W>l
 
-" Tab keybinds
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-t>     <Esc>:tabnew<CR>
-
 " Mouse Support
 set mouse=a
 
@@ -47,16 +43,6 @@ set nowritebackup
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
 " Install vim-plug if not exist
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -65,8 +51,11 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" START PLUGINS
+" ### PLUGINS ###
 call plug#begin('~/.vim/plugged')
+
+" Extensions/Syntax
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Utilities
 Plug 'ap/vim-css-color'
@@ -75,6 +64,10 @@ Plug 'tpope/vim-surround'
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
 
+" Tabs/Buffers
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'romgrk/barbar.nvim'
+
 " Git
 Plug 'tpope/vim-fugitive'
 
@@ -82,7 +75,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -95,72 +88,82 @@ Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jparise/vim-graphql'
 
-" Golang
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
 " Terraform
 Plug 'hashivim/vim-terraform'
 
 " Markup
 Plug 'othree/xml.vim'
 
-" COC
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " Theming
-"Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'luochen1990/rainbow'
 
 call plug#end()
-" END PLUGINS
 
-" ; for fuzzy find file
-map <space> :Files<CR>
+" Space for fuzzy find file
+map <C-space> :Files<CR>
 
 " Terraform format on save
 let g:terraform_fmt_on_save = 1
 
-" Ctrl+F for ESLint Auto Fix
-" nmap <C-F> :call CocActionAsync('runCommand', 'eslint.executeAutofix')<CR>
-nmap <C-F> :call CocActionAsync('format')<CR>
+" ### COC CONFIGURATION ###
+" Tab for to trigger auto completion
+inoremap <silent><expr> <TAB>
+    \ coc#pum#visible() ? coc#pum#next(1) :
+    \ CheckBackspace() ? "\<Tab>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1] =~# '\s'
+endfunction
 
-" Ctrl+I for Code Autocomplete
-nmap <C-I> <Plug>(coc-codeaction)
+" Ctrl-Return to accept selected completion item
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" Show autocomplete on Tab
-" inoremap <silent><expr> <S-Tab> coc#refresh()
-" nnoremap <S-Tab> coc#refresh()
+" Ctrl+Space to trigger completion
+if has ('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
-
-" COC Configuration
-inoremap <silent><expr> <c-space> coc#refresh()
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-let g:coc_global_extensions = ['coc-yank', 'coc-spell-checker', 'coc-snippets', 'coc-prettier', 'coc-json', 'coc-html', 'coc-highlight', 'coc-git', 'coc-eslint', 'coc-yaml', 'coc-xml', 'coc-tsserver', 'coc-sh', 'coc-python', 'coc-omnisharp', 'coc-markdownlint', 'coc-java', 'coc-css']
-
-" GoTo Code Nav
+" Code navigation keybinds
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
+" Shift+k (K) to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
   else
-    execute '!' . &keywordprg . " " . expand('<cword>')
+    call feedkeys('K', 'in')
   endif
 endfunction
 
-" Highlight the symbol and its references when holding the cursor.
+" Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" \+rn to rename symbols
+nmap <leader>rn <Plug>(coc-rename)
+
+" Ctrl+F for Auto Lint
+nmap <C-F> :call CocActionAsync('format')<CR>
+
+" Ctrl+I for Code Autocomplete
+nmap <C-I> <Plug>(coc-codeaction)
+
+" COC integration into status line
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" COC Default Plugins
+let g:coc_global_extensions = ['coc-yank', 'coc-spell-checker', 'coc-snippets', 'coc-prettier', 'coc-json', 'coc-html', 'coc-highlight', 'coc-git', 'coc-eslint', 'coc-yaml', 'coc-xml', 'coc-tsserver', 'coc-sh', 'coc-python', 'coc-omnisharp', 'coc-markdownlint', 'coc-java', 'coc-css']
 
 " Turn on rainbow parenthesis
 let g:rainbow_active = 1
@@ -172,7 +175,7 @@ let g:rainbow_conf = {
 \	}
 \}
 
-" NERDTree Config
+" ### NERDTree Config ### 
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.meta$']
 let NERDTreeShowHidden = 1
@@ -183,18 +186,33 @@ let NERDTreeMapOpenInTab='t'
 let g:NERDTreeChDirMode = 2
 set lazyredraw
 
-" NERDCommenter Config
+" ### NERDCommenter Config ###
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
 inoremap <C-_> :call NERDComment(0,"toggle")<CR>
 vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
-"inoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
-"vnoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
-"nnoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
 
-" Fuzzy Finder
-" let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+" ### Tabs/Buffers config ###
+" Ctrl+t for new buffer
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-t>     <Esc>:tabnew<CR>
+
+" Move to previous/next
+" nnoremap <silent> <C-[> <Cmd>BufferPrevious<CR>
+nnoremap <silent> <C-]> <Cmd>BufferNext<CR>
+
+" Move to buffer in position
+" nnoremap <silent> <C-1> <Cmd>BufferGoto 1<CR>
+" nnoremap <silent> <C-2> <Cmd>BufferGoto 2<CR>
+" nnoremap <silent> <C-3> <Cmd>BufferGoto 3<CR>
+" nnoremap <silent> <C-4> <Cmd>BufferGoto 4<CR>
+" nnoremap <silent> <C-5> <Cmd>BufferGoto 5<CR>
+" nnoremap <silent> <C-6> <Cmd>BufferGoto 6<CR>
+" nnoremap <silent> <C-7> <Cmd>BufferGoto 7<CR>
+" nnoremap <silent> <C-8> <Cmd>BufferGoto 8<CR>
+" nnoremap <silent> <C-9> <Cmd>BufferGoto 9<CR>
+" nnoremap <silent> <C-0> <Cmd>BufferLast<CR>
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
