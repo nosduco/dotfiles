@@ -1,20 +1,24 @@
 # Path to your oh-my-zsh installation.
-# TODO: Edit for mac
-# export ZSH=~/.oh-my-zsh/
-export ZSH=/usr/share/oh-my-zsh/
+if [ "$(uname)" = "Darwin" ]; then
+  export ZSH=~/.oh-my-zsh/
+
+  # Plugins
+  plugins=(gitfast vi-mode dirhistory docker pip zsh-nvm sudo yarn wd virtualenv tmux zsh-autosuggestions zsh-syntax-highlighting)
+else
+  export ZSH=/usr/share/oh-my-zsh/
+
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+  # Plugins
+  plugins=(gitfast vi-mode dirhistory docker pip sudo yarn wd virtualenv tmux)
+fi
 
 ZSH_THEME="refined"
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
-
-# TODO: Edit for mac
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Plugins
-plugins=(gitfast vi-mode dirhistory docker pip sudo yarn wd virtualenv tmux)
 
 # oh-my-zsh
 source $ZSH/oh-my-zsh.sh
