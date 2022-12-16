@@ -1,3 +1,6 @@
+#G zprof - Profiling zsh
+zmodload zsh/zprof
+
 # Path to your oh-my-zsh installation.
 if [ "$(uname)" = "Darwin" ]; then
   export ZSH=~/.oh-my-zsh/
@@ -38,13 +41,43 @@ repo_information() {
 # Mac Configurations
 if [ "$(uname)" = "Darwin" ]; then
   alias vim='nvim'
-
-#  if command -v pyenv 1>/dev/null 2>&1; then
-#    eval "$(pyenv init -)"
-#  fi
 fi
 
+# export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="/usr/share/nvm"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+lazy_load_nvm() {
+  unset -f node
+  unset -f npm
+  unset -f yarn
+  unset -f npx
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+}
+
+node() {
+  lazy_load_nvm
+  node $@
+}
+
+yarn() {
+  lazy_load_nvm
+  yarn $@
+}
+
+npm() {
+  lazy_load_nvm
+  npm $@
+}
+
+npx() {
+  lazy_load_nvm
+  npx $@
+}
+
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Custom Functions
+timezsh() {
+  shell=${1-$SHELL}
+  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}

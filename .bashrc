@@ -18,7 +18,7 @@ if [ "$(uname)" = "Darwin" ]; then
   alias fs='open .'
 
   export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+  eval "$(jenv init -)"
 else 
   # Editor
   export EDITOR=vim
@@ -29,9 +29,6 @@ else
 
   # Custom Grep
   alias grep='grep --color=always'
-
-  # Node
-  source /usr/share/nvm/init-nvm.sh
 
   # Open File System
   alias fs='nautilus . &'
@@ -72,9 +69,6 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# History appending insetad of overwriting
-shopt -s histappend
 
 # ex - archive extractor
 ex ()

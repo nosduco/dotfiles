@@ -163,7 +163,7 @@ nmap <C-I> <Plug>(coc-codeaction)
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " COC Default Plugins
-let g:coc_global_extensions = ['coc-yank', 'coc-spell-checker', 'coc-snippets', 'coc-prettier', 'coc-json', 'coc-html', 'coc-highlight', 'coc-git', 'coc-eslint', 'coc-yaml', 'coc-xml', 'coc-tsserver', 'coc-sh', 'coc-python', 'coc-omnisharp', 'coc-markdownlint', 'coc-java', 'coc-css']
+let g:coc_global_extensions = ['coc-yank', 'coc-spell-checker', 'coc-snippets', 'coc-prettier', 'coc-json', 'coc-html', 'coc-highlight', 'coc-git', 'coc-eslint', 'coc-yaml', 'coc-xml', 'coc-tsserver', 'coc-sh', 'coc-pyright', 'coc-omnisharp', 'coc-markdownlint', 'coc-java', 'coc-css']
 
 " Turn on rainbow parenthesis
 let g:rainbow_active = 1
@@ -174,6 +174,10 @@ let g:rainbow_conf = {
 \		'nerdtree': 0,
 \	}
 \}
+
+" Treat .ejs and .njk files as HTML
+au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.njk set filetype=html
 
 " ### NERDTree Config ### 
 map <C-n> :NERDTreeToggle<CR>
@@ -189,9 +193,9 @@ set lazyredraw
 " ### NERDCommenter Config ###
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
-inoremap <C-_> :call NERDComment(0,"toggle")<CR>
-vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
-nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
+inoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
+vnoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
+nnoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
 
 " ### Tabs/Buffers config ###
 " Ctrl+t for new buffer
@@ -199,8 +203,9 @@ nnoremap <C-t>     :tabnew<CR>
 inoremap <C-t>     <Esc>:tabnew<CR>
 
 " Move to previous/next
-" nnoremap <silent> <C-[> <Cmd>BufferPrevious<CR>
+"nnoremap <silent> <C-[> <Cmd>BufferPrevious<CR>
 nnoremap <silent> <C-]> <Cmd>BufferNext<CR>
+"nnoremap <silent> <C-]> <Cmd>BufferNext<CR>
 
 " Move to buffer in position
 " nnoremap <silent> <C-1> <Cmd>BufferGoto 1<CR>
