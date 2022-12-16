@@ -2,37 +2,12 @@
   "tsserver.enableJavascript": false,
   "snippets.ultisnips.pythonPrompt": false,
   "languageserver": {
-    "flow": {
-      "command": "flow",
-      "args": ["lsp"],
-      "filetypes": [
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "javascriptjsx"
-      ],
-      "initializationOptions": {},
-      "requireRootPattern": true,
-      "settings": {},
-      "rootPatterns": [".flowconfig"]
-    },
     "terraform": {
       "command": "terraform-ls",
       "args": ["serve"],
       "filetypes": ["terraform", "tf"],
       "initializationOptions": {},
       "settings": {}
-    },
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod"],
-      "disableWorkspaceFolders": true,
-      "filetypes": ["go"]
-    },
-    "dockerfile": {
-      "command": "docker-langserver",
-      "filetypes": ["dockerfile"],
-      "args": ["--stdio"]
     }
   },
   "cSpell.userWords": [
