@@ -1,10 +1,16 @@
 {
   "tsserver.enableJavascript": false,
+  "snippets.ultisnips.pythonPrompt": false,
   "languageserver": {
     "flow": {
       "command": "flow",
       "args": ["lsp"],
-      "filetypes": ["javascript", "javascriptreact", "javascript.jsx", "javascriptjsx"],
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "javascriptjsx"
+      ],
       "initializationOptions": {},
       "requireRootPattern": true,
       "settings": {},
@@ -13,10 +19,7 @@
     "terraform": {
       "command": "terraform-ls",
       "args": ["serve"],
-      "filetypes": [
-        "terraform",
-        "tf"
-      ],
+      "filetypes": ["terraform", "tf"],
       "initializationOptions": {},
       "settings": {}
     },
@@ -40,8 +43,8 @@
     "circulo",
     "clsx",
     "mixins",
-    "sess"
+    "sess",
+    "extnames",
+    "superadmin"
   ]
 }
-
-
