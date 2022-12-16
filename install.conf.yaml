@@ -1,0 +1,22 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ["~"]
+
+- link:
+    ~/.alacritty.yml: .alacritty.yml
+    ~/.bashrc: .bashrc
+    ~/.dircolors: .dircolors
+    ~/.tmux.conf: .tmux.conf
+    ~/.vimrc: .vimrc
+    ~/.zshrc: .zshrc
+    ~/.config/nvm/coc-settings.json: coc-settings.json
+    ~/.config/nvm/init.vim: init.vim
+    # TODO: Karabiner
+    ~/.yabairc:
+      path: .yabairc
+      if: "[ `uname` = Darwin ]"
+    ~/.skhdrc:
+      path: .skhdrc
+      if: "[ `uname` = Darwin ]"
