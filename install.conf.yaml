@@ -11,8 +11,8 @@
     ~/.tmux.conf: .tmux.conf
     ~/.vimrc: .vimrc
     ~/.zshrc: .zshrc
-    ~/.config/nvm/coc-settings.json: coc-settings.json
-    ~/.config/nvm/init.vim: init.vim
+    ~/.config/nvim/coc-settings.json: coc-settings.json
+    ~/.config/nvim/init.vim: init.vim
     # TODO: Karabiner
     ~/.yabairc:
       path: .yabairc
