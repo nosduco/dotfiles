@@ -10,6 +10,7 @@
     ~/.bashrc: .bashrc
     ~/.dircolors: .dircolors
     ~/.tmux.conf: .tmux.conf
+    ~/.theme.tmux: .theme.tmux
     ~/.vimrc: .vimrc
     ~/.zshrc: .zshrc
     ~/.config/nvim/coc-settings.json: coc-settings.json

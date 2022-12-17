@@ -98,6 +98,7 @@ Plug 'othree/xml.vim'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Plug 'edkolev/tmuxline.vim'
 Plug 'luochen1990/rainbow'
 
 call plug#end()
@@ -243,7 +244,8 @@ set t_Co=256
 let g:airline_powerline_fonts = 1
 let g:airline_theme = "distinguished"
 let g:airline#extensions#tabline#enabled = 1
-let s:green = "AE403F"
+" let s:green = "AE403F"
+
 autocmd vimenter * ++nested colorscheme gruvbox
 
 " Highlights

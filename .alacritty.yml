@@ -261,7 +261,7 @@ colors:
     green: '#4E9A06'
     yellow: '#E6BF0F'
     blue: '#3465A4'
-    magenta: '#F57900'
+    magenta: '#e95420'
     cyan: '#06989A'
     white: '#D3D7CF'
 
@@ -297,7 +297,9 @@ colors:
   # Example:
   #   `- { index: 16, color: '#ff00ff' }`
   #
-  #indexed_colors: []
+  indexed_colors: [
+    { index: 166, color: '#e95420' }
+  ]
 
 # Bell
 #
