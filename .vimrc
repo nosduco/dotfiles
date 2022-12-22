@@ -98,7 +98,6 @@ Plug 'othree/xml.vim'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'edkolev/tmuxline.vim'
 Plug 'luochen1990/rainbow'
 
 call plug#end()
@@ -176,7 +175,7 @@ let g:rainbow_conf = {
 \	}
 \}
 
-" Treat .ejs and .njk files as HTML
+" Configuration for HTML templating languages
 au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.njk set filetype=html
 
