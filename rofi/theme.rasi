@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Custom theme for Rofi
+
+   Based on the Gruvbox color scheme for Vim by morhetz
+   https://github.com/morhetz/gruvbox
+
+   File: theme.rasi
+   Desc: Custom theme for Rofi by tony duco based on gruvbox
+   Author: nosduco <nosduco@gmail.com>
+   Source: https://github.com/nosduco/dotfiles
+   ========================================================================== */
+
+* {
+    /* Theme settings */
+    highlight: bold italic;
+    scrollbar: true;
+
+    /* Theme colors */
+    theme-dark-bg0-hard:     #212121;
+    theme-dark-bg0:          #212121;
+    theme-dark-bg2:          #303030;
+    theme-dark-fg0:          #eeeeee;
+    theme-dark-fg1:          #eeeeee;
+    theme-dark-red-dark:     #cc241d;
+    theme-dark-red-light:    #fb4934;
+    theme-dark-yellow-dark:  #d79921;
+    theme-dark-yellow-light: #fabd2f;
+    theme-dark-gray:         #e95420;
+
+    /* Theme colors */
+    background:                  @theme-dark-bg0-hard;
+    background-color:            @background;
+    foreground:                  @theme-dark-fg1;
+    border-color:                @theme-dark-gray;
+    separatorcolor:              @border-color;
+    scrollbar-handle:            @border-color;
+
+    normal-background:           @background;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @theme-dark-bg0;
+    alternate-normal-foreground: @foreground;
+    selected-normal-background:  @theme-dark-bg2;
+    selected-normal-foreground:  @theme-dark-fg0;
+
+    active-background:           @theme-dark-yellow-dark;
+    active-foreground:           @background;
+    alternate-active-background: @active-background;
+    alternate-active-foreground: @active-foreground;
+    selected-active-background:  @theme-dark-yellow-light;
+    selected-active-foreground:  @active-foreground;
+
+    urgent-background:           @theme-dark-red-dark;
+    urgent-foreground:           @background;
+    alternate-urgent-background: @urgent-background;
+    alternate-urgent-foreground: @urgent-foreground;
+    selected-urgent-background:  @theme-dark-red-light;
+    selected-urgent-foreground:  @urgent-foreground;
+}
+
+@import "gruvbox-common.rasi"
+
