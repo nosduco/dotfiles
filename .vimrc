@@ -163,7 +163,26 @@ nmap <C-I> <Plug>(coc-codeaction)
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " COC Default Plugins
-let g:coc_global_extensions = ['coc-yank', 'coc-spell-checker', 'coc-snippets', 'coc-prettier', 'coc-json', 'coc-html', 'coc-highlight', 'coc-git', 'coc-eslint', 'coc-yaml', 'coc-xml', 'coc-tsserver', 'coc-sh', 'coc-pyright', 'coc-omnisharp', 'coc-markdownlint', 'coc-java', 'coc-css']
+let g:coc_global_extensions = [
+      \'coc-yank', 
+      \'coc-spell-checker', 
+      \'coc-snippets', 
+      \'coc-prettier', 
+      \'coc-json', 
+      \'coc-html', 
+      \'coc-highlight', 
+      \'coc-git', 
+      \'coc-eslint', 
+      \'coc-yaml', 
+      \'coc-xml', 
+      \'coc-tsserver', 
+      \'coc-sh', 
+      \'coc-pyright', 
+      \'coc-omnisharp', 
+      \'coc-markdownlint', 
+      \'coc-java', 
+      \'coc-css'
+      \]
 
 " Turn on rainbow parenthesis
 let g:rainbow_active = 1
