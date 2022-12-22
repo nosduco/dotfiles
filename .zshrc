@@ -43,15 +43,22 @@ if [ "$(uname)" = "Darwin" ]; then
   alias vim='nvim'
 fi
 
-# export NVM_DIR="$HOME/.nvm"
-export NVM_DIR="/usr/share/nvm"
+export NVM_DIR="$HOME/.nvm"
+# export NVM_DIR="/usr/share/nvm"
 
 lazy_load_nvm() {
+  unset -f nvm
   unset -f node
   unset -f npm
   unset -f yarn
   unset -f npx
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+  source /usr/share/nvm/init-nvm.sh # this loads nvm
+  # [ -s "/usr/share/init-nvm.sh" ] && \. "/usr/share/init-nvm.sh" # This loads nvm
+}
+
+nvm() {
+  lazy_load_nvm
+  nvm $@
 }
 
 node() {
