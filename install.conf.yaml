@@ -34,3 +34,16 @@
     ~/.skhdrc:
       path: .skhdrc
       if: "[ `uname` = Darwin ]"
+        
+- shell:
+  # Set gnome themes (if running Gnome)
+  -
+    command: gsettings set org.gnome.desktop.interface gtk-theme nos-dark
+    if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+  -
+    command: gsettings set org.gnome.desktop.wm.preferences theme nos-dark
+    if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+  # Set gnome custom keybinds (if running Gnome)
+  -
+    command: ./scripts/set_gnome_keybinds.sh
+    if: "[ $XDG_SESSION_DESKTOP = gnome ]"
