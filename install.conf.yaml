@@ -5,6 +5,9 @@
 
 - clean: ["~"]
 
+- create:
+  - ~/.config/nvim
+
 - link:
     ~/.alacritty.yml: .alacritty.yml
     ~/.bashrc: .bashrc
@@ -15,8 +18,6 @@
     ~/.zshrc: .zshrc
     ~/.config/nvim/coc-settings.json: coc-settings.json
     ~/.config/nvim/init.vim: init.vim
-    ~/.config/rofi/config.rasi: rofi/config.rasi
-    ~/.config/rofi/theme.rasi: rofi/theme.rasi
     ~/.themes/nos-dark/: 
       create: true
       glob: true
@@ -47,3 +48,8 @@
   -
     command: ./scripts/set_gnome_keybinds.sh
     if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+  # Set alacritty as default terminal emulator (mainly for pop_shell)
+  -
+    command: sudo ln -s /usr/bin/alacritty /usr/bin/x-terminal-emulator || true
+    if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+
