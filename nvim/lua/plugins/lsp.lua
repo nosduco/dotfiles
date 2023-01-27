@@ -71,7 +71,8 @@ vim.g.coc_global_extensions = {
       'coc-omnisharp', 
       'coc-markdownlint', 
       'coc-java', 
-      'coc-css'
+      'coc-css',
+      'coc-lua'
     }
 
 
