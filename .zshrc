@@ -43,9 +43,9 @@ if [ "$(uname)" = "Darwin" ]; then
   alias vim='nvim'
 fi
 
+# Node Configuration
 export NVM_DIR="$HOME/.nvm"
 # export NVM_DIR="/usr/share/nvm"
-
 lazy_load_nvm() {
   unset -f nvm
   unset -f node
@@ -55,33 +55,32 @@ lazy_load_nvm() {
   source /usr/share/nvm/init-nvm.sh # this loads nvm
   # [ -s "/usr/share/init-nvm.sh" ] && \. "/usr/share/init-nvm.sh" # This loads nvm
 }
-
 nvm() {
   lazy_load_nvm
   nvm $@
 }
-
 node() {
   lazy_load_nvm
   node $@
 }
-
 yarn() {
   lazy_load_nvm
   yarn $@
 }
-
 npm() {
   lazy_load_nvm
   npm $@
 }
-
 npx() {
   lazy_load_nvm
   npx $@
 }
-
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Python Configuration
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # Custom Functions
 timezsh() {
