@@ -6,7 +6,7 @@
 - clean: ["~"]
 
 - create:
-  - ~/.config/nvim
+    - ~/.config/nvim
 
 - link:
     ~/.alacritty.yml: .alacritty.yml
@@ -16,9 +16,12 @@
     ~/.theme.tmux: .theme.tmux
     ~/.vimrc: .vimrc
     ~/.zshrc: .zshrc
-    ~/.config/nvim/coc-settings.json: coc-settings.json
-    ~/.config/nvim/init.vim: init.vim
-    ~/.themes/nos-dark/: 
+    ~/.config/nvim:
+      create: true
+      glob: true
+      path: nvim
+      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+    ~/.themes/nos-dark/:
       create: true
       glob: true
       path: gnome/nos-dark/*
@@ -28,28 +31,22 @@
       glob: true
       path: /usr/share/themes/adw-gtk3-dark/gtk-3.0/*
       if: "[ $XDG_SESSION_DESKTOP = gnome ]"
-    # TODO: Karabiner
     ~/.yabairc:
       path: .yabairc
       if: "[ `uname` = Darwin ]"
     ~/.skhdrc:
       path: .skhdrc
       if: "[ `uname` = Darwin ]"
-        
-- shell:
-  # Set gnome themes (if running Gnome)
-  -
-    command: gsettings set org.gnome.desktop.interface gtk-theme nos-dark
-    if: "[ $XDG_SESSION_DESKTOP = gnome ]"
-  -
-    command: gsettings set org.gnome.desktop.wm.preferences theme nos-dark
-    if: "[ $XDG_SESSION_DESKTOP = gnome ]"
-  # Set gnome custom keybinds (if running Gnome)
-  -
-    command: ./scripts/set_gnome_keybinds.sh
-    if: "[ $XDG_SESSION_DESKTOP = gnome ]"
-  # Set alacritty as default terminal emulator (mainly for pop_shell)
-  -
-    command: sudo ln -s /usr/bin/alacritty /usr/bin/x-terminal-emulator || true
-    if: "[ $XDG_SESSION_DESKTOP = gnome ]"
 
+- shell:
+    # Set gnome themes (if running Gnome)
+    - command: gsettings set org.gnome.desktop.interface gtk-theme nos-dark
+      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+    - command: gsettings set org.gnome.desktop.wm.preferences theme nos-dark
+      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+    # Set gnome custom keybinds (if running Gnome)
+    - command: ./scripts/set_gnome_keybinds.sh
+      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+    # Set alacritty as default terminal emulator (mainly for pop_shell)
+    - command: sudo ln -s /usr/bin/alacritty /usr/bin/x-terminal-emulator || true
+      if: "[ $XDG_SESSION_DESKTOP = gnome ]"

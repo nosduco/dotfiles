@@ -1,14 +1,12 @@
 # Dotfiles
 
-A collection of dotfiles I share between my desktop and laptop.
+A collection of sane dotfiles I share between my machines as a software engineer/manager.
 
-## Scripts
+## Installation
 
-### track.sh
-This script takes in a file in your home folder as an argument, copies it over, then symlinks.
-Used to start "tracking" a new dotfile.
+`./install`
 
-### install.sh
-This script takes in a dotfile in the repo, makes a copy of your old, and symlinks to the new one.
-Used to "install" a tracked dotfile.
+## Notes
 
+TODO: add nvim-packer-git
+TODO: Add ripgrep
