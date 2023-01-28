@@ -1,14 +1,20 @@
 vim.o.background = "dark"
-vim.cmd([[colorscheme gruvbox]])
 
-local colors = {
-  gray = "#8a8a8a",
-  golden = "#afaf5f",
-  pink = "#af5f5f",
-  blue = "#5f87af",
-  orange = "#d75f00",
-  outerfg = "#000000",
-  innerbg = "#1c1c1c",
-  middle_0 = "#bcbcbc",
-  middle_1 = "#444444"
-}
+require("catppuccin").setup({
+  flavour = "mocha",
+  term_colors = true,
+  transparent_background = false,
+  no_italic = false,
+  no_bold = false,
+  background = {
+    -- dark = "mocha"
+  },
+  color_overrides = {
+    mocha = {
+      base = "#262626",
+      mantle = "#262626",
+      crust = "#262626"
+    }
+  }
+})
+vim.cmd([[colorscheme catppuccin]])

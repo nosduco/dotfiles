@@ -1,6 +1,7 @@
 require("nvim-tree").setup({
   open_on_setup = true,
   view = {
+    adaptive_size = true,
     mappings = {
       list = {
         { key = "s", action = "vsplit" },
@@ -12,8 +13,12 @@ require("nvim-tree").setup({
   actions = {
     open_file = {
       quit_on_open = true,
+      window_picker = {
+        enable = false,
+      }
     },
-  }
+  },
+
 })
 
 vim.api.nvim_set_keymap('', '<C-n>', ':NvimTreeToggle<CR>', {})

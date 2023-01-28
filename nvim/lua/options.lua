@@ -69,7 +69,7 @@ vim.cmd([[
 -- vim.cmd([[
   -- let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 -- ]])
--- vim.opt.termguicolors = true
+vim.opt.termguicolors = true
 vim.cmd("set t_Co=256")
 
 -- Movement Keybinds (Ctrl+h,j,k,l pane movement)

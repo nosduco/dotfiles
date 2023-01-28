@@ -1,6 +1,7 @@
 {
   "tsserver.enableJavascript": false,
   "snippets.ultisnips.pythonPrompt": false,
+  "Lua.diagnostics.globals": ["vim"],
   "languageserver": {
     "terraform": {
       "command": "terraform-ls",

@@ -9,7 +9,10 @@ require("plugins/tree")
 require("plugins/finder")
 require("plugins/comments")
 require("plugins/lsp")
-require("plugins/airline")
+require("plugins/util")
 
 -- Apply Themes
 require("theme")
+
+-- Configure Plugins (dependent on theme)
+require("plugins/airline")
