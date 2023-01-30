@@ -3,7 +3,6 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- CSS
-  -- use 'ap/vim-css-color'
   use 'norcalli/nvim-colorizer.lua'
 
   -- Tmux Navigation 
@@ -24,10 +23,11 @@ return require('packer').startup(function(use)
   -- Airline
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
 
-  -- Extension Host/Language Server
+  -- Extension Host/Language Server/Sitter
   use {'neoclide/coc.nvim', branch = 'release'}
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- Themes
-  use { 'catppuccin/nvim', as = 'catppuccin' }
+  use { 'Shatur/neovim-ayu' }
 end)
 

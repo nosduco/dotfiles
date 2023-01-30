@@ -30,8 +30,6 @@ vim.opt.laststatus = 2
 vim.opt.showcmd = true
 vim.opt.cmdheight = 1
 vim.opt.hidden = true
--- TODO: Figure out what to do here
--- let g:bufferline_echo=0
 
 -- Syntax Configuration
 vim.cmd("filetype plugin indent on")
@@ -65,10 +63,6 @@ vim.cmd([[
 ]])
 
 -- Terminal Setup
--- TODO: Check if outside of tmux, if so run the commands below
--- vim.cmd([[
-  -- let $NVIM_TUI_ENABLE_TRUE_COLOR=1
--- ]])
 vim.opt.termguicolors = true
 vim.cmd("set t_Co=256")
 

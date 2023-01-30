@@ -1,3 +1,4 @@
+-- Setup tree/file browser
 require("nvim-tree").setup({
   open_on_setup = true,
   view = {
@@ -21,4 +22,5 @@ require("nvim-tree").setup({
 
 })
 
+-- Set ctrl+n keybind to open tree
 vim.api.nvim_set_keymap('', '<C-n>', ':NvimTreeToggle<CR>', {})

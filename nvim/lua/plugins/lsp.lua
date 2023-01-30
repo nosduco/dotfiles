@@ -1,3 +1,4 @@
+-- Import keyset
 local keyset = vim.keymap.set
 
 -- Autocomplete
@@ -56,27 +57,32 @@ keyset("n", "<C-F>", ":call CocActionAsync('format')<CR>", {silent = true})
 -- provide custom statusline: lightline.vim, vim-airline
 vim.opt.statusline:prepend("%{coc#status()}%{get(b:,'coc_current_function','')}")
 
---- Global extensions
+-- Global extensions
 vim.g.coc_global_extensions = {
-      'coc-yank', 
-      'coc-spell-checker', 
-      'coc-snippets', 
-      'coc-prettier', 
-      'coc-json', 
-      'coc-html', 
-      'coc-highlight', 
-      'coc-git', 
-      'coc-eslint', 
-      'coc-yaml', 
-      'coc-xml', 
-      'coc-tsserver', 
-      'coc-sh', 
-      'coc-pyright', 
-      'coc-omnisharp', 
-      'coc-markdownlint', 
-      'coc-java', 
+      'coc-yank',
+      'coc-spell-checker',
+      'coc-snippets',
+      'coc-prettier',
+      'coc-json',
+      'coc-html',
+      'coc-highlight',
+      'coc-git',
+      'coc-eslint',
+      'coc-yaml',
+      'coc-xml',
+      'coc-tsserver',
+      'coc-sh',
+      'coc-pyright',
+      'coc-omnisharp',
+      'coc-markdownlint',
+      'coc-java',
       'coc-css',
       'coc-lua'
     }
 
-
+-- Tree Sitter
+require('nvim-treesitter.configs').setup({
+  ensure_installed = { "lua", "vim", "javascript", "typescript", "help" },
+  sync_install = false,
+  auto_install = true,
+})

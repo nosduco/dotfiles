@@ -15,4 +15,4 @@ require("plugins/util")
 require("theme")
 
 -- Configure Plugins (dependent on theme)
-require("plugins/airline")
+require("plugins/lualine")
