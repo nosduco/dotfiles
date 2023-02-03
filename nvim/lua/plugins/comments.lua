@@ -5,3 +5,6 @@ require('mini.comment').setup({
     comment_line = '<C-_>'
   }
 })
+
+-- Setup TODO comment helper
+require('todo-comments').setup()

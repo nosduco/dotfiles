@@ -19,7 +19,9 @@ require("nvim-tree").setup({
       }
     },
   },
-
+  git = {
+    ignore = false,
+  }
 })
 
 -- Set ctrl+n keybind to open tree

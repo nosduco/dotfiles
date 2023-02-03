@@ -5,7 +5,7 @@ return require('packer').startup(function(use)
   -- CSS
   use 'norcalli/nvim-colorizer.lua'
 
-  -- Tmux Navigation 
+  -- Tmux Navigation
   use 'christoomey/vim-tmux-navigator'
 
   -- Files
@@ -19,6 +19,7 @@ return require('packer').startup(function(use)
 
   -- Comments
   use { 'echasnovski/mini.comment', branch = 'stable' }
+  use { 'folke/todo-comments.nvim', requires = "nvim-lua/plenary.nvim" }
 
   -- Airline
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
