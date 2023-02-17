@@ -16,3 +16,6 @@ require("theme")
 
 -- Configure Plugins (dependent on theme)
 require("plugins/lualine")
+
+-- Configure GUI editors
+require("neovide")

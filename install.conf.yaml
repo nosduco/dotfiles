@@ -14,7 +14,6 @@
     ~/.dircolors: .dircolors
     ~/.tmux.conf: .tmux.conf
     ~/.theme.tmux: .theme.tmux
-    ~/.vimrc: .vimrc
     ~/.zshrc: .zshrc
     ~/.config/nvim:
       create: true
@@ -30,6 +29,11 @@
       create: true
       glob: true
       path: /usr/share/themes/adw-gtk3-dark/gtk-3.0/*
+      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+    ~/.config/wireplumber:
+      create: true
+      glob: true
+      path: wireplumber
       if: "[ $XDG_SESSION_DESKTOP = gnome ]"
     ~/.yabairc:
       path: .yabairc
