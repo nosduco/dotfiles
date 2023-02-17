@@ -20,20 +20,33 @@
       glob: true
       path: nvim
       if: "[ $XDG_SESSION_DESKTOP = gnome ]"
-    ~/.themes/nos-dark/:
+    # Theming
+    ~/.themes/nos-dark:
       create: true
       glob: true
-      path: gnome/nos-dark/*
+      path: gnome/nos-dark
       if: "[ $XDG_SESSION_DESKTOP = gnome ]"
-    ~/.themes/nos-dark/gtk-3.0/:
-      create: true
-      glob: true
-      path: /usr/share/themes/adw-gtk3-dark/gtk-3.0/*
-      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+    ~/.config/gtk-4.0/gtk.css: gnome/nos-dark/gtk.css
+    ~/.config/gtk-3.0/gtk.css: gnome/nos-dark/gtk.css
+    # ~/.themes/nos-dark/gtk-3.0/:
+    #   create: true
+    #   glob: true
+    #   path: /usr/share/themes/adw-gtk3-dark/gtk-3.0/*
+    #   if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+    # ~/.themes/nos-dark/gtk-3.0/:
+    #   create: true
+    #   glob: true
+    #   path: gnome/nos-dark/gtk-4.0/*
+    #   if: "[ $XDG_SESSION_DESKTOP = gnome ]"
     ~/.config/wireplumber:
       create: true
       glob: true
       path: wireplumber
+      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+    ~/.config/spicetify/Themes/nos:
+      create: true
+      glob: true
+      path: spicetify-theme
       if: "[ $XDG_SESSION_DESKTOP = gnome ]"
     ~/.yabairc:
       path: .yabairc
