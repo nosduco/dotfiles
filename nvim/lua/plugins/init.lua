@@ -27,6 +27,8 @@ return require('packer').startup(function(use)
   -- Extension Host/Language Server/Sitter
   use {'neoclide/coc.nvim', branch = 'release'}
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use {'nathom/filetype.nvim'}
+  use { 'jose-elias-alvarez/null-ls.nvim', requires = { {'nvim-lua/plenary.nvim'} } }
 
   -- Themes
   use { 'Shatur/neovim-ayu' }

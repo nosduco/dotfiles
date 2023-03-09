@@ -88,3 +88,22 @@ require('nvim-treesitter.configs').setup({
   sync_install = false,
   auto_install = true,
 })
+
+-- Filetypes
+require('filetype').setup({
+  overrides = {
+    extensions = {
+      tf = "terraform",
+      tfvars = "terraform",
+      tfstate = "json",
+    }
+  }
+})
+
+-- null-ls
+local null_ls = require("null-ls")
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.terraform_fmt,
+  }
+})
