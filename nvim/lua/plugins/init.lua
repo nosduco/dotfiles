@@ -39,7 +39,7 @@ return require('packer').startup(function(use)
   -- use 'mfussenegger/nvim-dap'
 
   -- Themes
-  -- use { 'Shatur/neovim-ayu' }
+  use { 'Shatur/neovim-ayu' }
   use 'marko-cerovac/material.nvim'
 end)
 
