@@ -31,10 +31,15 @@ return require('packer').startup(function(use)
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use {'nathom/filetype.nvim'}
   use { 'jose-elias-alvarez/null-ls.nvim', requires = { {'nvim-lua/plenary.nvim'} } }
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+  -- use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
   -- use 'mfussenegger/nvim-dap'
 
   -- Themes
-  use { 'Shatur/neovim-ayu' }
+  -- use { 'Shatur/neovim-ayu' }
+  use 'marko-cerovac/material.nvim'
 end)
 
