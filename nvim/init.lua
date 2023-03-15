@@ -1,21 +1,21 @@
--- Setup Options
-require("options")
+local autocmd = vim.api.nvim_create_autocmd
 
--- Install Plugins
-require("plugins")
+-- Auto resize panes when resizing nvim window
+autocmd("VimResized", {
+  pattern = "*",
+  command = "tabdo wincmd =",
+})
 
--- Configure Plugins
-require("plugins/tree")
-require("plugins/finder")
-require("plugins/comments")
-require("plugins/lsp")
-require("plugins/util")
+-- Open nvim-tree on start
+local function open_nvim_tree()
+  require("nvim-tree.api").tree.open()
+end
 
--- Apply Themes
-require("theme")
+autocmd("VimEnter", {
+  callback = open_nvim_tree
+})
 
--- Configure Plugins (dependent on theme)
-require("plugins/lualine")
-
--- Configure GUI editors
-require("neovide")
+-- Neovide (Neovim GUI) options
+if vim.g.neovide then
+  vim.g.neovide_scale_factor = 0.75
+end

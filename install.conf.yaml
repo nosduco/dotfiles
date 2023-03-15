@@ -1,3 +1,4 @@
+---
 - defaults:
     link:
       relink: true
@@ -5,21 +6,23 @@
 
 - clean: ["~"]
 
-- create:
-    - ~/.config/nvim
+- shell:
+  # Clone NvChad configuration to be overridden by custom config below
+  - command: git -C ~/.config/nvim pull || git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 
 - link:
+    # tty configurations
     ~/.alacritty.yml: .alacritty.yml
     ~/.bashrc: .bashrc
     ~/.dircolors: .dircolors
     ~/.tmux.conf: .tmux.conf
     ~/.theme.tmux: .theme.tmux
     ~/.zshrc: .zshrc
-    ~/.config/nvim:
+    # Vim
+    ~/.config/nvim/lua/custom:
       create: true
       glob: true
       path: nvim
-      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
     # Theming
     ~/.themes/nos-dark:
       create: true
@@ -34,6 +37,7 @@
       glob: true
       path: spicetify-theme
       if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+    # Audio settings
     ~/.config/wireplumber:
       create: true
       glob: true
