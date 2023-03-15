@@ -76,4 +76,3 @@ vim.api.nvim_set_keymap('n', '<C-L>', '<C-W>l', {})
 vim.api.nvim_set_keymap('n', '<C-t>', ':tabnew<CR>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-t>', '<Esc>:tabnew<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-]>', '<Cmd>BufferNext<CR>', { noremap = true, silent = true })
-
