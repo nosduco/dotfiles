@@ -12,8 +12,9 @@ local sources = {
   --  b.code_actions.cspell,
 
   -- Web
-  b.formatting.eslint,
-  b.formatting.prettier,
+  b.formatting.eslint_d,
+  b.diagnostics.eslint_d,
+  -- b.formatting.prettier,
 
   -- Go
   b.diagnostics.golangci_lint,
@@ -31,9 +32,9 @@ local sources = {
   b.formatting.stylua,
 
   -- Markup/Markdown
-  b.diagnostics.yamllint,
-  b.formatting.yamlfmt,
-  b.formatting.markdownlint,
+  -- b.diagnostics.yamllint,
+  -- b.formatting.yamlfmt,
+  -- b.formatting.markdownlint,
 
   -- Justfile
   b.formatting.just,

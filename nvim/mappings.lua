@@ -1,6 +1,18 @@
 ---@type MappingsTable
 local M = {}
 
+M.disabled = {
+  -- Disable default keybinds
+  n = {
+    ["<leader>/"] = "",
+  },
+  i = {},
+  v = {
+    ["<C-F>"] = "",
+    ["<leader>/"] = "",
+  }
+}
+
 M.general = {
   n = {
     -- Shortcut to command
@@ -58,7 +70,25 @@ M.nvterm = {
 M.lspconfig = {
   n = {
     -- Autoformat via lsp
-    ["<C-F>"] = {
+    ["<C-f>"] = {
+      function()
+        vim.lsp.buf.format { async = true }
+      end,
+      "lsp formatting",
+    },
+  },
+  i = {
+    -- Autoformat via lsp
+    ["<C-f>"] = {
+      function()
+        vim.lsp.buf.format { async = true }
+      end,
+      "lsp formatting",
+    },
+  },
+  v = {
+    -- Autoformat via lsp
+    ["<C-f>"] = {
       function()
         vim.lsp.buf.format { async = true }
       end,
@@ -66,7 +96,5 @@ M.lspconfig = {
     },
   }
 }
-
--- more keybinds!
 
 return M
