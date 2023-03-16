@@ -45,13 +45,6 @@ M.comment = {
 	},
 }
 
-M.telescope = {
-	-- Quick-display telescope
-	n = {
-		["<C-space>"] = { "<cmd> Telescope find_files <CR>", "find files" },
-	},
-}
-
 M.nvterm = {
 	t = {
 		-- Toggle veritcal terminal

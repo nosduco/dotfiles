@@ -35,16 +35,19 @@ local plugins = {
 		"williamboman/mason.nvim",
 		opts = overrides.mason,
 	},
-
 	-- Install plugins
 	{
 		-- Rust
 		"simrat39/rust-tools.nvim",
 	},
+  {
+    "hrsh7th/nvim-cmp",
+    opts = overrides.cmp,
+  },
 	{
 		-- Tmux integration
 		"numToStr/Navigator.nvim",
-    lazy = false,
+		lazy = false,
 		opts = {},
 		config = function(_, opts)
 			require("Navigator").setup(opts)

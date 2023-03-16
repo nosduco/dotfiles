@@ -8,8 +8,8 @@ local b = null_ls.builtins
 
 local sources = {
   -- Spelling
-  --  b.diagnostics.cspell,
-  --  b.code_actions.cspell,
+   -- b.diagnostics.cspell,
+   -- b.code_actions.cspell,
 
   -- Web
   b.formatting.eslint_d,
@@ -23,7 +23,7 @@ local sources = {
   b.formatting.goimports_reviser,
 
   -- Rust
-  -- b.formatting.rustfmt,
+  b.formatting.rustfmt,
 
   -- Terraform
   b.formatting.terraform_fmt,
