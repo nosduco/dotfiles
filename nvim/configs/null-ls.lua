@@ -23,7 +23,7 @@ local sources = {
   b.formatting.goimports_reviser,
 
   -- Rust
-  b.formatting.rustfmt,
+  -- b.formatting.rustfmt,
 
   -- Terraform
   b.formatting.terraform_fmt,

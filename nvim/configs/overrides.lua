@@ -54,10 +54,13 @@ M.mason = {
 		"prettier",
 		"prisma-language-server",
 
-    -- Rust
-    "rust-analyzer",
+		-- Rust
+		"rust-analyzer",
 
-		-- Infrastructure
+		-- Python
+		"pyright",
+
+		-- Terraform
 		"terraform-ls",
 	},
 }

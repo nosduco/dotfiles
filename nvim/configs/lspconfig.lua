@@ -10,8 +10,8 @@ local servers = {
 	"clangd",
 	"docker_compose_language_service",
 	"dockerls",
-	"rust_analyzer",
 	"terraformls",
+	"pyright",
 }
 
 for _, lsp in ipairs(servers) do
@@ -21,4 +21,15 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
+-- Rust
+local rt = require("rust-tools")
+
+rt.setup({
+	server = {
+		on_attach = on_attach,
+		capabilities = capabilities,
+	},
+})
+
+-- Python
 -- lspconfig.pyright.setup { }

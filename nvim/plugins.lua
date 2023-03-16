@@ -36,7 +36,20 @@ local plugins = {
 		opts = overrides.mason,
 	},
 
-	-- Install additoional plugins
+	-- Install plugins
+	{
+		-- Rust
+		"simrat39/rust-tools.nvim",
+	},
+	{
+		-- Tmux integration
+		"numToStr/Navigator.nvim",
+    lazy = false,
+		opts = {},
+		config = function(_, opts)
+			require("Navigator").setup(opts)
+		end,
+	},
 }
 
 return plugins
