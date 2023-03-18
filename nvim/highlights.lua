@@ -6,17 +6,17 @@ local M = {}
 
 ---@type HLTable
 M.override = {
-  -- CursorLine = {
-    -- bg = "black2",
---  },
-  -- Comment = {
-    -- italic = true,
-  -- },
+	St_NormalMode = { bg = "orange", bold = true },
+	St_NormalModeSep = { fg = "orange" },
+	St_cwd_sep = { fg = "yellow" },
+	St_cwd_icon = { bg = "yellow" },
+	St_LspStatus = { fg = "orange" },
+	St_pos_sep = { fg = "orange" },
+	St_pos_icon = { bg = "orange" },
+	St_pos_text = { fg = "orange" },
 }
 
 ---@type HLTable
-M.add = {
-  -- NvimTreeOpenedFolderName = { fg = "green", bold = true },
-}
+M.add = {}
 
 return M

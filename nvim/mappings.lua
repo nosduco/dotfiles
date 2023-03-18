@@ -48,21 +48,21 @@ M.comment = {
 M.nvterm = {
 	t = {
 		-- Toggle veritcal terminal
-		["<C-t>"] = {
-			function()
-				require("nvterm.terminal").toggle("vertical")
-			end,
-			"toggle vertical term",
-		},
+		-- ["<C-t>"] = {
+		-- 	function()
+		-- 		require("nvterm.terminal").toggle("vertical")
+		-- 	end,
+		-- 	"toggle vertical term",
+		-- },
 	},
 	n = {
 		-- Toggle veritcal terminal
-		["<C-t>"] = {
-			function()
-				require("nvterm.terminal").toggle("vertical")
-			end,
-			"toggle vertical term",
-		},
+		-- ["<C-t>"] = {
+		-- 	function()
+		-- 		require("nvterm.terminal").toggle("vertical")
+		-- 	end,
+		-- 	"toggle vertical term",
+		-- },
 	},
 }
 

@@ -22,6 +22,7 @@ M.treesitter = {
 		"yaml",
 		"javascript",
 		"typescript",
+		"rust",
 		"markdown",
 		"markdown_inline",
 	},
@@ -56,6 +57,7 @@ M.mason = {
 
 		-- Rust
 		"rust-analyzer",
+		"rustfmt",
 
 		-- Python
 		"pyright",
@@ -123,6 +125,15 @@ M.cmp = {
 			end
 		end, { "i", "s" }),
 	},
+}
+
+M.toggleterm = {
+	open_mapping = [[<c-t>]],
+	insert_mappings = true,
+	terminal_mappings = true,
+	direction = "vertical",
+	close_on_exit = true,
+	size = vim.o.columns * 0.2,
 }
 
 return M

@@ -22,6 +22,18 @@ M.ui = {
 		theme = "default",
 		separator_style = "arrow",
 	},
+
+	-- Tabufline
+	tabufline = {
+		overriden_modules = function()
+			return {
+        -- Disable top right toggle theme/close all buttons
+				buttons = function()
+					return ""
+				end,
+			}
+		end,
+	},
 }
 
 M.plugins = "custom.plugins"
