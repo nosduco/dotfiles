@@ -31,13 +31,16 @@ local sources = {
 	-- Lua
 	b.formatting.stylua,
 
+	-- Github Actions
+	b.diagnostics.actionlint,
+
 	-- Markup/Markdown
 	-- b.diagnostics.yamllint,
 	-- b.formatting.yamlfmt,
 	-- b.formatting.markdownlint,
 
 	-- Justfile
-	b.formatting.just,
+  b.formatting.just,
 }
 
 null_ls.setup({

@@ -44,10 +44,37 @@ local plugins = {
 		"NvChad/nvterm",
 		enabled = false,
 	},
+	{
+		"nvim-telescope/telescope.nvim",
+		opts = {
+			extensions_list = {
+        "themes",
+        "terms",
+				"remote-ssh",
+			},
+		},
+	},
 	-- Install plugins
+	{
+		dir = "~/Projects/remote-ssh.nvim",
+		lazy = false,
+		opts = {},
+		config = function(_, opts)
+			require("remote-ssh").setup(opts)
+		end,
+	},
 	{
 		-- Rust
 		"simrat39/rust-tools.nvim",
+	},
+	{
+		-- Just
+		"IndianBoy42/tree-sitter-just",
+		lazy = false,
+		opts = {},
+		config = function(_, opts)
+			require("tree-sitter-just").setup(opts)
+		end,
 	},
 	{
 		-- Tmux integration
@@ -61,13 +88,26 @@ local plugins = {
 	{
 		-- Terminal Plugin
 		"akinsho/toggleterm.nvim",
-    -- TODO: Figure out how to lazy load this on map
-    lazy = false,
+		-- TODO: Figure out how to lazy load this on map
+		lazy = false,
 		version = "*",
 		opts = overrides.toggleterm,
 		config = function(_, opts)
 			require("toggleterm").setup(opts)
 		end,
+	},
+	{
+		-- Markdown functionality
+		"iamcco/markdown-preview.nvim",
+		run = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = {
+			"markdown",
+		},
 	},
 }
 

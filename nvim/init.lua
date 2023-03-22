@@ -19,6 +19,17 @@ autocmd("VimEnter", {
 --autocmd("Cheatsheet", {
 --	command = ":NvCheatsheet",
 --})
+--
+local new_cmd = vim.api.nvim_create_user_command
+new_cmd("Cheatsheet", function()
+	vim.g.nvcheatsheet_displayed = not vim.g.nvcheatsheet_displayed
+
+	if vim.g.nvcheatsheet_displayed then
+		require("nvchad_ui.cheatsheet.simple")()
+	else
+		vim.cmd("bd")
+	end
+end, {})
 
 -- Neovide (Neovim GUI) options
 if vim.g.neovide then

@@ -65,6 +65,12 @@ M.mason = {
 		-- Terraform
 		"terraform-ls",
 
+    -- Github actions
+    "actionlint",
+
+    -- Yaml
+    "yaml-language-server",
+
 		-- Misc
 		"cspell",
 	},
@@ -133,7 +139,7 @@ M.toggleterm = {
 	terminal_mappings = true,
 	direction = "vertical",
 	close_on_exit = true,
-	size = vim.o.columns * 0.2,
+	size = vim.o.columns * 0.25,
 }
 
 return M

@@ -5,12 +5,24 @@ M.disabled = {
 	-- Disable default keybinds
 	n = {
 		["<leader>/"] = "",
+    ["<leader> + wK"] = "",
+    ["<leader> + wk"] = "",
+    ["<A-i>"] = "",
+    ["<A-v>"] = "",
+    ["<A-h>"] = "",
+    ["<leader> + h"] = "",
+    ["<leader> + v"] = "",
 	},
 	i = {},
 	v = {
 		["<C-F>"] = "",
 		["<leader>/"] = "",
 	},
+  t = {
+    ["<A-i>"] = "",
+    ["<A-v>"] = "",
+    ["<A-h>"] = "",
+  },
 }
 
 M.general = {
@@ -42,27 +54,6 @@ M.comment = {
 			"<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
 			"toggle comment",
 		},
-	},
-}
-
-M.nvterm = {
-	t = {
-		-- Toggle veritcal terminal
-		-- ["<C-t>"] = {
-		-- 	function()
-		-- 		require("nvterm.terminal").toggle("vertical")
-		-- 	end,
-		-- 	"toggle vertical term",
-		-- },
-	},
-	n = {
-		-- Toggle veritcal terminal
-		-- ["<C-t>"] = {
-		-- 	function()
-		-- 		require("nvterm.terminal").toggle("vertical")
-		-- 	end,
-		-- 	"toggle vertical term",
-		-- },
 	},
 }
 
