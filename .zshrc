@@ -38,6 +38,10 @@ repo_information() {
   echo "%F{yellow}${vcs_info_msg_0_%%/.} %F{red}%B(%m)%b %F{8}$vcs_info_msg_1_`git_dirty` $vcs_info_msg_2_%f"
 }
 
+# fzf
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
 # Mac Configurations
 if [ "$(uname)" = "Darwin" ]; then
   alias vim='nvim'
