@@ -48,19 +48,45 @@ local plugins = {
 		"nvim-telescope/telescope.nvim",
 		opts = {
 			extensions_list = {
-        "themes",
-        "terms",
-				"remote-ssh",
+				"themes",
+				"terms",
+				"remote-sshfs",
 			},
 		},
 	},
 	-- Install plugins
 	{
-		dir = "~/Projects/remote-ssh.nvim",
+		dir = "~/Projects/remote-sshfs.nvim",
 		lazy = false,
-		opts = {},
+		opts = {
+			connections = {
+				custom_hosts = {},
+			},
+			handlers = {
+				on_connect = {
+					find_files = true,
+				},
+				on_disconnect = {
+					clean_mount_folders = true,
+				},
+			},
+      ui = {
+        confirm = {
+          connect = true,
+          change_dir = true,
+        }
+      },
+			log = {
+				enabled = false,
+				types = {
+					all = true,
+					config = true,
+					sshfs = true,
+				},
+			},
+		},
 		config = function(_, opts)
-			require("remote-ssh").setup(opts)
+			require("remote-sshfs").setup(opts)
 		end,
 	},
 	{

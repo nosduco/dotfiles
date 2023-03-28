@@ -87,4 +87,10 @@ M.lspconfig = {
 	},
 }
 
+M.telescope = {
+  n = {
+    ["<leader>rc"] = { "<cmd> Telescope remote-sshfs connect <CR>" }
+  }
+}
+
 return M

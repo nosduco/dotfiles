@@ -34,13 +34,16 @@ local sources = {
 	-- Github Actions
 	b.diagnostics.actionlint,
 
+	-- Python
+	-- b.formatting.autopep8,
+
 	-- Markup/Markdown
 	-- b.diagnostics.yamllint,
 	-- b.formatting.yamlfmt,
 	-- b.formatting.markdownlint,
 
 	-- Justfile
-  b.formatting.just,
+	b.formatting.just,
 }
 
 null_ls.setup({

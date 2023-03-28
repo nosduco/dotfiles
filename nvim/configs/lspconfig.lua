@@ -11,7 +11,7 @@ local servers = {
 	"docker_compose_language_service",
 	"dockerls",
 	"terraformls",
-	"pyright",
+	-- "pyright",
 }
 
 for _, lsp in ipairs(servers) do
@@ -33,6 +33,10 @@ rt.setup({
 
 -- Yaml
 lspconfig.yamlls.setup({
+	server = {
+		on_attach = on_attach,
+		capabilities = capabilities,
+	},
 	settings = {
 		yaml = {
 			schemas = {
@@ -43,4 +47,25 @@ lspconfig.yamlls.setup({
 })
 
 -- Python
--- lspconfig.pyright.setup { }
+lspconfig.pyright.setup({
+	server = {
+		on_attach = on_attach,
+		capabilities = capabilities,
+	},
+})
+-- lspconfig.pylsp.setup({
+-- 	server = {
+-- 		on_attach = on_attach,
+-- 		capabilities = capabilities,
+-- 	},
+-- 	settings = {
+-- 		pylsp = {
+-- 			plugins = {
+-- 				pycodestyle = {
+-- 					ignore = { "W391" },
+-- 					maxLineLength = 100,
+-- 				},
+-- 			},
+-- 		},
+-- 	},
+-- })
