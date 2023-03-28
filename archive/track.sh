@@ -1,7 +1,0 @@
-#!/bin/bash
-FILEPATH=$1
-FILENAME=$(basename "$FILEPATH")
-cp $FILEPATH $FILEPATH.old
-mv $FILEPATH $PWD/$FILENAME
-ln -s $PWD/$FILENAME $FILEPATH
-echo Tracking $FILEPATH
