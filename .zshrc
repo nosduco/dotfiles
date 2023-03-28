@@ -1,4 +1,4 @@
-#G zprof - Profiling zsh
+# zprof - Profiling zsh
 zmodload zsh/zprof
 
 # Path to your oh-my-zsh installation.

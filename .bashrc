@@ -38,7 +38,7 @@ fi
 alias rm=trash
 
 # Override ls for lsd
-alias ls=lsd
+alias ls='lsd --date=+"%a %b %d %I:%M:%S %p %Y"'
 
 # Java
 export JDK_HOME="/usr/lib/jvm/java-11-openjdk"
