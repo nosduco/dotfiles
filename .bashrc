@@ -93,6 +93,9 @@ ex ()
   fi
 }
 
+# Prefer docker compose over docker-compose
+alias docker-compose='docker compose'
+
 # Aliases
 alias svim='sudo -E nvim'
 alias svi='sudo -E nvim'
@@ -102,7 +105,7 @@ alias lla='ls -la'
 alias la='ls -a'
 alias lt='ls --tree'
 alias fucking='sudo'
-alias aur='paru'
+alias aur='echo "HABIT: Use pacman alias instead" && paru'
 alias pacman='paru'
 alias androidem='/opt/android-sdk/emulator/emulator @$(/opt/android-sdk/emulator/emulator -list-avds)'
 alias unitydebug='adb logcat -s Unity PackageManager dalvikvm DEBUG'

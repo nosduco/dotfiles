@@ -72,8 +72,8 @@ local plugins = {
 			},
       ui = {
         confirm = {
-          connect = true,
-          change_dir = true,
+          connect = false,
+          change_dir = false,
         }
       },
 			log = {
