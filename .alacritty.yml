@@ -299,9 +299,9 @@ colors:
   # Example:
   #   `- { index: 16, color: '#ff00ff' }`
   #
-  indexed_colors: [
-    { index: 166, color: '#e95420' }
-  ]
+  indexed_colors: 
+    - { index: 166, color: '#e95420' }
+  
 
 # Bell
 #
