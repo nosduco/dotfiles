@@ -56,7 +56,8 @@ local plugins = {
 	},
 	-- Install plugins
 	{
-		dir = "~/Projects/remote-sshfs.nvim",
+		-- dir = "~/Projects/remote-sshfs.nvim",
+    "nosduco/remote-sshfs.nvim",
 		lazy = false,
 		opts = {
 			connections = {
@@ -64,7 +65,7 @@ local plugins = {
 			},
 			handlers = {
 				on_connect = {
-					find_files = true,
+					find_files = false,
 				},
 				on_disconnect = {
 					clean_mount_folders = true,
