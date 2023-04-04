@@ -27,7 +27,6 @@ show_download_speed="$(tmux_get @tmux_power_show_download_speed false)"
 show_web_reachable="$(tmux_get @tmux_power_show_web_reachable false)"
 prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
 time_format=$(tmux_get @tmux_power_time_format '%I:%M%p')
-#date_format=$(tmux_get @tmux_power_date_format '%F')
 date_format=$(tmux_get @tmux_power_date_format '%m/%d/%y')
 # short for Theme-Colour
 TC=$(tmux_get '@tmux_power_theme' '#e95420')
@@ -104,9 +103,7 @@ LS="#[fg=$G04,bg=$TC,bold] $user_icon $user #[fg=$TC,bg=$G07,nobold]$right_arrow
 if "$show_upload_speed"; then
     LS="$LS#[fg=$G06,bg=$G05]$right_arrow_icon#[fg=$TC,bg=$G05] $upload_speed_icon #{upload_speed} #[fg=$G05,bg=$BG]$right_arrow_icon"
 else
-    # LS="$LS#[fg=$G06,bg=$BG]"
     LS="$LS"
-    # LS="$LS#[fg=$G06,bg=$BG]$right_arrow_icon"
 fi
 if [[ $prefix_highlight_pos == 'L' || $prefix_highlight_pos == 'LR' ]]; then
     LS="$LS#{prefix_highlight}"
@@ -137,9 +134,6 @@ tmux_set window-status-last-style 'fg=colour9 bg=colour238'
 tmux_set window-status-format " #I#[fg=colour241]:#[fg=colour250]#W#[fg=colour244]#F "
 tmux_set window-status-last-format " #I#[fg=colour241]:#[fg=colour250]#W#[fg=colour244]#F "
 tmux_set window-status-current-format "#[fg=$TC,bg=$G07,nobold]$left_arrow_icon#[fg=$G04,bg=$TC,bold] #I:#W #[fg=$TC,bg=$G07,nobold]$right_arrow_icon"
-
-# tmux set-option -w -t :1 window-status-format " asdf#I#[fg=colour241]:#[fg=colour250]#W#[fg=colour244]#F "
-# tmux set-option -w -t :-1 window-status-format " #I#[fg=colour241]:#[fg=colour250]#W#[fg=colour244]#F #[tf=$TC,bg=$G07,nobold]$right_arrow_icon"
 
 # Window separator
 tmux_set window-status-separator ""
