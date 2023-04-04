@@ -57,7 +57,6 @@ lazy_load_nvm() {
   unset -f yarn
   unset -f npx
   source /usr/share/nvm/init-nvm.sh # this loads nvm
-  # [ -s "/usr/share/init-nvm.sh" ] && \. "/usr/share/init-nvm.sh" # This loads nvm
 }
 nvm() {
   lazy_load_nvm
