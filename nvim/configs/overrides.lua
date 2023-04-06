@@ -16,6 +16,7 @@ M.treesitter = {
 		"prisma",
 		"python",
 		"regex",
+    "php",
 		"sql",
 		"terraform",
 		"toml",
@@ -120,7 +121,6 @@ end
 M.cmp = {
 	mapping = {
 		["<Tab>"] = cmp.mapping(function(fallback)
-			print("hi")
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then

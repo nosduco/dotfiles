@@ -5,24 +5,21 @@ M.disabled = {
 	-- Disable default keybinds
 	n = {
 		["<leader>/"] = "",
-    ["<leader> + wK"] = "",
-    ["<leader> + wk"] = "",
-    ["<A-i>"] = "",
-    ["<A-v>"] = "",
-    ["<A-h>"] = "",
-    ["<leader> + h"] = "",
-    ["<leader> + v"] = "",
+		["<leader> + wK"] = "",
+		["<leader> + wk"] = "",
+		["<leader> + h"] = "",
+		["<leader> + v"] = "",
 	},
 	i = {},
 	v = {
 		["<C-F>"] = "",
 		["<leader>/"] = "",
 	},
-  t = {
-    ["<A-i>"] = "",
-    ["<A-v>"] = "",
-    ["<A-h>"] = "",
-  },
+	t = {
+		["<A-i>"] = "",
+		["<A-v>"] = "",
+		["<A-h>"] = "",
+	},
 }
 
 M.general = {
@@ -30,11 +27,49 @@ M.general = {
 		-- Shortcut to command
 		[";"] = { ":", "enter command mode", opts = { nowait = true } },
 
-		-- Tmux navigation
-		["<C-h>"] = { "<CMD>NavigatorLeft<CR>", "navigate left" },
-		["<C-l>"] = { "<CMD>NavigatorRight<CR>", "navigate right" },
-		["<C-j>"] = { "<CMD>NavigatorUp<CR>", "navigate down" },
-		["<C-k>"] = { "<CMD>NavigatorDown<CR>", "navigate up" },
+		-- Multiplexer Navigation
+		["<C-h>"] = {
+			function()
+				require("smart-splits").move_cursor_left()
+			end,
+		},
+		["<C-j>"] = {
+			function()
+				require("smart-splits").move_cursor_down()
+			end,
+		},
+		["<C-k>"] = {
+			function()
+				require("smart-splits").move_cursor_up()
+			end,
+		},
+		["<C-l>"] = {
+			function()
+				require("smart-splits").move_cursor_right()
+			end,
+		},
+
+		-- Multiplexer/Pane Resizing
+		["<A-h>"] = {
+			function()
+				require("smart-splits").resize_left()
+			end,
+		},
+		["<A-j>"] = {
+			function()
+				require("smart-splits").resize_down()
+			end,
+		},
+		["<A-k>"] = {
+			function()
+				require("smart-splits").resize_up()
+			end,
+		},
+		["<A-l>"] = {
+			function()
+				require("smart-splits").resize_right()
+			end,
+		},
 	},
 }
 
@@ -67,30 +102,12 @@ M.lspconfig = {
 			"lsp formatting",
 		},
 	},
-	i = {
-		-- Autoformat via lsp
-		["<C-f>"] = {
-			function()
-				vim.lsp.buf.format({ async = true })
-			end,
-			"lsp formatting",
-		},
-	},
-	v = {
-		-- Autoformat via lsp
-		["<C-f>"] = {
-			function()
-				vim.lsp.buf.format({ async = true })
-			end,
-			"lsp formatting",
-		},
-	},
 }
 
 M.telescope = {
-  n = {
-    ["<leader>rc"] = { "<cmd> Telescope remote-sshfs connect <CR>" }
-  }
+	n = {
+		["<leader>rc"] = { "<cmd> Telescope remote-sshfs connect <CR>" },
+	},
 }
 
 return M

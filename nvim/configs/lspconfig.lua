@@ -11,7 +11,6 @@ local servers = {
 	"docker_compose_language_service",
 	"dockerls",
 	"terraformls",
-	-- "pyright",
 }
 
 for _, lsp in ipairs(servers) do
@@ -52,26 +51,17 @@ lspconfig.pyright.setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
 	},
-  settings = {
-    python = {
-      typeCheckingMode = "basic",
-      diskCachePath = "/tmp/"
-    }
-  }
+	settings = {
+		python = {
+      enable = true,
+			diskCachePath = "/tmp/",
+			analysis = {
+        autoImportCompletions = true,
+        autoSearchPaths = true,
+				diagnosticMode = "openFilesOnly",
+			  -- typeCheckingMode = "basic",
+        useLibraryCodeForTypes = true,
+			},
+		},
+	},
 })
--- lspconfig.pylsp.setup({
--- 	server = {
--- 		on_attach = on_attach,
--- 		capabilities = capabilities,
--- 	},
--- 	settings = {
--- 		pylsp = {
--- 			plugins = {
--- 				pycodestyle = {
--- 					ignore = { "W391" },
--- 					maxLineLength = 100,
--- 				},
--- 			},
--- 		},
--- 	},
--- })

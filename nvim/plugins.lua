@@ -54,10 +54,18 @@ local plugins = {
 			},
 		},
 	},
+	-- {
+	-- 	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+	-- 	opts = {},
+	-- 	lazy = false,
+	-- 	config = function(_, opts)
+	-- 		require("lsp_lines").setup(opts)
+	-- 	end,
+	-- },
 	-- Install plugins
 	{
-		-- dir = "~/Projects/remote-sshfs.nvim",
-    "nosduco/remote-sshfs.nvim",
+		dir = "~/Projects/remote-sshfs.nvim",
+		-- "nosduco/remote-sshfs.nvim",
 		lazy = false,
 		opts = {
 			connections = {
@@ -65,24 +73,23 @@ local plugins = {
 			},
 			handlers = {
 				on_connect = {
+					change_dir = false,
 					find_files = false,
 				},
 				on_disconnect = {
 					clean_mount_folders = true,
 				},
 			},
-      ui = {
-        confirm = {
-          connect = false,
-          change_dir = false,
-        }
-      },
+			ui = {
+				confirm = {
+					connect = false,
+					change_dir = false,
+				},
+			},
 			log = {
-				enabled = false,
+				enabled = true,
 				types = {
 					all = true,
-					config = true,
-					sshfs = true,
 				},
 			},
 		},
@@ -104,14 +111,22 @@ local plugins = {
 		end,
 	},
 	{
-		-- Tmux integration
-		"numToStr/Navigator.nvim",
+		"mrjones2014/smart-splits.nvim",
 		lazy = false,
 		opts = {},
 		config = function(_, opts)
-			require("Navigator").setup(opts)
+			require("smart-splits").setup(opts)
 		end,
 	},
+	-- {
+	-- 	-- Tmux integration
+	-- 	"numToStr/Navigator.nvim",
+	-- 	lazy = false,
+	-- 	opts = {},
+	-- 	config = function(_, opts)
+	-- 		require("Navigator").setup(opts)
+	-- 	end,
+	-- },
 	{
 		-- Terminal Plugin
 		"akinsho/toggleterm.nvim",

@@ -19,7 +19,6 @@ local sources = {
 	-- Go
 	b.diagnostics.golangci_lint,
 	b.formatting.gofmt,
-	b.formatting.goimports,
 	b.formatting.goimports_reviser,
 
 	-- Rust
@@ -34,8 +33,14 @@ local sources = {
 	-- Github Actions
 	b.diagnostics.actionlint,
 
+  -- PHP
+  b.diagnostics.php,
+
 	-- Python
 	-- b.formatting.autopep8,
+  b.formatting.black,
+  -- b.diagnostics.pylint,
+  b.diagnostics.flake8,
 
 	-- Markup/Markdown
 	-- b.diagnostics.yamllint,
