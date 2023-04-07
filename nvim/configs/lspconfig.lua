@@ -30,7 +30,21 @@ rt.setup({
 	},
 })
 
--- Yaml
+-- json
+lspconfig.jsonls.setup({
+	server = {
+		on_attach = on_attach,
+		capabilities = capabilities,
+	},
+	settings = {
+		json = {
+			schemas = require("schemastore").json.schemas(),
+			validate = { enable = true },
+		},
+	},
+})
+
+-- yaml
 lspconfig.yamlls.setup({
 	server = {
 		on_attach = on_attach,
@@ -38,9 +52,10 @@ lspconfig.yamlls.setup({
 	},
 	settings = {
 		yaml = {
-			schemas = {
-				["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-			},
+			schemas = require("schemastore").yaml.schemas(),
+			-- schemas = {
+			-- 	["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+			-- },
 		},
 	},
 })
@@ -48,19 +63,19 @@ lspconfig.yamlls.setup({
 -- Python
 lspconfig.pyright.setup({
 	server = {
-		on_attach = on_attach,
-		capabilities = capabilities,
+		-- on_attach = on_attach,
+		-- capabilities = capabilities,
 	},
 	settings = {
 		python = {
-      enable = true,
+			enable = true,
 			diskCachePath = "/tmp/",
 			analysis = {
-        autoImportCompletions = true,
-        autoSearchPaths = true,
+				autoImportCompletions = true,
+				autoSearchPaths = true,
 				diagnosticMode = "openFilesOnly",
-			  -- typeCheckingMode = "basic",
-        useLibraryCodeForTypes = true,
+				-- typeCheckingMode = "basic",
+				useLibraryCodeForTypes = true,
 			},
 		},
 	},

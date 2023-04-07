@@ -16,7 +16,7 @@ M.treesitter = {
 		"prisma",
 		"python",
 		"regex",
-    "php",
+		"php",
 		"sql",
 		"terraform",
 		"toml",
@@ -66,11 +66,11 @@ M.mason = {
 		-- Terraform
 		"terraform-ls",
 
-    -- Github actions
-    "actionlint",
+		-- Github actions
+		"actionlint",
 
-    -- Yaml
-    "yaml-language-server",
+		-- Yaml
+		"yaml-language-server",
 
 		-- Misc
 		"cspell",
@@ -80,7 +80,7 @@ M.mason = {
 M.nvimtree = {
 	git = {
 		enable = true,
-    ignore = false,
+		ignore = false,
 	},
 	renderer = {
 		highlight_git = true,

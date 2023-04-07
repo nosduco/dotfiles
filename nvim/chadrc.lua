@@ -27,7 +27,7 @@ M.ui = {
 	tabufline = {
 		overriden_modules = function()
 			return {
-        -- Disable top right toggle theme/close all buttons
+				-- Disable top right toggle theme/close all buttons
 				buttons = function()
 					return ""
 				end,

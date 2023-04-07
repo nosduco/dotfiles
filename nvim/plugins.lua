@@ -25,6 +25,7 @@ local plugins = {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		opts = overrides.treesitter,
+		lazy = false,
 	},
 
 	{
@@ -63,31 +64,84 @@ local plugins = {
 	-- 	end,
 	-- },
 	-- Install plugins
+	-- Startup Dashboard
 	{
+		"glepnir/dashboard-nvim",
+		event = "VimEnter",
+		opts = {
+			shortcut_type = "number",
+			config = {
+				shortcut = {
+					{
+						desc = "󰇚 Update",
+						group = "@annotation",
+						action = "NvChadUpdate",
+						key = "u",
+					},
+					{
+						desc = "󰱼 Find Files",
+						group = "@function",
+						action = "Telescope find_files",
+						key = "f",
+					},
+					{
+						desc = " Projects",
+						group = "@string",
+						action = function()
+							local dotfiles_dir = vim.fn.expand("$HOME") .. "/Projects"
+							vim.fn.execute("cd " .. dotfiles_dir)
+							vim.cmd(":NvimTreeToggle")
+						end,
+						key = "p",
+					},
+					{
+						desc = " dotfiles",
+						group = "Number",
+						action = function()
+							local dotfiles_dir = vim.fn.expand("$HOME") .. "/Projects/dotfiles"
+							vim.fn.execute("cd " .. dotfiles_dir)
+							vim.cmd("Telescope find_files")
+						end,
+						key = "d",
+					},
+				},
+				packages = { enable = false },
+				footer = {},
+			},
+		},
+		config = function(_, opts)
+			local header = {
+				"",
+				" ██╗  ██╗███████╗██╗     ██╗      ██████╗        ████████╗ ██████╗ ███╗   ██╗██╗   ██╗ ",
+				" ██║  ██║██╔════╝██║     ██║     ██╔═══██╗       ╚══██╔══╝██╔═══██╗████╗  ██║╚██╗ ██╔╝ ",
+				" ███████║█████╗  ██║     ██║     ██║   ██║          ██║   ██║   ██║██╔██╗ ██║ ╚████╔╝  ",
+				" ██╔══██║██╔══╝  ██║     ██║     ██║   ██║          ██║   ██║   ██║██║╚██╗██║  ╚██╔╝   ",
+				" ██║  ██║███████╗███████╗███████╗╚██████╔╝▄█╗       ██║   ╚██████╔╝██║ ╚████║   ██║    ",
+				" ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚═╝       ╚═╝    ╚═════╝ ╚═╝  ╚═══╝   ╚═╝    ",
+				"",
+			}
+			table.insert(header, os.date("%Y-%m-%d %l:%M:%S %p"))
+			table.insert(header, "")
+			opts.config.header = header
+			require("dashboard").setup(opts)
+		end,
+		dependencies = { { "nvim-tree/nvim-web-devicons" } },
+	},
+	{
+		-- My remote-sshfs plugin :)
 		dir = "~/Projects/remote-sshfs.nvim",
-		-- "nosduco/remote-sshfs.nvim",
 		lazy = false,
 		opts = {
-			connections = {
-				custom_hosts = {},
-			},
 			handlers = {
 				on_connect = {
-					change_dir = false,
-					find_files = false,
+					change_dir = true,
 				},
 				on_disconnect = {
 					clean_mount_folders = true,
 				},
 			},
-			ui = {
-				confirm = {
-					connect = false,
-					change_dir = false,
-				},
-			},
 			log = {
-				enabled = true,
+				enabled = false,
 				types = {
 					all = true,
 				},
@@ -97,19 +151,43 @@ local plugins = {
 			require("remote-sshfs").setup(opts)
 		end,
 	},
+	-- Surround
+	{
+		"kylechui/nvim-surround",
+		version = "*",
+		event = "VeryLazy",
+		opts = {},
+		config = function(_, opts)
+			require("nvim-surround").setup(opts)
+		end,
+	},
+	-- Motion/Leap
+	{
+		"ggandor/leap.nvim",
+		lazy = false,
+		config = function()
+			require("leap").add_default_mappings()
+			require("leap").opts.highlight_unlabeled_phase_one_targets = true
+		end,
+	},
 	{
 		-- Rust
 		"simrat39/rust-tools.nvim",
 	},
+	-- SchemaStore Support (json, yaml)
+	{
+		"b0o/schemastore.nvim",
+	},
 	{
 		-- Just
 		"IndianBoy42/tree-sitter-just",
-		lazy = false,
+		ft = "just",
 		opts = {},
 		config = function(_, opts)
 			require("tree-sitter-just").setup(opts)
 		end,
 	},
+	-- Multiplexer Integration
 	{
 		"mrjones2014/smart-splits.nvim",
 		lazy = false,
@@ -118,20 +196,10 @@ local plugins = {
 			require("smart-splits").setup(opts)
 		end,
 	},
-	-- {
-	-- 	-- Tmux integration
-	-- 	"numToStr/Navigator.nvim",
-	-- 	lazy = false,
-	-- 	opts = {},
-	-- 	config = function(_, opts)
-	-- 		require("Navigator").setup(opts)
-	-- 	end,
-	-- },
 	{
-		-- Terminal Plugin
+		-- Pane Terminal
 		"akinsho/toggleterm.nvim",
-		-- TODO: Figure out how to lazy load this on map
-		lazy = false,
+		keys = "<C-t>",
 		version = "*",
 		opts = overrides.toggleterm,
 		config = function(_, opts)
@@ -139,7 +207,7 @@ local plugins = {
 		end,
 	},
 	{
-		-- Markdown functionality
+		-- Markdown (preview, other configurations)
 		"iamcco/markdown-preview.nvim",
 		run = function()
 			vim.fn["mkdp#util#install"]()
