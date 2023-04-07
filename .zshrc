@@ -3,11 +3,13 @@ zmodload zsh/zprof
 
 # Path to your oh-my-zsh installation.
 if [ "$(uname)" = "Darwin" ]; then
+  # Mac Configuration
   export ZSH=~/.oh-my-zsh/
 
   # Plugins
   plugins=(gitfast vi-mode dirhistory docker pip zsh-nvm sudo yarn wd virtualenv tmux zsh-autosuggestions zsh-syntax-highlighting)
 else
+  # [Li]nux configuration
   export ZSH=/usr/share/oh-my-zsh/
 
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

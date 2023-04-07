@@ -100,7 +100,8 @@ local plugins = {
 						action = function()
 							local dotfiles_dir = vim.fn.expand("$HOME") .. "/Projects/dotfiles"
 							vim.fn.execute("cd " .. dotfiles_dir)
-							vim.cmd("Telescope find_files")
+							vim.cmd(":NvimTreeToggle")
+							-- vim.cmd("Telescope find_files")
 						end,
 						key = "d",
 					},

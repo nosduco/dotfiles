@@ -111,6 +111,7 @@ alias androidem='/opt/android-sdk/emulator/emulator @$(/opt/android-sdk/emulator
 alias unitydebug='adb logcat -s Unity PackageManager dalvikvm DEBUG'
 alias windows='sudo grub-reboot 1 && sudo reboot'
 alias we='curl wttr.in'
+alias bell='echo -e "\a"'
 
 # Log Levels
 export OPENCV_LOG_LEVEL=ERROR

@@ -12,12 +12,16 @@
 
 - link:
     # tty configurations
-    ~/.alacritty.yml: .alacritty.yml
     ~/.bashrc: .bashrc
     ~/.dircolors: .dircolors
     ~/.tmux.conf: .tmux.conf
     ~/.theme.tmux: .theme.tmux
     ~/.zshrc: .zshrc
+    # Alacritty (terminal emulator)
+    ~/.config/alacritty:  
+      create: true
+      glob: true
+      path: alacritty
     # Vim
     ~/.config/nvim/lua/custom:
       create: true
@@ -35,7 +39,7 @@
     ~/.config/spicetify/Themes/nos:
       create: true
       glob: true
-      path: spicetify-theme
+      path: spotify
       if: "[ $XDG_SESSION_DESKTOP = gnome ]"
     # Audio settings
     ~/.config/wireplumber:
@@ -52,10 +56,10 @@
 
 - shell:
     # Set gnome themes (if running Gnome)
-    - command: gsettings set org.gnome.desktop.interface gtk-theme nos-dark
-      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
-    - command: gsettings set org.gnome.desktop.wm.preferences theme adw-dark
-      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+    # - command: gsettings set org.gnome.desktop.interface gtk-theme nos-dark
+    #   if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+    # - command: gsettings set org.gnome.desktop.wm.preferences theme adw-dark
+    #   if: "[ $XDG_SESSION_DESKTOP = gnome ]"
     # Set gnome custom keybinds (if running Gnome)
     - command: ./scripts/set_gnome_keybinds.sh
       if: "[ $XDG_SESSION_DESKTOP = gnome ]"
