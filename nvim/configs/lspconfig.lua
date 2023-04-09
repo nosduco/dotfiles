@@ -1,8 +1,8 @@
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
-
 local lspconfig = require("lspconfig")
 
+-- List of servers to load with default configurations
 local servers = {
 	"html",
 	"cssls",
@@ -12,7 +12,6 @@ local servers = {
 	"dockerls",
 	"terraformls",
 }
-
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
@@ -22,7 +21,6 @@ end
 
 -- Rust
 local rt = require("rust-tools")
-
 rt.setup({
 	server = {
 		on_attach = on_attach,
@@ -30,7 +28,7 @@ rt.setup({
 	},
 })
 
--- json
+-- JSON
 lspconfig.jsonls.setup({
 	server = {
 		on_attach = on_attach,
@@ -44,7 +42,7 @@ lspconfig.jsonls.setup({
 	},
 })
 
--- yaml
+-- YAML
 lspconfig.yamlls.setup({
 	server = {
 		on_attach = on_attach,
@@ -53,9 +51,6 @@ lspconfig.yamlls.setup({
 	settings = {
 		yaml = {
 			schemas = require("schemastore").yaml.schemas(),
-			-- schemas = {
-			-- 	["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-			-- },
 		},
 	},
 })
@@ -63,8 +58,8 @@ lspconfig.yamlls.setup({
 -- Python
 lspconfig.pyright.setup({
 	server = {
-		-- on_attach = on_attach,
-		-- capabilities = capabilities,
+		on_attach = on_attach,
+		capabilities = capabilities,
 	},
 	settings = {
 		python = {
@@ -74,7 +69,6 @@ lspconfig.pyright.setup({
 				autoImportCompletions = true,
 				autoSearchPaths = true,
 				diagnosticMode = "openFilesOnly",
-				-- typeCheckingMode = "basic",
 				useLibraryCodeForTypes = true,
 			},
 		},

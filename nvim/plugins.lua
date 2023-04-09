@@ -67,8 +67,8 @@ local plugins = {
 	-- 	end,
 	-- },
 	-- Install plugins
-	-- Startup Dashboard
 	{
+    -- Startup Dashboard
 		"glepnir/dashboard-nvim",
 		event = "VimEnter",
 		opts = dashboard.opts,
@@ -78,13 +78,16 @@ local plugins = {
 		end,
 	},
 	{
+    -- Git Diffs
 		"sindrets/diffview.nvim",
 		cmd = "DiffviewOpen",
 	},
 	{
+    -- Diagnostic Pane
 		"folke/trouble.nvim",
 	},
 	{
+    -- Highlight Comments
 		"folke/todo-comments.nvim",
 		event = "VeryLazy",
 	},
@@ -94,14 +97,14 @@ local plugins = {
 		lazy = false,
 		opts = remotesshfs.opts,
 	},
-	-- Surround
 	{
+	  -- Surround
 		"kylechui/nvim-surround",
 		version = "*",
 		event = "VeryLazy",
 	},
-	-- Motion/Leap
 	{
+	  -- Motion/Leap
 		"ggandor/leap.nvim",
 		lazy = false,
 		config = function()
@@ -110,20 +113,20 @@ local plugins = {
 		end,
 	},
 	{
-		-- Rust
+		-- Rust Tooling
 		"simrat39/rust-tools.nvim",
 	},
-	-- SchemaStore Support (json, yaml)
 	{
+	  -- SchemaStore Support (json, yaml)
 		"b0o/schemastore.nvim",
 	},
 	{
-		-- Just
+		-- Justfile (tree-sitter support)
 		"IndianBoy42/tree-sitter-just",
 		ft = "just",
 	},
-	-- Multiplexer Integration
 	{
+	  -- Multiplexer Integration
 		"mrjones2014/smart-splits.nvim",
 		lazy = false,
 	},
