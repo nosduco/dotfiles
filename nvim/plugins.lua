@@ -1,8 +1,18 @@
-local overrides = require("custom.configs.overrides")
+local dashboard = require("custom.configs.dashboard")
+local remotesshfs = require("custom.configs.remote-sshfs")
+local nvimtree = require("custom.configs.nvim-tree")
+local cmp = require("custom.configs.cmp")
+local treesitter = require("custom.configs.treesitter")
+local mason = require("custom.configs.mason")
+local toggleterm = require("custom.configs.toggleterm")
 
 ---@type NvPluginSpec[]
 local plugins = {
-
+	-- Disable Plugins
+	{
+		"NvChad/nvterm",
+		enabled = false,
+	},
 	-- Override plugin definition options
 	{
 		"neovim/nvim-lspconfig",
@@ -20,29 +30,23 @@ local plugins = {
 			require("custom.configs.lspconfig")
 		end, -- Override to setup mason-lspconfig
 	},
-
 	-- Override plugin configs
 	{
 		"nvim-treesitter/nvim-treesitter",
-		opts = overrides.treesitter,
+		opts = treesitter.opts,
 		lazy = false,
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
-		opts = overrides.nvimtree,
+		opts = nvimtree.opts,
 	},
 	{
 		"williamboman/mason.nvim",
-		opts = overrides.mason,
+		opts = mason.opts,
 	},
 	{
 		"hrsh7th/nvim-cmp",
-		opts = overrides.cmp,
-	},
-	{
-		-- Disable built-in terminal
-		"NvChad/nvterm",
-		enabled = false,
+		opts = cmp.opts,
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -67,65 +71,11 @@ local plugins = {
 	{
 		"glepnir/dashboard-nvim",
 		event = "VimEnter",
-		opts = {
-			shortcut_type = "number",
-			config = {
-				shortcut = {
-					{
-						desc = "󰇚 Update",
-						group = "@annotation",
-						action = "NvChadUpdate",
-						key = "u",
-					},
-					{
-						desc = "󰱼 Find Files",
-						group = "@function",
-						action = "Telescope find_files",
-						key = "f",
-					},
-					{
-						desc = " Projects",
-						group = "@string",
-						action = function()
-							local dotfiles_dir = vim.fn.expand("$HOME") .. "/Projects"
-							vim.fn.execute("cd " .. dotfiles_dir)
-							vim.cmd(":NvimTreeToggle")
-						end,
-						key = "p",
-					},
-					{
-						desc = " dotfiles",
-						group = "Number",
-						action = function()
-							local dotfiles_dir = vim.fn.expand("$HOME") .. "/Projects/dotfiles"
-							vim.fn.execute("cd " .. dotfiles_dir)
-							vim.cmd(":NvimTreeToggle")
-							-- vim.cmd("Telescope find_files")
-						end,
-						key = "d",
-					},
-				},
-				packages = { enable = false },
-				footer = {},
-			},
-		},
+		opts = dashboard.opts,
 		config = function(_, opts)
-			local header = {
-				"",
-				" ██╗  ██╗███████╗██╗     ██╗      ██████╗        ████████╗ ██████╗ ███╗   ██╗██╗   ██╗ ",
-				" ██║  ██║██╔════╝██║     ██║     ██╔═══██╗       ╚══██╔══╝██╔═══██╗████╗  ██║╚██╗ ██╔╝ ",
-				" ███████║█████╗  ██║     ██║     ██║   ██║          ██║   ██║   ██║██╔██╗ ██║ ╚████╔╝  ",
-				" ██╔══██║██╔══╝  ██║     ██║     ██║   ██║          ██║   ██║   ██║██║╚██╗██║  ╚██╔╝   ",
-				" ██║  ██║███████╗███████╗███████╗╚██████╔╝▄█╗       ██║   ╚██████╔╝██║ ╚████║   ██║    ",
-				" ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚═╝       ╚═╝    ╚═════╝ ╚═╝  ╚═══╝   ╚═╝    ",
-				"",
-			}
-			table.insert(header, os.date("%Y-%m-%d %l:%M:%S %p"))
-			table.insert(header, "")
-			opts.config.header = header
+			opts.config.header = dashboard.generate_header()
 			require("dashboard").setup(opts)
 		end,
-		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
 	{
 		"sindrets/diffview.nvim",
@@ -133,52 +83,22 @@ local plugins = {
 	},
 	{
 		"folke/trouble.nvim",
-		opts = {},
-		config = function(_, opts)
-			require("trouble").setup(opts)
-		end,
 	},
 	{
 		"folke/todo-comments.nvim",
-		opts = {},
 		event = "VeryLazy",
-		config = function(_, opts)
-			require("todo-comments").setup(opts)
-		end,
 	},
 	{
 		-- My remote-sshfs plugin :)
 		dir = "~/Projects/remote-sshfs.nvim",
 		lazy = false,
-		opts = {
-			handlers = {
-				on_connect = {
-					change_dir = true,
-				},
-				on_disconnect = {
-					clean_mount_folders = true,
-				},
-			},
-			log = {
-				enabled = false,
-				types = {
-					all = true,
-				},
-			},
-		},
-		config = function(_, opts)
-			require("remote-sshfs").setup(opts)
-		end,
+		opts = remotesshfs.opts,
 	},
 	-- Surround
 	{
 		"kylechui/nvim-surround",
 		version = "*",
 		event = "VeryLazy",
-		opts = {},
-		config = function(_, opts)
-			require("nvim-surround").setup(opts)
-		end,
 	},
 	-- Motion/Leap
 	{
@@ -201,29 +121,18 @@ local plugins = {
 		-- Just
 		"IndianBoy42/tree-sitter-just",
 		ft = "just",
-		opts = {},
-		config = function(_, opts)
-			require("tree-sitter-just").setup(opts)
-		end,
 	},
 	-- Multiplexer Integration
 	{
 		"mrjones2014/smart-splits.nvim",
 		lazy = false,
-		opts = {},
-		config = function(_, opts)
-			require("smart-splits").setup(opts)
-		end,
 	},
 	{
 		-- Pane Terminal
 		"akinsho/toggleterm.nvim",
 		keys = "<C-t>",
 		version = "*",
-		opts = overrides.toggleterm,
-		config = function(_, opts)
-			require("toggleterm").setup(opts)
-		end,
+		opts = toggleterm.opts,
 	},
 	{
 		-- Markdown (preview, other configurations)

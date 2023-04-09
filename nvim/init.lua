@@ -11,8 +11,9 @@ if vim.g.neovide then
 	vim.g.neovide_scale_factor = 0.75
 end
 
-vim.diagnostic.config({
-  virtual_text = {
-    only_current_line = true
-  },
-})
+-- Configure diagnostics for lsp_lines
+-- vim.diagnostic.config({
+--   virtual_text = {
+--     only_current_line = true
+--   },
+-- })
