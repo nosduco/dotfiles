@@ -150,8 +150,8 @@ M.lspconfig = {
 		},
 		["<leader>xx"] = { "<cmd>TroubleToggle<cr>", "toggle lsp diagnostic list" },
 		["<leader>xw"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "toggle lsp workspace diagnostic list" },
-		["<leader>xd"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "toggle lsp document diagnostic list" },
-		["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", "toggle lsp workspace diagnostic list" },
+		["<leader>xf"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "toggle lsp file diagnostic list" },
+		["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", "toggle lsp loclist" },
 		["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", "toggle lsp quickfix list" },
 	},
 }
