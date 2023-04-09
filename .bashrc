@@ -3,10 +3,11 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Editor
+export EDITOR=nvim
+
 # Mac/Linux Configurations
 if [ "$(uname)" = "Darwin" ]; then
-  # Editor
-  export EDITOR=nvim
 
   # Directory Colors
   eval $(gdircolors -b $HOME/.dircolors)
@@ -24,7 +25,6 @@ else
   export EDITOR=vim
 
   # Directory Colors
-  #eval $(gdircolors -b $HOME/.dircolors)
   eval $(dircolors -b $HOME/.dircolors)
 
   # Custom Grep
@@ -33,12 +33,6 @@ else
   # Open File System
   alias fs='nautilus . &'
 fi
-
-# Override rm for trash
-alias rm=trash
-
-# Override ls for lsd
-alias ls='lsd --date=+"%a %b %d %I:%M:%S %p %Y"'
 
 # Java
 export JDK_HOME="/usr/lib/jvm/java-11-openjdk"
@@ -93,9 +87,6 @@ ex ()
   fi
 }
 
-# Prefer docker compose over docker-compose
-alias docker-compose='docker compose'
-
 # Aliases
 alias svim='sudo -E nvim'
 alias svi='sudo -E nvim'
@@ -112,6 +103,15 @@ alias unitydebug='adb logcat -s Unity PackageManager dalvikvm DEBUG'
 alias windows='sudo grub-reboot 1 && sudo reboot'
 alias we='curl wttr.in'
 alias bell='echo -e "\a"'
+
+# Override rm for trash
+alias rm=trash
+
+# Override ls for lsd
+alias ls='lsd --date=+"%a %b %d %I:%M:%S %p %Y"'
+
+# Prefer docker compose over docker-compose
+alias docker-compose='docker compose'
 
 # Log Levels
 export OPENCV_LOG_LEVEL=ERROR
