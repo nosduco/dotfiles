@@ -27,7 +27,6 @@ local plugins = {
 		opts = overrides.treesitter,
 		lazy = false,
 	},
-
 	{
 		"nvim-tree/nvim-tree.lua",
 		opts = overrides.nvimtree,
@@ -127,6 +126,25 @@ local plugins = {
 			require("dashboard").setup(opts)
 		end,
 		dependencies = { { "nvim-tree/nvim-web-devicons" } },
+	},
+	{
+		"sindrets/diffview.nvim",
+		cmd = "DiffviewOpen",
+	},
+	{
+		"folke/trouble.nvim",
+		opts = {},
+		config = function(_, opts)
+			require("trouble").setup(opts)
+		end,
+	},
+	{
+		"folke/todo-comments.nvim",
+		opts = {},
+		event = "VeryLazy",
+		config = function(_, opts)
+			require("todo-comments").setup(opts)
+		end,
 	},
 	{
 		-- My remote-sshfs plugin :)

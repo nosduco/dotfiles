@@ -70,6 +70,8 @@ M.general = {
 				require("smart-splits").resize_right()
 			end,
 		},
+
+		["<leader>df"] = { "<cmd> DiffviewOpen <CR>", "view git diffs interactively" },
 	},
 	t = {
 		-- Multiplexer Navigation
@@ -146,6 +148,11 @@ M.lspconfig = {
 			end,
 			"lsp formatting",
 		},
+		["<leader>xx"] = { "<cmd>TroubleToggle<cr>", "toggle lsp diagnostic list" },
+		["<leader>xw"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "toggle lsp workspace diagnostic list" },
+		["<leader>xd"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "toggle lsp document diagnostic list" },
+		["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", "toggle lsp workspace diagnostic list" },
+		["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", "toggle lsp quickfix list" },
 	},
 }
 
