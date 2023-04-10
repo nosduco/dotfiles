@@ -2,7 +2,7 @@
 local M = {}
 
 M.disabled = {
-	-- Disable default keybinds
+	-- Disable default key-binds
 	n = {
 		["<leader>/"] = "",
 		["<leader> + wK"] = "",

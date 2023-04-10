@@ -5,6 +5,7 @@ local cmp = require("custom.configs.cmp")
 local treesitter = require("custom.configs.treesitter")
 local mason = require("custom.configs.mason")
 local toggleterm = require("custom.configs.toggleterm")
+local telescope = require("custom.configs.telescope")
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -50,25 +51,16 @@ local plugins = {
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		opts = {
-			extensions_list = {
-				"themes",
-				"terms",
-				"remote-sshfs",
+		opts = telescope.opts,
+		dependencies = {
+			{
+				"nvim-telescope/telescope-file-browser.nvim",
 			},
 		},
 	},
-	-- {
-	-- 	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-	-- 	opts = {},
-	-- 	lazy = false,
-	-- 	config = function(_, opts)
-	-- 		require("lsp_lines").setup(opts)
-	-- 	end,
-	-- },
 	-- Install plugins
 	{
-    -- Startup Dashboard
+		-- Startup Dashboard
 		"glepnir/dashboard-nvim",
 		event = "VimEnter",
 		opts = dashboard.opts,
@@ -78,16 +70,16 @@ local plugins = {
 		end,
 	},
 	{
-    -- Git Diffs
+		-- Git Diffs
 		"sindrets/diffview.nvim",
 		cmd = "DiffviewOpen",
 	},
 	{
-    -- Diagnostic Pane
+		-- Diagnostic Pane
 		"folke/trouble.nvim",
 	},
 	{
-    -- Highlight Comments
+		-- Highlight Comments
 		"folke/todo-comments.nvim",
 		event = "VeryLazy",
 	},
@@ -98,13 +90,16 @@ local plugins = {
 		opts = remotesshfs.opts,
 	},
 	{
-	  -- Surround
+		-- Surround
 		"kylechui/nvim-surround",
 		version = "*",
 		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup()
+		end,
 	},
 	{
-	  -- Motion/Leap
+		-- Motion/Leap
 		"ggandor/leap.nvim",
 		lazy = false,
 		config = function()
@@ -117,7 +112,7 @@ local plugins = {
 		"simrat39/rust-tools.nvim",
 	},
 	{
-	  -- SchemaStore Support (json, yaml)
+		-- SchemaStore Support (json, yaml)
 		"b0o/schemastore.nvim",
 	},
 	{
@@ -126,7 +121,7 @@ local plugins = {
 		ft = "just",
 	},
 	{
-	  -- Multiplexer Integration
+		-- Multiplexer Integration
 		"mrjones2014/smart-splits.nvim",
 		lazy = false,
 	},

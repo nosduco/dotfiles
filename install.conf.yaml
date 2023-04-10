@@ -3,13 +3,11 @@
     link:
       relink: true
       force: true
-
 - clean: ["~"]
-
 - shell:
-  # Clone NvChad configuration to be overridden by custom config below
-  - command: git -C ~/.config/nvim pull || git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-
+    # Clone NvChad configuration to be overridden by custom config below
+    - command: git -C ~/.config/nvim pull || git clone https://github.com/NvChad/NvChad
+        ~/.config/nvim --depth 1
 - link:
     # tty configurations
     ~/.bashrc: .bashrc
@@ -18,7 +16,7 @@
     ~/.theme.tmux: .theme.tmux
     ~/.zshrc: .zshrc
     # Alacritty (terminal emulator)
-    ~/.config/alacritty:  
+    ~/.config/alacritty:
       create: true
       glob: true
       path: alacritty
@@ -53,7 +51,6 @@
     ~/.skhdrc:
       path: .skhdrc
       if: "[ `uname` = Darwin ]"
-
 - shell:
     # Set gnome themes (if running Gnome)
     # - command: gsettings set org.gnome.desktop.interface gtk-theme nos-dark

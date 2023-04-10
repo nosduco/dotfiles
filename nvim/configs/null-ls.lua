@@ -8,13 +8,16 @@ local b = null_ls.builtins
 
 local sources = {
 	-- Spelling
-	-- b.diagnostics.cspell,
-	-- b.code_actions.cspell,
+	b.diagnostics.codespell,
+	b.formatting.codespell.with({ args = { "--check-hidden", "$FILENAME" } }),
 
 	-- Web
 	b.formatting.eslint_d,
 	b.diagnostics.eslint_d,
-	-- b.formatting.prettier,
+	b.formatting.prettierd.with({ filetypes = { "html", "markdown", "css" } }),
+
+	-- Docker
+	b.diagnostics.hadolint,
 
 	-- Go
 	b.diagnostics.golangci_lint,
@@ -26,6 +29,8 @@ local sources = {
 
 	-- Terraform
 	b.formatting.terraform_fmt,
+	b.diagnostics.terraform_validate,
+	b.diagnostics.tfsec,
 
 	-- Lua
 	b.formatting.stylua,
@@ -33,22 +38,38 @@ local sources = {
 	-- Github Actions
 	b.diagnostics.actionlint,
 
-  -- PHP
-  b.diagnostics.php,
+	-- PHP
+	b.diagnostics.php,
 
 	-- Python
-	-- b.formatting.autopep8,
-  b.formatting.black,
-  -- b.diagnostics.pylint,
-  b.diagnostics.flake8,
+	b.formatting.black,
+	b.diagnostics.flake8,
+
+	-- Dotenv
+	b.diagnostics.dotenv_linter,
+	b.hover.printenv,
+
+	-- SQL
+	b.diagnostics.sqlfluff.with({
+		extra_args = { "--dialect", "postgres" }, -- change to your dialect
+	}),
+
+	-- Yaml
+	b.diagnostics.yamllint,
+	b.formatting.yamlfmt,
 
 	-- Markup/Markdown
-	-- b.diagnostics.yamllint,
-	-- b.formatting.yamlfmt,
-	-- b.formatting.markdownlint,
+	b.formatting.markdownlint,
+	b.diagnostics.markdownlint,
+
+	-- Latex
+	b.diagnostics.chktex,
 
 	-- Justfile
 	b.formatting.just,
+
+	-- Zsh
+	b.diagnostics.zsh,
 }
 
 null_ls.setup({

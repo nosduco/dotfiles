@@ -20,9 +20,10 @@ M.opts = {
 				desc = " Projects",
 				group = "@string",
 				action = function()
-					local dotfiles_dir = vim.fn.expand("$HOME") .. "/Projects"
-					vim.fn.execute("cd " .. dotfiles_dir)
-					vim.cmd(":NvimTreeToggle")
+					require("telescope").extensions.file_browser.file_browser({
+						path = vim.fn.expand("$HOME") .. "/Projects",
+						hide_parent_dir = true,
+					})
 				end,
 				key = "p",
 			},
@@ -32,8 +33,11 @@ M.opts = {
 				action = function()
 					local dotfiles_dir = vim.fn.expand("$HOME") .. "/Projects/dotfiles"
 					vim.fn.execute("cd " .. dotfiles_dir)
+					-- Configure tmux to open new panes inside this window to the new cwd
+					os.execute(
+						"tmux set-hook -w after-split-window 'send-keys \"cd " .. dotfiles_dir .. " && clear\" Enter'"
+					)
 					vim.cmd(":NvimTreeToggle")
-					-- vim.cmd("Telescope find_files")
 				end,
 				key = "d",
 			},
@@ -56,7 +60,7 @@ M.generate_header = function()
 	}
 	table.insert(header, os.date("%Y-%m-%d %l:%M:%S %p"))
 	table.insert(header, "")
-  return header
+	return header
 end
 
 return M
