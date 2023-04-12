@@ -27,6 +27,10 @@ M.general = {
 		-- Shortcut to command
 		[";"] = { ":", "enter command mode", opts = { nowait = true } },
 
+		-- Vertical and Horizontal Splits
+		["<C-s>"] = { "<cmd> split <CR>", "horizontal split" },
+		["<C-i>"] = { "<cmd> vsplit <CR>", "vertical split" },
+
 		-- Multiplexer Navigation
 		["<C-h>"] = {
 			function()
@@ -141,13 +145,6 @@ M.comment = {
 
 M.lspconfig = {
 	n = {
-		-- Autoformat via lsp
-		["<C-f>"] = {
-			function()
-				vim.lsp.buf.format({ async = true })
-			end,
-			"lsp formatting",
-		},
 		["<leader>xx"] = { "<cmd>TroubleToggle<cr>", "toggle lsp diagnostic list" },
 		["<leader>xw"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "toggle lsp workspace diagnostic list" },
 		["<leader>xf"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "toggle lsp file diagnostic list" },

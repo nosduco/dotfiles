@@ -5,16 +5,27 @@ M.opts = {
 	config = {
 		shortcut = {
 			{
-				desc = "󰇚 Update",
-				group = "@annotation",
-				action = "NvChadUpdate",
-				key = "u",
-			},
-			{
 				desc = "󰱼 Find Files",
 				group = "@function",
 				action = "Telescope find_files",
 				key = "f",
+			},
+			{
+				desc = " Notes",
+				group = "@type",
+				action = function()
+					local timestamp = os.time()
+					local filename = tostring(os.date("%B-%d-%I%M%p", timestamp)):lower() .. ".txt"
+					local path = vim.fn.expand("$HOME") .. "/Notes/" .. filename
+					vim.api.nvim_command("edit " .. path)
+					local notes_dir = vim.fn.expand("$HOME") .. "/Notes/"
+					vim.fn.execute("cd " .. notes_dir)
+					-- Configure tmux to open new panes inside this window to the new cwd
+					os.execute(
+						"tmux set-hook -w after-split-window 'send-keys \"cd " .. notes_dir .. " && clear\" Enter'"
+					)
+				end,
+				key = "n",
 			},
 			{
 				desc = " Projects",
@@ -40,6 +51,12 @@ M.opts = {
 					vim.cmd(":NvimTreeToggle")
 				end,
 				key = "d",
+			},
+			{
+				desc = "󰇚 Update",
+				group = "@annotation",
+				action = "NvChadUpdate",
+				key = "u",
 			},
 		},
 		packages = { enable = false },

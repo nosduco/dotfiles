@@ -12,6 +12,9 @@ M.ui = {
 	hl_override = highlights.override,
 	hl_add = highlights.add,
 
+	-- Enable semantic tokens
+	lsp_semantic_tokens = true,
+
 	-- Cheatsheet
 	cheatsheet = {
 		theme = "simple",
@@ -27,10 +30,8 @@ M.ui = {
 					if rawget(vim, "lsp") then
 						for _, client in ipairs(vim.lsp.get_active_clients()) do
 							if client.attached_buffers[vim.api.nvim_get_current_buf()] then
-								return (
-									vim.o.columns > 100
-									and "%#St_LspStatus#" .. "   " .. client.name .. " "
-								) or "   LSP "
+								return (vim.o.columns > 100 and "%#St_LspStatus#" .. "   " .. client.name .. " ")
+									or "   LSP "
 							end
 						end
 					end
