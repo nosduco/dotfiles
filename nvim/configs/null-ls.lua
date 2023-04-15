@@ -14,7 +14,8 @@ local sources = {
 	-- Web
 	b.formatting.eslint_d,
 	b.diagnostics.eslint_d,
-	b.formatting.prettierd.with({ filetypes = { "html", "markdown", "css" } }),
+	-- b.formatting.prettierd.with({ filetypes = { "html", "markdown", "css" } }),
+	b.formatting.prettierd,
 
 	-- Docker
 	b.diagnostics.hadolint,

@@ -34,6 +34,16 @@ local plugins = {
 	-- Override plugin configs
 	{
 		"nvim-treesitter/nvim-treesitter",
+		dependencies = {
+			{
+				-- Justfile (tree-sitter support)
+				"IndianBoy42/tree-sitter-just",
+				ft = "just",
+				config = function(_, opts)
+					require("tree-sitter-just").setup(opts)
+				end,
+			},
+		},
 		opts = treesitter.opts,
 		lazy = false,
 	},
@@ -79,9 +89,19 @@ local plugins = {
 		"folke/trouble.nvim",
 	},
 	{
+		-- Auto-tagging
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end,
+	},
+	{
 		-- Highlight Comments
 		"folke/todo-comments.nvim",
 		event = "VeryLazy",
+		config = function()
+			require("todo-comments").setup()
+		end,
 	},
 	{
 		-- My remote-sshfs plugin :)
@@ -114,11 +134,6 @@ local plugins = {
 	{
 		-- SchemaStore Support (json, yaml)
 		"b0o/schemastore.nvim",
-	},
-	{
-		-- Justfile (tree-sitter support)
-		"IndianBoy42/tree-sitter-just",
-		ft = "just",
 	},
 	{
 		-- Multiplexer Integration

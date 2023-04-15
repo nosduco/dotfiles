@@ -147,9 +147,22 @@ M.lspconfig = {
 	n = {
 		["<leader>xx"] = { "<cmd>TroubleToggle<cr>", "toggle lsp diagnostic list" },
 		["<leader>xw"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "toggle lsp workspace diagnostic list" },
-		["<leader>xf"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "toggle lsp file diagnostic list" },
+		["<leader>xd"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "toggle lsp file diagnostic list" },
 		["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", "toggle lsp loclist" },
 		["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", "toggle lsp quickfix list" },
+		-- Autoformat via lsp
+		["<leader>fm"] = {
+			function()
+				vim.lsp.buf.format({ async = true })
+			end,
+			"lsp formatting",
+		},
+		["<C-f>"] = {
+			function()
+				vim.lsp.buf.format({ async = true })
+			end,
+			"lsp formatting",
+		},
 	},
 }
 
