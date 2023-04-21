@@ -24,6 +24,10 @@ M.opts = {
 					os.execute(
 						"tmux set-hook -w after-split-window 'send-keys \"cd " .. notes_dir .. " && clear\" Enter'"
 					)
+					local function removeHook()
+						os.execute("tmux set-hook -wu after-split-window")
+					end
+					vim.cmd([[autocmd VimLeave * lua removeHook()]])
 				end,
 				key = "n",
 			},
