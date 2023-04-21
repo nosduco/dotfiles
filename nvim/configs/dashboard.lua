@@ -1,3 +1,5 @@
+local utils = require("custom.utils")
+
 local M = {}
 
 M.opts = {
@@ -19,15 +21,7 @@ M.opts = {
 					local path = vim.fn.expand("$HOME") .. "/Notes/" .. filename
 					vim.api.nvim_command("edit " .. path)
 					local notes_dir = vim.fn.expand("$HOME") .. "/Notes/"
-					vim.fn.execute("cd " .. notes_dir)
-					-- Configure tmux to open new panes inside this window to the new cwd
-					os.execute(
-						"tmux set-hook -w after-split-window 'send-keys \"cd " .. notes_dir .. " && clear\" Enter'"
-					)
-					local function removeHook()
-						os.execute("tmux set-hook -wu after-split-window")
-					end
-					vim.cmd([[autocmd VimLeave * lua removeHook()]])
+					utils.set_cwd(notes_dir)
 				end,
 				key = "n",
 			},
@@ -47,11 +41,7 @@ M.opts = {
 				group = "Number",
 				action = function()
 					local dotfiles_dir = vim.fn.expand("$HOME") .. "/.dotfiles"
-					vim.fn.execute("cd " .. dotfiles_dir)
-					-- Configure tmux to open new panes inside this window to the new cwd
-					os.execute(
-						"tmux set-hook -w after-split-window 'send-keys \"cd " .. dotfiles_dir .. " && clear\" Enter'"
-					)
+          utils.set_cwd(dotfiles_dir)
 					vim.cmd(":NvimTreeToggle")
 				end,
 				key = "d",

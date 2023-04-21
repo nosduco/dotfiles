@@ -6,6 +6,9 @@ autocmd("VimResized", {
 	command = "tabdo wincmd =",
 })
 
+-- Clear TMUX hooks on exit
+vim.cmd([[ autocmd VimLeave * lua require("custom.utils").clear_tmux_hooks()]])
+
 -- Neovide (Neovim GUI) options
 if vim.g.neovide then
 	vim.g.neovide_scale_factor = 0.75
