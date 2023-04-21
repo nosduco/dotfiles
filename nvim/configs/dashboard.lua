@@ -42,7 +42,7 @@ M.opts = {
 				desc = " dotfiles",
 				group = "Number",
 				action = function()
-					local dotfiles_dir = vim.fn.expand("$HOME") .. "/Projects/dotfiles"
+					local dotfiles_dir = vim.fn.expand("$HOME") .. "/.dotfiles"
 					vim.fn.execute("cd " .. dotfiles_dir)
 					-- Configure tmux to open new panes inside this window to the new cwd
 					os.execute(

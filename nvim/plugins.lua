@@ -105,8 +105,9 @@ local plugins = {
 	},
 	{
 		-- My remote-sshfs plugin :)
-		dir = "~/Projects/remote-sshfs.nvim",
-		lazy = false,
+		-- dir = "~/Projects/remote-sshfs.nvim",
+    "nosduco/remote-sshfs.nvim",
+		-- lazy = false,
 		opts = remotesshfs.opts,
 	},
 	{
