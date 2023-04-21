@@ -29,7 +29,7 @@
       create: true
       glob: true
       path: gnome/nos-dark
-      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+      if: "[ $XDG_SESSION_DESKTOP = gnome ] || [ $XDG_SESSION_DESKTOP = gnome-xorg ]"
     ~/.config/gtk-4.0/gtk.css: gnome/nos-dark/gtk.css
     ~/.config/gtk-3.0/gtk.css: gnome/nos-dark/gtk.css
     ~/.config/BetterDiscord/themes/nos.theme.css: discord.css
@@ -37,28 +37,17 @@
       create: true
       glob: true
       path: spotify
-      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+      if: "[ $XDG_SESSION_DESKTOP = gnome ] || [ $XDG_SESSION_DESKTOP = gnome-xorg ]"
     # Audio settings
     ~/.config/wireplumber:
       create: true
       glob: true
       path: wireplumber
-      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
-    ~/.yabairc:
-      path: .yabairc
-      if: "[ `uname` = Darwin ]"
-    ~/.skhdrc:
-      path: .skhdrc
-      if: "[ `uname` = Darwin ]"
+      if: "[ $XDG_SESSION_DESKTOP = gnome ] && [ $(hostname) = blackbird ]"
 - shell:
-    # Set gnome themes (if running Gnome)
-    # - command: gsettings set org.gnome.desktop.interface gtk-theme nos-dark
-    #   if: "[ $XDG_SESSION_DESKTOP = gnome ]"
-    # - command: gsettings set org.gnome.desktop.wm.preferences theme adw-dark
-    #   if: "[ $XDG_SESSION_DESKTOP = gnome ]"
     # Set gnome custom keybinds (if running Gnome)
     - command: ./scripts/set_gnome_keybinds.sh
-      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+      if: "[ $XDG_SESSION_DESKTOP = gnome ] || [ $XDG_SESSION_DESKTOP = gnome-xorg ]"
     # Set alacritty as default terminal emulator (mainly for pop_shell)
     - command: sudo ln -s /usr/bin/alacritty /usr/bin/x-terminal-emulator || true
-      if: "[ $XDG_SESSION_DESKTOP = gnome ]"
+      if: "[ $XDG_SESSION_DESKTOP = gnome ] || [ $XDG_SESSION_DESKTOP = gnome-xorg ]"

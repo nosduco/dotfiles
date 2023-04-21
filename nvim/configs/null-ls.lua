@@ -14,7 +14,6 @@ local sources = {
 	-- Web
 	b.formatting.eslint_d,
 	b.diagnostics.eslint_d,
-	-- b.formatting.prettierd.with({ filetypes = { "html", "markdown", "css" } }),
 	b.formatting.prettierd,
 
 	-- Docker
@@ -43,8 +42,8 @@ local sources = {
 	b.diagnostics.php,
 
 	-- Python
-	b.formatting.black,
-	b.diagnostics.flake8,
+	b.formatting.ruff,
+	b.diagnostics.ruff,
 
 	-- Dotenv
 	b.diagnostics.dotenv_linter,
@@ -59,14 +58,10 @@ local sources = {
 	b.diagnostics.yamllint.with({
 		args = { "-d", "{extends: default, rules: {document-start: disable}}", "--format", "parsable", "-" },
 	}),
-	b.formatting.yamlfmt,
 
 	-- Markup/Markdown
 	b.formatting.markdownlint,
 	b.diagnostics.markdownlint,
-
-	-- Latex
-	b.diagnostics.chktex,
 
 	-- Justfile
 	b.formatting.just,

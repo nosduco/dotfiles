@@ -37,13 +37,6 @@ fi
 # Java
 export JDK_HOME="/usr/lib/jvm/java-11-openjdk"
 
-# C - Hunter Support
-export HUNTER_ROOT=$HOME/.hunter
-
-# Ruby
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-export PATH=$PATH:$GEM_HOME/bin
-
 # Rust
 export PATH=$PATH:$HOME/.cargo/bin
 
@@ -96,7 +89,6 @@ alias lla='ls -la'
 alias la='ls -a'
 alias lt='ls --tree'
 alias fucking='sudo'
-alias aur='echo "HABIT: Use pacman alias instead" && paru'
 alias pacman='paru'
 alias androidem='/opt/android-sdk/emulator/emulator @$(/opt/android-sdk/emulator/emulator -list-avds)'
 alias unitydebug='adb logcat -s Unity PackageManager dalvikvm DEBUG'

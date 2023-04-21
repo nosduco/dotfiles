@@ -17,6 +17,9 @@ else
 
   # Plugins
   plugins=(gitfast vi-mode dirhistory docker pip sudo yarn wd virtualenv tmux)
+
+  # Setup GPG
+  export GPG_TTY=$(tty)
 fi
 
 ZSH_THEME="refined"
