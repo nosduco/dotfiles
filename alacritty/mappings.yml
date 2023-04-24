@@ -22,5 +22,4 @@ key_bindings:
   - {key: NumpadAdd, mods: Control, action: IncreaseFontSize}
   - {key: Minus, mods: Control, action: DecreaseFontSize}
   - {key: NumpadSubtract, mods: Control, action: DecreaseFontSize}
-  - {key: I, mods: Control, action: None}
   - {key: L, mods: Control, mode: ~Vi|~Search, chars: "\f"}

@@ -37,6 +37,17 @@ M.opts = {
 				key = "p",
 			},
 			{
+				desc = " Work",
+				group = "@file",
+				action = function()
+					require("telescope").extensions.file_browser.file_browser({
+						path = vim.fn.expand("$HOME") .. "/work",
+						hide_parent_dir = true,
+					})
+				end,
+				key = "w",
+			},
+			{
 				desc = " dotfiles",
 				group = "Number",
 				action = function()
@@ -69,7 +80,8 @@ M.generate_header = function()
 		" ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚═╝       ╚═╝    ╚═════╝ ╚═╝  ╚═══╝   ╚═╝    ",
 		"",
 	}
-	table.insert(header, os.date("%Y-%m-%d %l:%M:%S %p"))
+	-- table.insert(header, os.date("%Y-%m-%d %l:%M:%S %p"))
+  table.insert(header, os.date("%A, %B %e, %Y"))
 	table.insert(header, "")
 	return header
 end

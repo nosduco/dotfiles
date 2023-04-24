@@ -28,8 +28,7 @@ M.general = {
 		[";"] = { ":", "enter command mode", opts = { nowait = true } },
 
 		-- Vertical and Horizontal Splits
-		["<C-s>"] = { "<cmd> split <CR>", "horizontal split" },
-		["<C-i>"] = { "<cmd> vsplit <CR>", "vertical split" },
+		["<C-s>"] = { "<cmd> vsplit <CR>", "vertical split" },
 
 		-- Multiplexer Navigation
 		["<C-h>"] = {

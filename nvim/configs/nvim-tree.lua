@@ -22,6 +22,7 @@ M.opts = {
 	},
 	renderer = {
 		highlight_git = true,
+    root_folder_label = true,
 		icons = {
 			show = {
 				git = true,
