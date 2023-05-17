@@ -35,6 +35,11 @@ source $ZSH/oh-my-zsh.sh
 # bashrc
 source ~/.bashrc
 
+# env variables
+set -a
+source ~/.dotfiles/.env
+set +a
+
 # User configuration
 export MANPATH="/usr/local/man:$MANPATH"
 export LANG=en_US.UTF-8

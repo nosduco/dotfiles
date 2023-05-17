@@ -56,7 +56,7 @@ local sources = {
 
 	-- Yaml
 	b.diagnostics.yamllint.with({
-		args = { "-d", "{extends: default, rules: {document-start: disable}}", "--format", "parsable", "-" },
+		args = { "-d", "{extends: default, rules: {document-start: disable, truthy: { allowed-values: ['true', 'false', 'on' ]}, line-length: disable }}", "--format", "parsable", "-" },
 	}),
 
 	-- Markup/Markdown

@@ -156,12 +156,6 @@ M.lspconfig = {
 			end,
 			"lsp formatting",
 		},
-		["<C-f>"] = {
-			function()
-				vim.lsp.buf.format({ async = true })
-			end,
-			"lsp formatting",
-		},
 	},
 }
 

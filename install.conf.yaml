@@ -43,7 +43,7 @@
       create: true
       glob: true
       path: wireplumber
-      if: "[ $XDG_SESSION_DESKTOP = gnome ] && [ $(hostname) = blackbird ]"
+      if: "[ $XDG_SESSION_DESKTOP = gnome ] && [ $(hostname) = nighthawk ]"
 - shell:
     # Set gnome custom keybinds (if running Gnome)
     - command: ./scripts/set_gnome_keybinds.sh
