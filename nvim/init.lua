@@ -27,6 +27,9 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 -- Clear TMUX hooks on exit
 vim.cmd([[ autocmd VimLeave * lua require("custom.utils").clear_tmux_hooks()]])
 
+-- Set statusline to 0
+vim.o.cmdheight = 0
+
 -- Neovide (Neovim GUI) options
 if vim.g.neovide then
   vim.g.neovide_scale_factor = 0.75

@@ -165,4 +165,63 @@ M.telescope = {
 	},
 }
 
+M.debugger = {
+	n = {
+		["<leader>db"] = {
+			function()
+				require("dapui").toggle()
+			end,
+			"toggle debugger ui",
+		},
+		["<leader>bk"] = {
+			function()
+				require("dap").toggle_breakpoint()
+			end,
+			"toggle breakpoint",
+		},
+		["<leader>ct"] = {
+			function()
+				require("dap").continue()
+			end,
+			"continue debugger",
+		},
+		["<leader>st"] = {
+			function()
+				require("dap").step_into()
+			end,
+			"step into debugger",
+		},
+	},
+}
+
+M.testing = {
+	n = {
+		["<leader>tr"] = {
+			function()
+				require("neotest").run.run()
+			end,
+			"run tests",
+		},
+		["<leader>ts"] = {
+			function()
+				require("neotest").run.stop()
+			end,
+			"stop tests",
+		},
+		["<leader>td"] = {
+			function()
+				require("neotest").run.stop({ strategy = "dap" })
+			end,
+			"debug tests",
+		},
+		["<leader>tt"] = {
+			function()
+				-- require("neotest").output_panel.toggle()
+				require("neotest").summary.open()
+			end,
+			"toggle testing pane",
+		},
+	},
+}
+
 return M
