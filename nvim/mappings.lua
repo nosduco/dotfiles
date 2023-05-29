@@ -191,6 +191,12 @@ M.debugger = {
 			end,
 			"step into debugger",
 		},
+		["<leader>rp"] = {
+			function()
+				require("dap").repl.open()
+			end,
+			"open repl debugger",
+		},
 	},
 }
 
@@ -216,8 +222,14 @@ M.testing = {
 		},
 		["<leader>tt"] = {
 			function()
-				-- require("neotest").output_panel.toggle()
-				require("neotest").summary.open()
+				require("neotest").output_panel.toggle()
+				require("neotest").summary.toggle()
+			end,
+			"toggle testing pane",
+		},
+		["<leader>tc"] = {
+			function()
+				require("neotest").output.toggle()
 			end,
 			"toggle testing pane",
 		},
