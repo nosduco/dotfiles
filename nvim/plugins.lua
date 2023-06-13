@@ -7,6 +7,7 @@ local mason = require("custom.configs.mason")
 local toggleterm = require("custom.configs.toggleterm")
 local telescope = require("custom.configs.telescope")
 local octo = require("custom.configs.octo")
+local dressing = require("custom.configs.dressing")
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -80,6 +81,12 @@ local plugins = {
 			require("dashboard").setup(opts)
 		end,
 	},
+  {
+    -- Select/Input Dialog
+    'stevearc/dressing.nvim',
+    event = "VeryLazy",
+    opts = dressing.opts,
+  },
 	{
 		-- Debugger
 		"mfussenegger/nvim-dap",
