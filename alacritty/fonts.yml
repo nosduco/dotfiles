@@ -1,7 +1,8 @@
 # Font configuration
 font:
   normal:
-    family: "MesloLGLDZ Nerd Font"
+    # family: "MesloLGLDZ Nerd Font"
+    family: "Jetbrains Mono Nerd Font"
     style: Regular
   # Bold font face
   bold:
