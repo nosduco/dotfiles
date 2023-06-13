@@ -28,7 +28,7 @@ else
   eval $(dircolors -b $HOME/.dircolors)
 
   # Custom Grep
-  alias grep='grep --color=always'
+  alias grep='rg --color=always'
 
   # Open File System
   alias fs='nautilus . &'
@@ -95,6 +95,7 @@ alias unitydebug='adb logcat -s Unity PackageManager dalvikvm DEBUG'
 alias windows='sudo grub-reboot 1 && sudo reboot'
 alias we='curl wttr.in'
 alias bell='echo -e "\a"'
+alias nvm='fnm'
 
 # Override rm for trash
 alias rm=trash
