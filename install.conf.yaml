@@ -51,3 +51,8 @@
     # Set alacritty as default terminal emulator (mainly for pop_shell)
     - command: sudo ln -s /usr/bin/alacritty /usr/bin/x-terminal-emulator || true
       if: "[ $XDG_SESSION_DESKTOP = gnome ] || [ $XDG_SESSION_DESKTOP = gnome-xorg ]"
+    # Add application entries for setting headphones/speakers
+    - command: desktop-file-install --dir=$HOME/.local/share/applications ./wireplumber/scripts/set_headphones_sink.desktop
+      if: "[ $XDG_SESSION_DESKTOP = gnome ] || [ $(hostname) = nighthawk ]"
+    - command: desktop-file-install --dir=$HOME/.local/share/applications ./wireplumber/scripts/set_speakers_sink.desktop
+      if: "[ $XDG_SESSION_DESKTOP = gnome ] || [ $(hostname) = nighthawk ]"

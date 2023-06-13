@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Use Speakers
+Comment=Set default audio sink to speakers
+Exec=/home/tony/.dotfiles/wireplumber/scripts/set_default_sink.sh speakers
+Terminal=true
+Type=Application

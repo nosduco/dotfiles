@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Use Headphones
+Comment=Set default audio sink to headphones
+Exec=/home/tony/.dotfiles/wireplumber/scripts/set_default_sink.sh headphones
+Terminal=true
+Type=Application
