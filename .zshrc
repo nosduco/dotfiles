@@ -16,7 +16,7 @@ else
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
   # Plugins
-  plugins=(gitfast vi-mode dirhistory docker pip sudo yarn wd virtualenv tmux)
+  plugins=(gitfast vi-mode dirhistory docker pip sudo yarn wd tmux)
 
   # Setup GPG
   export GPG_TTY=$(tty)
@@ -60,37 +60,6 @@ fi
 
 # Node Configuration
 eval "$(fnm env --use-on-cd)"
-# export NVM_DIR="$HOME/.nvm"
-# export NVM_DIR="/usr/share/nvm"
-# lazy_load_nvm() {
-#   unset -f nvm
-#   unset -f node
-#   unset -f npm
-#   unset -f yarn
-#   unset -f npx
-#   source /usr/share/nvm/init-nvm.sh # this loads nvm
-# }
-# nvm() {
-#   lazy_load_nvm
-#   nvm $@
-# }
-# node() {
-#   lazy_load_nvm
-#   node $@
-# }
-# yarn() {
-#   lazy_load_nvm
-#   yarn $@
-# }
-# npm() {
-#   lazy_load_nvm
-#   npm $@
-# }
-# npx() {
-#   lazy_load_nvm
-#   npx $@
-# }
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Python Configuration
 export PYENV_ROOT="$HOME/.pyenv"

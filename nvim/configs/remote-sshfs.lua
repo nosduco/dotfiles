@@ -3,7 +3,7 @@ local M = {}
 M.opts = {
 	handlers = {
 		on_connect = {
-			change_dir = true,
+			change_dir = false,
 		},
 		on_disconnect = {
 			clean_mount_folders = true,

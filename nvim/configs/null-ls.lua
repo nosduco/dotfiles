@@ -73,4 +73,5 @@ local sources = {
 null_ls.setup({
 	debug = true,
 	sources = sources,
+  temp_dir = "/tmp"
 })
