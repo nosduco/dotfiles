@@ -165,6 +165,26 @@ M.telescope = {
 	},
 }
 
+M.tabs = {
+	n = {
+		["<leader>tn"] = { "<cmd>tabnew <CR>", "open new tab" },
+		["<leader>t1"] = { "1gt", "go to tab #1" },
+		["<leader>t2"] = { "2gt", "go to tab #2" },
+		["<leader>t3"] = { "3gt", "go to tab #3" },
+		["<leader>t4"] = { "4gt", "go to tab #4" },
+		["<leader>t5"] = { "5gt", "go to tab #5" },
+		["<leader>t6"] = { "6gt", "go to tab #6" },
+	},
+}
+
+M.yank = {
+	n = {
+		["<leader>pp"] = { "<cmd>Telescope yank_history <CR>" },
+		["<leader>p["] = { "<Plug>(YankyCycleBackward)" },
+		["<leader>p]"] = { "<Plug>(YankyCycleForward)" },
+	},
+}
+
 M.debugger = {
 	n = {
 		["<leader>db"] = {
@@ -222,7 +242,7 @@ M.testing = {
 		},
 		["<leader>tt"] = {
 			function()
-				require("neotest").output_panel.toggle()
+				-- require("neotest").output_panel.toggle()
 				require("neotest").summary.toggle()
 			end,
 			"toggle testing pane",

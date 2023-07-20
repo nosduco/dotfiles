@@ -18,9 +18,9 @@ M.opts = {
 				action = function()
 					local timestamp = os.time()
 					local filename = tostring(os.date("%B-%d-%I%M%p", timestamp)):lower() .. ".txt"
-					local path = vim.fn.expand("$HOME") .. "/Notes/" .. filename
+					local path = vim.fn.expand("$HOME") .. "/notes/" .. filename
 					vim.api.nvim_command("edit " .. path)
-					local notes_dir = vim.fn.expand("$HOME") .. "/Notes/"
+					local notes_dir = vim.fn.expand("$HOME") .. "/notes/"
 					utils.set_cwd(notes_dir)
 				end,
 				key = "n",
@@ -30,7 +30,7 @@ M.opts = {
 				group = "@string",
 				action = function()
 					require("telescope").extensions.file_browser.file_browser({
-						path = vim.fn.expand("$HOME") .. "/Projects",
+						path = vim.fn.expand("$HOME") .. "/projects",
 						hide_parent_dir = true,
 					})
 				end,

@@ -6,6 +6,7 @@ M.opts = {
 		"themes",
 		"terms",
 		"remote-sshfs",
+		"yank_history",
 	},
 	extensions = {
 		file_browser = {
@@ -31,7 +32,7 @@ M.opts = {
 						local entry_path = action_state.get_selected_entry().Path
 						local path = entry_path:is_dir() and entry_path:absolute() or entry_path:parent():absolute()
 						vim.fn.execute("cd " .. path)
-            -- Configure tmux to open new panes inside this window to the new cwd
+						-- Configure tmux to open new panes inside this window to the new cwd
 						os.execute(
 							"tmux set-hook -w after-split-window 'send-keys \"cd " .. path .. " && clear\" Enter'"
 						)

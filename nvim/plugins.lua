@@ -8,6 +8,7 @@ local toggleterm = require("custom.configs.toggleterm")
 local telescope = require("custom.configs.telescope")
 local octo = require("custom.configs.octo")
 local dressing = require("custom.configs.dressing")
+local yank = require("custom.configs.yank")
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -81,12 +82,21 @@ local plugins = {
 			require("dashboard").setup(opts)
 		end,
 	},
-  {
-    -- Select/Input Dialog
-    'stevearc/dressing.nvim',
-    event = "VeryLazy",
-    opts = dressing.opts,
-  },
+	{
+		-- Select/Input Dialog
+		"stevearc/dressing.nvim",
+		event = "VeryLazy",
+		opts = dressing.opts,
+	},
+	{
+		-- Enhanced Yank and Put
+		"gbprod/yanky.nvim",
+		event = "VimEnter",
+		opts = yank.opts,
+		config = function(_, opts)
+			require("yanky").setup(opts)
+		end,
+	},
 	{
 		-- Debugger
 		"mfussenegger/nvim-dap",
@@ -112,21 +122,21 @@ local plugins = {
 		end,
 	},
 	{
-    -- Testing Functionality
+		-- Testing Functionality
 		"nvim-neotest/neotest",
-    dependencies = {
-      "haydenmeade/neotest-jest",
-      "antoinemadec/FixCursorHold.nvim",
-    },
-    ft = { "js", "ts" },
+		dependencies = {
+			"haydenmeade/neotest-jest",
+			"antoinemadec/FixCursorHold.nvim",
+		},
+		ft = { "js", "ts" },
 		config = function()
 			require("neotest").setup({
-        adapters = {
-          require("neotest-jest")({
-            jestCommand = "npm test -- --watch ",
-          })
-        }
-      })
+				adapters = {
+					require("neotest-jest")({
+						jestCommand = "npm test -- --watch ",
+					}),
+				},
+			})
 		end,
 	},
 	{
@@ -141,6 +151,16 @@ local plugins = {
 		opts = octo.opts,
 		config = function(_, opts)
 			require("octo").setup(opts)
+		end,
+	},
+	{
+		-- Code Diagnostics Lightbulb
+		"kosayoda/nvim-lightbulb",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-lightbulb").setup({
+				autocmd = { enabled = true },
+			})
 		end,
 	},
 	{
@@ -220,6 +240,12 @@ local plugins = {
 		ft = {
 			"markdown",
 		},
+	},
+	{
+		-- You need to get better
+		"m4xshen/hardtime.nvim",
+		opts = {},
+		lazy = false,
 	},
 }
 
