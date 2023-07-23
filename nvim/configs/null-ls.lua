@@ -14,7 +14,7 @@ local sources = {
 	-- Web
 	b.formatting.eslint_d,
 	b.diagnostics.eslint_d,
-	b.formatting.prettierd,
+	-- b.formatting.prettierd,
 
 	-- Docker
 	b.diagnostics.hadolint,
