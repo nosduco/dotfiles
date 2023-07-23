@@ -14,6 +14,11 @@
     ~/.tmux.conf: .tmux.conf
     ~/.theme.tmux: .theme.tmux
     ~/.zshrc: .zshrc
+    # Fish (Shell)
+    ~/.config/fish:
+      create: true
+      glob: true
+      path: fish
     # Alacritty (terminal emulator)
     ~/.config/alacritty:
       create: true
