@@ -217,6 +217,15 @@ local plugins = {
 		"b0o/schemastore.nvim",
 	},
 	{
+		-- Tree Sitter Context
+		"nvim-treesitter/nvim-treesitter-context",
+    lazy = false,
+		opts = {},
+		config = function(_, opts)
+			require("treesitter-context").setup(opts)
+		end,
+	},
+	{
 		-- Multiplexer Integration
 		"mrjones2014/smart-splits.nvim",
 		lazy = false,
