@@ -32,7 +32,6 @@ alias ll='ls -l'
 alias lla='ls -la'
 alias la='ls -a'
 alias lt='ls --tree'
-
 alias pacman='paru'
 alias bell='echo -e "\a"'
 alias nvm='fnm'
@@ -46,13 +45,5 @@ alias ls='lsd --date=+"%a %b %d %I:%M:%S %p %Y"'
 # Prefer docker compose over docker-compose
 alias docker-compose='docker compose'
 
-# Theming
-set --global tide_character_color E95420
-set --global tide_pwd_color_dirs yellow
-set --global tide_pwd_color_anchors yellow
-set --global tide_git_color_branch 626262
-set --global tide_left_prompt_items pwd context git newline character
-set --global tide_context_always_display true
-set --global tide_context_color_default red
-set --global tide_right_prompt_items status cmd_duration jobs direnv node virtual_env rustc java php go gcloud kubectl toolbox terraform aws nix_shell
-
+# Initialize Starship prompt
+starship init fish | source

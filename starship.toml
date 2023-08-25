@@ -1,0 +1,24 @@
+format = """$directory$username$hostname$fill$all$character"""
+add_newline = true
+palette = 'custom'
+
+[palettes.custom]
+orange = "#e95420"
+
+[character]
+success_symbol = '[❯](bold orange)'
+vimcmd_symbol = '[❮](bold orange)'
+
+[directory]
+style = "yellow"
+
+[username]
+show_always = true
+format = '[\($user]($style)'
+style_user = 'bold red'
+style_root = 'bold green'
+
+[hostname]
+format = '[@$ssh_symbol$hostname\)]($style) '
+ssh_only = false
+style = 'bold red'
