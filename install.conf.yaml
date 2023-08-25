@@ -19,6 +19,8 @@
       create: true
       glob: true
       path: fish
+    # Starship (Prompt) 
+    ~/.config/starship.toml: starship.toml
     # Alacritty (terminal emulator)
     ~/.config/alacritty:
       create: true
