@@ -9,6 +9,8 @@ M.disabled = {
 		["<leader> + wk"] = "",
 		["<leader> + h"] = "",
 		["<leader> + v"] = "",
+		["j"] = "",
+		["k"] = "",
 	},
 	i = {},
 	v = {
