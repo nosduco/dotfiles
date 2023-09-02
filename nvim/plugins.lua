@@ -212,6 +212,13 @@ local plugins = {
 		end,
 	},
 	{
+		"ggandor/flit.nvim",
+		lazy = false,
+		config = function()
+			require("flit").setup()
+		end,
+	},
+	{
 		-- Rust Tooling
 		"simrat39/rust-tools.nvim",
 	},
