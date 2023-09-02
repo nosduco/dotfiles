@@ -26,6 +26,7 @@ M.opts = {
     "tsx",
 		"rust",
     "just",
+    "hcl",
 		"markdown",
 		"markdown_inline",
 	},

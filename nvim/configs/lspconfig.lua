@@ -9,7 +9,7 @@ local servers = {
 	"tsserver",
 	"docker_compose_language_service",
 	"dockerls",
-	"terraformls",
+	-- "terraformls",
 }
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
@@ -17,6 +17,13 @@ for _, lsp in ipairs(servers) do
 		capabilities = capabilities,
 	})
 end
+
+-- Terraform/HCL
+lspconfig.terraformls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "tf", "terraform", "hcl" }
+})
 
 -- Rust
 local rt = require("rust-tools")

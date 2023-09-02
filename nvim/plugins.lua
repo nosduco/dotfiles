@@ -166,6 +166,9 @@ local plugins = {
 	{
 		-- Diagnostic Pane
 		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		commands = { "TroubleToggle" },
+		opts = {},
 	},
 	{
 		-- Auto-tagging
@@ -219,7 +222,7 @@ local plugins = {
 	{
 		-- Tree Sitter Context
 		"nvim-treesitter/nvim-treesitter-context",
-    lazy = false,
+		lazy = false,
 		opts = {},
 		config = function(_, opts)
 			require("treesitter-context").setup(opts)
@@ -253,7 +256,7 @@ local plugins = {
 	{
 		-- You need to get better
 		"m4xshen/hardtime.nvim",
-    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
 		opts = {},
 		lazy = false,
 	},
