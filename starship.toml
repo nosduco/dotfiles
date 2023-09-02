@@ -1,4 +1,4 @@
-format = """$directory$username$hostname$fill$all$character"""
+format = """$directory$username$hostname$git_branch$git_commit$git_state$git_metrics$git_status$fill$all$character"""
 add_newline = true
 palette = 'custom'
 
@@ -22,3 +22,6 @@ style_root = 'bold green'
 format = '[@$ssh_symbol$hostname\)]($style) '
 ssh_only = false
 style = 'bold red'
+
+[fill]
+symbol = ' '
