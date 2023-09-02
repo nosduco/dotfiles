@@ -6,9 +6,9 @@ import:
   - ~/.config/alacritty/mappings.yml
 
 shell:
-  program: /bin/zsh
+  program: /bin/tmux
   args:
-    - --login
+    - new-session
 
 env:
   # TERM variable
@@ -16,8 +16,8 @@ env:
 
 window:
   dimensions:
-   columns: 100
-   lines: 30
+    columns: 100
+    lines: 30
   opacity: 0.7
   padding:
     x: 10
