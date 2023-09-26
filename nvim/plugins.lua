@@ -154,6 +154,21 @@ local plugins = {
 		end,
 	},
 	{
+		-- Git Integration
+		"NeogitOrg/neogit",
+		cmd = "Neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"sindrets/diffview.nvim",
+			"ibhagwan/fzf-lua",
+		},
+		opts = {},
+		config = function(_, opts)
+			require("neogit").setup(opts)
+		end,
+	},
+	{
 		-- Code Diagnostics Lightbulb
 		"kosayoda/nvim-lightbulb",
 		event = "VeryLazy",
