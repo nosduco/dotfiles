@@ -22,7 +22,7 @@ end
 lspconfig.terraformls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "tf", "terraform", "hcl" }
+  filetypes = { "tf", "terraform" }
 })
 
 -- Rust
