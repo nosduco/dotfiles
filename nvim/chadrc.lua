@@ -6,7 +6,7 @@ local highlights = require("custom.highlights")
 
 M.ui = {
 	-- Set theme
-	theme = "nos",
+	theme = "ayu_dark",
 
 	-- Override highlights
 	hl_override = highlights.override,

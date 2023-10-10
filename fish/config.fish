@@ -10,7 +10,7 @@ end
 fish_vi_key_bindings
 
 # Directory Colors
-eval (dircolors -c $HOME/.dircolors)
+# eval (dircolors -c $HOME/.dircolors)
 
 # Root .env variables
 # TODO:
