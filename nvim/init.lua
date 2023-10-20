@@ -38,6 +38,7 @@ if vim.g.neovide then
 	vim.g.neovide_scale_factor = 0.75
 end
 
+-- Set underscores as keyword for horizontal movement
 vim.cmd("set iskeyword-=_")
 
 -- Fix Terraform filetyping

@@ -183,8 +183,8 @@ M.tabs = {
 M.yank = {
 	n = {
 		["<leader>pp"] = { "<cmd>Telescope yank_history <CR>" },
-		["<leader>p["] = { "<Plug>(YankyCycleBackward)" },
-		["<leader>p]"] = { "<Plug>(YankyCycleForward)" },
+		["<leader>pb"] = { "<Plug>(YankyCycleBackward)" },
+		["<leader>pn"] = { "<Plug>(YankyCycleForward)" },
 	},
 }
 
@@ -196,25 +196,25 @@ M.debugger = {
 			end,
 			"toggle debugger ui",
 		},
-		["<leader>bk"] = {
+		["<leader>dbp"] = {
 			function()
 				require("dap").toggle_breakpoint()
 			end,
 			"toggle breakpoint",
 		},
-		["<leader>ct"] = {
+		["<leader>dbc"] = {
 			function()
 				require("dap").continue()
 			end,
 			"continue debugger",
 		},
-		["<leader>st"] = {
+		["<leader>dbs"] = {
 			function()
 				require("dap").step_into()
 			end,
 			"step into debugger",
 		},
-		["<leader>rp"] = {
+		["<leader>dbr"] = {
 			function()
 				require("dap").repl.open()
 			end,
