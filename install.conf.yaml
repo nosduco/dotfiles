@@ -27,6 +27,11 @@
       create: true
       glob: true
       path: swayidle
+    # Eww (Widgets)
+    ~/.config/eww:
+      create: true
+      glob: true
+      path: eww
     # Dunst (Notifications Daemon)
     ~/.config/dunst:
       create: true
