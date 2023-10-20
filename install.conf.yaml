@@ -9,57 +9,62 @@
         ~/.config/nvim --depth 1
 - link:
     # tty configurations
-    ~/.bashrc: .bashrc
     ~/.dircolors: .dircolors
     ~/.tmux.conf: .tmux.conf
     ~/.theme.tmux: .theme.tmux
-    ~/.zshrc: .zshrc
     # Fish (Shell)
     ~/.config/fish:
       create: true
       glob: true
       path: fish
-    # Starship (Prompt) 
+    # Hyprland (WM)
+    ~/.config/hypr:
+      create: true
+      glob: true
+      path: hypr
+    # Swayidle/Swaylock (Lockscreen)
+    ~/.config/swayidle:
+      create: true
+      glob: true
+      path: swayidle
+    # Dunst (Notifications Daemon)
+    ~/.config/dunst:
+      create: true
+      glob: true
+      path: dunst
+    # Waybar (Status Bar)
+    ~/.config/waybar:
+      create: true
+      glob: true
+      path: waybar
+    # wlogout (Logout Menu)
+    ~/.config/wlogout:
+      create: true
+      glob: true
+      path: wlogout
+    # Cava (Music Visualizer)
+    ~/.config/cava:
+      create: true
+      glob: true
+      path: cava
+    # Starship (Shell Prompt)
     ~/.config/starship.toml: starship.toml
     # Alacritty (terminal emulator)
     ~/.config/alacritty:
       create: true
       glob: true
       path: alacritty
-    # Vim
+    # Neovim
     ~/.config/nvim/lua/custom:
       create: true
       glob: true
       path: nvim
-    # Theming
-    ~/.themes/nos-dark:
-      create: true
-      glob: true
-      path: gnome/nos-dark
-      if: "[ $XDG_SESSION_DESKTOP = gnome ] || [ $XDG_SESSION_DESKTOP = gnome-xorg ]"
-    ~/.config/gtk-4.0/gtk.css: gnome/nos-dark/gtk.css
-    ~/.config/gtk-3.0/gtk.css: gnome/nos-dark/gtk.css
-    ~/.config/BetterDiscord/themes/nos.theme.css: discord.css
-    ~/.config/spicetify/Themes/nos:
-      create: true
-      glob: true
-      path: spotify
-      if: "[ $XDG_SESSION_DESKTOP = gnome ] || [ $XDG_SESSION_DESKTOP = gnome-xorg ]"
     # Audio settings
     ~/.config/wireplumber:
       create: true
       glob: true
       path: wireplumber
-      if: "[ $XDG_SESSION_DESKTOP = gnome ] && [ $(hostname) = nighthawk ]"
+      if: "[ $(hostname) = nighthawk ]"
 - shell:
-    # Set gnome custom keybinds (if running Gnome)
-    - command: ./scripts/set_gnome_keybinds.sh
-      if: "[ $XDG_SESSION_DESKTOP = gnome ] || [ $XDG_SESSION_DESKTOP = gnome-xorg ]"
     # Set alacritty as default terminal emulator (mainly for pop_shell)
     - command: sudo ln -s /usr/bin/alacritty /usr/bin/x-terminal-emulator || true
-      if: "[ $XDG_SESSION_DESKTOP = gnome ] || [ $XDG_SESSION_DESKTOP = gnome-xorg ]"
-    # Add application entries for setting headphones/speakers
-    - command: desktop-file-install --dir=$HOME/.local/share/applications ./wireplumber/scripts/set_headphones_sink.desktop
-      if: "[ $XDG_SESSION_DESKTOP = gnome ] || [ $(hostname) = nighthawk ]"
-    - command: desktop-file-install --dir=$HOME/.local/share/applications ./wireplumber/scripts/set_speakers_sink.desktop
-      if: "[ $XDG_SESSION_DESKTOP = gnome ] || [ $(hostname) = nighthawk ]"
