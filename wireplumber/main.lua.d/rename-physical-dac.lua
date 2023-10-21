@@ -9,6 +9,7 @@ rule = {
   apply_properties = {
     ["device.nick"] = "Headphones",
     ["device.description"] = "Headphones",
+    ["device.form-factor"] = "headphones",
     ["node.nick"] = "Headphones",
     ["node.description"] = "Headphones",
   },

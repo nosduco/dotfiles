@@ -1,0 +1,74 @@
+.control-center {
+	.second-row {
+		font-family: "Material Icons";
+		margin-bottom: 1.25em;
+
+		box {
+			margin: .25em 0em;
+		}
+
+		scale {
+			marks {
+				mark {
+					indicator {
+						min-height: 8px;
+						min-width: 1px;
+					}
+				}
+			}
+			trough {
+				background-color: $background-primary;
+				border: 2px solid $lighter-background;
+				border-radius: 10px;
+				min-height: 1.25em;
+				min-width: 18em;
+				margin: 0em 1em;
+
+				highlight {
+					// margin: .25em;
+					background-image: linear-gradient(to right, $blue-desaturated, $blue);
+					border-radius: inherit;
+				}
+			}
+		}
+
+		.slider-clicker {
+			font-size: 20px;
+			background-color: $background-tertiary;
+			border-radius: 100%;
+			padding: .25em;
+		}
+
+		.volume-text, .brightness-text {
+			font-family: "DM Sans";
+			font-size: 16px;
+			font-weight: bold;
+			margin-left: .25em;
+		}
+
+		.volume-slider {
+			margin-left: 2em;
+
+			.volume-icon {
+				padding: .25em;
+				border-radius: 2em;
+				color: $foreground-tertiary;
+				font-size: 20px;
+			}
+
+			.volume-level {
+				color: wheat;
+			}
+		}
+		.brightness-slider {
+			margin-left: 2em;
+
+			.brightness-icon {
+				padding: .25em;
+				border-radius: 2em;
+				color: $foreground-tertiary;
+				font-size: 20px;
+			}
+		}		
+	}
+}

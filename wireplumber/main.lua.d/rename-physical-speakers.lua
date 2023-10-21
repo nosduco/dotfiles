@@ -10,6 +10,7 @@ rule = {
     ["device.nick"] = "Speakers",
     ["device.description"] = "Speakers",
     ["device.icon-name"] = "audio-speakers-analog-pci",
+    ["device.form-factor"] = "speaker",
   },
 }
 

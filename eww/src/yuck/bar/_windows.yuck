@@ -1,0 +1,11 @@
+(defwindow bar
+	:geometry (geometry :x "0%"
+						:y "0%" 
+						:height "6%" 
+						:width "100%"
+						:anchor "center bottom")
+	:monitor 0
+	:stacking "bg"
+	:windowtype "dock"
+	:wm-ignore false
+	(bar))

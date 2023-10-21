@@ -1,7 +1,7 @@
 * {
     border:        none;
     border-radius: 0;
-    font-family:   Sans;
+    font-family:   "Google Sans", "Material Design Icons";
     font-size:     15px;
     box-shadow:    none;
     text-shadow:   none;
@@ -44,13 +44,15 @@ window#waybar.solo {
     color:      rgba(238, 46, 36, 1);
 }
 
-#mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-spotify, #custom-weather, #custom-mail {
-    margin:     0px 6px 0px 10px;
-    min-width:  25px;
+#mode, #battery, #cpu, #memory, #wireplumber, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-spotify, #custom-weather, #custom-mail {
+    margin:     0px 4px;
+    min-width:  12px;
 }
 
 #clock {
-    margin:     0px 16px 0px 10px;
+    margin-right: 12px;
+    margin-left: 4px;
+    /* margin:     0px 16px 0px 10px; */
     /* min-width:  140px; */
 }
 

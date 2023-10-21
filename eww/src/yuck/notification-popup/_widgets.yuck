@@ -1,0 +1,27 @@
+(defwidget notification-popup []
+	(revealer :transition "crossfade" :duration "500ms" :reveal noti
+		(eventbox :onclick "sh ./scripts/dashActions.sh clntfpop &"
+			(box :orientation "v" :space-evenly "false"
+				(scroll :class "notification-scroller" :vscroll "true"
+					:style {has_another_notif ? "min-height: 300px" : "min-height: 150px;"}
+					(box :class "notification-history" :orientation "v"
+						(for entry in {dunst_history["data"][0]}
+							(notification :class 'notif-${entry["id"]["data"]}'
+								:title {entry["appname"]["data"]}
+								:summary {entry["summary"]["data"]}
+								:body {entry["body"]["data"]}
+								:icon {entry["appname"]["data"] == "Spotify" ? "../../.cache/dunst/${entry['summary']['data']}.png" :
+									entry["appname"]["data"] == "discord" ? "./assets/applications/discord.png" :
+									(entry["icon_path"]["data"] ?: "../dunst/assets/notification/fallback.png")}
+								:reveal_close_icon "false"
+							)
+						)
+					)
+				)
+				(box :class "notification-scroller-spacer" :style "padding-bottom: 0.0em;")
+			)
+		)
+	)
+)
+(defvar noti false)
+(defvar has_another_notif false)

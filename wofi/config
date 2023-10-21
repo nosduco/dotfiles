@@ -1,0 +1,16 @@
+style=$HOME/.config/wofi/moonfly.css
+show=drun
+allow-images=true
+allow-markup=true
+term=alacritty
+matching=fuzzy
+width=800
+height=400
+always_parse_args=true
+show_all=true
+print_command=true
+layer=overlay
+key_forward=Control_L,j
+key_backward=Control_L,k
+prompt=
+

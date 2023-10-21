@@ -1,12 +1,14 @@
 {
     "output": "DP-1",
+    // "mode": "dock",
     "layer": "top",
     "position": "bottom",
     "height": 30,
     "spacing": 4,
+    "gtk-layer-shell": true,
     "modules-left": ["hyprland/workspaces", "custom/media", "cava"],
     "modules-center": ["wlr/taskbar"],
-    "modules-right": ["keyboard-state", "tray", "idle_inhibitor", "battery", "network", "custom/weather", "wireplumber", "clock"],
+    "modules-right": ["keyboard-state", "tray", "idle_inhibitor", "battery", "network", "custom/weather", "pulseaudio", "clock"],
     // Modules configuration
     "hyprland/workspaces": {
       "all-outputs": false,
@@ -55,18 +57,19 @@
     },
     "idle_inhibitor": {
         "format": "{icon}",
+        "format-alt": "test",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": "󰅶",
+            "deactivated": "󰾫"
         }
     },
     "tray": {
-        "spacing": 10,
-        "icon-size": 21,
-        "show-passive-items": true
+        "spacing": 4,
+        "icon-size": 14
+        // "show-passive-items": true
     },
     "clock": {
-        "format": " {:%A, %b %d %I:%M %p}",
+        "format": "󰙹 {:%A, %b %d %I:%M %p}",
         "on-click": "xdg-open https://calendar.google.com",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
@@ -108,53 +111,35 @@
     },
     "network": {
         "format-wifi": "",
-        "format-ethernet": "",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
+        "format-ethernet": "󰈀",
+        "tooltip-format": "{gwaddr} via {ifname}",
+        "format-linked": "{ifname} (No IP) 󰈀",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-alt": "󰈀 {ipaddr}/{cidr}"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{format_source} {icon}  {volume}%",
+        "format": "{icon} {volume}% {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "",
-        "format-source-muted": "",
+        "format-bluetooth-muted": "󰝟 {icon} {format_source}",
+        "format-muted": "󰝟{format_source}",
+        "format-source": "󰍬",
+        "format-source-muted": "󰍭",
         "format-icons": {
-            "headphone": "",
-            "hifi": "",
-            "hdmi": "",
-            "default": "",
+            "headphone": "󰋋",
+            "hifi": "󰋋",
+            "hdmi": "󰋋",
+            "default": "Unknown",
             "hands-free": "",
             "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
-            "speaker": ["", "", ""],
+            "speaker": ["󰕿", "󰖀", "󰕾"],
             "Speakers": "asdf"
         },
         "on-click": "pavucontrol",
         "on-click-right": "helvum"
-    },
-    "wireplumber": {
-      "format": "{node_name} {icon} {volume}%",
-      "format-muted": "{node_name} {icon}  ",
-      "on-click-right": "helvum",
-      "on-click": "pavucontrol",
-      "format-icons": {
-          "headphone": "",
-          "hifi": "",
-          "hdmi": "",
-          "default": "",
-          "hands-free": "",
-          "headset": "",
-          "phone": "",
-          "portable": "",
-          "car": "",
-          "speaker": ["", "", ""]
-      }
     },
     "custom/media": {
         "format": "{icon} {}",

@@ -27,6 +27,11 @@
       create: true
       glob: true
       path: swayidle
+    # Wofi (Launcher)
+    ~/.config/wofi:
+      create: true
+      glob: true
+      path: wofi
     # Eww (Widgets)
     ~/.config/eww:
       create: true

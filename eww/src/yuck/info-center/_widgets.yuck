@@ -1,0 +1,28 @@
+(defwidget info-center []
+	(box :class "info-center-window" :space-evenly "false" :orientation "v"
+		(box :class "info-center-spacer" :style {icenter ? "padding-bottom: 0em;" : "padding-bottom: 43em;"})
+		(box :class "info-center" :orientation "v" :space-evenly "false"
+			(box :class "first-row" :orientation "h" :space-evenly "false"
+				(box :class "first-column" :orientation "v" :space-evenly "false"
+					(box :class "uptime-box" :orientation "v" :space-evenly "false"
+						(label :class "uptime-title" :halign "start" :text "Uptime")
+						(label :class "uptime-value" :halign "start" :text uptime)
+					)
+					(box :class "network-box" :orientation "v" :space-evenly "false"
+						(label :class "network-title" :halign "start" :text "Network")
+						(label :class "network-value" :halign "start" :limit-width 17 :text network_name)
+					)
+				)
+				(box :class "separator" :style "padding: .25em;")
+				(box :class "second-column" :orientation "v" :space-evenly "false"
+					(box :class "weather-box" :orientation "v" :space-evenly "false" :style "background-color: ${weather_hex};"
+						(label :class "weather-desc" :halign "start" :text "${weather_desc}")
+						(label :class "weather-temp" :halign "start" :text "${weather_temp}°C — ${weather_temp_f}°F")
+						(label :class "weather-icon" :halign "end" :text {weather_icon != "" ? "${weather_icon}" : ""})
+					)
+				)
+			)
+		)
+	)
+)
+(defvar icenter false)

@@ -1,0 +1,93 @@
+(defwidget launcher []
+	(box :class "launcher"
+		:orientation "h"
+		:space-evenly "false"
+		:halign "center"
+		(button :class "launcher-btn"
+				:onclick "$HOME/.local/bin/appmnu"
+				""
+		)
+	)
+)
+
+(defwidget workspaces []
+	(literal :content workspace))
+(deflisten workspace "./scripts/getWorkspaces.sh")
+
+(defwidget time []
+	(box :orientation "h"
+		:class "time"
+		:halign "start"
+		(button :onclick "sh ./scripts/openInfoCenter.sh &"
+			"${monthday}, ${hour}:${minute}"
+		)
+	)
+)
+
+(defwidget battery []
+	(box :class "battery"
+		:orientation "h"
+		:space-evenly "false"
+		:tooltip "Battery: ${battery_capacity}%"
+		(eventbox
+			:onclick "${EWW_CMD} update bat=${!bat}"
+			(overlay
+				(scale :class "battery-scale"
+					:min 0
+					:max 100
+					:orientation "h"
+					:value battery_capacity
+				)
+				(label :class "battery-label"
+					:text {bat ? "${battery_capacity}%" : ""}
+				)
+			)
+		)
+	)
+)
+(defvar bat false)
+
+(defwidget action-center []
+	(box :class "action-center"
+		:orientation "h"
+		:space-evenly "false"
+		(button :class "control-center-btn"
+			:onclick "sh ./scripts/openControlCenter.sh &"
+			:tooltip "Control Center"
+			"${network_icon}  ${bluetooth_icon}  ${airplane_mode_status}"
+		)
+		(button :class "notification-center-btn"
+			:onclick "sh ./scripts/openNotificationCenter.sh &"
+			:tooltip "Notification Center"
+			:style "margin: 0em .25em 0em .75em;"
+			"${dunst_count != 0 ? '' : ''}"
+		)
+	)
+)
+
+;; BAR IS SEPARATED INTO THREE PARTS: TOP, CENTER AND BOTTOM
+;; TOP WIDGETS
+(defwidget top []
+	(box :class "top" :orientation "h" :space-evenly "false" :halign "start"
+		(launcher)
+		(workspaces)))
+
+;; CENTER WIDGETS
+(defwidget center []
+	(box :orientation "h" :space-evenly "false" :halign "center"
+		(time)))
+			
+;; BOTTOM WIDGETS
+(defwidget bottom []
+	(box :orientation "h" :space-evenly "false" :halign "end"
+		(action-center)
+		(separator :text "‏ ‏ ‏")
+		(battery)
+		(separator :text "‏ ‏ ‏")
+		(layout)))
+	
+(defwidget bar []
+	(box :class "eww-bar" :orientation "h" :valign "false" :halign "false"
+		(top)
+		(center)
+		(bottom)))
