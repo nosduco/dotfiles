@@ -1,15 +1,13 @@
 {
     "output": "DP-1",
-    // "mode": "dock",
     "layer": "top",
+    "spacing": 8,
     "position": "bottom",
-    "height": 30,
-    "spacing": 4,
+    "height": 32,
     "gtk-layer-shell": true,
-    "modules-left": ["hyprland/workspaces", "custom/media", "cava"],
+    "modules-left": ["hyprland/workspaces", "cava", "custom/media"],
     "modules-center": ["wlr/taskbar"],
-    "modules-right": ["keyboard-state", "tray", "idle_inhibitor", "battery", "network", "custom/weather", "pulseaudio", "clock"],
-    // Modules configuration
+    "modules-right": ["keyboard-state", "tray", "idle_inhibitor", "custom/weather", "battery", "battery#charging", "pulseaudio", "network", "clock"],
     "hyprland/workspaces": {
       "all-outputs": false,
       "format": "{icon}",
@@ -29,12 +27,11 @@
         "capslock": true,
         "format": "{icon}",
         "format-icons": {
-            "locked": "",
+            "locked": "<span font=\"Material Design Icons\"></span>",
             "unlocked": ""
         }
     },
     "cava": {
-       // "cava_config": "$HOME/.config/cava/config",
         "framerate": 165,
         "autosens": 1,
         // "sensitivity": 100,
@@ -57,19 +54,18 @@
     },
     "idle_inhibitor": {
         "format": "{icon}",
-        "format-alt": "test",
         "format-icons": {
-            "activated": "󰅶",
-            "deactivated": "󰾫"
+            "activated": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰅶</span>",
+            "deactivated": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰾫</span>"
         }
     },
     "tray": {
-        "spacing": 4,
-        "icon-size": 14
+        "spacing": 8,
+        "icon-size": 16
         // "show-passive-items": true
     },
     "clock": {
-        "format": "󰙹 {:%A, %b %d %I:%M %p}",
+        "format": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰙹</span> {:%A, %b %d %I:%M %p}",
         "on-click": "xdg-open https://calendar.google.com",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
@@ -101,9 +97,25 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon} {capacity}%",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
+        "format": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍽</span>{capacity}%",
+        "format-charging": "",
+        "format-plugged": "",
+        "format-alt": "{time} {icon}",
+        "format-good": "",
+        "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#charging": {
+        "bat": "hidpp_battery_1",
+        "states": {
+            "full": 100,
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",
         "format-good": "",
         "format-full": "",
@@ -111,38 +123,28 @@
     },
     "network": {
         "format-wifi": "",
-        "format-ethernet": "󰈀",
+        "format-ethernet": "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰈀</span>",
         "tooltip-format": "{gwaddr} via {ifname}",
         "format-linked": "{ifname} (No IP) 󰈀",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "󰈀 {ipaddr}/{cidr}"
     },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
         "format": "{icon} {volume}% {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": "󰝟 {icon} {format_source}",
         "format-muted": "󰝟{format_source}",
-        "format-source": "󰍬",
+        "format-source": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍬</span>",
         "format-source-muted": "󰍭",
         "format-icons": {
-            "headphone": "󰋋",
-            "hifi": "󰋋",
-            "hdmi": "󰋋",
-            "default": "Unknown",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "speaker": ["󰕿", "󰖀", "󰕾"],
-            "Speakers": "asdf"
+            "headphone": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰋋</span>",
+            "speaker": ["<span font=\"Material Design Icons\">󰕿</span>", "<span font=\"Material Design Icons\">󰖀</span>", "<span font=\"Material Design Icons\">󰕾</span>"]
         },
         "on-click": "pavucontrol",
         "on-click-right": "helvum"
     },
     "custom/media": {
-        "format": "{icon} {}",
+        "format": "{icon}   {}",
         "return-type": "json",
         "max-length": 40,
         "format-icons": {
@@ -150,8 +152,7 @@
             "default": "🎜"
         },
         "escape": true,
-        // "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        "exec": "$HOME/.dotfiles/scripts/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        "exec": "$HOME/.dotfiles/scripts/mediaplayer.py --player spotify 2> /dev/null"
     },
     "custom/weather": {
         "format": "{}",
@@ -169,9 +170,6 @@
       "tooltip-format": "{title}",
       "on-click": "activate",
       "on-click-middle": "close",
-      // "ignore-list": [
-      //    "Alacritty"
-      // ],
       "app_ids-mapping": {
         "firefoxdeveloperedition": "firefox-developer-edition"
       },

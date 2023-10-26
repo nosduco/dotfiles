@@ -2,10 +2,19 @@
     border:        none;
     border-radius: 0;
     font-family:   "Google Sans", "Material Design Icons";
-    font-size:     15px;
+    font-weight: bold;
+    font-size:     16px;
     box-shadow:    none;
     text-shadow:   none;
     transition-duration: 0s;
+}
+
+tooltip {
+  font-weight: normal;
+}
+
+tooltip label {
+  font-weight: normal;
 }
 
 window {
@@ -44,16 +53,36 @@ window#waybar.solo {
     color:      rgba(238, 46, 36, 1);
 }
 
-#mode, #battery, #cpu, #memory, #wireplumber, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-spotify, #custom-weather, #custom-mail {
-    margin:     0px 4px;
-    min-width:  12px;
+#mode, #battery, #cpu, #memory, #wireplumber, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-spotify, #custom-weather, #custom-mail {
+    /* margin:     0px 4px; */
+    /* min-width:  12px; */
+}
+
+#custom-media {
+  margin-left: 4px;
 }
 
 #clock {
-    margin-right: 12px;
-    margin-left: 4px;
-    /* margin:     0px 16px 0px 10px; */
-    /* min-width:  140px; */
+  margin-top: 2px;
+  margin-right: 5px;
+  min-width: 220px;
+}
+
+#pulseaudio {
+  margin-top: 2px;
+}
+
+#battery {
+  margin-top: 2px;
+}
+
+#custom-weather {
+  margin-top: 2px;
+}
+
+#idle_inhibitor {
+  margin-top: 2px;
+  margin-left: 4px;
 }
 
 #battery.warning {
