@@ -73,5 +73,5 @@ case $(echo ${weather[1]##*,} | tr '[:upper:]' '[:lower:]') in
 esac
 
 #echo $temp $condition
-
-echo -e "{\"text\":\""$condition $temperature"\", \"alt\":\""${weather[0]}"\", \"tooltip\":\""${weather[0]}: $temperature ${weather[1]}"\"}"
+icon="<span font='Material Design Icons' size='large' font_weight='normal' rise='-1500'>$condition</span>"
+echo -e "{\"text\":\""$icon $temperature"\", \"alt\":\""${weather[0]}"\", \"tooltip\":\""${weather[0]}: $temperature ${weather[1]}"\"}"
