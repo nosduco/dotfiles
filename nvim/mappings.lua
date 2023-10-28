@@ -153,12 +153,12 @@ M.lspconfig = {
 		["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", "toggle lsp loclist" },
 		["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", "toggle lsp quickfix list" },
 		-- Autoformat via lsp
-		["<leader>fm"] = {
-			function()
-				vim.lsp.buf.format({ async = true })
-			end,
-			"lsp formatting",
-		},
+		-- ["<leader>fm"] = {
+		-- 	function()
+		-- 		vim.lsp.buf.format({ async = true })
+		-- 	end,
+		-- 	"lsp formatting",
+		-- },
 	},
 }
 

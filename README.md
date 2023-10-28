@@ -1,4 +1,4 @@
-# Dotfiles
+## Dotfiles
 
 A collection of sane dotfiles I share between my machines as a software engineer/manager.
 
