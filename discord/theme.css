@@ -1,0 +1,97 @@
+@import "./base.css";
+@import "../theme.css";
+
+.theme-light,
+.theme-dark {
+    /* Discord vars */
+    --background-primary: var(--ui-bg);
+    --background-secondary: var(--ui-line);
+    --background-secondary-alt: var(--ui-panel-shadow);
+    --background-tertiary: #00010A;
+    --background-accent: var(--ui-panel-bg);
+    --background-floating: var(--ui-line);
+
+    --channeltextarea-background: var(--background-accent);
+    --channels-default: #B3B1AD;
+
+    --text-muted: #4D5566;
+    --text-normal: #B3B1AD;
+    --text-link: #39BAE6;
+
+    --input-background: var(--background-tertiary);
+
+    --interactive-normal: #B3B1AD;
+    --interactive-hover: #B3B1AD;
+    --interactive-active: #fff;
+    --interactive-muted: #4D5566;
+
+    --header-primary: #fff;
+    --header-secondary: #c9c9c9;
+
+    --background-mentioned: #a29bfe1c;
+    --background-mentioned-hover: #a29bfe31;
+
+    --background-modifier-hover: #2737472d;
+    --background-modifier-active: #27374749;
+    --background-modifier-selected: #2737475d;
+    --background-modifier-accent: var(--background-accent);
+
+    --activity-card-background: var(--background-tertiary);
+    --home-background: var(--background-tertiary);
+
+    /* Theme-specific vars */
+    --theme-positive: var(--vcs-added);
+    --theme-negative: var(--vcs-removed);
+    --theme-default: var(--vcs-modified);
+
+    --theme-transition-duration: 0.25s;
+
+    --theme-syntax-tag: var(--syntax-tag);
+    --theme-syntax-func: var(--syntax-func);
+    --theme-syntax-entity: var(--syntax-entity);
+    --theme-syntax-string: var(--syntax-string);
+    --theme-syntax-regexp: var(--syntax-regex);
+    --theme-syntax-markup: var(--syntax-markup);
+    --theme-syntax-keyword: var(--syntax-keyword);
+    --theme-syntax-special: var(--syntax-special);
+    --theme-syntax-comment: var(--syntax-comment);
+    --theme-syntax-constant: var(--syntax-constant);
+    --theme-syntax-operator: var(--syntax-operator);
+    --theme-syntax-added: var(--syntax-added);
+    --theme-syntax-removed: var(--syntax-removed);
+
+    --theme-menu-red: var(--theme-negative);
+    --theme-menu-default: var(--theme-default);
+
+    --theme-button-default: var(--theme-default);
+    --theme-button-positive: var(--theme-positive);
+    --theme-button-negative: var(--theme-negative);
+
+    --theme-presence-playing: var(--theme-default);
+    --theme-presence-spotify: var(--theme-positive);
+    --theme-presence-streaming: #a37acc;
+
+    --theme-status-online: var(--theme-positive);
+    --theme-status-dnd: var(--theme-negative);
+    --theme-status-idle: var(--common-accent);
+    --theme-status-streaming: var(--theme-presence-streaming);
+    --theme-status-offline: var(--background-primary);
+
+    --theme-border-radius: 7.5px;
+
+    --theme-bot-tag-bg-colour: #39BAE6;
+    --theme-bot-tag-fg-colour: #000000;
+    --theme-bot-tag-radius: 2.5px;
+
+    --theme-embed-right-radius: 15px;
+
+    --theme-icon-badge-radius: 4.5px;
+
+    --scrollbar-auto-thumb: var(--background-secondary-alt);
+    --scrollbar-auto-track: transparent;
+
+    --scrollbar-thin-thumb: var(--background-secondary-alt);
+    --scrollbar-thin-track: transparent;
+
+    --theme-notification-colour: var(--common-accent);
+}
