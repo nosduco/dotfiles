@@ -28,7 +28,7 @@ M.opts = {
     "just",
     "hcl",
 		"markdown",
-		"markdown_inline",
+		"markdown_inline"
 	},
 	highlight = {
 		enable = true,

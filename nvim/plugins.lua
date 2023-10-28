@@ -9,6 +9,7 @@ local telescope = require("custom.configs.telescope")
 local octo = require("custom.configs.octo")
 local dressing = require("custom.configs.dressing")
 local yank = require("custom.configs.yank")
+local neorg = require("custom.configs.neorg")
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -45,15 +46,15 @@ local plugins = {
 				config = function(_, opts)
 					require("tree-sitter-just").setup(opts)
 
-          local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-          parser_config.hypr = {
-            install_info = {
-              url = "https://github.com/luckasRanarison/tree-sitter-hypr",
-              files = { "src/parser.c" },
-              branch = "master",
-            },
-            filetype = "hypr",
-          }
+					local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+					parser_config.hypr = {
+						install_info = {
+							url = "https://github.com/luckasRanarison/tree-sitter-hypr",
+							files = { "src/parser.c" },
+							branch = "master",
+						},
+						filetype = "hypr",
+					}
 				end,
 			},
 		},
@@ -291,6 +292,20 @@ local plugins = {
 		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
 		opts = {},
 		lazy = false,
+	},
+	{
+		--- Neorg
+		"nvim-neorg/neorg",
+		ft = "norg",
+    cmd = "Neorg",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = neorg.opts,
+		build = function()
+			vim.cmd(":Neorg sync-parsers")
+		end,
+		config = function(_, opts)
+			require("neorg").setup(opts)
+		end,
 	},
 }
 
