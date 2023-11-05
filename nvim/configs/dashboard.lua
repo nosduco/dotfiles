@@ -13,6 +13,17 @@ M.opts = {
 				key = "f",
 			},
 			{
+				desc = " Todos",
+				group = "@comment",
+				action = function()
+					local path = vim.fn.expand("$HOME") .. "/notes/todo.norg"
+					vim.api.nvim_command("edit " .. path)
+					local notes_dir = vim.fn.expand("$HOME") .. "/notes/"
+					utils.set_cwd(notes_dir)
+				end,
+				key = "t",
+			},
+			{
 				desc = " Notes",
 				group = "@type",
 				action = function()
@@ -52,7 +63,7 @@ M.opts = {
 				group = "Number",
 				action = function()
 					local dotfiles_dir = vim.fn.expand("$HOME") .. "/.dotfiles"
-          utils.set_cwd(dotfiles_dir)
+					utils.set_cwd(dotfiles_dir)
 					vim.cmd(":NvimTreeToggle")
 				end,
 				key = "d",
@@ -80,7 +91,7 @@ M.generate_header = function()
 		" ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚═╝       ╚═╝    ╚═════╝ ╚═╝  ╚═══╝   ╚═╝    ",
 		"",
 	}
-  table.insert(header, os.date("%A, %B %e, %Y"))
+	table.insert(header, os.date("%A, %B %e, %Y"))
 	table.insert(header, "")
 	return header
 end
