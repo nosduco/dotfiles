@@ -10,6 +10,7 @@ local octo = require("custom.configs.octo")
 local dressing = require("custom.configs.dressing")
 local yank = require("custom.configs.yank")
 local neorg = require("custom.configs.neorg")
+local colorizer = require("custom.configs.colorizer")
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -36,13 +37,9 @@ local plugins = {
 					require("custom.configs.conform")
 				end,
 			},
-			-- Format & Linting
-			-- {
-			-- 	"jose-elias-alvarez/null-ls.nvim",
-			-- 	config = function()
-			-- 		require("custom.configs.null-ls")
-			-- 	end,
-			-- },
+			{
+				"mfussenegger/nvim-jdtls",
+			},
 		},
 		config = function()
 			require("plugins.configs.lspconfig")
@@ -51,36 +48,21 @@ local plugins = {
 	},
 	{
 		"NvChad/nvim-colorizer.lua",
-		opts = {
-			user_default_options = {
-
-				RGB = true, -- #RGB hex codes
-				RRGGBB = true, -- #RRGGBB hex codes
-				names = true, -- "Name" codes like Blue or blue
-				RRGGBBAA = true, -- #RRGGBBAA hex codes
-				AARRGGBB = true, -- 0xAARRGGBB hex codes
-				rgb_fn = true, -- CSS rgb() and rgba() functions
-				hsl_fn = true, -- CSS hsl() and hsla() functions
-				css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-				css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-				-- Available modes for `mode`: foreground, background,  virtualtext
-				mode = "background", -- Set the display mode.
-				-- Available methods are false / true / "normal" / "lsp" / "both"
-				-- True is same as normal
-				tailwind = false, -- Enable tailwind colors
-				-- parsers can contain values used in |user_default_options|
-				sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
-				virtualtext = "■",
-				-- update color values even if buffer is not focused
-				-- example use: cmp_menu, cmp_docs
-				always_update = false,
-			},
-		},
+		opts = colorizer.opts,
 	},
 	-- Override plugin configs
 	{
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
+			{
+				-- Tree Sitter Context
+				"nvim-treesitter/nvim-treesitter-context",
+				lazy = false,
+				opts = {},
+				config = function(_, opts)
+					require("treesitter-context").setup(opts)
+				end,
+			},
 			{
 				-- Justfile (tree-sitter support)
 				"IndianBoy42/tree-sitter-just",
@@ -295,15 +277,6 @@ local plugins = {
 		"b0o/schemastore.nvim",
 	},
 	{
-		-- Tree Sitter Context
-		"nvim-treesitter/nvim-treesitter-context",
-		lazy = false,
-		opts = {},
-		config = function(_, opts)
-			require("treesitter-context").setup(opts)
-		end,
-	},
-	{
 		-- Multiplexer Integration
 		"mrjones2014/smart-splits.nvim",
 		lazy = false,
@@ -329,7 +302,7 @@ local plugins = {
 		},
 	},
 	{
-		-- You need to get better
+		-- Force good Vim movement/habits
 		"m4xshen/hardtime.nvim",
 		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
 		opts = {},

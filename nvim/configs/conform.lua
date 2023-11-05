@@ -8,10 +8,10 @@ local node = { "eslint_d" }
 
 conform.setup({
 	formatters_by_ft = {
-		["*"] = { "codespell" },
 		typescript = node,
 		javascript = node,
 		rust = { "rustfmt" },
+		java = { "astyle" },
 		terraform = { "terraform_fmt" },
 		lua = { "stylua" },
 		python = { "ruff" },

@@ -11,6 +11,9 @@ M.opts = {
 
 		-- Debuggers
 		"js-debug-adapter",
+
+		-- Java
+		"java-language-server",
 	},
 }
 
