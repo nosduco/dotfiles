@@ -9,9 +9,10 @@ always_parse_args=true
 show_all=true
 print_command=true
 layer=overlay
-key_forward=Control_L,j
-key_backward=Control_L,k
 hide_scroll=true
-insensitive=false
+insensitive=true
+key_forward=Control_L-j
+key_backward=Control_L-k
+no_actions=true
 prompt=
 
