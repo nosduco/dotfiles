@@ -2,18 +2,13 @@ rule = {
   matches = {
     {
       {
-        "node.name", "equals", "alsa_output.pci-0000_00_1f.3.analog-stereo"
+        "device.name", "equals", "alsa_card.usb-Generic_USB_Audio-00"
       },
     },
   },
   apply_properties = {
-    ["device.nick"] = "Speakers",
-    ["device.description"] = "Speakers",
     ["device.icon-name"] = "audio-speakers-analog-pci",
     ["device.form-factor"] = "speaker",
-    ["node.nick"] = "Speakers",
-    ["node.description"] = "Speakers",
-    ["node.icon-name"] = "audio-speakers-analog-pci",
   },
 }
 

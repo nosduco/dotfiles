@@ -2,7 +2,7 @@ rule = {
   matches = {
     {
       {
-        "node.name", "equals", "alsa_output.usb-Generic_USB_Audio-00.HiFi__hw_Audio__sink"
+        "node.name", "equals", "alsa_output.pci-0000_00_1f.3.analog-stereo"
       },
     },
   },

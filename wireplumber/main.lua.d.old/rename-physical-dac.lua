@@ -2,7 +2,7 @@ rule = {
   matches = {
     {
       {
-        "node.name", "equals", "alsa_output.usb-Schiit_Audio_Schiit_Modi_3E-00.analog-stereo"
+        "device.name", "equals", "alsa_card.usb-Schiit_Audio_Schiit_Modi_3E-00"
       },
     },
   },
