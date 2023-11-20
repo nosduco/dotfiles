@@ -45,5 +45,8 @@ alias ls='lsd --date=+"%a %b %d %I:%M:%S %p %Y"'
 # Prefer docker compose over docker-compose
 alias docker-compose='docker compose'
 
+# AWS helper aliases
+alias aws-use='set AWS_PROFILE='
+
 # Initialize Starship prompt
 starship init fish | source
