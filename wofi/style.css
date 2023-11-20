@@ -36,6 +36,7 @@
 #entry:selected {
   background-color: rgba(71, 82, 102, 0.2);
   border: none;
+  outline: none;
 }
 
 #text {
