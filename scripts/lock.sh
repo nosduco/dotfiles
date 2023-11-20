@@ -1,6 +1,7 @@
 #!/bin/sh
 swaylock --screenshots  \
   --clock \
+  --timestr "%-I:%M %p" \
   --indicator \
   --indicator-radius 100 \
   --indicator-thickness 7 \
