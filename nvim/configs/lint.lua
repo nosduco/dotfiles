@@ -17,8 +17,6 @@ lint.linters_by_ft = {
 	terraform = { "tfsec" },
 	tf = { "tfsec" },
 	python = { "ruff" },
-	-- TODO: Does this work?
-	sh = { "dotenv_linter" },
 	sql = { "sqlfluff" },
 	markdown = { "markdownlint" },
 	lua = { "luacheck" },

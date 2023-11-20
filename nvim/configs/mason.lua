@@ -6,14 +6,8 @@ M.opts = {
 		-- Docker
 		"docker-compose-language-service",
 
-		-- Github actions
-		"actionlint",
-
 		-- Debuggers
 		"js-debug-adapter",
-
-		-- Java
-		"java-language-server",
 	},
 }
 

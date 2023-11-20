@@ -11,6 +11,7 @@ local dressing = require("custom.configs.dressing")
 local yank = require("custom.configs.yank")
 local neorg = require("custom.configs.neorg")
 local colorizer = require("custom.configs.colorizer")
+local llm = require("custom.configs.llm")
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -46,6 +47,11 @@ local plugins = {
 			require("custom.configs.lspconfig")
 		end, -- Override to setup mason-lspconfig
 	},
+  {
+    -- LLM Models
+    "huggingface/llm.nvim",
+    opts = llm.opts,
+  },
 	{
 		"NvChad/nvim-colorizer.lua",
 		opts = colorizer.opts,
