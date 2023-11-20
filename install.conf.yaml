@@ -22,6 +22,7 @@
       create: true
       glob: true
       path: hypr
+      exclude: [hypr/host.conf]
     # Swayidle/Swaylock (Lockscreen)
     ~/.config/swayidle:
       create: true
@@ -69,12 +70,24 @@
       create: true
       glob: true
       path: nvim
+# Nighthawk (Desktop)
+- defaults:
+    link:
+      if: "[ $(hostname) = nighthawk ]"
+- link:
     # Audio settings
     ~/.config/wireplumber:
       create: true
       glob: true
       path: wireplumber
+    # Hyprland
+    ~/.config/hypr/host.conf:
+      path: hypr/host/nighthawk.conf
+# Voyager (Laptop)
+- defaults:
+    link:
       if: "[ $(hostname) = nighthawk ]"
-- shell:
-    # Set alacritty as default terminal emulator (mainly for pop_shell)
-    - command: sudo ln -s /usr/bin/alacritty /usr/bin/x-terminal-emulator || true
+- link:
+    # Hyprland
+    ~/.config/hypr/host.conf:
+      path: hypr/host/voyager.conf
