@@ -1,6 +1,6 @@
 [global]
 	# Which monitor should the notifications be displayed on.
-	monitor = 2
+	monitor = 1
 
 	font = "Google Sans 10"
 
