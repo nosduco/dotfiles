@@ -86,7 +86,7 @@
 # Voyager (Laptop)
 - defaults:
     link:
-      if: "[ $(hostname) = nighthawk ]"
+      if: "[ $(hostname) = voyager ]"
 - link:
     # Hyprland
     ~/.config/hypr/host.conf:
