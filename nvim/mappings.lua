@@ -12,6 +12,8 @@ M.disabled = {
 		["j"] = "",
 		["k"] = "",
 		["<leader>x"] = "",
+    -- Disable default Nvim-Tree keybind
+    ["<C-n>"] = "",
 	},
 	i = {},
 	v = {
@@ -257,6 +259,13 @@ M.testing = {
 			"toggle testing pane",
 		},
 	},
+}
+
+M.directories = {
+  n = {
+    ["<C-t>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
+    ["<C-n>"] = { "<cmd> Oil --float <CR>", "Toggle file browser" }
+  }
 }
 
 return M

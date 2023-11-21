@@ -11,7 +11,6 @@ local dressing = require("custom.configs.dressing")
 local yank = require("custom.configs.yank")
 local neorg = require("custom.configs.neorg")
 local colorizer = require("custom.configs.colorizer")
-local llm = require("custom.configs.llm")
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -47,11 +46,6 @@ local plugins = {
 			require("custom.configs.lspconfig")
 		end, -- Override to setup mason-lspconfig
 	},
-  {
-    -- LLM Models
-    "huggingface/llm.nvim",
-    opts = llm.opts,
-  },
 	{
 		"NvChad/nvim-colorizer.lua",
 		opts = colorizer.opts,
@@ -91,10 +85,24 @@ local plugins = {
 		opts = treesitter.opts,
 		lazy = false,
 	},
+  -- File Browser
 	{
 		"nvim-tree/nvim-tree.lua",
 		opts = nvimtree.opts,
 	},
+  {
+    "stevearc/oil.nvim",
+    lazy = false,
+    opts = {
+      keymaps = {
+        ["<C-s>"] = "actions.select_vsplit",
+        ["<C-i>"] = "actions.select_split",
+        ["q"] = ":q<CR>"
+      },
+      delete_to_trash = true,
+    },
+    dependencies = { "nvim-tree/nvim-web-devicons" }
+  },
 	{
 		"williamboman/mason.nvim",
 		opts = mason.opts,
@@ -286,13 +294,6 @@ local plugins = {
 		-- Multiplexer Integration
 		"mrjones2014/smart-splits.nvim",
 		lazy = false,
-	},
-	{
-		-- Pane Terminal
-		"akinsho/toggleterm.nvim",
-		keys = "<C-t>",
-		version = "*",
-		opts = toggleterm.opts,
 	},
 	{
 		-- Markdown (preview, other configurations)
