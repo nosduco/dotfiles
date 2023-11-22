@@ -64,7 +64,7 @@ M.opts = {
 				action = function()
 					local dotfiles_dir = vim.fn.expand("$HOME") .. "/.dotfiles"
 					utils.set_cwd(dotfiles_dir)
-					vim.cmd(":NvimTreeToggle")
+					vim.cmd("Oil --float")
 				end,
 				key = "d",
 			},
