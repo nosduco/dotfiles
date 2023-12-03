@@ -20,8 +20,10 @@
     "custom/weather",
     "battery",
     "battery#charging",
+    "gamemode",
     "pulseaudio",
     "network",
+    "custom/dunst",
     "clock"
   ],
   "hyprland/workspaces": {
@@ -176,18 +178,16 @@
     "format-alt": "󰈀 {ipaddr}/{cidr}"
   },
   "pulseaudio": {
-    "format": "{icon} {volume}% {format_source}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": "󰝟 {icon} {format_source}",
-    "format-muted": "󰝟{format_source}",
+    "format": "{icon} {format_source}",
+    "format-muted": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰝟</span> {format_source}",
     "format-source": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍬</span>",
     "format-source-muted": "󰍭",
     "format-icons": {
       "headphone": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰋋</span>",
       "speaker": [
-        "<span font=\"Material Design Icons\">󰕿</span>",
-        "<span font=\"Material Design Icons\">󰖀</span>",
-        "<span font=\"Material Design Icons\">󰕾</span>"
+        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰕿</span>",
+        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰖀</span>",
+        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰕾</span>"
       ]
     },
     "on-click": "pavucontrol",
@@ -213,6 +213,11 @@
     "exec": "$HOME/.dotfiles/scripts/weather.sh Columbus",
     "exec-if": "ping wttr.in -c1"
   },
+  "custom/dunst": {
+    "exec": "~/.dotfiles/scripts/dunst_tray.sh",
+    "on-click": "dunstctl set-paused toggle",
+    "restart-interval": 1
+  },
   "wlr/taskbar": {
     "format": "{icon}",
     "all-outputs": true,
@@ -228,5 +233,17 @@
       "Firefox Web Browser": "Firefox",
       "Foot Server": "Terminal"
     }
+  },
+  "gamemode": {
+    "format": "{glyph}",
+    "format-alt": "{glyph} {count}",
+    "glyph": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰊴</span>",
+    "hide-not-running": true,
+    "use-icon": true,
+    "icon-name": "input-gaming-symbolic",
+    "icon-spacing": 4,
+    "icon-size": 20,
+    "tooltip": true,
+    "tooltip-format": "Games running: {count}"
   }
 }
