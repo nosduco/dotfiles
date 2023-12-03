@@ -97,7 +97,16 @@ local plugins = {
       keymaps = {
         ["<C-s>"] = "actions.select_vsplit",
         ["<C-i>"] = "actions.select_split",
-        ["q"] = ":q<CR>"
+        ["q"] = ":q<CR>",
+        ["s"] = function()
+          require('leap').leap { opts = { labels = {} } }
+        end
+      },
+      view_options = {
+        show_hidden = true
+      },
+      float = {
+        padding = 9,
       },
       delete_to_trash = true,
     },
