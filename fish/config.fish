@@ -15,6 +15,9 @@ fish_vi_key_bindings
 # Root .env variables
 # TODO:
 
+# Editor
+set EDITOR vim
+
 # Rust Path
 fish_add_path $HOME/.cargo.bin
 
