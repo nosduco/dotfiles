@@ -97,7 +97,7 @@
   },
   "tray": {
     "spacing": 8,
-    "icon-size": 16
+    "icon-size": 16,
     // "show-passive-items": true
   },
   "clock": {
