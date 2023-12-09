@@ -1,12 +1,13 @@
-## Dotfiles
+## nosduco's dotfiles
 
-A collection of sane dotfiles I share between my machines as a software engineer/manager.
+A collection of sane dotfiles I share between my machines as a software engineer/manager/hobbyist.
+
+![Screenshot](https://github.com/nosduco/dotfiles/blob/main/screenshot.png)
 
 ## Installation
 
-`./install`
+`./install` using dotbot
 
-## Notes
+## Packages
 
-TODO: add nvim-packer-git
-TODO: Add ripgrep
+*will add soon, I promise*
