@@ -154,13 +154,6 @@ M.lspconfig = {
 		["<leader>xd"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "toggle lsp file diagnostic list" },
 		["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", "toggle lsp loclist" },
 		["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", "toggle lsp quickfix list" },
-		-- Autoformat via lsp
-		-- ["<leader>fm"] = {
-		-- 	function()
-		-- 		vim.lsp.buf.format({ async = true })
-		-- 	end,
-		-- 	"lsp formatting",
-		-- },
 	},
 }
 
@@ -263,8 +256,18 @@ M.testing = {
 
 M.directories = {
   n = {
-    ["<C-t>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
     ["<C-n>"] = { "<cmd> Oil --float <CR>", "Toggle file browser" }
+  }
+}
+
+M.git = {
+  n = {
+    ["<leader>gt"] = {
+      function()
+        require('neogit').open()
+      end,
+      "toggle git view"
+    }
   }
 }
 

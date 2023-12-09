@@ -1,12 +1,9 @@
 local dashboard = require("custom.configs.dashboard")
 local remotesshfs = require("custom.configs.remote-sshfs")
-local nvimtree = require("custom.configs.nvim-tree")
 local cmp = require("custom.configs.cmp")
 local treesitter = require("custom.configs.treesitter")
 local mason = require("custom.configs.mason")
-local toggleterm = require("custom.configs.toggleterm")
 local telescope = require("custom.configs.telescope")
-local octo = require("custom.configs.octo")
 local dressing = require("custom.configs.dressing")
 local yank = require("custom.configs.yank")
 local neorg = require("custom.configs.neorg")
@@ -18,6 +15,10 @@ local plugins = {
 	{
 		"NvChad/nvterm",
 		enabled = false,
+	},
+	{
+		"nvim-tree/nvim-tree.lua",
+    enabled = false,
 	},
 	-- Override plugin definition options
 	{
@@ -86,10 +87,6 @@ local plugins = {
 		lazy = false,
 	},
   -- File Browser
-	{
-		"nvim-tree/nvim-tree.lua",
-		opts = nvimtree.opts,
-	},
   {
     "stevearc/oil.nvim",
     lazy = false,
@@ -201,15 +198,6 @@ local plugins = {
 		-- Git Diffs
 		"sindrets/diffview.nvim",
 		cmd = "DiffviewOpen",
-	},
-	{
-		-- Github Integration
-		"pwntester/octo.nvim",
-		cmd = "Octo",
-		opts = octo.opts,
-		config = function(_, opts)
-			require("octo").setup(opts)
-		end,
 	},
 	{
 		-- Git Integration
@@ -338,6 +326,23 @@ local plugins = {
 			require("neorg").setup(opts)
 		end,
 	},
+  {
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    cmd = "Copilot",
+    config = function()
+      require("copilot").setup({})
+    end,
+  },
+  {
+    "folke/drop.nvim",
+    event = "VimEnter",
+    config = function()
+      require("drop").setup({
+        theme = "snow"
+      })
+    end,
+  }
 }
 
 return plugins
