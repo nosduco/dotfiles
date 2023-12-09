@@ -53,3 +53,9 @@ alias aws-use='set AWS_PROFILE='
 
 # Initialize Starship prompt
 starship init fish | source
+
+# Import .env variables
+for i in (cat ~/.dotfiles/.env)
+  set arr (echo $i |tr = \n)
+    set -gx $arr[1] $arr[2]
+end
