@@ -1,35 +1,3 @@
-# # Color Configurations
-# colors:
-#   # Default colors
-#   primary:
-#    background: '#000000'
-#   vi_mode_cursor:
-#     text: CellBackground
-#     cursor: CellForeground
-#
-#   # Custom Colors
-#   normal:
-#     black: '#000000'
-#     red: '#890000'
-#     green: '#4E9A06'
-#     yellow: '#E6BF0F'
-#     blue: '#3465A4'
-#     magenta: '#e95420'
-#     cyan: '#06989A'
-#     white: '#D3D7CF'
-#   bright:
-#     black:   '#555753'
-#     red:     '#EF2929'
-#     green:   '#8AE234'
-#     yellow: '#FCE94F'
-#     blue: '#739FCF'
-#     magenta: '#AD7FA8'
-#     cyan: '#34E2E2'
-#     white: '#EEEEEC'
-#
-#   # Indexed Colors
-#   indexed_colors:
-#     - { index: 166, color: '#e95420' }
 # Colors (Ayu Dark)
 colors:
   # Default colors
