@@ -1,12 +1,9 @@
 local dashboard = require("custom.configs.dashboard")
 local remotesshfs = require("custom.configs.remote-sshfs")
-local nvimtree = require("custom.configs.nvim-tree")
 local cmp = require("custom.configs.cmp")
 local treesitter = require("custom.configs.treesitter")
 local mason = require("custom.configs.mason")
-local toggleterm = require("custom.configs.toggleterm")
 local telescope = require("custom.configs.telescope")
-local octo = require("custom.configs.octo")
 local dressing = require("custom.configs.dressing")
 local yank = require("custom.configs.yank")
 local neorg = require("custom.configs.neorg")
@@ -17,6 +14,10 @@ local plugins = {
 	-- Disable Plugins
 	{
 		"NvChad/nvterm",
+		enabled = false,
+	},
+	{
+		"nvim-tree/nvim-tree.lua",
 		enabled = false,
 	},
 	-- Override plugin definition options
@@ -85,24 +86,29 @@ local plugins = {
 		opts = treesitter.opts,
 		lazy = false,
 	},
-  -- File Browser
+	-- File Browser
 	{
-		"nvim-tree/nvim-tree.lua",
-		opts = nvimtree.opts,
+		"stevearc/oil.nvim",
+		lazy = false,
+		opts = {
+			keymaps = {
+				["<C-s>"] = "actions.select_vsplit",
+				["<C-i>"] = "actions.select_split",
+				["q"] = ":q<CR>",
+				["s"] = function()
+					require("leap").leap({ opts = { labels = {} } })
+				end,
+			},
+			view_options = {
+				show_hidden = true,
+			},
+			float = {
+				padding = 9,
+			},
+			delete_to_trash = true,
+		},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
-  {
-    "stevearc/oil.nvim",
-    lazy = false,
-    opts = {
-      keymaps = {
-        ["<C-s>"] = "actions.select_vsplit",
-        ["<C-i>"] = "actions.select_split",
-        ["q"] = ":q<CR>"
-      },
-      delete_to_trash = true,
-    },
-    dependencies = { "nvim-tree/nvim-web-devicons" }
-  },
 	{
 		"williamboman/mason.nvim",
 		opts = mason.opts,
@@ -192,15 +198,6 @@ local plugins = {
 		-- Git Diffs
 		"sindrets/diffview.nvim",
 		cmd = "DiffviewOpen",
-	},
-	{
-		-- Github Integration
-		"pwntester/octo.nvim",
-		cmd = "Octo",
-		opts = octo.opts,
-		config = function(_, opts)
-			require("octo").setup(opts)
-		end,
 	},
 	{
 		-- Git Integration
@@ -327,6 +324,32 @@ local plugins = {
 		end,
 		config = function(_, opts)
 			require("neorg").setup(opts)
+		end,
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		event = "InsertEnter",
+		cmd = "Copilot",
+		config = function()
+			require("copilot").setup({})
+		end,
+	},
+	{
+		"folke/drop.nvim",
+		event = "VimEnter",
+		config = function()
+			require("drop").setup({
+				theme = "xmas",
+				screensaver = false,
+			})
+		end,
+	},
+	-- Firefox integration
+	{
+		"glacambre/firenvim",
+		lazy = not vim.g.started_by_firenvim,
+		build = function()
+			vim.fn["firenvim#install"](0)
 		end,
 	},
 }

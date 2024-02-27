@@ -10,6 +10,8 @@ conform.setup({
 	formatters_by_ft = {
 		typescript = node,
 		javascript = node,
+		javascriptreact = node,
+		typescriptreact = node,
 		rust = { "rustfmt" },
 		java = { "astyle" },
 		terraform = { "terraform_fmt" },

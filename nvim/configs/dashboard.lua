@@ -28,7 +28,7 @@ M.opts = {
 				group = "@type",
 				action = function()
 					local timestamp = os.time()
-					local filename = tostring(os.date("%B-%d-%I%M%p", timestamp)):lower() .. ".txt"
+					local filename = tostring(os.date("%B-%d-%I%M%p", timestamp)):lower() .. ".norg"
 					local path = vim.fn.expand("$HOME") .. "/notes/" .. filename
 					vim.api.nvim_command("edit " .. path)
 					local notes_dir = vim.fn.expand("$HOME") .. "/notes/"

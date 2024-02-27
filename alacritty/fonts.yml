@@ -1,22 +1,18 @@
 # Font configuration
 font:
   normal:
-    # family: "MesloLGLDZ Nerd Font"
     family: "Jetbrains Mono Nerd Font"
     style: Regular
   # Bold font face
   bold:
-    # family: "MesloLGLDZ Nerd Font"
     family: "Jetbrains Mono Nerd Font"
     style: Bold
   # Italic font face
   italic:
-    # family: "MesloLGLDZ Nerd Font"
     family: "Jetbrains Mono Nerd Font"
     style: Italic
   # Bold italic font face
   bold_italic:
-    # family: "MesloLGLDZ Nerd Font"
     family: "Jetbrains Mono Nerd Font"
     style: Bold Italic
   # Point size
