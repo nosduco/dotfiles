@@ -6,23 +6,35 @@ autocmd("VimResized", {
 	command = "tabdo wincmd =",
 })
 
--- Open nvim-tree on directories (and update cwd)
-local function open_nvim_tree(data)
-	-- buffer is a directory
-	local directory = vim.fn.isdirectory(data.file) == 1
+-- Neovim Terminal settings
+autocmd("TermOpen", {
+	pattern = "*",
+	command = "setlocal nonumber norelativenumber",
+})
 
-	-- do not open if buffer is file
-	if not directory then
-		return
-	end
+autocmd("TermOpen", {
+	pattern = "*",
+	command = "startinsert",
+})
 
-	-- change to the directory
-	vim.cmd.cd(data.file)
+autocmd("BufWinEnter", {
+	pattern = "term://*",
+	command = "startinsert",
+})
 
-	-- open the tree
-	require("nvim-tree.api").tree.open()
-end
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+autocmd("WinEnter", {
+	pattern = "term://*",
+	command = "startinsert",
+})
+
+autocmd("TermClose", {
+	pattern = "*",
+	callback = function(event)
+		if vim.v.event.status == 0 then
+			vim.api.nvim_buf_delete(event.buf, { force = true })
+		end
+	end,
+})
 
 -- Clear TMUX hooks on exit
 vim.cmd([[ autocmd VimLeave * lua require("custom.utils").clear_tmux_hooks()]])
@@ -36,7 +48,27 @@ vim.cmd("set rnu!")
 -- Neovide (Neovim GUI) options
 if vim.g.neovide then
 	vim.g.neovide_scale_factor = 0.75
+	vim.o.guifont = "JetBrainsMono Nerd Font:10"
+	vim.g.neovide_fullscreen = false
+	vim.g.neovide_remember_window_size = false
+	vim.g.neovide_transparency = 0.95
+	vim.g.neovide_floating_blur_amount_x = 1.0
+	vim.g.neovide_floating_blur_amount_y = 1.0
+	vim.g.neovide_confirm_quit = true
+
+	vim.keymap.set("v", "<C-S-c>", '"+y') -- Copy
+	vim.keymap.set("n", "<C-S-v>", '"+P') -- Paste normal mode
+	vim.keymap.set("v", "<C-S-v>", '"+P') -- Paste visual mode
+	vim.keymap.set("c", "<C-S-v>", "<C-R>+") -- Paste command mode
+	vim.keymap.set("i", "<C-S-v>", '<ESC>l"+Pli') -- Paste insert mode
+
+	vim.o.cmdheight = 1
 end
+-- Allow clipboard copy paste in neovim
+vim.api.nvim_set_keymap("", "<C-S-v>", "+p<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("!", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
 
 -- Set underscores as keyword for horizontal movement
 vim.cmd("set iskeyword-=_")
@@ -50,3 +82,6 @@ vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=jso
 
 -- Fix hyprland config
 vim.cmd([[autocmd BufRead,BufNewFile hyprland.conf,hyprpaper.conf set filetype=hypr]])
+
+-- Conceal setting for Obsidian
+vim.opt.conceallevel = 1

@@ -6,6 +6,10 @@ end
 
 local node = { "eslint_d" }
 
+lint.linters.markdownlint.args = {
+	"--disable MD013",
+}
+
 lint.linters_by_ft = {
 	yaml = { "actionlint", "yamllint" },
 	typescript = node,

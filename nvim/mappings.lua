@@ -12,8 +12,8 @@ M.disabled = {
 		["j"] = "",
 		["k"] = "",
 		["<leader>x"] = "",
-    -- Disable default Nvim-Tree keybind
-    ["<C-n>"] = "",
+		-- Disable default Nvim-Tree keybind
+		["<C-n>"] = "",
 	},
 	i = {},
 	v = {
@@ -31,6 +31,10 @@ M.general = {
 	n = {
 		-- Shortcut to command
 		[";"] = { ":", "enter command mode", opts = { nowait = true } },
+
+		-- Move down and up (centered)
+		["<C-d>"] = { "<C-d>zz" },
+		["<C-u>"] = { "<C-u>zz" },
 
 		-- Vertical and Horizontal Splits
 		["<C-s>"] = { "<cmd> vsplit <CR>", "vertical split" },
@@ -80,8 +84,21 @@ M.general = {
 		},
 
 		["<leader>df"] = { "<cmd> DiffviewOpen <CR>", "view git diffs interactively" },
+
+		["gf"] = {
+			function()
+				if require("obsidian").util.cursor_on_markdown_link() then
+					return "<cmd>ObsidianFollowLink<CR>"
+				else
+					return "gf"
+				end
+			end,
+		},
 	},
 	t = {
+		-- Exit
+		["<Esc>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
+
 		-- Multiplexer Navigation
 		["<C-h>"] = {
 			function()
@@ -137,10 +154,20 @@ M.comment = {
 			end,
 			"toggle comment",
 		},
+		["<C-/>"] = {
+			function()
+				require("Comment.api").toggle.linewise.current()
+			end,
+			"toggle comment",
+		},
 	},
 
 	v = {
 		["<C-_>"] = {
+			"<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+			"toggle comment",
+		},
+		["<C-/>"] = {
 			"<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
 			"toggle comment",
 		},
@@ -165,14 +192,22 @@ M.telescope = {
 
 M.tabs = {
 	n = {
-		["<leader>tn"] = { "<cmd>tabnew <CR>", "open new tab" },
-		["<leader>t1"] = { "1gt", "go to tab #1" },
-		["<leader>t2"] = { "2gt", "go to tab #2" },
-		["<leader>t3"] = { "3gt", "go to tab #3" },
-		["<leader>t4"] = { "4gt", "go to tab #4" },
-		["<leader>t5"] = { "5gt", "go to tab #5" },
-		["<leader>t6"] = { "6gt", "go to tab #6" },
+		-- Old Tab keybind setup
+		-- ["<leader>tn"] = { "<cmd>tabnew <CR>", "open new tab" },
+		-- ["<leader>t1"] = { "1gt", "go to tab #1" },
+		-- ["<leader>t2"] = { "2gt", "go to tab #2" },
+		-- ["<leader>t3"] = { "3gt", "go to tab #3" },
+		-- ["<leader>t4"] = { "4gt", "go to tab #4" },
+		-- ["<leader>t5"] = { "5gt", "go to tab #5" },
+		-- ["<leader>t6"] = { "6gt", "go to tab #6" },
+		["<C-a>1"] = { "1gt", "go to tab #1" },
+		["<C-a>2"] = { "2gt", "go to tab #2" },
+		["<C-a>3"] = { "3gt", "go to tab #3" },
+		["<C-a>4"] = { "4gt", "go to tab #4" },
+		["<C-a>5"] = { "5gt", "go to tab #5" },
+		["<C-a>6"] = { "6gt", "go to tab #6" },
 	},
+	t = {},
 }
 
 M.yank = {
@@ -255,20 +290,49 @@ M.testing = {
 }
 
 M.directories = {
-  n = {
-    ["<C-n>"] = { "<cmd> Oil --float <CR>", "Toggle file browser" }
-  }
+	n = {
+		["<C-n>"] = { "<cmd> Oil --float <CR>", "Toggle file browser" },
+	},
 }
 
 M.git = {
-  n = {
-    ["<leader>gt"] = {
-      function()
-        require('neogit').open()
-      end,
-      "toggle git view"
-    }
-  }
+	n = {
+		["<leader>gt"] = {
+			function()
+				require("neogit").open()
+			end,
+			"toggle git view",
+		},
+	},
+}
+
+M.mux = {
+	n = {
+		["<C-a>i"] = { "<cmd> vsplit | terminal<CR>", "vertical split terminal" },
+		["<C-a>s"] = { "<cmd> split | terminal <CR>", "horizontal split terminal" },
+		["<C-a>c"] = { "<cmd> tabnew | terminal <CR>", "create new tab and terminal" },
+	},
+	t = {
+		["<C-a>c"] = { "<cmd> tabnew | terminal <CR>", "create new tab and terminal" },
+		["<C-a>1"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true) .. "1gt", "go to tab #1" },
+		["<C-a>2"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true) .. "2gt", "go to tab #2" },
+		["<C-a>3"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true) .. "3gt", "go to tab #3" },
+		["<C-a>4"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true) .. "4gt", "go to tab #4" },
+		["<C-a>5"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true) .. "5gt", "go to tab #5" },
+		["<C-a>6"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true) .. "6gt", "go to tab #6" },
+		["<C-a>i"] = {
+			vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true) .. "<cmd> vsplit | terminal<CR>",
+			"vertical split terminal",
+		},
+		["<C-a>s"] = {
+			vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true) .. "<cmd> split | terminal <CR>",
+			"horizontal split terminal",
+		},
+		["<C-a>c"] = {
+			vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true) .. "<cmd> tabnew | terminal <CR>",
+			"create new tab and terminal",
+		},
+	},
 }
 
 return M

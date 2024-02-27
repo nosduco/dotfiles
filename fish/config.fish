@@ -18,6 +18,11 @@ fish_vi_key_bindings
 # Editor
 set EDITOR vim
 
+# Neovim Terminal Specifics
+if set -q nvim
+  alias vim='nvr'
+end
+
 # Rust Path
 fish_add_path $HOME/.cargo.bin
 
@@ -51,6 +56,9 @@ alias docker-compose='docker compose'
 # AWS helper aliases
 alias aws-use='set AWS_PROFILE='
 
+# Tmuxinator shorthand
+alias mux='tmuxinator'
+
 # Initialize Starship prompt
 starship init fish | source
 
@@ -59,3 +67,7 @@ for i in (cat ~/.dotfiles/.env)
   set arr (echo $i |tr = \n)
     set -gx $arr[1] $arr[2]
 end
+
+# tabtab source for packages
+# uninstall by removing these lines
+[ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true

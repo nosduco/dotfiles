@@ -1,0 +1,42 @@
+import = ["/home/tony/.config/alacritty/fonts.toml", "/home/tony/.config/alacritty/colors.toml", "/home/tony/.config/alacritty/mappings.toml"]
+
+[bell]
+animation = "EaseOutQuart"
+color = "#890000"
+duration = 400
+
+[cursor]
+unfocused_hollow = true
+
+[cursor.style]
+shape = "Underline"
+
+[cursor.vi_mode_style]
+shape = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[shell]
+args = ["new-session"]
+program = "/bin/tmux"
+
+[window]
+decorations = "none"
+dynamic_padding = true
+dynamic_title = true
+opacity = 0.7
+startup_mode = "Windowed"
+title = "Terminal"
+
+[window.dimensions]
+columns = 100
+lines = 30
+
+[window.padding]
+x = 10
+y = 10

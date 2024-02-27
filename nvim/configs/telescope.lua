@@ -37,7 +37,7 @@ M.opts = {
 							"tmux set-hook -w after-split-window 'send-keys \"cd " .. path .. " && clear\" Enter'"
 						)
 						require("telescope.actions").close(prompt_bufnr)
-						vim.cmd(":NvimTreeToggle")
+						-- vim.cmd(":Oil float")
 					end,
 					["<C-j>"] = require("telescope.actions").move_selection_next,
 					["<C-k>"] = require("telescope.actions").move_selection_previous,
