@@ -16,7 +16,7 @@ M.opts = {
 				desc = " Todos",
 				group = "@comment",
 				action = function()
-					local path = vim.fn.expand("$HOME") .. "/notes/todo.norg"
+					local path = vim.fn.expand("$HOME") .. "/notes/Todos.md"
 					vim.api.nvim_command("edit " .. path)
 					local notes_dir = vim.fn.expand("$HOME") .. "/notes/"
 					utils.set_cwd(notes_dir)
@@ -27,12 +27,7 @@ M.opts = {
 				desc = " Notes",
 				group = "@type",
 				action = function()
-					local timestamp = os.time()
-					local filename = tostring(os.date("%B-%d-%I%M%p", timestamp)):lower() .. ".norg"
-					local path = vim.fn.expand("$HOME") .. "/notes/" .. filename
-					vim.api.nvim_command("edit " .. path)
-					local notes_dir = vim.fn.expand("$HOME") .. "/notes/"
-					utils.set_cwd(notes_dir)
+					vim.api.nvim_command(":ObsidianToday")
 				end,
 				key = "n",
 			},
@@ -64,7 +59,7 @@ M.opts = {
 				action = function()
 					local dotfiles_dir = vim.fn.expand("$HOME") .. "/.dotfiles"
 					utils.set_cwd(dotfiles_dir)
-					vim.cmd("Oil --float")
+					-- vim.cmd(":Oil float")
 				end,
 				key = "d",
 			},

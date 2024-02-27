@@ -16,7 +16,7 @@ conform.setup({
 		java = { "astyle" },
 		terraform = { "terraform_fmt" },
 		lua = { "stylua" },
-		-- python = { "ruff" },
+		python = { "ruff" },
 		markdown = { "markdownlint" },
 	},
 	format_after_save = {

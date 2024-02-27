@@ -6,7 +6,6 @@ local mason = require("custom.configs.mason")
 local telescope = require("custom.configs.telescope")
 local dressing = require("custom.configs.dressing")
 local yank = require("custom.configs.yank")
-local neorg = require("custom.configs.neorg")
 local colorizer = require("custom.configs.colorizer")
 
 ---@type NvPluginSpec[]
@@ -51,6 +50,25 @@ local plugins = {
 		"NvChad/nvim-colorizer.lua",
 		opts = colorizer.opts,
 	},
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup({
+				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+			})
+		end,
+		dependencies = {
+			{
+				"JoosepAlviste/nvim-ts-context-commentstring",
+				lazy = false,
+				config = function()
+					require("ts_context_commentstring").setup({
+						enable_autocmd = false,
+					})
+				end,
+			},
+		},
+	},
 	-- Override plugin configs
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -62,24 +80,6 @@ local plugins = {
 				opts = {},
 				config = function(_, opts)
 					require("treesitter-context").setup(opts)
-				end,
-			},
-			{
-				-- Justfile (tree-sitter support)
-				"IndianBoy42/tree-sitter-just",
-				ft = "just",
-				config = function(_, opts)
-					require("tree-sitter-just").setup(opts)
-
-					local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-					parser_config.hypr = {
-						install_info = {
-							url = "https://github.com/luckasRanarison/tree-sitter-hypr",
-							files = { "src/parser.c" },
-							branch = "master",
-						},
-						filetype = "hypr",
-					}
 				end,
 			},
 		},
@@ -145,6 +145,7 @@ local plugins = {
 	},
 	{
 		-- Enhanced Yank and Put
+		-- TODO: Do you use this?
 		"gbprod/yanky.nvim",
 		event = "VimEnter",
 		opts = yank.opts,
@@ -171,7 +172,7 @@ local plugins = {
 	{
 		-- Debugger in-line variables
 		"theHamsta/nvim-dap-virtual-text",
-		event = "VeryLazy",
+		after = "nvim-dap",
 		config = function()
 			require("nvim-dap-virtual-text").setup()
 		end,
@@ -295,15 +296,9 @@ local plugins = {
 	{
 		-- Markdown (preview, other configurations)
 		"iamcco/markdown-preview.nvim",
-		build = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-		setup = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-		end,
-		ft = {
-			"markdown",
-		},
+		build = "cd app && npm install",
+		ft = "markdown",
+		lazy = true,
 	},
 	{
 		-- Force good Vim movement/habits
@@ -312,44 +307,53 @@ local plugins = {
 		opts = {},
 		lazy = false,
 	},
+	-- {
+	-- 	--- Neorg
+	-- 	"nvim-neorg/neorg",
+	-- 	ft = "norg",
+	-- 	cmd = "Neorg",
+	-- 	dependencies = { "nvim-lua/plenary.nvim" },
+	-- 	opts = neorg.opts,
+	-- 	build = function()
+	-- 		vim.cmd(":Neorg sync-parsers")
+	-- 	end,
+	-- 	config = function(_, opts)
+	-- 		require("neorg").setup(opts)
+	-- 	end,
+	-- },
 	{
-		--- Neorg
-		"nvim-neorg/neorg",
-		ft = "norg",
-		cmd = "Neorg",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = neorg.opts,
-		build = function()
-			vim.cmd(":Neorg sync-parsers")
-		end,
+		"epwalsh/obsidian.nvim",
+		version = "*",
+		lazy = true,
+		ft = "markdown",
+		cmd = { "ObsidianToday" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {
+			workspaces = {
+				{
+					name = "notes",
+					path = "~/notes",
+				},
+			},
+			mappings = {
+				["<leader>ch"] = {
+					action = function()
+						return require("obsidian").util.toggle_checkbox()
+					end,
+					opts = { buffer = true },
+				},
+			},
+			templates = {
+				subdir = "Templates",
+			},
+			daily_notes = {
+				folder = "Daily Notes",
+			},
+		},
 		config = function(_, opts)
-			require("neorg").setup(opts)
-		end,
-	},
-	{
-		"zbirenbaum/copilot.lua",
-		event = "InsertEnter",
-		cmd = "Copilot",
-		config = function()
-			require("copilot").setup({})
-		end,
-	},
-	{
-		"folke/drop.nvim",
-		event = "VimEnter",
-		config = function()
-			require("drop").setup({
-				theme = "xmas",
-				screensaver = false,
-			})
-		end,
-	},
-	-- Firefox integration
-	{
-		"glacambre/firenvim",
-		lazy = not vim.g.started_by_firenvim,
-		build = function()
-			vim.fn["firenvim#install"](0)
+			require("obsidian").setup(opts)
 		end,
 	},
 }
