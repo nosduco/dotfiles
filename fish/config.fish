@@ -30,7 +30,7 @@ fish_add_path $HOME/.cargo.bin
 fish_add_path $HOME/go/bin
 
 # Node Path
-fish_add_path $(yarn global bin)
+fish_add_path $(pnpm global bin)
 
 # Aliases
 alias grep='rg --color=always'
