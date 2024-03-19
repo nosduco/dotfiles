@@ -12,9 +12,9 @@ if [[ $# -lt 1 ]] || [[ ! -d $1   ]]; then
 fi
 
 # Edit below to control the images transition
-export SWWW_TRANSITION_FPS=165
-export SWWW_TRANSITION_STEP=2
-export SWWW_TRANSITION_TYPE=random
+# export SWWW_TRANSITION_FPS=165
+# export SWWW_TRANSITION_STEP=2
+# export SWWW_TRANSITION_TYPE=random
 
 # This controls (in seconds) when to switch to the next image
 INTERVAL=3600
@@ -26,7 +26,10 @@ while true; do
 		done \
 		| sort -n | cut -d':' -f2- \
 		| while read -r img; do
-			swww img "$img"
+      hyprctl hyprpaper preload "$img"
+      hyprctl hyprpaper wallpaper ,"$img"
+      hyprctl hyprpaper unload unused
+			# swww img "$img"
 			sleep $INTERVAL
 		done
 done

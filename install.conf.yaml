@@ -66,7 +66,7 @@
       glob: true
       path: alacritty
     # Neovim
-    ~/.config/nvim/lua/custom:
+    ~/.config/nvim/:
       create: true
       glob: true
       path: nvim
