@@ -1,16 +1,14 @@
-local dashboard = require("custom.configs.dashboard")
-local remotesshfs = require("custom.configs.remote-sshfs")
-local cmp = require("custom.configs.cmp")
-local treesitter = require("custom.configs.treesitter")
-local mason = require("custom.configs.mason")
-local telescope = require("custom.configs.telescope")
-local dressing = require("custom.configs.dressing")
-local yank = require("custom.configs.yank")
-local colorizer = require("custom.configs.colorizer")
+local dashboard = require("configs.dashboard")
+local remotesshfs = require("configs.remote-sshfs")
+local cmp = require("configs.cmp")
+local treesitter = require("configs.treesitter")
+local mason = require("configs.mason")
+local telescope = require("configs.telescope")
+local dressing = require("configs.dressing")
+local yank = require("configs.yank")
+local colorizer = require("configs.colorizer")
 
----@type NvPluginSpec[]
-local plugins = {
-	-- Disable Plugins
+return {
 	{
 		"NvChad/nvterm",
 		enabled = false,
@@ -27,14 +25,14 @@ local plugins = {
 			{
 				"mfussenegger/nvim-lint",
 				config = function()
-					require("custom.configs.lint")
+					require("configs.lint")
 				end,
 			},
 			-- Formatting
 			{
 				"stevearc/conform.nvim",
 				config = function()
-					require("custom.configs.conform")
+					require("configs.conform")
 				end,
 			},
 			{
@@ -42,8 +40,8 @@ local plugins = {
 			},
 		},
 		config = function()
-			require("plugins.configs.lspconfig")
-			require("custom.configs.lspconfig")
+			-- require("plugins.configs.lspconfig")
+			require("configs.lspconfig")
 		end, -- Override to setup mason-lspconfig
 	},
 	{
@@ -158,7 +156,7 @@ local plugins = {
 		"mfussenegger/nvim-dap",
 		ft = { "js", "ts" },
 		config = function()
-			require("custom.configs.dap")
+			require("configs.dap")
 		end,
 	},
 	{
@@ -357,5 +355,3 @@ local plugins = {
 		end,
 	},
 }
-
-return plugins
