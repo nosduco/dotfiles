@@ -4,6 +4,7 @@ local M = {}
 M.ui = {
   -- Set theme
   theme = "ayu_dark",
+  transparency = false,
 
   -- Enable semantic tokens
   -- lsp_semantic_tokens = true,

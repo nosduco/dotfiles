@@ -40,7 +40,7 @@ return {
       },
     },
     config = function()
-      -- require("plugins.configs.lspconfig")
+      require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end, -- Override to setup mason-lspconfig
   },
@@ -111,10 +111,10 @@ return {
     "williamboman/mason.nvim",
     opts = mason.opts,
   },
-  {
-    "hrsh7th/nvim-cmp",
-    opts = cmp.opts,
-  },
+  --{
+  --   "hrsh7th/nvim-cmp",
+  --   opts = cmp.opts,
+  -- },
   {
     "nvim-telescope/telescope.nvim",
     opts = telescope.opts,
@@ -197,21 +197,6 @@ return {
     -- Git Diffs
     "sindrets/diffview.nvim",
     cmd = "DiffviewOpen",
-  },
-  {
-    -- Git Integration
-    "NeogitOrg/neogit",
-    cmd = "Neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "sindrets/diffview.nvim",
-      "ibhagwan/fzf-lua",
-    },
-    opts = {},
-    config = function(_, opts)
-      require("neogit").setup(opts)
-    end,
   },
   {
     -- Code Diagnostics Lightbulb

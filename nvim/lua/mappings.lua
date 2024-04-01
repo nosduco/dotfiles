@@ -118,12 +118,18 @@ end, { desc = "Toggle comment under current line" })
 map("n", "<C-/>", function()
   require("Comment.api").toggle.linewise.current()
 end, { desc = "Toggle comment under current line" })
-map("v", "<C-_>", function()
-  require("Comment.api").toggle.linewise(vim.fn.visualmode())
-end, { desc = "Toggle comments for selected lines" })
-map("v", "<C-/>", function()
-  require("Comment.api").toggle.linewise(vim.fn.visualmode())
-end, { desc = "Toggle comments for selected lines" })
+map(
+  "v",
+  "<C-_>",
+  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+  { desc = "Toggle comments for selected lines" }
+)
+map(
+  "v",
+  "<C-/>",
+  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+  { desc = "Toggle comments for selected lines" }
+)
 
 -- LSP
 -- TODO: Do I still use trouble?

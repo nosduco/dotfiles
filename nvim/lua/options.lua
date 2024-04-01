@@ -1,3 +1,5 @@
+require "nvchad.options"
+
 local autocmd = vim.api.nvim_create_autocmd
 
 -- Auto resize panes when resizing nvim window
@@ -85,3 +87,5 @@ vim.cmd [[autocmd BufRead,BufNewFile hyprland.conf,hyprpaper.conf set filetype=h
 
 -- Conceal setting for Obsidian
 vim.opt.conceallevel = 1
+
+vim.opt.signcolumn = "yes"
