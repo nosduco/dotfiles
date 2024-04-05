@@ -78,6 +78,14 @@ return {
         opts = {},
         config = function(_, opts)
           require("treesitter-context").setup(opts)
+          require("nvim-treesitter.parsers").get_parser_configs().river = {
+            install_info = {
+              url = "https://github.com/grafana/tree-sitter-river",
+              files = { "src/parser.c" },
+              branch = "main",
+            },
+            maintainers = { "@grafana" },
+          }
         end,
       },
     },
