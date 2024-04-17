@@ -20,6 +20,7 @@ while true; do
   if [[ $(hostname) == "voyager" ]]; then
 	  hyprctl hyprpaper wallpaper "eDP-1,$wallpaper"
   else
+	  hyprctl hyprpaper wallpaper "DP-1,$wallpaper"
 	  hyprctl hyprpaper wallpaper "HDMI-A-1,$wallpaper"
   	hyprctl hyprpaper wallpaper "DP-2,$wallpaper"
   fi

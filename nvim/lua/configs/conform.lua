@@ -4,7 +4,8 @@ if not present then
   return
 end
 
-local node = { "eslint_d", "prettier" }
+local node = { "prettier" }
+-- local node = { "eslint_d", "prettier" }
 
 conform.setup {
   formatters_by_ft = {

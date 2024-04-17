@@ -68,6 +68,11 @@ for i in (cat ~/.dotfiles/.env)
     set -gx $arr[1] $arr[2]
 end
 
+# Zoxide (cd alternative)
+zoxide init fish | source
+alias cd="z"
+alias cdi="zi"
+
 # tabtab source for packages
 # uninstall by removing these lines
 [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true

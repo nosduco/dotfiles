@@ -347,4 +347,12 @@ return {
       require("obsidian").setup(opts)
     end,
   },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  },
+  {
+    "https://github.com/grafana/vim-alloy",
+    lazy = false,
+  },
 }

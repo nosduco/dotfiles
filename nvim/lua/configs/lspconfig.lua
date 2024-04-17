@@ -8,11 +8,11 @@ local lspconfig = require "lspconfig"
 local servers = {
   "html",
   "cssls",
-  "tsserver",
+  -- "tsserver",
   "graphql",
   "docker_compose_language_service",
   "dockerls",
-  "prismals",
+  "tailwindcss",
 }
 
 for _, lsp in ipairs(servers) do
@@ -23,9 +23,30 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- Javascript/Typescript
+lspconfig.eslint.setup {
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+  on_init = on_init,
+  capabilities = capabilities,
+}
+
+local ts = require "typescript-tools"
+ts.setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+}
+
 -- Lua
 lspconfig.lua_la.setup {
   on_attach = on_attach,
+  on_init = on_init,
   capabilities = capabilities,
   settings = {
     Lua = {
@@ -43,7 +64,7 @@ lspconfig.terraformls.setup {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
-  filetypes = { "tf", "terraform" },
+  filetypes = { "tf", "terraform", "terraform-vars" },
 }
 
 -- Rust

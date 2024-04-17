@@ -4,7 +4,8 @@ if not present then
   return
 end
 
-local node = { "eslint_d" }
+local node = {}
+-- local node = { "eslint_d" }
 
 lint.linters.markdownlint.args = {
   "--disable MD013",
