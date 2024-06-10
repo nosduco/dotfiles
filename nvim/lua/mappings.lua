@@ -22,6 +22,7 @@ nomap("n", "<C-n>")
 
 -- General
 map("n", ";", ":", { desc = "Enter command mode" })
+map("n", "<C-q>", "<cmd> confirm q <CR>", { desc = "Quit with confirmation" })
 map("n", "<C-u>", "<C-u>zz", { desc = "Page up (center screen)" })
 map("n", "<C-d>", "<C-d>zz", { desc = "Page down (center screen)" })
 map("n", "<C-s>", "<cmd> vsplit <CR>", { desc = "Create vertical split" })
@@ -60,7 +61,8 @@ end, { desc = "Follow link under cursor" })
 map("t", "<Esc>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), { desc = "Escape terminal mode" })
 
 -- File System
-map("n", "<C-n>", "<cmd> Oil --float <CR>", { desc = "Toggle file browser" })
+-- map("n", "<C-n>", "<cmd> Oil --float <CR>", { desc = "Toggle file browser" })
+map("n", "<C-n>", "<cmd> Oil <CR>", { desc = "Toggle file browser" })
 
 -- Tabs
 map("n", "<C-a>1", "1gt", { desc = "Go to tab #1" })

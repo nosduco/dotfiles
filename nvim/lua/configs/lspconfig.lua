@@ -8,7 +8,6 @@ local lspconfig = require "lspconfig"
 local servers = {
   "html",
   "cssls",
-  -- "tsserver",
   "graphql",
   "docker_compose_language_service",
   "dockerls",
@@ -44,7 +43,7 @@ ts.setup {
 }
 
 -- Lua
-lspconfig.lua_la.setup {
+lspconfig.lua_ls.setup {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,

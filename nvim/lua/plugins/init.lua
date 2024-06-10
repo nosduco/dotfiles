@@ -1,12 +1,12 @@
 local dashboard = require "configs.dashboard"
 local remotesshfs = require "configs.remote-sshfs"
-local cmp = require "configs.cmp"
 local treesitter = require "configs.treesitter"
 local mason = require "configs.mason"
 local telescope = require "configs.telescope"
 local dressing = require "configs.dressing"
-local yank = require "configs.yank"
 local colorizer = require "configs.colorizer"
+local oil = require "configs.oil"
+local obsidian = require "configs.obsidian"
 
 return {
   {
@@ -78,51 +78,16 @@ return {
         opts = {},
         config = function(_, opts)
           require("treesitter-context").setup(opts)
-          require("nvim-treesitter.parsers").get_parser_configs().river = {
-            install_info = {
-              url = "https://github.com/grafana/tree-sitter-river",
-              files = { "src/parser.c" },
-              branch = "main",
-            },
-            maintainers = { "@grafana" },
-          }
         end,
       },
     },
     opts = treesitter.opts,
     lazy = false,
   },
-  -- File Browser
-  {
-    "stevearc/oil.nvim",
-    lazy = false,
-    opts = {
-      keymaps = {
-        ["<C-s>"] = "actions.select_vsplit",
-        ["<C-i>"] = "actions.select_split",
-        ["q"] = ":q<CR>",
-        ["s"] = function()
-          require("leap").leap { opts = { labels = {} } }
-        end,
-      },
-      view_options = {
-        show_hidden = true,
-      },
-      float = {
-        padding = 9,
-      },
-      delete_to_trash = true,
-    },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
   {
     "williamboman/mason.nvim",
     opts = mason.opts,
   },
-  --{
-  --   "hrsh7th/nvim-cmp",
-  --   opts = cmp.opts,
-  -- },
   {
     "nvim-telescope/telescope.nvim",
     opts = telescope.opts,
@@ -133,6 +98,13 @@ return {
     },
   },
   -- Install plugins
+  {
+    -- File Browser
+    "stevearc/oil.nvim",
+    lazy = false,
+    opts = oil.opts,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
   {
     -- Startup Dashboard
     "glepnir/dashboard-nvim",
@@ -150,16 +122,6 @@ return {
     opts = dressing.opts,
   },
   {
-    -- Enhanced Yank and Put
-    -- TODO: Do you use this?
-    "gbprod/yanky.nvim",
-    event = "VimEnter",
-    opts = yank.opts,
-    config = function(_, opts)
-      require("yanky").setup(opts)
-    end,
-  },
-  {
     -- Debugger
     "mfussenegger/nvim-dap",
     ft = { "js", "ts" },
@@ -171,6 +133,9 @@ return {
     -- Debugger UI
     "rcarriga/nvim-dap-ui",
     after = "nvim-dap",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+    },
     config = function()
       require("dapui").setup()
     end,
@@ -178,7 +143,7 @@ return {
   {
     -- Debugger in-line variables
     "theHamsta/nvim-dap-virtual-text",
-    after = "nvim-dap",
+    lazy = false,
     config = function()
       require("nvim-dap-virtual-text").setup()
     end,
@@ -281,7 +246,8 @@ return {
   },
   {
     -- Multiplexer Integration
-    "mrjones2014/smart-splits.nvim",
+    -- "mrjones2014/smart-splits.nvim",
+    dir = "~/projects/smart-splits.nvim",
     lazy = false,
   },
   {
@@ -298,51 +264,26 @@ return {
     opts = {},
     lazy = false,
   },
-  -- {
-  -- 	--- Neorg
-  -- 	"nvim-neorg/neorg",
-  -- 	ft = "norg",
-  -- 	cmd = "Neorg",
-  -- 	dependencies = { "nvim-lua/plenary.nvim" },
-  -- 	opts = neorg.opts,
-  -- 	build = function()
-  -- 		vim.cmd(":Neorg sync-parsers")
-  -- 	end,
-  -- 	config = function(_, opts)
-  -- 		require("neorg").setup(opts)
-  -- 	end,
-  -- },
+  {
+    "tris203/precognition.nvim",
+    enabled = false,
+    opts = {
+      startVisible = true,
+      showBlankVirtLine = false,
+      highlightColor = { link = "Comment" },
+      hints = {},
+    },
+  },
   {
     "epwalsh/obsidian.nvim",
     version = "*",
     lazy = true,
     ft = "markdown",
-    cmd = { "ObsidianToday" },
+    cmd = { "ObsidianToday", "ObsidianNew" },
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    opts = {
-      workspaces = {
-        {
-          name = "notes",
-          path = "~/notes",
-        },
-      },
-      mappings = {
-        ["<leader>ch"] = {
-          action = function()
-            return require("obsidian").util.toggle_checkbox()
-          end,
-          opts = { buffer = true },
-        },
-      },
-      templates = {
-        subdir = "Templates",
-      },
-      daily_notes = {
-        folder = "Daily Notes",
-      },
-    },
+    opts = obsidian.opts,
     config = function(_, opts)
       require("obsidian").setup(opts)
     end,

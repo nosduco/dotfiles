@@ -24,10 +24,20 @@ M.opts = {
         key = "t",
       },
       {
-        desc = " Notes",
+        desc = " Daily Note",
         group = "@type",
         action = function()
           vim.api.nvim_command ":ObsidianToday"
+        end,
+        key = "N",
+      },
+      {
+        desc = " Note",
+        group = "@type",
+        action = function()
+          local datetime = os.date "%Y-%m-%d-%I-%M%p"
+          vim.api.nvim_command(":ObsidianNew " .. datetime)
+          -- vim.api.nvim_command ":ObsidianNew"
         end,
         key = "n",
       },
@@ -57,16 +67,18 @@ M.opts = {
         desc = " dotfiles",
         group = "Number",
         action = function()
-          local dotfiles_dir = vim.fn.expand "$HOME" .. "/.dotfiles"
-          utils.set_cwd(dotfiles_dir)
-          -- vim.cmd(":Oil float")
+          require("telescope.builtin").find_files {
+            cwd = vim.fn.expand "$HOME" .. "/.dotfiles",
+          }
         end,
         key = "d",
       },
       {
         desc = "󰇚 Update",
         group = "@annotation",
-        action = "NvChadUpdate",
+        action = function()
+          vim.api.nvim_command ":Lazy update"
+        end,
         key = "u",
       },
     },

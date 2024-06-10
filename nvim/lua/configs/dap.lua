@@ -56,6 +56,22 @@ dap.configurations.typescript = {
   {
     type = "pwa-node",
     request = "launch",
+    name = "Debug test file",
+    trace = true, -- include debugger info
+    runtimeExecutable = "node",
+    runtimeArgs = {
+      "./node_modules/jest/bin/jest.js",
+      "--runInBand",
+      "--runTestsByPath=${file}",
+    },
+    rootPath = "${workspaceFolder}",
+    cwd = "${workspaceFolder}",
+    console = "integratedTerminal",
+    internalConsoleOptions = "neverOpen",
+  },
+  {
+    type = "pwa-node",
+    request = "launch",
     name = "Debug Nest Framework",
     args = { "${workspaceFolder}/src/main.ts" },
     runtimeArgs = { "--nolazy", "-r", "ts-node/register", "-r", "tsconfig-paths/register" },
