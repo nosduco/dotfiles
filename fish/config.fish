@@ -9,6 +9,9 @@ end
 # Enable VIM keybindings
 fish_vi_key_bindings
 
+# Zellij
+# eval (zellij setup --generate-auto-start fish | string collect)
+
 # Directory Colors
 # eval (dircolors -c $HOME/.dircolors)
 
@@ -24,7 +27,7 @@ if set -q nvim
 end
 
 # Rust Path
-fish_add_path $HOME/.cargo.bin
+fish_add_path $HOME/.cargo/bin
 
 # Go Path
 fish_add_path $HOME/go/bin
