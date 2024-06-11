@@ -22,9 +22,17 @@ PREVIOUS_VOLUME=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
 
 # Increase or decrease volume
 if [ $1 = "increase" ]; then
-  wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
+  if [ $(hostname) = voyager ]; then
+    wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+  else
+    wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
+  fi
 elif [ $1 = "decrease" ]; then
-  wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-
+  if [ $(hostname) = voyager ]; then
+    wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-
+  else
+    wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-
+  fi
 elif [ $1 = "mute" ]; then
   wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 fi
