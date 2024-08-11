@@ -29,7 +29,7 @@ prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
 time_format=$(tmux_get @tmux_power_time_format '%I:%M%p')
 date_format=$(tmux_get @tmux_power_date_format '%m/%d/%y')
 # short for Theme-Colour
-TC=$(tmux_get '@tmux_power_theme' '#e95420')
+TC=$(tmux_get '@tmux_power_theme' '#fab387')
 case $TC in
     'gold' )
         TC='#ffb86c'
@@ -63,18 +63,20 @@ esac
 G01=#080808 #232
 G02=#121212 #233
 G03=#1c1c1c #234
-G04=#262626 #235
+G04=#1e1e2e #235
 G05=#303030 #236
 G06=#3a3a3a #237
-G07=#444444 #238
+G07=#1e1e2e #238
 G08=#4e4e4e #239
 G09=#585858 #240
-G10=#626262 #241
+G10=#cdd6f4 #241
 G11=#6c6c6c #242
 G12=#767676 #243
 
-FG="$G10"
-BG="$G04"
+# FG="$G10"
+# BG="$G04"
+FG="#cdd6f4"
+BG="#1e1e2e"
 
 # Status options
 tmux_set status-interval 1
@@ -115,7 +117,8 @@ tmux_set status-right-bg "$BG"
 tmux_set status-right-fg "G12"
 tmux_set status-right-length 150
 WEATHER='#(curl -s wttr.in/Columbus\?format\="%%c%%t")'
-RS="$WEATHER #[fg=$G06]$left_arrow_icon#[fg=$TC,bg=$G06] $time_icon $time_format #[fg=$TC,bg=$G06]$left_arrow_icon#[fg=$G04,bg=$TC] $date_icon $date_format "
+MANTLE="#181825"
+RS="$WEATHER #[fg=$MANTLE]$left_arrow_icon#[fg=$TC,bg=$MANTLE] $time_icon $time_format #[fg=$TC,bg=$MANTLE]$left_arrow_icon#[fg=$G04,bg=$TC] $date_icon $date_format  "
 if "$show_download_speed"; then
     RS="#[fg=$G05,bg=$BG]$left_arrow_icon#[fg=$TC,bg=$G05] $download_speed_icon #{download_speed} $RS"
 fi
@@ -128,11 +131,13 @@ fi
 tmux_set status-right "$RS"
 
 # Window status
-tmux_set window-status-style 'fg=colour9 bg=colour238'
+RED="#f38ba8"
+TEXT="#cdd6f4"
+tmux_set window-status-style 'fg=$FG bg=$BG'
 tmux_set window-status-current-style 'fg=$G04 bg=$BG'
-tmux_set window-status-last-style 'fg=colour9 bg=colour238'
-tmux_set window-status-format " #I#[fg=colour241]:#[fg=colour250]#W#[fg=colour244]#F "
-tmux_set window-status-last-format " #I#[fg=colour241]:#[fg=colour250]#W#[fg=colour244]#F "
+tmux_set window-status-last-style 'fg=$FG bg=$BG'
+tmux_set window-status-format " #I#[fg=$RED]:#[fg=$TEXT]#W#[fg=$TEXT]#F "
+tmux_set window-status-last-format " #I#[fg=$RED]:#[fg=$TEXT]#W#[fg=$TEXT]#F "
 tmux_set window-status-current-format "#[fg=$TC,bg=$G07,nobold]$left_arrow_icon#[fg=$G04,bg=$TC,bold] #I:#W #[fg=$TC,bg=$G07,nobold]$right_arrow_icon"
 
 # Window separator
