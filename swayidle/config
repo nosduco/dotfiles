@@ -1,4 +1,0 @@
-timeout 300 '$HOME/.dotfiles/scripts/lock.sh' 
-timeout 600 'hyprctl dispatch dpms off' resume '$HOME/.dotfiles/scripts/resume.sh' 
-before-sleep '$HOME/.dotfiles/scripts/lock.sh' 
-after-resume '$HOME/.dotfiles/scripts/lock.sh'
