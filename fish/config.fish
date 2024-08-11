@@ -35,6 +35,9 @@ fish_add_path $HOME/go/bin
 # Node Path
 fish_add_path $(pnpm global bin)
 
+# Pipx Path
+fish_add_path $HOME/.local/bin
+
 # Aliases
 alias grep='rg --color=always'
 alias fs='nautilus . &'
@@ -46,6 +49,7 @@ alias lt='ls --tree'
 alias pacman='paru'
 alias bell='echo -e "\a"'
 alias nvm='fnm'
+alias cat='bat'
 
 # Override rm for trash
 alias rm='trash'
