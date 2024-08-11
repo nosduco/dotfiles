@@ -39,7 +39,7 @@ autocmd("TermClose", {
 })
 
 -- Clear TMUX hooks on exit
-vim.cmd [[ autocmd VimLeave * lua require("custom.utils").clear_tmux_hooks()]]
+vim.cmd [[ autocmd VimLeave * lua require("utils").clear_tmux_hooks()]]
 
 -- Set statusline to 0
 vim.o.cmdheight = 0

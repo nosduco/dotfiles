@@ -3,7 +3,7 @@ local M = {}
 
 M.ui = {
   -- Set theme
-  theme = "ayu_dark",
+  theme = "catppuccin",
   transparency = false,
 
   -- Enable semantic tokens

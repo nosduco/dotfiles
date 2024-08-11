@@ -13,6 +13,11 @@ return {
     "NvChad/nvterm",
     enabled = false,
   },
+  -- {
+  --   "catppuccin/nvim",
+  --   name = "catppuccin",
+  --   priority = 1000,
+  -- },
   {
     "nvim-tree/nvim-tree.lua",
     enabled = false,
@@ -185,7 +190,7 @@ return {
     -- Diagnostic Pane
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    commands = { "TroubleToggle" },
+    cmd = { "TroubleToggle" },
     opts = {},
   },
   {
@@ -246,16 +251,18 @@ return {
   },
   {
     -- Multiplexer Integration
-    -- "mrjones2014/smart-splits.nvim",
-    dir = "~/projects/smart-splits.nvim",
+    "mrjones2014/smart-splits.nvim",
     lazy = false,
   },
   {
     -- Markdown (preview, other configurations)
     "iamcco/markdown-preview.nvim",
-    build = "cd app && npm install",
-    ft = "markdown",
-    lazy = true,
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
   },
   {
     -- Force good Vim movement/habits
@@ -295,5 +302,46 @@ return {
   {
     "https://github.com/grafana/vim-alloy",
     lazy = false,
+  },
+  {
+    "olimorris/codecompanion.nvim",
+    cmd = {
+      "CodeCompanion",
+      "CodeCompanionWithBuffers",
+      "CodeCompanionChat",
+      "CodeCompanionAdd",
+      "CodeCompanionToggle",
+      "CodeCompanionActions",
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("codecompanion").setup {
+        strategies = {
+          chat = "ollama_chat",
+          inline = "ollama_code",
+          tools = "ollama_code",
+        },
+        adapters = {
+          ollama_chat = require("codecompanion.adapters").use("ollama", {
+            schema = {
+              model = {
+                default = "codeqwen:7b-chat-v1.5-fp16",
+              },
+            },
+          }),
+          ollama_code = require("codecompanion.adapters").use("ollama", {
+            schema = {
+              model = {
+                default = "codeqwen:7b-code-v1.5-fp16",
+              },
+            },
+          }),
+        },
+      }
+    end,
   },
 }

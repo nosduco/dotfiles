@@ -31,6 +31,7 @@ require("lazy").setup({
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
+-- vim.cmd.colorscheme "catppuccin-mocha"
 
 require "nvchad.autocmds"
 

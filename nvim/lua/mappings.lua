@@ -182,3 +182,10 @@ end, { desc = "Toggle test output pane" })
 
 -- Remote Development
 map("n", "<leader>rc", "<cmd> Telescope remote-sshfs connect <CR>", { desc = "Open remote SSHFS connection dialog" })
+
+-- LLM
+vim.api.nvim_set_keymap("n", "<C-c>", "<cmd>CodeCompanionToggle<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-c>", "<cmd>CodeCompanionToggle<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ai", "<cmd>CodeCompanionWithBuffers<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<leader>ai", "<cmd>CodeCompanionWithBuffers<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "ga", "<cmd>CodeCompanionAdd<cr>", { noremap = true, silent = true })

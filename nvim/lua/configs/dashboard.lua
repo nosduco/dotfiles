@@ -98,6 +98,7 @@ M.generate_header = function()
     " ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚═╝       ╚═╝    ╚═════╝ ╚═╝  ╚═══╝   ╚═╝    ",
     "",
   }
+
   table.insert(header, os.date "%A, %B %e, %Y")
   table.insert(header, "")
   return header
