@@ -170,7 +170,7 @@
     ]
   },
   "network": {
-    "format-wifi": "",
+    "format-wifi": "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰖩</span>",
     "format-ethernet": "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰈀</span>",
     "tooltip-format": "{gwaddr} via {ifname}",
     "format-linked": "{ifname} (No IP) 󰈀",
