@@ -1,0 +1,19 @@
+{
+    "screensaver": {
+        "enable": false,
+        "path": null,
+        "loop": false,
+        "fps": 30,
+        "time-delay": 5,
+        "brightness": 30
+    },
+    "brightness": {
+        "value": 50
+    },
+    "background": {
+        "path": "/home/tony/.var/app/com.core447.StreamController/data/wallpapers/com_core447_PixabayFavorites/images/bokeh-1072721_640.jpg",
+        "enable": true,
+        "loop": true,
+        "fps": 30
+    }
+}

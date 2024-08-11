@@ -1,0 +1,11 @@
+{
+    "store": {
+        "responsibility-notes-agreed": true
+    },
+    "system": {
+        "keep-running": true
+    },
+    "general": {
+        "hold-time": 0.5
+    }
+}
