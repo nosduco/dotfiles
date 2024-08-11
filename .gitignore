@@ -7,3 +7,7 @@ streamcontroller/*
 !streamcontroller/settings/*
 !streamcontroller/pages/
 !streamcontroller/pages/*
+
+spicetify/*
+!spicetify/Themes/*
+!spicetify/config-xpui.ini
