@@ -8,11 +8,24 @@ swaylock --screenshots  \
   --effect-blur 7x5 \
   --effect-pixelate 1 \
   --effect-vignette 0.5:0.5 \
-  --ring-color 1f2430 \
-  --key-hl-color e95420 \
-  --line-color 00000000 \
-  --inside-color 00000088 \
+  --ring-color 313244 \
+  --key-hl-color fab387 \
+  --line-color 11111b \
+  --inside-color 1e1e2e88 \
+  --inside-ver-color 1e1e2e88 \
+  --ring-ver-color 89b4fa \
+  --text-ver-color 89b4fa \
+  --line-ver-color 11111b \
+  --inside-wrong-color 1e1e2e88 \
+  --line-wrong-color 11111b \
+  --ring-wrong-color f38ba8 \
+  --text-wrong-color f39ba8 \
+  --inside-clear-color 1e1e2e88 \
+  --line-clear-color 11111b \
+  --ring-clear-color fab387 \
+  --text-clear-color fab387 \
   --separator-color 00000000 \
+  --text-color fab387 \
   --grace 2 \
   --fade-in 0.2 \
   -f
