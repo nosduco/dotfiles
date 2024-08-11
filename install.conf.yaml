@@ -3,8 +3,7 @@
       relink: true
       force: true
 - clean: ["~"]
-- shell:
-    # Clone NvChad configuration to be overridden by custom config below
+- shell: # Clone NvChad configuration to be overridden by custom config below
     - command: git -C ~/.config/nvim pull || git clone https://github.com/NvChad/NvChad
         ~/.config/nvim --depth 1
 - link:
@@ -17,27 +16,22 @@
       create: true
       glob: true
       path: fish
+    # Bat (Cat alternative)
+    ~/.config/bat:
+      create: true
+      glob: true
+      path: bat
     # Hyprland (WM)
     ~/.config/hypr:
       create: true
       glob: true
       path: hypr
       exclude: [hypr/host.conf]
-    # Swayidle/Swaylock (Lockscreen)
-    ~/.config/swayidle:
-      create: true
-      glob: true
-      path: swayidle
     # Wofi (Launcher)
     ~/.config/wofi:
       create: true
       glob: true
       path: wofi
-    # Eww (Widgets)
-    ~/.config/eww:
-      create: true
-      glob: true
-      path: eww
     # Dunst (Notifications Daemon)
     ~/.config/dunst:
       create: true
@@ -70,6 +64,21 @@
       create: true
       glob: true
       path: nvim
+    # Spicetify (Spotify Theming)
+    ~/.config/spicetify/:
+      create: true
+      glob: true
+      path: spicetify
+    # StreamController (Stream Deck)
+    ~/.var/app/com.core447.StreamController/data/:
+      create: true
+      glob: true
+      path: streamcontroller
+    # Posting (HTTP Client)
+    ~/.config/posting/:
+      create: true
+      glob: True
+      path: posting
 # Nighthawk (Desktop)
 - defaults:
     link:
