@@ -3,7 +3,7 @@ add_newline = true
 palette = 'custom'
 
 [palettes.custom]
-orange = "#e95420"
+orange = "#fab387"
 
 [character]
 success_symbol = '[❯](bold orange)'
