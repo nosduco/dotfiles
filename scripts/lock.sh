@@ -27,5 +27,6 @@ swaylock --screenshots  \
   --separator-color 00000000 \
   --text-color fab387 \
   --grace 2 \
+  --grace-no-mouse \
   --fade-in 0.2 \
   -f
