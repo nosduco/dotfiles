@@ -45,4 +45,4 @@ SETUVAR fish_pager_color_selected_background:\x1d
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/home/tony/\x2elocal/bin\x1e/home/tony/\x2ecargo/bin\x1e\x2e\x1e/home/tony/\x2eyarn/bin
+SETUVAR fish_user_paths:/home/tony/Android/Sdk/platform\x2dtools\x1e/home/tony/Android/Sdk/emulator\x1e/home/tony/\x2elocal/bin\x1e/home/tony/\x2ecargo/bin\x1e\x2e\x1e/home/tony/\x2eyarn/bin

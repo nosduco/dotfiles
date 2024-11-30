@@ -16,7 +16,13 @@ fish_vi_key_bindings
 # eval (dircolors -c $HOME/.dircolors)
 
 # Root .env variables
-# TODO:
+function posix-source
+	for i in (cat $argv)
+		set arr (echo $i |tr = \n)
+  		set -gx $arr[1] $arr[2]
+	end
+end
+posix-source ~/.env
 
 # Editor
 set EDITOR vim
@@ -37,6 +43,11 @@ fish_add_path $(pnpm global bin)
 
 # Pipx Path
 fish_add_path $HOME/.local/bin
+
+# Android Path
+set ANDROID_HOME $HOME/Android/Sdk
+fish_add_path $ANDROID_HOME/emulator
+fish_add_path $ANDROID_HOME/platform-tools
 
 # Aliases
 alias grep='rg --color=always'
@@ -83,3 +94,10 @@ alias cdi="zi"
 # tabtab source for packages
 # uninstall by removing these lines
 [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
+
+# pnpm
+set -gx PNPM_HOME "/home/tony/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
