@@ -31,6 +31,7 @@ M.opts = {
     "markdown",
     "markdown_inline",
     "graphql",
+    "http",
   },
   highlight = {
     enable = true,

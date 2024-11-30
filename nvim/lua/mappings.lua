@@ -1,4 +1,5 @@
 require "nvchad.mappings"
+local neoscroll = require "neoscroll"
 
 local map = vim.keymap.set
 
@@ -23,8 +24,16 @@ nomap("n", "<C-n>")
 -- General
 map("n", ";", ":", { desc = "Enter command mode" })
 map("n", "<C-q>", "<cmd> confirm q <CR>", { desc = "Quit with confirmation" })
-map("n", "<C-u>", "<C-u>zz", { desc = "Page up (center screen)" })
-map("n", "<C-d>", "<C-d>zz", { desc = "Page down (center screen)" })
+-- map("n", "<C-u>", "<C-u>zz", { desc = "Page up (center screen)" })
+-- map("n", "<C-d>", "<C-d>zz", { desc = "Page down (center screen)" })
+map("n", "<C-u>", function()
+  neoscroll.ctrl_u { duration = 75 }
+  vim.api.nvim_command "normal! zz"
+end, { desc = "Page up (center screen)" })
+map("n", "<C-d>", function()
+  neoscroll.ctrl_d { duration = 75 }
+  vim.api.nvim_command "normal! zz"
+end, { desc = "Page down (center screen)" })
 map("n", "<C-s>", "<cmd> vsplit <CR>", { desc = "Create vertical split" })
 map({ "n", "t" }, "<C-h>", function()
   require("smart-splits").move_cursor_left()
@@ -145,6 +154,7 @@ map(
 map("n", "<leader>xd", "<cmd> TroubleToggle document_diagnostics <CR>", { desc = "Toggle LSP file diagnostic list" })
 map("n", "<leader>xl", "<cmd> TroubleToggle loclist<CR>", { desc = "Toggle LSP loclist" })
 map("n", "<leader>xq", "<cmd> TroubleToggle quickfix <CR>", { desc = "Toggle LSP quickfix list" })
+map("n", "<leader>lf", vim.diagnostic.open_float, { noremap = true, silent = true })
 
 -- Debugging
 map("n", "<leader>db", function()

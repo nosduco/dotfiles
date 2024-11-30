@@ -89,3 +89,14 @@ vim.cmd [[autocmd BufRead,BufNewFile hyprland.conf,hyprpaper.conf set filetype=h
 vim.opt.conceallevel = 1
 
 vim.opt.signcolumn = "yes"
+
+-- Settings for avante nvim
+vim.opt.laststatus = 3
+vim.opt.splitkeep = "screen"
+
+-- Add HTTP filetype
+vim.filetype.add {
+  extension = {
+    ["http"] = "http",
+  },
+}

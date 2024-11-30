@@ -1,6 +1,13 @@
 local M = {}
 
 M.opts = {
+  connections = {
+    sshfs_args = {
+      "-o reconnect",
+      "-o ConnectTimeout=5",
+      "-o follow_symlinks",
+    },
+  },
   handlers = {
     on_connect = {
       change_dir = true,
@@ -17,6 +24,7 @@ M.opts = {
   },
   log = {
     enabled = false,
+    -- enabled = true,
     types = {
       all = true,
     },

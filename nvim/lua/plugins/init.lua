@@ -13,11 +13,6 @@ return {
     "NvChad/nvterm",
     enabled = false,
   },
-  -- {
-  --   "catppuccin/nvim",
-  --   name = "catppuccin",
-  --   priority = 1000,
-  -- },
   {
     "nvim-tree/nvim-tree.lua",
     enabled = false,
@@ -304,44 +299,61 @@ return {
     lazy = false,
   },
   {
-    "olimorris/codecompanion.nvim",
-    cmd = {
-      "CodeCompanion",
-      "CodeCompanionWithBuffers",
-      "CodeCompanionChat",
-      "CodeCompanionAdd",
-      "CodeCompanionToggle",
-      "CodeCompanionActions",
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    lazy = false,
+    version = false,
+    build = "make",
+    opts = {
+      -- add any opts here
     },
     dependencies = {
-      "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "nvim-telescope/telescope.nvim",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons",
+      {
+        -- support for image pasting
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+          -- recommended settings
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+            -- required for Windows users
+            use_absolute_path = true,
+          },
+        },
+      },
+      {
+        -- Make sure to setup it properly if you have lazy=true
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
     },
+  },
+  {
+    "mistweaverco/kulala.nvim",
+    opts = {},
+  },
+  {
+    "karb94/neoscroll.nvim",
+    lazy = false,
     config = function()
-      require("codecompanion").setup {
-        strategies = {
-          chat = "ollama_chat",
-          inline = "ollama_code",
-          tools = "ollama_code",
-        },
-        adapters = {
-          ollama_chat = require("codecompanion.adapters").use("ollama", {
-            schema = {
-              model = {
-                default = "codeqwen:7b-chat-v1.5-fp16",
-              },
-            },
-          }),
-          ollama_code = require("codecompanion.adapters").use("ollama", {
-            schema = {
-              model = {
-                default = "codeqwen:7b-code-v1.5-fp16",
-              },
-            },
-          }),
-        },
-      }
+      require("neoscroll").setup {}
     end,
+  },
+  {
+    "sphamba/smear-cursor.nvim",
+    lazy = false,
+    opts = {},
   },
 }

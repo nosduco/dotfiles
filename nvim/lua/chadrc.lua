@@ -1,9 +1,12 @@
 ---@type ChadrcConfig
 local M = {}
 
+M.base46 = {
+  theme = "catppuccin",
+}
+
 M.ui = {
   -- Set theme
-  theme = "catppuccin",
   transparency = false,
 
   -- Enable semantic tokens
