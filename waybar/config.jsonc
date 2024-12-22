@@ -1,5 +1,5 @@
 {
-  "output": "DP-1",
+  "output": "DP-2",
   "layer": "top",
   "spacing": 8,
   "position": "bottom",
@@ -28,6 +28,7 @@
   ],
   "hyprland/workspaces": {
     "all-outputs": false,
+    "acitve-only": true,
     "format": "{icon}",
     "format-icons": {
       "active": "",
@@ -36,16 +37,16 @@
     "sort-by": "ID",
     "persistent-workspaces": {
       "1": [
-        "DP-1"
+        "DP-2"
       ],
       "2": [
-        "DP-1"
+        "DP-2"
       ],
       "3": [
-        "DP-1"
+        "DP-2"
       ],
       "4": [
-        "DP-1"
+        "DP-2"
       ]
     }
   },

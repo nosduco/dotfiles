@@ -1,6 +1,6 @@
 [global]
 	# Which monitor should the notifications be displayed on.
-	monitor = 1
+	monitor = 3
 
 	font = "Google Sans 10"
 
@@ -88,7 +88,7 @@
     progress_bar_max_width = 300
 
 	# Frame
-	frame_width = 3
+	frame_width = 2
 	frame_color = "#1C2325"
 
 	# The transparency of the window. range: [0; 100]
