@@ -59,6 +59,11 @@
       create: true
       glob: true
       path: alacritty
+    # Ghostty (terminal emulator)
+    ~/.config/ghostty:
+      create: true
+      glob: true
+      path: ghostty
     # Neovim
     ~/.config/nvim/:
       create: true

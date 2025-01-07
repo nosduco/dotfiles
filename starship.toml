@@ -11,6 +11,7 @@ vimcmd_symbol = '[❮](bold orange)'
 
 [directory]
 style = "yellow"
+home_symbol = "~"
 
 [username]
 show_always = true
