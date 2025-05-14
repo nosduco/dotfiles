@@ -16,7 +16,7 @@ M.opts = {
         desc = " Todos",
         group = "@comment",
         action = function()
-          local path = vim.fn.expand "$HOME" .. "/notes/Todos.md"
+          local path = vim.fn.expand "$HOME" .. "/notes/50-Life Ops/Tasks/index.md"
           vim.api.nvim_command("edit " .. path)
           local notes_dir = vim.fn.expand "$HOME" .. "/notes/"
           utils.set_cwd(notes_dir)

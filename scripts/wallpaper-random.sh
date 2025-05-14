@@ -14,7 +14,7 @@ fi
 INTERVAL=3600
 
 while true; do
-	wallpaper="$(find -L "$1" -type f | shuf -n 1)"
+	wallpaper="$(find -L "$1" -type f -maxdepth 1 | shuf -n 1)"
 	hyprctl hyprpaper preload "$wallpaper"
 
   if [[ $(hostname) == "voyager" ]]; then

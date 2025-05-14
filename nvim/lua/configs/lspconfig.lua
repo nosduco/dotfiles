@@ -12,6 +12,7 @@ local servers = {
   "docker_compose_language_service",
   "dockerls",
   "tailwindcss",
+  "helm_ls",
 }
 
 for _, lsp in ipairs(servers) do
@@ -105,6 +106,9 @@ lspconfig.yamlls.setup {
         url = "",
       },
       schemas = require("schemastore").yaml.schemas(),
+      ignore = {
+        "**/charts/**/templates/*.yaml", -- or wherever your helm templates live
+      },
     },
   },
 }

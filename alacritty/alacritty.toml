@@ -21,8 +21,10 @@ history = 10000
 multiplier = 3
 
 [terminal.shell]
-args = ["new-session"]
-program = "/bin/tmux"
+# args = ["new-session"]
+# program = "/bin/tmux"
+# args = ["new-session"]
+program = "/bin/zellij"
 
 [window]
 decorations = "none"

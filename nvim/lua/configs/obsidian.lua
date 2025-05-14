@@ -16,13 +16,13 @@ M.opts = {
     },
   },
   templates = {
-    subdir = "Templates",
+    subdir = "60-Templates",
   },
   daily_notes = {
-    folder = "Daily Notes",
+    folder = "10-Journal",
     date_format = "%Y-%m-%d",
   },
-  notes_subdir = "Scratchpad",
+  notes_subdir = "00-Inbox",
   new_notes_location = "notes_subdir",
   note_id_func = function(title)
     return title

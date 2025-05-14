@@ -1,4 +1,7 @@
-format = """$directory$username$hostname$git_branch$git_commit$git_state$git_metrics$git_status$fill$all$character"""
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """$directory$username$hostname$git_branch$git_commit$git_state$git_metrics$git_status$all$character"""
+# format = """$directory$username$hostname$git_branch$git_commit$git_state$git_metrics$git_status$fill$all$character"""
 add_newline = true
 palette = 'custom'
 

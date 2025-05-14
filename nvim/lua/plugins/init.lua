@@ -7,8 +7,11 @@ local dressing = require "configs.dressing"
 local colorizer = require "configs.colorizer"
 local oil = require "configs.oil"
 local obsidian = require "configs.obsidian"
+local avante = require "configs.avante"
+-- local codecompanion = require "configs.codecompanion"
 
 return {
+  -- Disabled default plugins
   {
     "NvChad/nvterm",
     enabled = false,
@@ -67,7 +70,6 @@ return {
       },
     },
   },
-  -- Override plugin configs
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
@@ -172,16 +174,6 @@ return {
     cmd = "DiffviewOpen",
   },
   {
-    -- Code Diagnostics Lightbulb
-    "kosayoda/nvim-lightbulb",
-    event = "VeryLazy",
-    config = function()
-      require("nvim-lightbulb").setup {
-        autocmd = { enabled = true },
-      }
-    end,
-  },
-  {
     -- Diagnostic Pane
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -267,16 +259,6 @@ return {
     lazy = false,
   },
   {
-    "tris203/precognition.nvim",
-    enabled = false,
-    opts = {
-      startVisible = true,
-      showBlankVirtLine = false,
-      highlightColor = { link = "Comment" },
-      hints = {},
-    },
-  },
-  {
     "epwalsh/obsidian.nvim",
     version = "*",
     lazy = true,
@@ -301,12 +283,9 @@ return {
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
-    lazy = false,
     version = false,
     build = "make",
-    opts = {
-      -- add any opts here
-    },
+    opts = avante.opts,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "stevearc/dressing.nvim",
@@ -339,10 +318,6 @@ return {
         ft = { "markdown", "Avante" },
       },
     },
-  },
-  {
-    "mistweaverco/kulala.nvim",
-    opts = {},
   },
   {
     "karb94/neoscroll.nvim",
