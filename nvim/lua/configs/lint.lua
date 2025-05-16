@@ -11,8 +11,16 @@ lint.linters.markdownlint.args = {
   "--disable MD013",
 }
 
+vim.filetype.add {
+  pattern = {
+    [".*/.github/workflows/.*%.yml"] = "yaml.ghaction",
+    [".*/.github/workflows/.*%.yaml"] = "yaml.ghaction",
+  },
+}
+
 lint.linters_by_ft = {
-  yaml = { "actionlint", "yamllint" },
+  ghaction = { "actionlint" },
+  yaml = { "yamllint" },
   typescript = node,
   javascript = node,
   javascriptreact = node,
