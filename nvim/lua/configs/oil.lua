@@ -3,6 +3,7 @@ local M = {}
 M.opts = {
   columns = {
     "icon",
+--    require("remote-sshfs.filebrowser.oil").column { hl = "DiagnosticHint" },
   },
   keymaps = {
     ["<C-s>"] = "actions.select_vsplit",

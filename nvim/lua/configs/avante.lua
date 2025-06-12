@@ -10,7 +10,13 @@ M.opts = {
     enable_cursor_planning_mode = false,
     enable_claude_text_editor_tool_mode = true,
   },
-  vendors = {
+  providers = {
+    claude = {
+      model = "claude-3-7-sonnet-20250219",
+    },
+    gemini = {
+      model = "gemini-2.5-pro-exp-03-25",
+    },
     openrouter = {
       __inherited_from = "openai",
       endpoint = "https://openrouter.ai/api/v1",
@@ -23,14 +29,12 @@ M.opts = {
       endpoint = "https://api.groq.com/openai/v1/",
       api_key_name = "GROQ_API_KEY",
       model = "llama-3.3-70b-versatile",
-      max_tokens = 32768,
+      extra_request_body = {
+        temperature = 1,
+        max_tokens = 32768,
+        disable_tools = true,
+      },
     },
-  },
-  claude = {
-    model = "claude-3-7-sonnet-20250219",
-  },
-  gemini = {
-    model = "gemini-2.5-pro-exp-03-25",
   },
   rag_service = {
     enabled = false,

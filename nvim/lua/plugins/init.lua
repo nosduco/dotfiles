@@ -105,7 +105,7 @@ return {
     "stevearc/oil.nvim",
     lazy = false,
     opts = oil.opts,
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons", "remote-sshfs.nvim" },
   },
   {
     -- Startup Dashboard
@@ -198,8 +198,9 @@ return {
   },
   {
     -- My remote-sshfs plugin :)
-    -- dir = "~/projects/remote-sshfs.nvim",
-    "nosduco/remote-sshfs.nvim",
+    name = "remote-sshfs.nvim",
+    dir = "~/projects/remote-sshfs.nvim",
+    -- "nosduco/remote-sshfs.nvim",
     lazy = false,
     opts = remotesshfs.opts,
   },

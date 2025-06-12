@@ -18,7 +18,7 @@ M.opts = {
   },
   ui = {
     confirm = {
-      connect = false,
+      connect = true,
       change_dir = false,
     },
   },

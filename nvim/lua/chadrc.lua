@@ -5,6 +5,11 @@ M.base46 = {
   theme = "catppuccin",
 }
 
+vim.g.remote_sshfs_status_icon = "" -- VS Code-style lock icon
+local remote_module = require("remote-sshfs.statusline").nvchad_module {
+  highlight = { fg = "#6A9955", bold = true },
+}
+
 M.ui = {
   -- Set theme
   transparency = false,
@@ -21,6 +26,10 @@ M.ui = {
   statusline = {
     theme = "default",
     separator_style = "arrow",
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "remote", "lsp", "cwd", "cursor" },
+    modules = {
+      remote = remote_module,
+    },
     -- -- end,
     --   modules[8] = (function()
     --     if rawget(vim, "lsp") then
