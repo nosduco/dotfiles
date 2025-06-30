@@ -6,15 +6,7 @@ local map = vim.keymap.set
 -- Disable mappings
 local nomap = vim.keymap.del
 nomap("n", "<leader>/")
--- nomap("n", "<leader> + wK")
--- nomap("n", "<leader>/ + wk")
--- nomap("n", "<leader>/ + h")
--- nomap("n", "<leader>/ + v")
 nomap("n", "<leader>x")
--- nomap("n", "j")
--- nomap("n", "k")
--- nomap("n", "<C-n>")
--- nomap("v", "<C-F>")
 nomap("v", "<leader>/")
 nomap("t", "<A-i>")
 nomap("t", "<A-v>")
@@ -24,6 +16,7 @@ nomap("n", "<C-n>")
 -- General
 map("n", ";", ":", { desc = "Enter command mode" })
 map("n", "<C-q>", "<cmd> confirm q <CR>", { desc = "Quit with confirmation" })
+
 -- map("n", "<C-u>", "<C-u>zz", { desc = "Page up (center screen)" })
 -- map("n", "<C-d>", "<C-d>zz", { desc = "Page down (center screen)" })
 map("n", "<C-u>", function()
@@ -47,9 +40,8 @@ end, { desc = "Move focus to above pane" })
 map({ "n", "t" }, "<C-l>", function()
   require("smart-splits").move_cursor_right()
 end, { desc = "Move focus to right pane" })
-map({ "n", "t" }, "<A-h>", function()
-  require("smart-splits").resize_left()
-end, { desc = "Resize pane to the left" })
+require("smart-splits").resize_left()
+map({ "n", "t" }, "<A-h>", function() end, { desc = "Resize pane to the left" })
 map({ "n", "t" }, "<A-j>", function()
   require("smart-splits").resize_down()
 end, { desc = "Resize pane downward" })
@@ -69,8 +61,18 @@ map("n", "gf", function()
 end, { desc = "Follow link under cursor" })
 map("t", "<Esc>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), { desc = "Escape terminal mode" })
 
+-- Line Manipulation
+-- TODO: Get this to work
+-- map("n", "y/", "yygccp", { remap = false, desc = "Copy and comment out line" })
+-- map("v", "y/", "ygvgc`>p", { remap = false, desc = "Copy and comment out lines" })
+-- map("n", "<C-", "yygccp", { remap = false, desc = "Copy and comment out line" })
+-- map("v", "yc", "ygvgc`>p", { remap = false, desc = "Copy and comment out lines" })
+map("v", "J", ":m '>+1<CR>gv=gv", { remap = true, desc = "Move selected lines down" })
+map("v", "K", ":m '<-2<CR>gv=gv", { remap = true, desc = "Move selected lines down" })
+
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear highlights" })
+
 -- File System
--- map("n", "<C-n>", "<cmd> Oil --float <CR>", { desc = "Toggle file browser" })
 map("n", "<C-n>", "<cmd> Oil <CR>", { desc = "Toggle file browser" })
 
 -- Tabs
@@ -194,7 +196,7 @@ end, { desc = "Toggle test output pane" })
 map("n", "<leader>rc", "<cmd> Telescope remote-sshfs connect <CR>", { desc = "Open remote SSHFS connection dialog" })
 
 -- LLM
-map("n", "<leader>ai", "<cmd> AvanteChat <CR>", { desc = "Chat with codebase" })
+-- map("n", "<leader>ai", "<cmd> AvanteChat <CR>", { desc = "Chat with codebase" })
 -- map("n", "<leader>ai", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
 -- map("v", "<leader>ai", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
 -- map("n", "<leader>aa", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })

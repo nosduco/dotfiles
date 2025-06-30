@@ -6,9 +6,9 @@ M.base46 = {
 }
 
 vim.g.remote_sshfs_status_icon = "" -- VS Code-style lock icon
-local remote_module = require("remote-sshfs.statusline").nvchad_module {
-  highlight = { fg = "#6A9955", bold = true },
-}
+-- local remote_module = require("remote-sshfs.statusline").nvchad_module {
+--   highlight = { fg = "#6A9955", bold = true },
+-- }
 
 M.ui = {
   -- Set theme
@@ -26,9 +26,10 @@ M.ui = {
   statusline = {
     theme = "default",
     separator_style = "arrow",
-    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "remote", "lsp", "cwd", "cursor" },
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor" },
+    -- order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "remote", "lsp", "cwd", "cursor" },
     modules = {
-      remote = remote_module,
+      -- remote = remote_module,
     },
     -- -- end,
     --   modules[8] = (function()
