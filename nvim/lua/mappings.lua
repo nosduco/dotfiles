@@ -195,17 +195,5 @@ end, { desc = "Toggle test output pane" })
 -- Remote Development
 map("n", "<leader>rc", "<cmd> Telescope remote-sshfs connect <CR>", { desc = "Open remote SSHFS connection dialog" })
 
--- LLM
--- map("n", "<leader>ai", "<cmd> AvanteChat <CR>", { desc = "Chat with codebase" })
--- map("n", "<leader>ai", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
--- map("v", "<leader>ai", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
--- map("n", "<leader>aa", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
--- map("v", "<leader>aa", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
--- map("n", "<leader>ac", "<cmd>CodeCompanion<cr>", { noremap = true, silent = true })
--- map("v", "<leader>ac", "<cmd>CodeCompanion<cr>", { noremap = true, silent = true })
-
--- vim.api.nvim_set_keymap("n", "<C-c>", "<cmd>CodeCompanionToggle<cr>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("v", "<C-c>", "<cmd>CodeCompanionToggle<cr>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("n", "<leader>ai", "<cmd>CodeCompanionWithBuffers<cr>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("v", "<leader>ai", "<cmd>CodeCompanionWithBuffers<cr>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("v", "ga", "<cmd>CodeCompanionAdd<cr>", { noremap = true, silent = true })
+-- Find and Replace
+map("n", "<leader>fr", "<cmd> GrugFar <CR>", { desc = "Find and replace" })

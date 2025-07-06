@@ -281,46 +281,6 @@ return {
     "https://github.com/grafana/vim-alloy",
     lazy = false,
   },
-  -- {
-  --   "yetone/avante.nvim",
-  --   enabled = false,
-  --   event = "VeryLazy",
-  --   version = false,
-  --   build = "make",
-  --   opts = avante.opts,
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "stevearc/dressing.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     "MunifTanjim/nui.nvim",
-  --     "nvim-tree/nvim-web-devicons",
-  --     {
-  --       -- support for image pasting
-  --       "HakonHarnes/img-clip.nvim",
-  --       event = "VeryLazy",
-  --       opts = {
-  --         -- recommended settings
-  --         default = {
-  --           embed_image_as_base64 = false,
-  --           prompt_for_file_name = false,
-  --           drag_and_drop = {
-  --             insert_mode = true,
-  --           },
-  --           -- required for Windows users
-  --           use_absolute_path = true,
-  --         },
-  --       },
-  --     },
-  --     {
-  --       -- Make sure to setup it properly if you have lazy=true
-  --       "MeanderingProgrammer/render-markdown.nvim",
-  --       opts = {
-  --         file_types = { "markdown", "Avante" },
-  --       },
-  --       ft = { "markdown", "Avante" },
-  --     },
-  --   },
-  -- },
   {
     "karb94/neoscroll.nvim",
     lazy = false,
@@ -342,10 +302,10 @@ return {
     config = true,
     keys = {
       -- { "<leader>a", nil, desc = "AI/Claude Code" },
-      { "<leader>aa", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+      -- { "<leader>aa", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
       -- { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
-      { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
-      { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+      -- { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+      { "<leader>ai", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
       { "<leader>aa", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
       -- {
       --   "<leader>as",
@@ -358,5 +318,12 @@ return {
   {
     "szymonwilczek/vim-be-better",
     cmd = "VimBeBetter",
+  },
+  {
+    "MagicDuck/grug-far.nvim",
+    cmd = "GrugFar",
+    config = function()
+      require("grug-far").setup {}
+    end,
   },
 }

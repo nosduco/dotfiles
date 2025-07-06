@@ -1,5 +1,7 @@
 require "nvchad.options"
 
+vim.g.maplocalleader = ","
+
 local autocmd = vim.api.nvim_create_autocmd
 
 -- Auto resize panes when resizing nvim window
