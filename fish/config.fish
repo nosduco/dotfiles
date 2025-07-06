@@ -51,7 +51,8 @@ fish_add_path $ANDROID_HOME/platform-tools
 
 # Aliases
 alias grep='rg --color=always'
-alias fs='nautilus . &'
+alias fsi='nautilus . &'
+alias fs='yazi'
 alias svim='sudo -E nvim'
 alias ll='ls -l'
 alias lla='ls -la'
