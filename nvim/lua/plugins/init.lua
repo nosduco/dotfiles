@@ -222,13 +222,13 @@ return {
       require("leap").opts.highlight_unlabeled_phase_one_targets = true
     end,
   },
-  {
-    "ggandor/flit.nvim",
-    lazy = false,
-    config = function()
-      require("flit").setup()
-    end,
-  },
+  -- {
+  --   "ggandor/flit.nvim",
+  --   lazy = false,
+  --   config = function()
+  --     require("flit").setup()
+  --   end,
+  -- },
   {
     -- Rust Tooling
     "simrat39/rust-tools.nvim",
