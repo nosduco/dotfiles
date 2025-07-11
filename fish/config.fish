@@ -6,8 +6,9 @@ if not status is-interactive
   return
 end
 
-# Enable VIM keybindings
+# Enable keybindings
 fish_vi_key_bindings
+fish_user_key_bindings
 
 # Zellij
 # eval (zellij setup --generate-auto-start fish | string collect)
@@ -49,10 +50,13 @@ set ANDROID_HOME $HOME/Android/Sdk
 fish_add_path $ANDROID_HOME/emulator
 fish_add_path $ANDROID_HOME/platform-tools
 
+# Library Path
+# set LD_LIBRARY_PATH /usr/lib:$LD_LIBRARY_PATH
+
 # Aliases
 alias grep='rg --color=always'
 alias fsi='nautilus . &'
-alias fs='yazi'
+# alias fs='yazi'
 alias svim='sudo -E nvim'
 alias ll='ls -l'
 alias lla='ls -la'
