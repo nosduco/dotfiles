@@ -82,8 +82,12 @@
     # Posting (HTTP Client)
     ~/.config/posting/:
       create: true
-      glob: True
+      glob: true
       path: posting
+    ~/.config/yazi/:
+      create: true
+      glob: true
+      path: yazi
 # Nighthawk (Desktop)
 - defaults:
     link:
