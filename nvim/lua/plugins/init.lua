@@ -105,6 +105,10 @@ return {
     "stevearc/oil.nvim",
     lazy = false,
     opts = oil.opts,
+    config = function(opts)
+      require("oil").setup(opts)
+      require("remote-sshfs.filebrowser.oil").setup_signs { hl = "DiagnosticHint" }
+    end,
     dependencies = { "nvim-tree/nvim-web-devicons", "remote-sshfs.nvim" },
   },
   {
@@ -314,6 +318,23 @@ return {
       --   ft = { "NvimTree", "neo-tree" },
       -- },
     },
+  },
+  {
+    "Exafunction/windsurf.nvim",
+    -- lazy = "VeryLazy",
+    lazy = false,
+    cmd = "Codeium",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup {
+        virtual_text = {
+          enabled = true,
+        },
+      }
+    end,
   },
   {
     "szymonwilczek/vim-be-better",

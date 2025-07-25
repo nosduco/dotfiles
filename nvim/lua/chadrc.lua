@@ -5,7 +5,7 @@ M.base46 = {
   theme = "catppuccin",
 }
 
-vim.g.remote_sshfs_status_icon = "" -- VS Code-style lock icon
+-- vim.g.remote_sshfs_status_icon = "" -- VS Code-style lock icon
 -- local remote_module = require("remote-sshfs.statusline").nvchad_module {
 --   highlight = { fg = "#6A9955", bold = true },
 -- }
