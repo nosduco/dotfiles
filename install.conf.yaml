@@ -1,11 +1,17 @@
+---
 - defaults:
     link:
       relink: true
       force: true
 - clean: ["~"]
-- shell: # Clone NvChad configuration to be overridden by custom config below
-    - command: git -C ~/.config/nvim pull || git clone https://github.com/NvChad/NvChad
-        ~/.config/nvim --depth 1
+- shell:
+    # Clone NvChad configuration to be overridden by custom config below
+    - command: git -C ~/.config/nvim pull || git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+    # System files with sudo
+    - command: sudo ln -sf $(pwd)/greetd/config.toml /etc/greetd/config.toml
+      description: Installing greetd config
+    - command: sudo mkdir -p /etc/systemd/system/greetd.service.d && sudo ln -sf $(pwd)/greetd/greetd.service.d/* /etc/systemd/system/greetd.service.d/
+      description: Installing greetd service override
 - link:
     # tty configurations
     ~/.dircolors: .dircolors
@@ -54,11 +60,6 @@
       path: cava
     # Starship (Shell Prompt)
     ~/.config/starship.toml: starship.toml
-    # Alacritty (terminal emulator)
-    ~/.config/alacritty:
-      create: true
-      glob: true
-      path: alacritty
     # Ghostty (terminal emulator)
     ~/.config/ghostty:
       create: true
@@ -84,10 +85,12 @@
       create: true
       glob: true
       path: posting
+    # Yazi (File Manager)
     ~/.config/yazi/:
       create: true
       glob: true
       path: yazi
+
 # Nighthawk (Desktop)
 - defaults:
     link:
