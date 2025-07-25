@@ -8,6 +8,7 @@ streamcontroller/*
 !streamcontroller/pages/
 !streamcontroller/pages/*
 streamcontroller/pages/backups/*
+streamcontroller/settings/settings.json
 
 spicetify/*
 !spicetify/Themes/*
