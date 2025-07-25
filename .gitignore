@@ -5,10 +5,10 @@ nvim/lazy-lock.json
 streamcontroller/*
 !streamcontroller/settings/
 !streamcontroller/settings/*
+streamcontroller/settings/settings.json
 !streamcontroller/pages/
 !streamcontroller/pages/*
 streamcontroller/pages/backups/*
-streamcontroller/settings/settings.json
 
 spicetify/*
 !spicetify/Themes/*
