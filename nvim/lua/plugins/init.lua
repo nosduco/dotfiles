@@ -48,6 +48,13 @@ return {
     end, -- Override to setup mason-lspconfig
   },
   {
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      table.insert(opts.sources, { name = "codeium" })
+      -- require("nvchad.configs.cmp").overrides,
+    end,
+  },
+  {
     "NvChad/nvim-colorizer.lua",
     opts = colorizer.opts,
   },
@@ -331,7 +338,7 @@ return {
     config = function()
       require("codeium").setup {
         virtual_text = {
-          enabled = true,
+          enabled = false,
         },
       }
     end,
