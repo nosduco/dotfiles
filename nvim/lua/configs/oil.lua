@@ -1,10 +1,10 @@
 local M = {}
 
 M.opts = {
-  columns = {
-    "icon",
---    require("remote-sshfs.filebrowser.oil").column { hl = "DiagnosticHint" },
-  },
+  -- columns = {
+  --   "icon",
+  --   --    require("remote-sshfs.filebrowser.oil").column { hl = "DiagnosticHint" },
+  -- },
   keymaps = {
     ["<C-s>"] = "actions.select_vsplit",
     ["<C-i>"] = "actions.select_split",
@@ -17,6 +17,7 @@ M.opts = {
     ["r"] = "actions.refresh",
     ["p"] = "actions.preview",
     ["x"] = "actions.open_external",
+    -- ["q"] = "actions.close",
     ["<C-q>"] = "actions.close",
   },
   view_options = {

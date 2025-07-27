@@ -112,11 +112,10 @@ return {
     "stevearc/oil.nvim",
     lazy = false,
     opts = oil.opts,
-    config = function(opts)
-      require("oil").setup(opts)
-      require("remote-sshfs.filebrowser.oil").setup_signs { hl = "DiagnosticHint" }
-    end,
-    dependencies = { "nvim-tree/nvim-web-devicons", "remote-sshfs.nvim" },
+    -- config = function(opts)
+    --   require("oil").setup(opts)
+    -- end,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
     -- Startup Dashboard
@@ -209,6 +208,7 @@ return {
   },
   {
     -- My remote-sshfs plugin :)
+    enabled = false,
     name = "remote-sshfs.nvim",
     dir = "~/projects/remote-sshfs.nvim",
     -- "nosduco/remote-sshfs.nvim",
