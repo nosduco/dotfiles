@@ -208,7 +208,6 @@ return {
   },
   {
     -- My remote-sshfs plugin :)
-    enabled = false,
     name = "remote-sshfs.nvim",
     dir = "~/projects/remote-sshfs.nvim",
     -- "nosduco/remote-sshfs.nvim",
