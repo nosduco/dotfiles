@@ -90,6 +90,11 @@
       create: true
       glob: true
       path: yazi
+    # Walker (Launcher)
+    ~/.config/walker:
+      create: true
+      glob: true
+      path: walker
 
 # Nighthawk (Desktop)
 - defaults:
