@@ -2,21 +2,20 @@ app_launch_prefix = "uwsm app -- "
 terminal_title_flag = ""
 locale = ""
 close_when_open = true
-# TODO: Catpuccin theme
-theme = "default"
+theme = "custom"
 monitor = ""
 hotreload_theme = false
 as_window = false
 timeout = 0
 disable_click_to_close = false
 force_keyboard_focus = true
-theme_location = []
+theme_location = ["~/.config/walker/themes/"]
 plugin_location = []
 js_runtime = "node"
 
 [keys]
 accept_typeahead = ["tab"]
-trigger_labels = "lalt"
+trigger_labels = "lctrl"
 next = ["down"]
 prev = ["up"]
 close = ["esc"]
@@ -57,7 +56,8 @@ delay = 0
 resume_last_query = false
 
 [activation_mode]
-labels = "jkl;asdf"
+# labels = "jkl;asdf"
+labels = "jklasdf"
 
 [builtins.hyprland_keybinds]
 show_sub_when_single = true
@@ -74,14 +74,15 @@ placeholder = "Applications"
 prioritize_new = false
 hide_actions_with_empty_query = true
 context_aware = false
+# context_aware = true 
 refresh = true
 show_sub_when_single = false
 show_icon_when_single = true
 show_generic = true
-history = false
+history = true
 # icon = "applications-other"
 icon = ""
-hidden = true
+hidden = true 
 
 [builtins.applications.actions]
 enabled = true
@@ -109,7 +110,7 @@ weight = 5
 placeholder = "AI"
 name = "ai"
 icon = "help-browser"
-switcher_only = true
+switcher_only = false
 show_sub_when_single = true
 
 # TODO: What model am I using here?
@@ -165,7 +166,8 @@ placeholder = "Custom Commands"
 hidden = true
 
 [builtins.emojis]
-exec = "wl-copy"
+# exec = "wl-copy '%RESULT%'"
+exec = "wtype '%RESULT%'"
 weight = 5
 name = "Emojis"
 placeholder = "Emojis"
@@ -175,16 +177,16 @@ typeahead = true
 show_unqualified = false
 prefix = ":"
 
-# TODO: This is where you left off...
-# https://github.com/basecamp/omarchy/blob/master/config/walker/config.toml
 [builtins.symbols]
-exec = "wl-copy '%RESULT%'"
+# exec = "wl-copy '%RESULT%'"
+exec = "wtype '%RESULT%'"
 weight = 5
 name = "symbols"
 placeholder = "Symbols"
 switcher_only = true
 history = true
 typeahead = true
+hidden = true
 
 [builtins.finder]
 use_fd = false
@@ -200,6 +202,7 @@ refresh = true
 concurrency = 8
 show_icon_when_single = true
 preview_images = false
+hidden = true
 
 [builtins.runner]
 eager_loading = true
@@ -212,13 +215,15 @@ history = true
 generic_entry = false
 refresh = true
 use_fd = false
+switcher_only = true
+hidden = true
 
 [builtins.ssh]
 weight = 5
 icon = "preferences-system-network"
 name = "ssh"
 placeholder = "SSH"
-switcher_only = true
+switcher_only = false
 history = true
 refresh = true
 
@@ -236,12 +241,12 @@ name = "websearch"
 placeholder = "Websearch"
 
 [[builtins.websearch.entries]]
-name = "Google"
-url = "https://www.google.com/search?q=%TERM%"
-
-[[builtins.websearch.entries]]
 name = "DuckDuckGo"
 url = "https://duckduckgo.com/?q=%TERM%"
+
+[[builtins.websearch.entries]]
+name = "Google"
+url = "https://www.google.com/search?q=%TERM%"
 switcher_only = true
 
 [[builtins.websearch.entries]]
@@ -270,3 +275,4 @@ icon = "accessories-dictionary"
 placeholder = "Translation"
 switcher_only = true
 provider = "googlefree"
+hidden = true
