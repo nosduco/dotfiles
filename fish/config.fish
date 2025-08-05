@@ -66,6 +66,8 @@ alias pacman='paru'
 alias bell='echo -e "\a"'
 alias nvm='fnm'
 alias cat='bat'
+alias top='btop'
+alias htop='btop'
 
 # Override rm for trash
 alias rm='trash'
@@ -79,6 +81,8 @@ alias docker-compose='docker compose'
 # AWS helper aliases
 alias aws-use='set AWS_PROFILE='
 
+# GitHub watch CI helper
+alias ci='gh run watch "$(gh run list --limit 1 --json databaseId --jq \'.[0].databaseId\')" && notify-send "GitHub CI" "Workflow has finished"'
 # Tmuxinator shorthand
 alias mux='tmuxinator'
 
