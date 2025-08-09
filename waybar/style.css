@@ -9,7 +9,8 @@
   box-shadow: none;
   text-shadow: none;
   transition-duration: 0s;
-  color: @text;
+  /* color: @text; */
+  color: @peach;
 }
 
 tooltip {
@@ -36,6 +37,10 @@ window#waybar.solo {
 
 #workspaces {
   margin: 0 5px;
+}
+
+#tray {
+  color: gray;
 }
 
 #workspaces button.empty {
@@ -83,7 +88,7 @@ window#waybar.solo {
 #clock {
   margin-top: 2px;
   margin-right: 5px;
-  min-width: 220px;
+  min-width: 180px;
 }
 
 #pulseaudio {
