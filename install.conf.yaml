@@ -95,6 +95,10 @@
       create: true
       glob: true
       path: walker
+    ~/.config/btop:
+      create: true
+      glob: true
+      path: btop
 
 # Nighthawk (Desktop)
 - defaults:
