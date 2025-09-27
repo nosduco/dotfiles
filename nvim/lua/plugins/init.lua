@@ -298,32 +298,54 @@ return {
       require("neoscroll").setup {}
     end,
   },
-  {
-    "sphamba/smear-cursor.nvim",
-    lazy = false,
-    opts = {},
-  },
+  -- {
+  --   "sphamba/smear-cursor.nvim",
+  --   lazy = false,
+  --   opts = {},
+  -- },
   {
     "wakatime/vim-wakatime",
     lazy = false,
   },
+  -- {
+  --   "coder/claudecode.nvim",
+  --   config = true,
+  --   keys = {
+  --     -- { "<leader>a", nil, desc = "AI/Claude Code" },
+  --     -- { "<leader>aa", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+  --     -- { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+  --     -- { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+  --     { "<leader>ai", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+  --     { "<leader>aa", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
+  --     -- {
+  --     --   "<leader>as",
+  --     --   "<cmd>ClaudeCodeTreeAdd<cr>",
+  --     --   desc = "Add file",
+  --     --   ft = { "NvimTree", "neo-tree" },
+  --     -- },
+  --   },
+  -- },
   {
-    "coder/claudecode.nvim",
-    config = true,
-    keys = {
-      -- { "<leader>a", nil, desc = "AI/Claude Code" },
-      -- { "<leader>aa", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
-      -- { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
-      -- { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
-      { "<leader>ai", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
-      { "<leader>aa", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
-      -- {
-      --   "<leader>as",
-      --   "<cmd>ClaudeCodeTreeAdd<cr>",
-      --   desc = "Add file",
-      --   ft = { "NvimTree", "neo-tree" },
-      -- },
+    "greggh/claude-code.nvim",
+    cmd = "ClaudeCodeContinue",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- Required for git operations
     },
+    config = function()
+      require("claude-code").setup {
+        position = "vertical",
+        -- keymaps = {
+        --   toggle = {
+        --     normal = false,
+        --     terminal = "<leader>aa",
+        --     variants = {
+        --       continue = "<leader>aa",
+        --       verbose = false,
+        --     },
+        --   },
+        -- },
+      }
+    end,
   },
   {
     "Exafunction/windsurf.nvim",

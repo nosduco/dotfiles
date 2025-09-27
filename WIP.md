@@ -6,6 +6,8 @@ papirus-icon-theme
 papirus-foldrs-catppuccin-git
 walker
 dunst
+hyprshot
+satty
 ...
 
 `papirus-folders -C cat-mocha-peach --theme Papirus-Dark`

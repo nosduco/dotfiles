@@ -197,3 +197,6 @@ map("n", "<leader>rc", "<cmd> Telescope remote-sshfs connect <CR>", { desc = "Op
 
 -- Find and Replace
 map("n", "<leader>fr", "<cmd> GrugFar <CR>", { desc = "Find and replace" })
+
+-- Claude Code
+map("n", "<leader>aa", "<cmd>ClaudeCodeContinue<CR>", { desc = "Toggle Claude Code" })

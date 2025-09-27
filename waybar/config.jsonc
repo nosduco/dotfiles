@@ -14,7 +14,7 @@
     "wlr/taskbar"
   ],
   "modules-right": [
-    "keyboard-state",
+    // "keyboard-state",
     "group/tray",
     "idle_inhibitor",
     "custom/weather",
@@ -181,17 +181,17 @@
   },
   "network": {
     "format-wifi": "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰖩</span>",
-    "format-ethernet": "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰈀</span>",
+    "format-ethernet": "<span font=\"Material Design Icons\" size='large' font_weight='normal' color='red'>󰈀</span>",
     "tooltip-format": "{gwaddr} via {ifname}",
-    "format-linked": "{ifname} (No IP) 󰈀",
+    "format-linked": "<span font=\"Material Design Icons\" size='medium' font_weight='normal'></span> ",
     "format-disconnected": "Disconnected ⚠",
     "format-alt": "󰈀 {ipaddr}/{cidr}"
   },
   "pulseaudio": {
     "format": "{icon} {format_source}",
     "format-muted": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰝟</span> {format_source}",
-    "format-source": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍬</span>",
-    "format-source-muted": "󰍭",
+    // "format-source": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍬</span>",
+    // "format-source-muted": "󰍭",
     "format-icons": {
       "headphone": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰋋</span>",
       "speaker": [

@@ -7,7 +7,7 @@ font-style-bold = "Bold"
 font-style-italic = "Italic"
 font-style-bold-italic = "Bold Italic"
 
-theme = "catppuccin-mocha"
+theme = "catppuccin-mocha.conf"
 cursor-style = "underline"
 
 font-size = 10
@@ -25,3 +25,5 @@ window-padding-balance = false
 
 shell-integration = "fish"
 shell-integration-features = no-cursor
+#custom-shader = ./shaders/animated-gradient-shader.glsl
+#custom-shader-animation = always

@@ -13,3 +13,4 @@ streamcontroller/pages/backups/*
 spicetify/*
 !spicetify/Themes/*
 !spicetify/config-xpui.ini
+cava/shaders/
