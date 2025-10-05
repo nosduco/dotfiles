@@ -25,5 +25,7 @@ window-padding-balance = false
 
 shell-integration = "fish"
 shell-integration-features = no-cursor
+#custom-shader = ./shaders/nosduco.gsls
+custom-shader = ./shaders/cursor_smear_fade_gsls.gsls
 #custom-shader = ./shaders/animated-gradient-shader.glsl
 #custom-shader-animation = always
