@@ -298,54 +298,9 @@ return {
       require("neoscroll").setup {}
     end,
   },
-  -- {
-  --   "sphamba/smear-cursor.nvim",
-  --   lazy = false,
-  --   opts = {},
-  -- },
   {
     "wakatime/vim-wakatime",
     lazy = false,
-  },
-  -- {
-  --   "coder/claudecode.nvim",
-  --   config = true,
-  --   keys = {
-  --     -- { "<leader>a", nil, desc = "AI/Claude Code" },
-  --     -- { "<leader>aa", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
-  --     -- { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
-  --     -- { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
-  --     { "<leader>ai", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
-  --     { "<leader>aa", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
-  --     -- {
-  --     --   "<leader>as",
-  --     --   "<cmd>ClaudeCodeTreeAdd<cr>",
-  --     --   desc = "Add file",
-  --     --   ft = { "NvimTree", "neo-tree" },
-  --     -- },
-  --   },
-  -- },
-  {
-    "greggh/claude-code.nvim",
-    cmd = "ClaudeCodeContinue",
-    dependencies = {
-      "nvim-lua/plenary.nvim", -- Required for git operations
-    },
-    config = function()
-      require("claude-code").setup {
-        position = "vertical",
-        -- keymaps = {
-        --   toggle = {
-        --     normal = false,
-        --     terminal = "<leader>aa",
-        --     variants = {
-        --       continue = "<leader>aa",
-        --       verbose = false,
-        --     },
-        --   },
-        -- },
-      }
-    end,
   },
   {
     "Exafunction/windsurf.nvim",
@@ -374,5 +329,74 @@ return {
     config = function()
       require("grug-far").setup {}
     end,
+  },
+  {
+    "folke/sidekick.nvim",
+    lazy = false,
+    opts = {
+      -- add any options here
+      cli = {
+        mux = {
+          backend = "tmux",
+          enabled = true,
+        },
+      },
+    },
+    -- stylua: ignore
+    keys = {
+      {
+        "<tab>",
+        function()
+          -- if there is a next edit, jump to it, otherwise apply it if any
+          if not require("sidekick").nes_jump_or_apply() then
+            return "<Tab>" -- fallback to normal tab
+          end
+        end,
+        expr = true,
+        desc = "Goto/Apply Next Edit Suggestion",
+      },
+      {
+        "<leader>aa",
+        function() require("sidekick.cli").toggle() end,
+        desc = "Sidekick Toggle CLI",
+      },
+      {
+        "<leader>as",
+        function() require("sidekick.cli").select() end,
+        -- Or to select only installed tools:
+        -- require("sidekick.cli").select({ filter = { installed = true } })
+        desc = "Select CLI",
+      },
+      {
+        "<leader>at",
+        function() require("sidekick.cli").send({ msg = "{this}" }) end,
+        mode = { "x", "n" },
+        desc = "Send This",
+      },
+      {
+        "<leader>av",
+        function() require("sidekick.cli").send({ msg = "{selection}" }) end,
+        mode = { "x" },
+        desc = "Send Visual Selection",
+      },
+      {
+        "<leader>ap",
+        function() require("sidekick.cli").prompt() end,
+        mode = { "n", "x" },
+        desc = "Sidekick Select Prompt",
+      },
+      {
+        "<c-.>",
+        function() require("sidekick.cli").focus() end,
+        mode = { "n", "x", "i", "t" },
+        desc = "Sidekick Switch Focus",
+      },
+      -- Example of a keybinding to open Claude directly
+      {
+        "<leader>ac",
+        function() require("sidekick.cli").toggle({ name = "claude", focus = true }) end,
+        desc = "Sidekick Toggle Claude",
+      },
+    },
   },
 }
