@@ -90,11 +90,15 @@
       create: true
       glob: true
       path: yazi
-    # Walker (Launcher)
+    # Walker/Elephant (Launcher)
     ~/.config/walker:
       create: true
       glob: true
       path: walker
+    ~/.config/elephant:
+      create: true
+      glob: true
+      path: elephant
     ~/.config/btop:
       create: true
       glob: true
