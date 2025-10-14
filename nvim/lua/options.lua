@@ -49,25 +49,6 @@ vim.o.cmdheight = 0
 -- Enable relative line numbers
 vim.cmd "set rnu!"
 
--- Neovide (Neovim GUI) options
-if vim.g.neovide then
-  vim.g.neovide_scale_factor = 0.75
-  vim.o.guifont = "JetBrainsMono Nerd Font:10"
-  vim.g.neovide_fullscreen = false
-  vim.g.neovide_remember_window_size = false
-  vim.g.neovide_transparency = 0.95
-  vim.g.neovide_floating_blur_amount_x = 1.0
-  vim.g.neovide_floating_blur_amount_y = 1.0
-  vim.g.neovide_confirm_quit = true
-
-  vim.keymap.set("v", "<C-S-c>", '"+y') -- Copy
-  vim.keymap.set("n", "<C-S-v>", '"+P') -- Paste normal mode
-  vim.keymap.set("v", "<C-S-v>", '"+P') -- Paste visual mode
-  vim.keymap.set("c", "<C-S-v>", "<C-R>+") -- Paste command mode
-  vim.keymap.set("i", "<C-S-v>", '<ESC>l"+Pli') -- Paste insert mode
-
-  vim.o.cmdheight = 1
-end
 -- Allow clipboard copy paste in neovim
 vim.api.nvim_set_keymap("", "<C-S-v>", "+p<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("!", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
@@ -102,3 +83,8 @@ vim.filetype.add {
     ["http"] = "http",
   },
 }
+
+-- Search Options
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.inccommand = "split"
