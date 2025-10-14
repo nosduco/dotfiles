@@ -339,10 +339,8 @@
                 "0": {
                     "actions": [
                         {
-                            "id": "com_core447_OSPlugin::RunCommand",
-                            "settings": {
-                                "command": "~/.dotfiles/scripts/change_office_hue_scene.sh christmas"
-                            }
+                            "id": "com_core447_Weather::Weather",
+                            "settings": {}
                         }
                     ],
                     "image-control-action": 0,
@@ -353,7 +351,8 @@
                     ],
                     "media": {
                         "path": "/home/tony/.var/app/com.core447.StreamController/data/icons/com_axolotlmaid_FontAwesomeIcons/icons/white/snowflake.svg"
-                    }
+                    },
+                    "background-control-action": 0
                 }
             }
         }
