@@ -1,0 +1,170 @@
+/* Color definitions */
+@define-color selected-text #fab387;
+@define-color text #cdd6f4;
+@define-color base #24273a;
+@define-color border #fab387;
+@define-color foreground #c6d0f5;
+@define-color background rgba(30, 30, 46, 0.9);
+
+/* Reset all elements */
+* {
+  all: unset;
+}
+
+/* Base typography */
+* {
+  font-family: "Google Sans";
+  font-size: 16px;
+  color: @text;
+}
+
+/* Icon size classes */
+.normal-icons {
+  -gtk-icon-size: 16px;
+}
+
+.large-icons {
+  -gtk-icon-size: 32px;
+}
+
+/* Hide scrollbar */
+scrollbar {
+  opacity: 0;
+}
+
+/* Window wrapper */
+.box-wrapper {
+  background: rgba(30, 30, 46, 0.8);
+  padding: 20px;
+  border: 2px solid @border;
+  border-radius: 20px;
+  min-height: 550px;
+  min-width: 600px;
+}
+
+/* Main box */
+.box {
+}
+
+.preview-box,
+.elephant-hint,
+.placeholder {
+  color: @text;
+}
+
+/* Search container */
+.search-container {
+  background: @base;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+/* Input field */
+.input {
+  background: none;
+  color: @text;
+  padding: 0;
+}
+
+.input placeholder {
+  opacity: 0.5;
+  color: @text;
+}
+
+.input:focus,
+.input:active {
+  box-shadow: none;
+  outline: none;
+}
+
+/* Content container */
+.content-container {
+  min-height: 400px;
+}
+
+/* Placeholder */
+.placeholder {}
+
+/* Scroll area */
+.scroll {}
+
+/* List */
+.list {
+  background: transparent;
+}
+
+/* List items */
+child {
+}
+
+/* Item box */
+.item-box {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* Quick activation label */
+.item-quick-activation {
+  margin-left: 10px;
+  background: alpha(@selected-text, 0.25);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+child:hover .item-box,
+child:selected .item-box {
+  background: alpha(@selected-text, 0.25);
+}
+
+/* Item text container */
+.item-text-box {
+}
+
+/* Item text */
+.item-text {
+}
+
+/* Item subtext */
+.item-subtext {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+/* Item icon */
+.item-image,
+.item-image-text {
+  margin-right: 10px;
+}
+
+.item-image-text {
+  font-size: 28px;
+}
+
+/* Preview */
+.preview {
+  border: 1px solid alpha(@border, 0.25);
+  padding: 10px;
+  border-radius: 10px;
+  color: @text;
+}
+
+/* Keybinds wrapper */
+.keybinds-wrapper {
+  border-top: 1px solid lighter(@base);
+  font-size: 12px;
+  opacity: 0.5;
+  color: @text;
+}
+
+.keybinds {
+}
+
+.keybind {
+}
+
+.keybind-bind {
+  font-weight: bold;
+}
+
+.keybind-label {
+}
