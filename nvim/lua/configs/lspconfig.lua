@@ -79,11 +79,9 @@ rt.setup {
 
 -- JSON
 lspconfig.jsonls.setup {
-  server = {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  },
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
   settings = {
     json = {
       schemas = require("schemastore").json.schemas(),
@@ -94,11 +92,9 @@ lspconfig.jsonls.setup {
 
 -- YAML
 lspconfig.yamlls.setup {
-  server = {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  },
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
   settings = {
     yaml = {
       schemaStore = {
@@ -115,11 +111,9 @@ lspconfig.yamlls.setup {
 
 -- Python
 lspconfig.pyright.setup {
-  server = {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  },
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
   settings = {
     python = {
       enable = true,
@@ -136,7 +130,7 @@ lspconfig.pyright.setup {
 
 -- Java
 local home = vim.env.HOME
-WORKSPACE_PATH = home .. "/workspace/"
+local WORKSPACE_PATH = home .. "/workspace/"
 lspconfig.jdtls.setup {
   on_attach = on_attach,
   on_init = on_init,

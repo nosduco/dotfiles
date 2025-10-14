@@ -40,8 +40,9 @@ end, { desc = "Move focus to above pane" })
 map({ "n", "t" }, "<C-l>", function()
   require("smart-splits").move_cursor_right()
 end, { desc = "Move focus to right pane" })
-require("smart-splits").resize_left()
-map({ "n", "t" }, "<A-h>", function() end, { desc = "Resize pane to the left" })
+map({ "n", "t" }, "<A-h>", function()
+  require("smart-splits").resize_left()
+end, { desc = "Resize pane to the left" })
 map({ "n", "t" }, "<A-j>", function()
   require("smart-splits").resize_down()
 end, { desc = "Resize pane downward" })
@@ -199,4 +200,4 @@ map("n", "<leader>rc", "<cmd> Telescope remote-sshfs connect <CR>", { desc = "Op
 map("n", "<leader>fr", "<cmd> GrugFar <CR>", { desc = "Find and replace" })
 
 -- Claude Code
-map("n", "<leader>aa", "<cmd>ClaudeCodeContinue<CR>", { desc = "Toggle Claude Code" })
+map("n", "<leader>cc", "<cmd>ClaudeCodeContinue<CR>", { desc = "Toggle Claude Code" })

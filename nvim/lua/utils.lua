@@ -7,7 +7,7 @@ end
 
 -- Set current directory of Vim and create tmux hook to set adjacent panes to cwd
 M.set_cwd = function(cwd)
-  vim.fn.execute("cd " .. cwd)
+  vim.api.nvim_set_current_dir(cwd)
   M.set_tmux_cwd(cwd)
 end
 
