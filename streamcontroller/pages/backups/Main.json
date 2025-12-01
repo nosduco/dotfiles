@@ -15,7 +15,7 @@
                         {
                             "id": "com_core447_AudioSwitcher::SetOutput",
                             "settings": {
-                                "device": "alsa_output.pci-0000_01_00.1.hdmi-stereo"
+                                "device": "alsa_output.pci-0000_7a_00.6.analog-stereo"
                             },
                             "comment": "Speaker"
                         }

@@ -1,10 +1,4 @@
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local on_init = require("nvchad.configs.lspconfig").on_init
-local capabilities = require("nvchad.configs.lspconfig").capabilities
-
-local lspconfig = require "lspconfig"
-
--- List of servers to load with default configurations
+-- Servers with default config (capabilities/on_init inherited from NvChad's "*" config)
 local servers = {
   "html",
   "cssls",
@@ -13,88 +7,61 @@ local servers = {
   "dockerls",
   "tailwindcss",
   "helm_ls",
+  "eslint",
 }
 
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  }
+for _, server in ipairs(servers) do
+  vim.lsp.enable(server)
 end
 
--- Javascript/Typescript
-lspconfig.eslint.setup {
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
+-- ESLint: add auto-fix on save
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client.name == "eslint" then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = args.buf,
+        command = "EslintFixAll",
+      })
+    end
   end,
-  on_init = on_init,
-  capabilities = capabilities,
+})
+
+-- TypeScript (uses typescript-tools plugin)
+require("typescript-tools").setup {
+  on_attach = require("nvchad.configs.lspconfig").on_attach,
+  on_init = require("nvchad.configs.lspconfig").on_init,
+  capabilities = require("nvchad.configs.lspconfig").capabilities,
 }
 
-local ts = require "typescript-tools"
-ts.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-}
-
--- Lua
-lspconfig.lua_ls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = {
-          "vim",
-        },
-      },
-    },
-  },
-}
-
--- Terraform/HCL
-lspconfig.terraformls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
+-- Terraform
+vim.lsp.config("terraformls", {
   filetypes = { "tf", "terraform", "terraform-vars" },
-}
+})
+vim.lsp.enable("terraformls")
 
--- Rust
-local rt = require "rust-tools"
-rt.setup {
+-- Rust (uses rust-tools plugin)
+require("rust-tools").setup {
   server = {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
+    on_attach = require("nvchad.configs.lspconfig").on_attach,
+    on_init = require("nvchad.configs.lspconfig").on_init,
+    capabilities = require("nvchad.configs.lspconfig").capabilities,
   },
 }
 
 -- JSON
-lspconfig.jsonls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
+vim.lsp.config("jsonls", {
   settings = {
     json = {
       schemas = require("schemastore").json.schemas(),
       validate = { enable = true },
     },
   },
-}
+})
+vim.lsp.enable("jsonls")
 
 -- YAML
-lspconfig.yamlls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
+vim.lsp.config("yamlls", {
   settings = {
     yaml = {
       schemaStore = {
@@ -103,17 +70,15 @@ lspconfig.yamlls.setup {
       },
       schemas = require("schemastore").yaml.schemas(),
       ignore = {
-        "**/charts/**/templates/*.yaml", -- or wherever your helm templates live
+        "**/charts/**/templates/*.yaml",
       },
     },
   },
-}
+})
+vim.lsp.enable("yamlls")
 
 -- Python
-lspconfig.pyright.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
+vim.lsp.config("pyright", {
   settings = {
     python = {
       enable = true,
@@ -126,15 +91,13 @@ lspconfig.pyright.setup {
       },
     },
   },
-}
+})
+vim.lsp.enable("pyright")
 
 -- Java
 local home = vim.env.HOME
 local WORKSPACE_PATH = home .. "/workspace/"
-lspconfig.jdtls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
+vim.lsp.config("jdtls", {
   cmd = {
     "java",
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -153,9 +116,8 @@ lspconfig.jdtls.setup {
     "/home/tony/tools/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
     "-configuration",
     "/home/tony/tools/jdtls/config_linux",
-    -- 💀
-    -- See `data directory configuration` section in the README
     "-data",
     WORKSPACE_PATH,
   },
-}
+})
+vim.lsp.enable("jdtls")
