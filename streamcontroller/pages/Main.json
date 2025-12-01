@@ -15,7 +15,7 @@
                         {
                             "id": "com_core447_AudioSwitcher::SetOutput",
                             "settings": {
-                                "device": "alsa_output.usb-Generic_USB_Audio-00.HiFi__Speaker__sink"
+                                "device": "alsa_output.pci-0000_7a_00.6.analog-stereo"
                             },
                             "comment": "Speaker"
                         }
