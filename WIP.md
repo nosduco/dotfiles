@@ -15,3 +15,5 @@ satty
 Use GTK Settings to update...
 
 Google Sans
+
+gcr-ssh-agent (SEAHORSE)
