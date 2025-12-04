@@ -103,6 +103,11 @@
       create: true
       glob: true
       path: btop
+    # Desktop Applications (Wayland flags)
+    ~/.local/share/applications:
+      create: true
+      glob: true
+      path: applications
 
 # Nighthawk (Desktop)
 - defaults:
