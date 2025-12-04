@@ -97,6 +97,11 @@ Dotbot handles host-specific configuration via hostname detection (see `install.
 sudo systemctl enable greetd.service
 ```
 
+**Fish theme:**
+```bash
+fish_config theme save "Catppuccin Mocha"
+```
+
 **Spicetify (Spotify theming):**
 ```bash
 git clone https://github.com/catppuccin/spicetify.git /tmp/spicetify
