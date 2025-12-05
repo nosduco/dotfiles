@@ -40,14 +40,7 @@ vim.lsp.config("terraformls", {
 })
 vim.lsp.enable("terraformls")
 
--- Rust (uses rust-tools plugin)
-require("rust-tools").setup {
-  server = {
-    on_attach = require("nvchad.configs.lspconfig").on_attach,
-    on_init = require("nvchad.configs.lspconfig").on_init,
-    capabilities = require("nvchad.configs.lspconfig").capabilities,
-  },
-}
+-- Rust (rustaceanvim handles LSP automatically, no setup needed here)
 
 -- JSON
 vim.lsp.config("jsonls", {

@@ -45,7 +45,7 @@ return {
     config = function()
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
-    end, -- Override to setup mason-lspconfig
+    end,
   },
    {
     "hrsh7th/nvim-cmp",
@@ -282,8 +282,11 @@ return {
   --   end,
   -- },
   {
-    -- Rust Tooling
-    "simrat39/rust-tools.nvim",
+    -- Rust Tooling (replaces deprecated rust-tools.nvim)
+    "mrcjkb/rustaceanvim",
+    version = "^5",
+    lazy = false,
+    ft = { "rust" },
   },
   {
     -- SchemaStore Support (json, yaml)
