@@ -55,6 +55,22 @@ return {
     end,
   },
   {
+    import = "nvchad.blink.lazyspec",
+    dependencies = {
+      {
+        'Exafunction/codeium.nvim',
+      },
+    },
+    opts = {
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'codeium' },
+        providers = {
+          codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
+        },
+      },
+    },
+  },
+  {
     "NvChad/nvim-colorizer.lua",
     opts = colorizer.opts,
   },
@@ -310,7 +326,7 @@ return {
     cmd = "Codeium",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
+      -- "hrsh7th/nvim-cmp",
     },
     config = function()
       require("codeium").setup {

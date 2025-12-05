@@ -25,7 +25,7 @@ while true; do
 	old_wallpaper="$wallpaper"
 
 	# Pick new random wallpaper
-	wallpaper="$(find -L "$1" -type f -maxdepth 1 | shuf -n 1)"
+	wallpaper="$(find -L "$1" -maxdepth 1 -type f | shuf -n 1)"
 
 	# Preload new wallpaper
 	hyprctl hyprpaper preload "$wallpaper"
