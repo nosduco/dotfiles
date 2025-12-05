@@ -47,28 +47,53 @@ return {
       require "configs.lspconfig"
     end, -- Override to setup mason-lspconfig
   },
-  {
+   {
     "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      table.insert(opts.sources, { name = "codeium" })
-      -- require("nvchad.configs.cmp").overrides,
-    end,
+    enabled = false,
   },
   {
-    import = "nvchad.blink.lazyspec",
+    "saghen/blink.cmp",
+    version = "1.*",
+    event = { "InsertEnter", "CmdLineEnter" },
+
     dependencies = {
+      "rafamadriz/friendly-snippets",
+      {
+        -- snippet plugin
+        "L3MON4D3/LuaSnip",
+        dependencies = "rafamadriz/friendly-snippets",
+        opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+        config = function(_, opts)
+          require("luasnip").config.set_config(opts)
+          require "nvchad.configs.luasnip"
+        end,
+      },
+
+      {
+        "windwp/nvim-autopairs",
+        opts = {
+          fast_wrap = {},
+          disable_filetype = { "TelescopePrompt", "vim" },
+        },
+      },
       {
         'Exafunction/codeium.nvim',
       },
     },
-    opts = {
-      sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'codeium' },
-        providers = {
-          codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
+
+    opts_extend = { "sources.default" },
+
+    opts = function()
+      local nvchad_opts = require "nvchad.blink.config"
+      return vim.tbl_deep_extend("force", nvchad_opts, {
+        sources = {
+          default = { "lsp", "snippets", "buffer", "path", "codeium" },
+          providers = {
+            codeium = { name = "Codeium", module = "codeium.blink", async = true },
+          },
         },
-      },
-    },
+      })
+    end
   },
   {
     "NvChad/nvim-colorizer.lua",
@@ -321,18 +346,14 @@ return {
   },
   {
     "Exafunction/windsurf.nvim",
-    -- lazy = "VeryLazy",
-    lazy = false,
-    cmd = "Codeium",
+    event = "VeryLazy",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      -- "hrsh7th/nvim-cmp",
     },
     config = function()
       require("codeium").setup {
-        virtual_text = {
-          enabled = false,
-        },
+        enable_chat = false,
+        enable_cmp_source = false,  -- disable cmp integration, use blink instead
       }
     end,
   },
