@@ -14,18 +14,7 @@ for _, server in ipairs(servers) do
   vim.lsp.enable(server)
 end
 
--- ESLint: add auto-fix on save
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client and client.name == "eslint" then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = args.buf,
-        command = "EslintFixAll",
-      })
-    end
-  end,
-})
+-- ESLint: auto-fix handled by conform.nvim (see configs/conform.lua)
 
 -- TypeScript (uses typescript-tools plugin)
 require("typescript-tools").setup {

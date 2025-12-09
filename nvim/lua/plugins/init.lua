@@ -89,7 +89,15 @@ return {
         sources = {
           default = { "lsp", "snippets", "buffer", "path", "codeium" },
           providers = {
-            codeium = { name = "Codeium", module = "codeium.blink", async = true },
+            codeium = {
+              name = "Codeium",
+              module = "codeium.blink",
+              async = true,
+              enabled = function()
+                local disabled_fts = { oil = true, TelescopePrompt = true, DressingInput = true }
+                return not disabled_fts[vim.bo.filetype]
+              end,
+            },
           },
         },
       })
@@ -357,6 +365,11 @@ return {
       require("codeium").setup {
         enable_chat = false,
         enable_cmp_source = false,  -- disable cmp integration, use blink instead
+        filetypes = {
+          oil = false,
+          TelescopePrompt = false,
+          DressingInput = false,
+        },
       }
     end,
   },
