@@ -26,6 +26,7 @@
     "gamemode",
     "pulseaudio",
     "privacy",
+    "custom/vpn",
     "network",
     "custom/dunst",
     "clock"
@@ -184,11 +185,11 @@
   },
   "network": {
     "format-wifi": "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰖩</span>",
-    "format-ethernet": "<span font=\"Material Design Icons\" size='large' font_weight='normal' color='red'>󰈀</span>",
+    "format-ethernet": "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰈀</span>",
     "tooltip-format": "{gwaddr} via {ifname}",
-    "format-linked": "<span font=\"Material Design Icons\" size='medium' font_weight='normal'></span> ",
-    "format-disconnected": "Disconnected ⚠",
-    "format-alt": "󰈀 {ipaddr}/{cidr}"
+    // "format-linked": "<span font=\"Material Design Icons\" size='medium' font_weight='normal'></span> ",
+    "format-disconnected": "Disconnected ⚠"
+    // "format-alt": "󰈀 {ipaddr}/{cidr}"
   },
   "pulseaudio": {
     "format": "{icon} {format_source}",
@@ -230,6 +231,15 @@
     "exec": "~/.dotfiles/scripts/dunst_tray.sh",
     "on-click": "dunstctl set-paused toggle",
     "restart-interval": 1
+  },
+  "custom/vpn": {
+    "format": "{}",
+    "return-type": "json",
+    "interval": 5,
+    "exec": "$HOME/.dotfiles/scripts/vpn/vpn-status.sh",
+    "on-click": "$HOME/.dotfiles/scripts/vpn/vpn-toggle.sh",
+    "on-click-right": "$HOME/.dotfiles/scripts/vpn/vpn-menu.sh",
+    "tooltip": true
   },
   "wlr/taskbar": {
     "format": "{icon}",

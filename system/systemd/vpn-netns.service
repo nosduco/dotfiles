@@ -1,0 +1,13 @@
+[Unit]
+Description=VPN Bypass Network Namespace
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/home/tony/.dotfiles/scripts/vpn/vpn-netns-setup.sh
+ExecStop=/usr/bin/ip netns del novpn
+
+[Install]
+WantedBy=multi-user.target

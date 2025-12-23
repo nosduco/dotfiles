@@ -127,3 +127,15 @@ window#waybar.solo {
 #custom-storage.critical {
   color: rgba(238, 46, 36, 1);
 }
+
+#custom-vpn {
+  margin-top: 2px;
+}
+
+#custom-vpn.connected {
+  color: @green;
+}
+
+#custom-vpn.disconnected {
+  color: @red;
+}

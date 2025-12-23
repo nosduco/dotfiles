@@ -1,0 +1,5 @@
+# This directory is gitignored because configs contain private keys.
+# Place your ProtonVPN WireGuard .conf files here.
+#
+# To import and auto-patch configs for LAN bypass:
+#   ~/.dotfiles/scripts/vpn/vpn-setup-configs.sh /path/to/downloaded/configs/

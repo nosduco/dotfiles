@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Vesktop
-Exec=vesktop --ozone-platform=wayland %U
+Exec=vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland %U
 Terminal=false
 Type=Application
 Icon=vesktop

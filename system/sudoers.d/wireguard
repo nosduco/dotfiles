@@ -1,0 +1,6 @@
+# Allow tony to run VPN commands without password
+tony ALL=(ALL) NOPASSWD: /usr/bin/wg-quick
+tony ALL=(ALL) NOPASSWD: /usr/bin/wg
+tony ALL=(ALL) NOPASSWD: /usr/bin/ip netns exec novpn *
+tony ALL=(ALL) NOPASSWD: /usr/bin/ip rule add from 10.200.200.2 *
+tony ALL=(ALL) NOPASSWD: /usr/bin/ip rule del from 10.200.200.2 *
