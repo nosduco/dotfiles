@@ -18,3 +18,5 @@ cava/shaders/
 
 # WireGuard configs contain private keys
 wireguard/configs/*.conf
+hypr/hypridle.conf
+hypr/hyprlock.conf
