@@ -12,6 +12,8 @@
       description: Installing greetd config
     - command: sudo mkdir -p /etc/systemd/system/greetd.service.d && sudo ln -sf $(pwd)/greetd/greetd.service.d/* /etc/systemd/system/greetd.service.d/
       description: Installing greetd service override
+    - command: sudo cp $(pwd)/system/pam.d/greetd /etc/pam.d/greetd
+      description: Installing greetd PAM config with keyring support
     # VPN/WireGuard system files (sudoers must be copied, not symlinked)
     - command: sudo cp $(pwd)/system/sudoers.d/wireguard /etc/sudoers.d/wireguard && sudo chown root:root /etc/sudoers.d/wireguard && sudo chmod 440 /etc/sudoers.d/wireguard
       description: Installing wireguard sudoers config
@@ -38,11 +40,6 @@
       glob: true
       path: hypr
       exclude: [hypr/host.conf]
-    # Wofi (Launcher)
-    ~/.config/wofi:
-      create: true
-      glob: true
-      path: wofi
     # Dunst (Notifications Daemon)
     ~/.config/dunst:
       create: true
