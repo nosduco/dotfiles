@@ -71,27 +71,27 @@
     ~/.config/nvim/:
       create: true
       glob: true
-      path: nvim
+      path: nvim/*
     # Spicetify (Spotify Theming)
     ~/.config/spicetify/:
       create: true
       glob: true
-      path: spicetify
+      path: spicetify/*
     # StreamController (Stream Deck)
     ~/.var/app/com.core447.StreamController/data/:
       create: true
       glob: true
-      path: streamcontroller
+      path: streamcontroller/*
     # Posting (HTTP Client)
     ~/.config/posting/:
       create: true
       glob: true
-      path: posting
+      path: posting/*
     # Yazi (File Manager)
     ~/.config/yazi/:
       create: true
       glob: true
-      path: yazi
+      path: yazi/*
     # Walker/Elephant (Launcher)
     ~/.config/walker:
       create: true
