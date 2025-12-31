@@ -15,42 +15,31 @@
   ],
   "modules-right": [
     "keyboard-state",
-    "tray",
+    "group/tray",
     "idle_inhibitor",
     "custom/weather",
     "battery#laptop",
-    "battery#razermouse",
-    "battery#razermousecharging",
     "pulseaudio",
+    "privacy",
     "network",
+    "custom/dunst",
     "clock"
   ],
   "hyprland/workspaces": {
-    "all-outputs": false,
+    "on-click": "activate",
+    "persistent-only": true,
     "format": "{icon}",
     "format-icons": {
       "active": "",
       "default": ""
     },
-    "sort-by": "ID",
     "persistent-workspaces": {
-      "1": [
-        "DP-1",
-        "eDP-1"
-      ],
-      "2": [
-        "DP-1",
-        "eDP-1"
-      ],
-      "3": [
-        "DP-1",
-        "eDP-1"
-      ],
-      "4": [
-        "DP-1",
-        "eDP-1"
-      ]
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": []
     }
+    // "sort-by": "ID"
   },
   "keyboard-state": {
     "numlock": false,
@@ -98,10 +87,25 @@
       "deactivated": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰾫</span>"
     }
   },
+  "group/tray": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 600,
+      "children-class": "tray-group-item"
+    },
+    "modules": [
+      "custom/expand-icon",
+      "tray"
+    ]
+  },
+  "custom/expand-icon": {
+    // "format": "< ",
+    "format": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰅁</span>",
+    "tooltip": false
+  },
   "tray": {
     "spacing": 8,
     "icon-size": 16
-    // "show-passive-items": true
   },
   "clock": {
     "format": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰙹</span> {:%A, %b %d %I:%M %p}",
@@ -232,6 +236,11 @@
     },
     "escape": true,
     "exec": "$HOME/.dotfiles/scripts/mediaplayer.py --player spotify 2> /dev/null"
+  },
+  "custom/dunst": {
+    "exec": "~/.dotfiles/scripts/dunst_tray.sh",
+    "on-click": "dunstctl set-paused toggle",
+    "restart-interval": 1
   },
   "custom/weather": {
     "format": "{}",
