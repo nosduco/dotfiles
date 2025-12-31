@@ -2,12 +2,26 @@
 # Helper functions
 get_volume_integer() {
   local raw_volume=$(echo "$1" | awk '{print $2}')
-  if [[ $raw_volume == "1.00" ]]; then
-    echo 100
-  elif [[ $raw_volume == "0.00" ]]; then
+  if [[ $raw_volume == "0.00" ]]; then
     echo 0
   else
-    echo "$raw_volume" | awk -F'.' '{print $2}'
+    # Extract the integer and decimal parts
+    local integer_part=$(echo "$raw_volume" | awk -F'.' '{print $1}')
+    local decimal_part=$(echo "$raw_volume" | awk -F'.' '{print $2}')
+    
+    # Calculate percentage based on max volume (2.00 = 100%)
+    if [[ $(hostname) = voyager ]]; then
+      # For voyager with max 2.00 (200%)
+      local percentage=$(echo "$integer_part * 50 + $decimal_part / 2" | bc)
+      echo $percentage
+    else
+      # For other hosts with max 1.00 (100%)
+      if [[ $integer_part == "1" ]]; then
+        echo 100
+      else
+        echo $decimal_part
+      fi
+    fi
   fi
 }
 
@@ -23,13 +37,13 @@ PREVIOUS_VOLUME=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
 # Increase or decrease volume
 if [ $1 = "increase" ]; then
   if [ $(hostname) = voyager ]; then
-    wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+    wpctl set-volume -l 2 @DEFAULT_AUDIO_SINK@ 5%+
   else
     wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
   fi
 elif [ $1 = "decrease" ]; then
   if [ $(hostname) = voyager ]; then
-    wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-
+    wpctl set-volume -l 2 @DEFAULT_AUDIO_SINK@ 5%-
   else
     wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-
   fi

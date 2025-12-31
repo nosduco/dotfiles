@@ -39,7 +39,7 @@
       create: true
       glob: true
       path: hypr
-      exclude: [hypr/host.conf]
+      exclude: [hypr/host.conf, hypr/hypridle.conf, hypr/hyprlock.conf]
     # Dunst (Notifications Daemon)
     ~/.config/dunst:
       create: true
@@ -143,6 +143,10 @@
     # Hyprland
     ~/.config/hypr/host.conf:
       path: hypr/host/nighthawk.conf
+    ~/.config/hypr/hypridle.conf:
+      path: hypr/hypridle/nighthawk.conf
+    ~/.config/hypr/hyprlock.conf:
+      path: hypr/hyprlock/nighthawk.conf
 # Voyager (Laptop)
 - defaults:
     link:
@@ -151,3 +155,7 @@
     # Hyprland
     ~/.config/hypr/host.conf:
       path: hypr/host/voyager.conf
+    ~/.config/hypr/hypridle.conf:
+      path: hypr/hypridle/voyager.conf
+    ~/.config/hypr/hyprlock.conf:
+      path: hypr/hyprlock/voyager.conf
