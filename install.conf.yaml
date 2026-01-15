@@ -19,6 +19,8 @@
       description: Installing wireguard sudoers config
     - command: sudo cp $(pwd)/system/systemd/vpn-netns.service /etc/systemd/system/vpn-netns.service && sudo systemctl daemon-reload && sudo systemctl enable vpn-netns.service
       description: Installing VPN namespace systemd service
+    - command: sudo ln -sf $(pwd)/gamemode/gamemode.ini /etc/gamemode.ini
+      description: Installing gamemode config
 - link:
     # tty configurations
     ~/.dircolors: .dircolors
