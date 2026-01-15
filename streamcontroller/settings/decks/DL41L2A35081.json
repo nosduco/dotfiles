@@ -12,8 +12,8 @@
     },
     "background": {
         "path": "/home/tony/.var/app/com.core447.StreamController/data/wallpapers/com_core447_PixabayFavorites/images/bokeh-1072721_640.jpg",
-        "enable": true,
-        "loop": true,
+        "enable": false,
+        "loop": false,
         "fps": 30
     }
 }
