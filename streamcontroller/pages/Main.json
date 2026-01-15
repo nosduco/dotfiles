@@ -3,21 +3,20 @@
         "value": 75
     },
     "background": {
-        "overwrite": false,
-        "path": "/home/tony/.var/app/com.core447.StreamController/data/wallpapers/com_core447_PixabayFavorites/images/bokeh-1072721_640.jpg",
-        "show": false
+        "overwrite": true,
+        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/catppuccin-gradient.mp4",
+        "show": true,
+        "loop": true,
+        "fps": 30
     },
     "keys": {
-        "4x0": {
+        "0x0": {
             "states": {
                 "0": {
                     "actions": [
                         {
-                            "id": "com_core447_AudioSwitcher::SetOutput",
-                            "settings": {
-                                "device": "alsa_output.pci-0000_7a_00.6.analog-stereo"
-                            },
-                            "comment": "Speaker"
+                            "id": "com_core447_MicMute::ToggleMute",
+                            "settings": {}
                         }
                     ],
                     "image-control-action": 0,
@@ -27,38 +26,7 @@
                         0
                     ],
                     "media": {
-                        "path": null
-                    },
-                    "labels": {
-                        "bottom": {
-                            "text": ""
-                        },
-                        "top": {
-                            "text": ""
-                        }
-                    }
-                }
-            }
-        },
-        "4x1": {
-            "states": {
-                "0": {
-                    "actions": [
-                        {
-                            "id": "com_core447_AudioSwitcher::SetOutput",
-                            "settings": {
-                                "device": "alsa_output.usb-Schiit_Audio_Schiit_Modi_3E-00.analog-stereo"
-                            }
-                        }
-                    ],
-                    "image-control-action": 0,
-                    "label-control-actions": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "media": {
-                        "path": "/home/tony/.var/app/com.core447.StreamController/data/icons/com_core447_MaterialIcons/icons/headphones-inv.png"
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/mic-peach.svg"
                     }
                 }
             }
@@ -81,7 +49,7 @@
                         0
                     ],
                     "media": {
-                        "path": "/home/tony/.var/app/com.core447.StreamController/data/icons/com_g4pls_volume_icons/icons/White/Vol_down.svg"
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/volume-down-peach.svg"
                     }
                 }
             }
@@ -104,7 +72,7 @@
                         0
                     ],
                     "media": {
-                        "path": "/home/tony/.var/app/com.core447.StreamController/data/icons/com_g4pls_volume_icons/icons/White/Loud.svg"
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/volume-up-peach.svg"
                     }
                 }
             }
@@ -127,12 +95,55 @@
                         0
                     ],
                     "media": {
-                        "path": "/home/tony/.var/app/com.core447.StreamController/data/icons/com_g4pls_volume_icons/icons/White/Mute.svg"
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/volume-x-peach.svg"
                     }
                 }
             }
         },
-        "1x1": {
+        "4x0": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_AudioSwitcher::ToggleOutput",
+                            "settings": {
+                                "device_a": "alsa_output.pci-0000_7a_00.6.analog-stereo",
+                                "device_b": "alsa_output.usb-Schiit_Audio_Schiit_Modi_3E-00.analog-stereo"
+                            },
+                            "comment": "Toggle Speakers/Headphones"
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "media": {
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/speaker-mauve.svg"
+                    }
+                },
+                "1": {
+                    "actions": [
+                        {
+                            "id": "com_core447_AudioSwitcher::ToggleOutput",
+                            "settings": {
+                                "device_a": "alsa_output.pci-0000_7a_00.6.analog-stereo",
+                                "device_b": "alsa_output.usb-Schiit_Audio_Schiit_Modi_3E-00.analog-stereo"
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0
+                }
+            }
+        },
+        "0x1": {
             "states": {
                 "0": {
                     "actions": [
@@ -149,19 +160,22 @@
                         0,
                         0,
                         0
-                    ]
+                    ],
+                    "media": {
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/skip-back-green.svg"
+                    }
                 }
             }
         },
-        "2x1": {
+        "1x1": {
             "states": {
                 "0": {
                     "actions": [
                         {
                             "id": "com_core447_MediaPlugin::PlayPause",
                             "settings": {
-                                "show_label": true,
-                                "show_thumbnail": true
+                                "show_label": false,
+                                "show_thumbnail": false
                             }
                         }
                     ],
@@ -170,11 +184,14 @@
                         0,
                         0,
                         0
-                    ]
+                    ],
+                    "media": {
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/play-green.svg"
+                    }
                 }
             }
         },
-        "3x1": {
+        "2x1": {
             "states": {
                 "0": {
                     "actions": [
@@ -191,16 +208,43 @@
                         0,
                         0,
                         0
-                    ]
+                    ],
+                    "media": {
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/skip-forward-green.svg"
+                    }
                 }
             }
         },
-        "0x0": {
+        "3x1": {
             "states": {
                 "0": {
                     "actions": [
                         {
-                            "id": "com_core447_MicMute::ToggleMute",
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "~/.dotfiles/scripts/vpn/vpn-toggle.sh"
+                            },
+                            "comment": "VPN Toggle"
+                        }
+                    ],
+                    "image-control-action": null,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "media": {
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/shield-check-green.svg"
+                    }
+                }
+            }
+        },
+        "4x1": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_Weather::Weather",
                             "settings": {}
                         }
                     ],
@@ -209,11 +253,61 @@
                         0,
                         0,
                         0
-                    ]
+                    ],
+                    "media": {
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/cloud-sun-blue.svg"
+                    },
+                    "background-control-action": 0
                 }
             }
         },
-        "0x1": {
+        "0x2": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "~/.dotfiles/scripts/change_office_hue_scene.sh default"
+                            }
+                        }
+                    ],
+                    "image-control-action": null,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "media": {
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/lightbulb-yellow.svg"
+                    }
+                }
+            }
+        },
+        "1x2": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "~/.dotfiles/scripts/change_office_hue_scene.sh chill"
+                            }
+                        }
+                    ],
+                    "image-control-action": null,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "media": {
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/lamp-yellow.svg"
+                    }
+                }
+            }
+        },
+        "2x2": {
             "states": {
                 "0": {
                     "actions": [
@@ -227,11 +321,14 @@
                         0,
                         0,
                         0
-                    ]
+                    ],
+                    "media": {
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/clock-blue.svg"
+                    }
                 }
             }
         },
-        "4x2": {
+        "3x2": {
             "states": {
                 "0": {
                     "actions": [
@@ -251,17 +348,17 @@
                         0
                     ],
                     "labels": {
-                        "bottom": {
-                            "text": ""
-                        },
                         "top": {
                             "text": "CPU"
                         }
+                    },
+                    "media": {
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/cpu-blue.svg"
                     }
                 }
             }
         },
-        "3x2": {
+        "4x2": {
             "states": {
                 "0": {
                     "actions": [
@@ -282,77 +379,12 @@
                     ],
                     "labels": {
                         "top": {
-                            "text": "Mem"
+                            "text": "RAM"
                         }
-                    }
-                }
-            }
-        },
-        "0x2": {
-            "states": {
-                "0": {
-                    "actions": [
-                        {
-                            "id": "com_core447_OSPlugin::RunCommand",
-                            "settings": {
-                                "command": "~/.dotfiles/scripts/change_office_hue_scene.sh default"
-                            }
-                        }
-                    ],
-                    "image-control-action": 0,
-                    "label-control-actions": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "media": {
-                        "path": "/home/tony/.var/app/com.core447.StreamController/data/icons/com_axolotlmaid_FontAwesomeIcons/icons/white/lightbulb.svg"
-                    }
-                }
-            }
-        },
-        "1x2": {
-            "states": {
-                "0": {
-                    "actions": [
-                        {
-                            "id": "com_core447_OSPlugin::RunCommand",
-                            "settings": {
-                                "command": "~/.dotfiles/scripts/change_office_hue_scene.sh chill"
-                            }
-                        }
-                    ],
-                    "image-control-action": 0,
-                    "label-control-actions": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "media": {
-                        "path": "/home/tony/.var/app/com.core447.StreamController/data/icons/com_axolotlmaid_FontAwesomeIcons/icons/white/couch.svg"
-                    }
-                }
-            }
-        },
-        "2x2": {
-            "states": {
-                "0": {
-                    "actions": [
-                        {
-                            "id": "com_core447_Weather::Weather",
-                            "settings": {}
-                        }
-                    ],
-                    "image-control-action": 0,
-                    "label-control-actions": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "media": {
-                        "path": "/home/tony/.var/app/com.core447.StreamController/data/icons/com_axolotlmaid_FontAwesomeIcons/icons/white/snowflake.svg"
                     },
-                    "background-control-action": 0
+                    "media": {
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/memory-blue.svg"
+                    }
                 }
             }
         }
