@@ -36,18 +36,18 @@ function _dotenv_pull --description "Pull .env from Bitwarden to local"
         return 1
     end
 
-    # Extract notes field (the .env content)
+    # Extract notes field (the .env content) - use string collect to preserve newlines
     set -l remote_content
     if command -q jq
-        set remote_content (echo "$item_json" | jq -r '.notes // empty')
+        set remote_content (echo "$item_json" | jq -r '.notes // empty' | string collect)
     else
         # Fallback: extract notes with string matching
-        set remote_content (echo "$item_json" | string match -r '"notes":"([^"]*)"' | tail -1 | string replace -a '\\n' \n | string replace -a '\\"' '"' | string replace -a '\\\\' '\\')
+        set remote_content (echo "$item_json" | string match -r '"notes":"([^"]*)"' | tail -1 | string replace -a '\\n' \n | string replace -a '\\"' '"' | string replace -a '\\\\' '\\' | string collect)
     end
 
     # Check if local .env exists and differs
     if test -f "$env_file"
-        set -l local_content (cat "$env_file")
+        set -l local_content (cat "$env_file" | string collect)
 
         if test "$local_content" != "$remote_content"
             if test $force -eq 0

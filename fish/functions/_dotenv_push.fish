@@ -19,8 +19,8 @@ function _dotenv_push --description "Push local .env to Bitwarden"
         return 1
     end
 
-    # Read .env content
-    set -l env_content (cat "$env_file")
+    # Read .env content - use string collect to preserve newlines
+    set -l env_content (cat "$env_file" | string collect)
 
     # Warn if empty but proceed
     if test -z "$env_content"

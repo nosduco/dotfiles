@@ -30,15 +30,15 @@ function _dotenv_diff --description "Show diff between local and remote .env"
         return 1
     end
 
-    # Extract notes field (the .env content)
+    # Extract notes field (the .env content) - use string collect to preserve newlines
     set -l remote_content
     if command -q jq
-        set remote_content (echo "$item_json" | jq -r '.notes // empty')
+        set remote_content (echo "$item_json" | jq -r '.notes // empty' | string collect)
     else
-        set remote_content (echo "$item_json" | string match -r '"notes":"([^"]*)"' | tail -1 | string replace -a '\\n' \n | string replace -a '\\"' '"' | string replace -a '\\\\' '\\')
+        set remote_content (echo "$item_json" | string match -r '"notes":"([^"]*)"' | tail -1 | string replace -a '\\n' \n | string replace -a '\\"' '"' | string replace -a '\\\\' '\\' | string collect)
     end
 
-    set -l local_content (cat "$env_file")
+    set -l local_content (cat "$env_file" | string collect)
 
     # Compare
     if test "$local_content" = "$remote_content"
