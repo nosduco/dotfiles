@@ -21,6 +21,7 @@
     "battery#laptop",
     "pulseaudio",
     "privacy",
+    "custom/vpn",
     "network",
     "custom/dunst",
     "clock"
@@ -250,6 +251,15 @@
     "return-type": "json",
     "exec": "$HOME/.dotfiles/scripts/weather.sh Columbus",
     "exec-if": "ping wttr.in -c1"
+  },
+  "custom/vpn": {
+    "format": "{}",
+    "return-type": "json",
+    "interval": 5,
+    "exec": "$HOME/.dotfiles/scripts/vpn/vpn-status.sh",
+    "on-click": "$HOME/.dotfiles/scripts/vpn/vpn-toggle.sh",
+    "on-click-right": "$HOME/.dotfiles/scripts/vpn/vpn-menu.sh",
+    "tooltip": true
   },
   "wlr/taskbar": {
     "format": "{icon}",
