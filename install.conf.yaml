@@ -131,6 +131,10 @@
     ~/.local/bin/novpn-exec:
       path: scripts/vpn/novpn-exec.sh
       create: true
+    # Nighthawk startup layout script
+    ~/.local/bin/nighthawk-layout:
+      path: scripts/nighthawk-layout.sh
+      create: true
 
 # Nighthawk (Desktop)
 - defaults:
