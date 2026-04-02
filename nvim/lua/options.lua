@@ -82,6 +82,9 @@ vim.filetype.add {
   },
 }
 
+-- Keep cursor centered
+vim.opt.scrolloff = 999
+
 -- Search Options
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

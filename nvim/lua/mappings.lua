@@ -1,6 +1,4 @@
 require "nvchad.mappings"
-local neoscroll = require "neoscroll"
-
 local map = vim.keymap.set
 
 -- Disable mappings
@@ -17,16 +15,8 @@ nomap("n", "<C-n>")
 map("n", ";", ":", { desc = "Enter command mode" })
 map("n", "<C-q>", "<cmd> confirm q <CR>", { desc = "Quit with confirmation" })
 
--- map("n", "<C-u>", "<C-u>zz", { desc = "Page up (center screen)" })
--- map("n", "<C-d>", "<C-d>zz", { desc = "Page down (center screen)" })
-map("n", "<C-u>", function()
-  neoscroll.ctrl_u { duration = 75 }
-  vim.api.nvim_command "normal! zz"
-end, { desc = "Page up (center screen)" })
-map("n", "<C-d>", function()
-  neoscroll.ctrl_d { duration = 75 }
-  vim.api.nvim_command "normal! zz"
-end, { desc = "Page down (center screen)" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Page up (center screen)" })
+map("n", "<C-d>", "<C-d>zz", { desc = "Page down (center screen)" })
 map("n", "<C-s>", "<cmd> vsplit <CR>", { desc = "Create vertical split" })
 map({ "n", "t" }, "<C-h>", function()
   require("smart-splits").move_cursor_left()
@@ -125,38 +115,13 @@ map(
   { desc = "Create new terminal tab" }
 )
 
--- Comments
-map("n", "<C-_>", function()
-  require("Comment.api").toggle.linewise.current()
-end, { desc = "Toggle comment under current line" })
-map("n", "<C-/>", function()
-  require("Comment.api").toggle.linewise.current()
-end, { desc = "Toggle comment under current line" })
-map(
-  "v",
-  "<C-_>",
-  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-  { desc = "Toggle comments for selected lines" }
-)
-map(
-  "v",
-  "<C-/>",
-  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-  { desc = "Toggle comments for selected lines" }
-)
+-- Comments (native gcc/gc, remapped to C-/)
+map("n", "<C-_>", "gcc", { remap = true, desc = "Toggle comment under current line" })
+map("n", "<C-/>", "gcc", { remap = true, desc = "Toggle comment under current line" })
+map("v", "<C-_>", "gc", { remap = true, desc = "Toggle comments for selected lines" })
+map("v", "<C-/>", "gc", { remap = true, desc = "Toggle comments for selected lines" })
 
 -- LSP
--- TODO: Do I still use trouble?
-map("n", "<leader>xx", "<cmd> TroubleToggle <CR>", { desc = "Toggle LSP diagnostic list" })
-map(
-  "n",
-  "<leader>xw",
-  "<cmd> TroubleToggle workspace_diagnostics <CR>",
-  { desc = "Toggle LSP workspace diagnostic list" }
-)
-map("n", "<leader>xd", "<cmd> TroubleToggle document_diagnostics <CR>", { desc = "Toggle LSP file diagnostic list" })
-map("n", "<leader>xl", "<cmd> TroubleToggle loclist<CR>", { desc = "Toggle LSP loclist" })
-map("n", "<leader>xq", "<cmd> TroubleToggle quickfix <CR>", { desc = "Toggle LSP quickfix list" })
 map("n", "<leader>lf", vim.diagnostic.open_float, { noremap = true, silent = true })
 
 -- Debugging
