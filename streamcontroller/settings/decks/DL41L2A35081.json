@@ -5,7 +5,8 @@
         "loop": false,
         "fps": 30,
         "time-delay": 5,
-        "brightness": 30
+        "brightness": 30,
+        "media-path": null
     },
     "brightness": {
         "value": 50
