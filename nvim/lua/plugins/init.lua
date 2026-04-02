@@ -108,25 +108,6 @@ return {
     opts = colorizer.opts,
   },
   {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup {
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-      }
-    end,
-    dependencies = {
-      {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        lazy = false,
-        config = function()
-          require("ts_context_commentstring").setup {
-            enable_autocmd = false,
-          }
-        end,
-      },
-    },
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       {
@@ -231,13 +212,6 @@ return {
     -- Git Diffs
     "sindrets/diffview.nvim",
     cmd = "DiffviewOpen",
-  },
-  {
-    -- Diagnostic Pane
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    cmd = { "TroubleToggle" },
-    opts = {},
   },
   {
     -- Auto-tagging
@@ -345,11 +319,16 @@ return {
     lazy = false,
   },
   {
-    "karb94/neoscroll.nvim",
+    "folke/snacks.nvim",
     lazy = false,
-    config = function()
-      require("neoscroll").setup {}
-    end,
+    opts = {
+      scroll = {
+        enabled = true,
+        animate = {
+          duration = { step = 10, total = 75 },
+        },
+      },
+    },
   },
   {
     "wakatime/vim-wakatime",
