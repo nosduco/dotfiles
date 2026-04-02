@@ -56,14 +56,14 @@ dispatch layoutmsg preselect d
 uwsm app -- firefoxpwa site launch 01KBH7FDJN0SMRXM47M6HHR694 &
 await_class FFPWA-01KBH7FDJN0SMRXM47M6HHR694 || true
 
-# 4. Focus Claude, preselect right -> Telegram beside Claude
+# 4. Focus Claude, preselect right -> Element beside Claude
 dispatch focuswindow class:FFPWA-01KBH7FDJN0SMRXM47M6HHR694
 dispatch layoutmsg preselect r
-uwsm app -- Telegram &
-await_class org.telegram.desktop || true
+uwsm app -- element-desktop &
+await_class Element || true
 
 # 5. Adjust splits
-dispatch focuswindow class:org.telegram.desktop
+dispatch focuswindow class:Element
 dispatch movefocus d
 dispatch resizeactive 0 705
 
