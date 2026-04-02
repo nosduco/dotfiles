@@ -273,14 +273,14 @@ return {
     end,
   },
   {
-    -- Motion/Leap
-    "ggandor/leap.nvim",
-    lazy = false,
-    config = function()
-      vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap)")
-      vim.keymap.set("n", "S", "<Plug>(leap-from-window)")
-      require("leap").opts.highlight_unlabeled_phase_one_targets = true
-    end,
+    -- Motion/Flash
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end },
+    },
   },
   -- {
   --   "ggandor/flit.nvim",
