@@ -11,8 +11,6 @@
       stdin: true
       stdout: true
       stderr: true
-    # Clone NvChad configuration to be overridden by custom config below
-    - command: git -C ~/.config/nvim pull || git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
     - command: git -C ~/.tmux/plugins/tpm pull || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
       description: Installing tmux plugin manager (TPM)
     - command: ~/.tmux/plugins/tpm/bin/install_plugins
@@ -21,6 +19,8 @@
       description: Installing yazi catppuccin-mocha flavor
     - command: fish -c "fisher update" 2>/dev/null || true
       description: Installing fish plugins via fisher
+    - command: git config --global --get-all include.path | grep -q 'delta/catppuccin.gitconfig' || git config --global --add include.path ~/.dotfiles/delta/catppuccin.gitconfig; git config --global --get-all include.path | grep -q 'delta/config.gitconfig' || git config --global --add include.path ~/.dotfiles/delta/config.gitconfig
+      description: Configuring delta with catppuccin theme
     # System files with sudo
     - command: sudo ln -sf $(pwd)/greetd/config.toml /etc/greetd/config.toml
       description: Installing greetd config
