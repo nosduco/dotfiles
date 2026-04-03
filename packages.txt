@@ -34,6 +34,8 @@ btop
 lsd
 trash-cli
 ripgrep
+dust
+git-delta
 paru
 github-cli
 jq
