@@ -11,6 +11,10 @@
       description: Installing tmux plugin manager (TPM)
     - command: ~/.tmux/plugins/tpm/bin/install_plugins
       description: Installing tmux plugins
+    - command: ya pkg add yazi-rs/flavors:catppuccin-mocha 2>/dev/null || ya pkg upgrade 2>/dev/null || true
+      description: Installing yazi catppuccin-mocha flavor
+    - command: fish -c "fisher update" 2>/dev/null || true
+      description: Installing fish plugins via fisher
     # System files with sudo
     - command: sudo ln -sf $(pwd)/greetd/config.toml /etc/greetd/config.toml
       description: Installing greetd config
@@ -111,6 +115,16 @@
       create: true
       glob: true
       path: btop
+    # XDG Desktop Portal
+    ~/.config/xdg-desktop-portal:
+      create: true
+      glob: true
+      path: xdg-desktop-portal
+    # XDG Desktop Portal - Terminal File Chooser (yazi)
+    ~/.config/xdg-desktop-portal-termfilechooser:
+      create: true
+      glob: true
+      path: xdg-desktop-portal-termfilechooser
     # Desktop Applications (Wayland flags)
     ~/.local/share/applications:
       create: true
