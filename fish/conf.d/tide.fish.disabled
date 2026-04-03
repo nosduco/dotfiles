@@ -1,0 +1,90 @@
+# Tide prompt configuration (replaces Starship)
+# Matches previous Starship look: directory (user@host) git_branch
+# with ❯/❮ character on second line
+
+# Prompt style: lean (no powerline segments, just colored text)
+set -g tide_left_prompt_items shortpwd context git node python go rustc java docker kubectl terraform aws newline character
+set -g tide_right_prompt_items status cmd_duration
+
+# Don't spread items across full width
+set -g tide_prompt_pad_items false
+
+# Newline before prompt
+set -g tide_prompt_add_newline_before true
+
+# No frames
+set -g tide_left_prompt_frame_enabled false
+set -g tide_right_prompt_frame_enabled false
+
+# Tight separators
+set -g tide_left_prompt_separator_diff_color ' '
+set -g tide_left_prompt_separator_same_color ' '
+set -g tide_left_prompt_prefix ''
+set -g tide_left_prompt_suffix ''
+
+# Character (matches Starship ❯/❮)
+set -g tide_character_icon '❯'
+set -g tide_character_vi_icon_default '❮'
+set -g tide_character_vi_icon_replace '❮'
+set -g tide_character_vi_icon_visual '❮'
+set -g tide_character_color fab387
+set -g tide_character_color_failure f38ba8
+
+# Short pwd (yellow, matching Starship)
+set -g tide_shortpwd_color f9e2af
+
+# Directory (yellow, matching Starship)
+set -g tide_pwd_color_dirs f9e2af
+set -g tide_pwd_color_anchors f9e2af
+set -g tide_pwd_color_truncated_dirs f9e2af
+set -g tide_pwd_markers .git
+set -g tide_pwd_icon ''
+set -g tide_pwd_icon_home ''
+set -g tide_pwd_icon_unwritable ''
+
+# Context (user@host - always shown, bold red, matching Starship)
+set -g tide_context_always_display true
+set -g tide_context_color_default f38ba8
+set -g tide_context_color_root a6e3a1
+set -g tide_context_color_ssh f38ba8
+
+# Git (branch icon + status)
+set -g tide_git_icon ' '
+set -g tide_git_color_branch a6e3a1
+set -g tide_git_color_dirty f9e2af
+set -g tide_git_color_operation f38ba8
+set -g tide_git_color_staged f9e2af
+set -g tide_git_color_stash a6e3a1
+set -g tide_git_color_untracked 89b4fa
+set -g tide_git_color_upstream 89b4fa
+
+# Status
+set -g tide_status_color f38ba8
+set -g tide_status_color_success a6e3a1
+
+# Cmd duration
+set -g tide_cmd_duration_color 6c7086
+set -g tide_cmd_duration_threshold 3000
+
+# Tool colors (Catppuccin Mocha)
+set -g tide_node_icon ' '
+set -g tide_node_color a6e3a1
+set -g tide_python_icon '󰌠 '
+set -g tide_python_color f9e2af
+set -g tide_go_icon ' '
+set -g tide_go_color 74c7ec
+set -g tide_rustc_icon ' '
+set -g tide_rustc_color fab387
+set -g tide_java_icon ' '
+set -g tide_java_color f38ba8
+set -g tide_docker_icon '󰡨 '
+set -g tide_docker_color 89b4fa
+set -g tide_kubectl_icon '󱃾 '
+set -g tide_kubectl_color 89dceb
+set -g tide_terraform_icon '󱁢 '
+set -g tide_terraform_color cba6f7
+set -g tide_aws_icon '☁ '
+set -g tide_aws_color f9e2af
+
+# Disable transient prompt
+set -g tide_prompt_transient_enabled false
