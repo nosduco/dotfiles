@@ -1,0 +1,109 @@
+# Dotfiles package dependencies
+# Install: paru -S --needed - < packages.txt
+# Lines starting with # are ignored
+
+# Window Manager & Desktop
+hyprland
+hyprpaper
+hypridle
+hyprlock
+hyprpicker
+hyprshot
+uwsm
+waybar
+dunst
+wlogout
+greetd
+greetd-tuigreet
+walker-bin
+elephant-all-bin
+xdg-desktop-portal-termfilechooser-hunkyburrito-git
+
+# Terminal & Shell
+ghostty
+fish
+fisher
+tmux
+starship
+zoxide
+fnm-bin
+
+# CLI Tools
+bat
+btop
+lsd
+trash-cli
+ripgrep
+paru
+github-cli
+jq
+cava
+fastfetch
+
+# File Management
+yazi
+nautilus
+wl-clipboard
+
+# Screenshots & Display
+grim
+slurp
+satty
+gammastep
+nwg-look
+
+# Editor
+neovim
+
+# Development
+git
+pnpm
+python
+python-pipx
+uv
+
+# Networking & VPN
+networkmanager
+wireguard-tools
+iptables-nft
+tailscale
+
+# Audio
+pipewire-pulse
+pipewire-jack
+pipewire-alsa
+wireplumber
+pavucontrol
+
+# Applications
+firefox
+firefoxpwa
+obsidian
+vesktop-bin
+element-desktop
+vorta
+spotify-launcher
+spicetify-cli
+
+# Security
+seahorse
+gnome-keyring
+
+# Fonts
+ttf-jetbrains-mono
+ttf-jetbrains-mono-nerd
+ttf-google-sans
+ttf-material-design-icons-git
+ttf-nerd-fonts-symbols
+noto-fonts
+noto-fonts-emoji
+
+# Themes
+catppuccin-gtk-theme-mocha
+papirus-icon-theme
+papirus-folders-catppuccin-git
+
+# Gaming
+gamemode
+steam
+gamescope

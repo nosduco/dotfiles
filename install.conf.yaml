@@ -5,6 +5,12 @@
       force: true
 - clean: ["~"]
 - shell:
+    # Install packages
+    - command: grep -v '^#' packages.txt | grep -v '^$' | paru -S --needed --noconfirm -
+      description: Installing packages from packages.txt
+      stdin: true
+      stdout: true
+      stderr: true
     # Clone NvChad configuration to be overridden by custom config below
     - command: git -C ~/.config/nvim pull || git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
     - command: git -C ~/.tmux/plugins/tpm pull || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
