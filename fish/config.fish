@@ -86,7 +86,8 @@ alias ci='gh run watch "$(gh run list --limit 1 --json databaseId --jq \'.[0].da
 # Tmuxinator shorthand
 alias mux='tmuxinator'
 
-# Initialize Starship prompt
+# Prompt: Tide (configured in conf.d/tide.fish)
+# TODO: Finish Tide migration - shortpwd item needs work
 starship init fish | source
 
 # Import .env variables
