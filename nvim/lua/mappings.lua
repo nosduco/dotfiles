@@ -164,5 +164,19 @@ map("n", "<leader>rc", "<cmd> Telescope remote-sshfs connect <CR>", { desc = "Op
 -- Find and Replace
 map("n", "<leader>fr", "<cmd> GrugFar <CR>", { desc = "Find and replace" })
 
+-- GitHub (Octo)
+map("n", "<leader>gp", "<cmd> Octo pr list <CR>", { desc = "List pull requests" })
+map("n", "<leader>gi", "<cmd> Octo issue list <CR>", { desc = "List issues" })
+map("n", "<leader>gn", "<cmd> Octo notification list <CR>", { desc = "List notifications" })
+map("n", "<leader>ga", function()
+  if vim.bo.filetype == "octo" then
+    vim.cmd "Octo pr checks"
+  else
+    vim.cmd "Octo run list"
+  end
+end, { desc = "View actions/CI checks" })
+map("n", "<leader>gc", "<cmd> Octo pr create <CR>", { desc = "Create pull request" })
+map("n", "<leader>gr", "<cmd> Octo review start <CR>", { desc = "Start/resume PR review" })
+
 -- Claude Code
 map("n", "<leader>cc", "<cmd>ClaudeCodeContinue<CR>", { desc = "Toggle Claude Code" })
