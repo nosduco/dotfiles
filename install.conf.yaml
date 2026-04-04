@@ -21,6 +21,8 @@
       description: Installing fish plugins via fisher
     - command: git config --global --get-all include.path | grep -q 'delta/catppuccin.gitconfig' || git config --global --add include.path ~/.dotfiles/delta/catppuccin.gitconfig; git config --global --get-all include.path | grep -q 'delta/config.gitconfig' || git config --global --add include.path ~/.dotfiles/delta/config.gitconfig
       description: Configuring delta with catppuccin theme
+    - command: mkdir -p ~/.config/systemd/user && ln -sf ~/.dotfiles/systemd/user/yazi-filemanager.service ~/.config/systemd/user/yazi-filemanager.service && systemctl --user daemon-reload && systemctl --user enable --now yazi-filemanager.service 2>/dev/null || true
+      description: Enabling yazi FileManager1 D-Bus service
     # System files with sudo
     - command: sudo ln -sf $(pwd)/greetd/config.toml /etc/greetd/config.toml
       description: Installing greetd config
@@ -131,6 +133,11 @@
       create: true
       glob: true
       path: xdg-desktop-portal-termfilechooser
+    # D-Bus overrides (block nautilus FileManager1 activation)
+    ~/.local/share/dbus-1/services:
+      create: true
+      glob: true
+      path: dbus-services/*
     # Desktop Applications (Wayland flags)
     ~/.local/share/applications:
       create: true
