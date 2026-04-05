@@ -1,37 +1,38 @@
-require "nvchad.mappings"
 local map = vim.keymap.set
 
--- Disable mappings
-local nomap = vim.keymap.del
-nomap("n", "<leader>/")
-nomap("n", "<leader>x")
-nomap("v", "<leader>/")
-nomap("t", "<A-i>")
-nomap("t", "<A-v>")
-nomap("t", "<A-h>")
-nomap("n", "<C-n>")
-
--- Disable NvChad telescope mappings (replaced by snacks picker)
-nomap("n", "<leader>ff")
-nomap("n", "<leader>fw")
-nomap("n", "<leader>fb")
-nomap("n", "<leader>fh")
-nomap("n", "<leader>fo")
-nomap("n", "<leader>fa")
-nomap("n", "<leader>fz")
-nomap("n", "<leader>ma")
-nomap("n", "<leader>cm")
-nomap("n", "<leader>gt")
-nomap("n", "<leader>pt")
-nomap("n", "<leader>th")
+-- Insert mode navigation (from NvChad)
+map("i", "<C-b>", "<ESC>^i", { desc = "Move to beginning of line" })
+map("i", "<C-e>", "<End>", { desc = "Move to end of line" })
+map("i", "<C-h>", "<Left>", { desc = "Move left" })
+map("i", "<C-l>", "<Right>", { desc = "Move right" })
+map("i", "<C-j>", "<Down>", { desc = "Move down" })
+map("i", "<C-k>", "<Up>", { desc = "Move up" })
 
 -- General
 map("n", ";", ":", { desc = "Enter command mode" })
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear highlights" })
+map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy whole file" })
 map("n", "<C-q>", "<cmd> confirm q <CR>", { desc = "Quit with confirmation" })
+map("n", "<C-s>", "<cmd> vsplit <CR>", { desc = "Create vertical split" })
 
+-- Scrolling
 map("n", "<C-u>", "<C-u>zz", { desc = "Page up (center screen)" })
 map("n", "<C-d>", "<C-d>zz", { desc = "Page down (center screen)" })
-map("n", "<C-s>", "<cmd> vsplit <CR>", { desc = "Create vertical split" })
+
+-- Toggle options
+map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "Toggle line numbers" })
+map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle relative numbers" })
+
+-- Format
+map({ "n", "x" }, "<leader>fm", function()
+  require("conform").format { lsp_fallback = true }
+end, { desc = "Format file" })
+
+-- Diagnostics
+map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "Diagnostic loclist" })
+map("n", "<leader>lf", vim.diagnostic.open_float, { noremap = true, silent = true })
+
+-- Window navigation (smart-splits)
 map({ "n", "t" }, "<C-h>", function()
   require("smart-splits").move_cursor_left()
 end, { desc = "Move focus to left pane" })
@@ -56,7 +57,11 @@ end, { desc = "Resize pane upward" })
 map({ "n", "t" }, "<A-l>", function()
   require("smart-splits").resize_right()
 end, { desc = "Resize pane to the right" })
+
+-- Git
 map("n", "<leader>df", "<cmd> DiffviewOpen <CR>", { desc = "View git diff interactively" })
+
+-- Obsidian
 map("n", "gf", function()
   if require("obsidian").util.cursor_on_markdown_link() then
     return "<cmd>ObsidianFollowLink<CR>"
@@ -64,21 +69,23 @@ map("n", "gf", function()
     return "gf"
   end
 end, { desc = "Follow link under cursor" })
+
+-- Terminal
+map("t", "<C-x>", "<C-\\><C-N>", { desc = "Exit terminal mode" })
 map("t", "<Esc>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), { desc = "Escape terminal mode" })
 
 -- Line Manipulation
--- TODO: Get this to work
--- map("n", "y/", "yygccp", { remap = false, desc = "Copy and comment out line" })
--- map("v", "y/", "ygvgc`>p", { remap = false, desc = "Copy and comment out lines" })
--- map("n", "<C-", "yygccp", { remap = false, desc = "Copy and comment out line" })
--- map("v", "yc", "ygvgc`>p", { remap = false, desc = "Copy and comment out lines" })
 map("v", "J", ":m '>+1<CR>gv=gv", { remap = true, desc = "Move selected lines down" })
-map("v", "K", ":m '<-2<CR>gv=gv", { remap = true, desc = "Move selected lines down" })
-
-map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear highlights" })
+map("v", "K", ":m '<-2<CR>gv=gv", { remap = true, desc = "Move selected lines up" })
 
 -- File System
 map("n", "<C-n>", "<cmd> Oil <CR>", { desc = "Toggle file browser" })
+
+-- Buffers
+map("n", "<leader>b", "<cmd>enew<CR>", { desc = "New buffer" })
+map("n", "<tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
+map("n", "<S-tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
+map("n", "<leader>x", "<cmd>bdelete<CR>", { desc = "Close buffer" })
 
 -- Tabs
 map("n", "<C-a>1", "1gt", { desc = "Go to tab #1" })
@@ -100,7 +107,7 @@ map("n", "<leader>pp", "<cmd> YankyRingHistory <CR>", { desc = "Open yank histor
 map("n", "<leader>pb", "<Plug>(YankyCycleBackward)", { desc = "Cycle current yank backward" })
 map("n", "<leader>pn", "<Plug>(YankyCycleForeward)", { desc = "Cycle current yank forward" })
 
--- Multiplexer Navigation
+-- Multiplexer Navigation (Terminal splits)
 map("n", "<C-a>i", "<cmd> vsplit | terminal <CR>", { desc = "Create terminal vertical split" })
 map("n", "<C-a>s", "<cmd> split | terminal <CR>", { desc = "Create terminal horizontal split" })
 map("n", "<C-a>c", "<cmd> tabnew | terminal <CR>", { desc = "Create new terminal tab" })
@@ -135,8 +142,17 @@ map("n", "<C-/>", "gcc", { remap = true, desc = "Toggle comment under current li
 map("v", "<C-_>", "gc", { remap = true, desc = "Toggle comments for selected lines" })
 map("v", "<C-/>", "gc", { remap = true, desc = "Toggle comments for selected lines" })
 
--- LSP
-map("n", "<leader>lf", vim.diagnostic.open_float, { noremap = true, silent = true })
+-- Allow clipboard copy paste in neovim
+map("", "<C-S-v>", "+p<CR>", { noremap = true, silent = true })
+map("!", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
+map("t", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
+map("v", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
+
+-- WhichKey
+map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "Show all keymaps" })
+map("n", "<leader>wk", function()
+  vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ")
+end, { desc = "Query keymaps" })
 
 -- Debugging
 map("n", "<leader>db", function()
