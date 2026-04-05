@@ -85,6 +85,17 @@ vim.filetype.add {
 -- Keep cursor centered
 vim.opt.scrolloff = 999
 
+-- Snacks Picker highlights
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "SnacksPickerMatch", { fg = "#fab387", bold = true })
+    vim.api.nvim_set_hl(0, "SnacksPickerPrompt", { fg = "#fab387" })
+    vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = "#7f849c" })
+    vim.api.nvim_set_hl(0, "SnacksPickerFile", { fg = "#cdd6f4" })
+  end,
+})
+vim.cmd "doautocmd ColorScheme"
+
 -- Search Options
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

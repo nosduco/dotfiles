@@ -11,6 +11,20 @@ nomap("t", "<A-v>")
 nomap("t", "<A-h>")
 nomap("n", "<C-n>")
 
+-- Disable NvChad telescope mappings (replaced by snacks picker)
+nomap("n", "<leader>ff")
+nomap("n", "<leader>fw")
+nomap("n", "<leader>fb")
+nomap("n", "<leader>fh")
+nomap("n", "<leader>fo")
+nomap("n", "<leader>fa")
+nomap("n", "<leader>fz")
+nomap("n", "<leader>ma")
+nomap("n", "<leader>cm")
+nomap("n", "<leader>gt")
+nomap("n", "<leader>pt")
+nomap("n", "<leader>th")
+
 -- General
 map("n", ";", ":", { desc = "Enter command mode" })
 map("n", "<C-q>", "<cmd> confirm q <CR>", { desc = "Quit with confirmation" })
@@ -82,7 +96,7 @@ map("n", "<leader>t5", "5gt", { desc = "Go to tab #5" })
 map("n", "<leader>t6", "6gt", { desc = "Go to tab #6" })
 
 -- Yank (Copy/Paste)
-map("n", "<leader>pp", "<cmd> Telescope yank_history <CR>", { desc = "Open yank history dialog" })
+map("n", "<leader>pp", "<cmd> YankyRingHistory <CR>", { desc = "Open yank history dialog" })
 map("n", "<leader>pb", "<Plug>(YankyCycleBackward)", { desc = "Cycle current yank backward" })
 map("n", "<leader>pn", "<Plug>(YankyCycleForeward)", { desc = "Cycle current yank forward" })
 
@@ -159,7 +173,7 @@ map("n", "<leader>tc", function()
 end, { desc = "Toggle test output pane" })
 
 -- Remote Development
-map("n", "<leader>rc", "<cmd> Telescope remote-sshfs connect <CR>", { desc = "Open remote SSHFS connection dialog" })
+map("n", "<leader>rc", "<cmd> RemoteSSHFSConnect <CR>", { desc = "Open remote SSHFS connection dialog" })
 
 -- Find and Replace
 map("n", "<leader>fr", "<cmd> GrugFar <CR>", { desc = "Find and replace" })

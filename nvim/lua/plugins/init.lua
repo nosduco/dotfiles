@@ -2,8 +2,7 @@ local dashboard = require "configs.dashboard"
 local remotesshfs = require "configs.remote-sshfs"
 local treesitter = require "configs.treesitter"
 local mason = require "configs.mason"
-local telescope = require "configs.telescope"
-local dressing = require "configs.dressing"
+-- telescope and dressing removed - using snacks picker + ui_select
 local colorizer = require "configs.colorizer"
 local oil = require "configs.oil"
 local obsidian = require "configs.obsidian"
@@ -73,7 +72,7 @@ return {
         "windwp/nvim-autopairs",
         opts = {
           fast_wrap = {},
-          disable_filetype = { "TelescopePrompt", "vim" },
+          disable_filetype = { "snacks_picker_input", "vim" },
         },
       },
       {
@@ -94,7 +93,7 @@ return {
               module = "codeium.blink",
               async = true,
               enabled = function()
-                local disabled_fts = { oil = true, TelescopePrompt = true, DressingInput = true }
+                local disabled_fts = { oil = true, snacks_picker_input = true }
                 return not disabled_fts[vim.bo.filetype]
               end,
             },
@@ -129,12 +128,7 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    opts = telescope.opts,
-    dependencies = {
-      {
-        "nvim-telescope/telescope-file-browser.nvim",
-      },
-    },
+    enabled = false,
   },
   -- Install plugins
   {
@@ -156,12 +150,6 @@ return {
       opts.config.header = dashboard.generate_header()
       require("dashboard").setup(opts)
     end,
-  },
-  {
-    -- Select/Input Dialog
-    "stevearc/dressing.nvim",
-    event = "VeryLazy",
-    opts = dressing.opts,
   },
   {
     -- Debugger
@@ -219,11 +207,10 @@ return {
     cmd = "Octo",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
       "nvim-tree/nvim-web-devicons",
     },
     opts = {
-      picker = "telescope",
+      picker = "snacks",
     },
   },
   {
@@ -341,6 +328,42 @@ return {
           duration = { step = 10, total = 75 },
         },
       },
+      picker = {
+        ui_select = true,
+        layout = {
+          preset = "default",
+        },
+        matcher = {
+          fuzzy = true,
+          smartcase = true,
+          ignorecase = true,
+          frecency = true,
+        },
+        win = {
+          input = {
+            keys = {
+              ["<C-q>"] = { "close", mode = { "i", "n" } },
+              ["<C-f>"] = { "qflist", mode = { "i", "n" } },
+              ["<Tab>"] = { "list_down", mode = { "i", "n" } },
+              ["<S-Tab>"] = { "list_up", mode = { "i", "n" } },
+              ["<C-s>"] = { "edit_vsplit", mode = { "i", "n" } },
+              ["<C-i>"] = { "edit_split", mode = { "i", "n" } },
+            },
+          },
+        },
+      },
+    },
+    keys = {
+      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find files" },
+      { "<leader>fw", function() Snacks.picker.grep() end, desc = "Live grep" },
+      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>fh", function() Snacks.picker.help() end, desc = "Help tags" },
+      { "<leader>fo", function() Snacks.picker.recent() end, desc = "Recent files" },
+      { "<leader>fa", function() Snacks.picker.files({ hidden = true, ignored = true }) end, desc = "Find all files" },
+      { "<leader>fz", function() Snacks.picker.lines() end, desc = "Find in current buffer" },
+      { "<leader>ma", function() Snacks.picker.marks() end, desc = "Marks" },
+      { "<leader>cm", function() Snacks.picker.git_log() end, desc = "Git commits" },
+      { "<leader>gt", function() Snacks.picker.git_status() end, desc = "Git status" },
     },
   },
   {
@@ -359,8 +382,7 @@ return {
         enable_cmp_source = false,  -- disable cmp integration, use blink instead
         filetypes = {
           oil = false,
-          TelescopePrompt = false,
-          DressingInput = false,
+          snacks_picker_input = false,
         },
       }
     end,
