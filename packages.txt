@@ -24,7 +24,6 @@ ghostty
 fish
 fisher
 tmux
-starship
 zoxide
 fnm-bin
 

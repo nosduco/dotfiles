@@ -78,8 +78,6 @@
       create: true
       glob: true
       path: cava
-    # Starship (Shell Prompt)
-    ~/.config/starship.toml: starship.toml
     # Ghostty (terminal emulator)
     ~/.config/ghostty:
       create: true
