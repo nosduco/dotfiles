@@ -60,7 +60,7 @@ return {
       local custom_theme = require("lualine.themes.catppuccin-mocha")
       custom_theme.normal.a = { bg = C.peach, fg = C.base, gui = "bold" }
       custom_theme.normal.b = { bg = C.surface0, fg = C.text }
-      custom_theme.normal.c = { bg = C.mantle, fg = C.text }
+      custom_theme.normal.c = { bg = C.base, fg = C.text }
 
       require("lualine").setup {
         options = {
@@ -87,6 +87,10 @@ return {
     lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin" },
     config = function()
+      local C = require("catppuccin.palettes").get_palette "mocha"
+      local hl = require("catppuccin.special.bufferline").get_theme()()
+      hl.fill = { bg = C.mantle }
+
       require("bufferline").setup {
         options = {
           close_command = "bdelete! %d",
@@ -95,7 +99,7 @@ return {
           offsets = {},
           themable = true,
         },
-        highlights = require("catppuccin.special.bufferline").get_theme()(),
+        highlights = hl,
       }
     end,
   },
