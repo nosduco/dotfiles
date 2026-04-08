@@ -182,6 +182,16 @@
       path: hypr/hypridle/nighthawk.conf
     ~/.config/hypr/hyprlock.conf:
       path: hypr/hyprlock/nighthawk.conf
+- shell:
+    - command: sudo install -m 755 $(pwd)/scripts/dualsense-init.sh /usr/local/bin/dualsense-init
+      description: Installing DualSense init script
+      if: "[ $(hostname) = nighthawk ]"
+    - command: sudo install -m 644 $(pwd)/system/udev/rules.d/99-dualsense.rules /etc/udev/rules.d/99-dualsense.rules && sudo udevadm control --reload-rules && sudo udevadm trigger
+      description: Installing DualSense udev rule
+      if: "[ $(hostname) = nighthawk ]"
+    - command: mkdir -p ~/.config/systemd/user && ln -sf $(pwd)/systemd/user/dualsense-persist.service ~/.config/systemd/user/dualsense-persist.service && ln -sf $(pwd)/systemd/user/dualsense-persist.timer ~/.config/systemd/user/dualsense-persist.timer && systemctl --user daemon-reload && systemctl --user enable --now dualsense-persist.timer
+      description: Enabling DualSense persistent-color user timer
+      if: "[ $(hostname) = nighthawk ]"
 # Voyager (Laptop)
 - defaults:
     link:
