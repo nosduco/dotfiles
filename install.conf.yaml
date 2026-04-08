@@ -6,8 +6,8 @@
 - clean: ["~"]
 - shell:
     # Install packages
-    - command: grep -v '^#' packages.txt | grep -v '^$' | paru -S --needed --noconfirm -
-      description: Installing packages from packages.txt
+    - command: ./scripts/install-missing-packages.sh
+      description: Installing missing packages from packages.txt
       stdin: true
       stdout: true
       stderr: true
