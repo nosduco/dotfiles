@@ -108,3 +108,4 @@ papirus-folders-catppuccin-git
 gamemode
 steam
 gamescope
+dualsensectl

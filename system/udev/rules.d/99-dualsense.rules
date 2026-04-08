@@ -1,0 +1,2 @@
+ACTION=="add", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", \
+  RUN+="/usr/local/bin/dualsense-init %E{DEVNAME}"

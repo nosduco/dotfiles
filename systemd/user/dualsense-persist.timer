@@ -1,0 +1,11 @@
+[Unit]
+Description=Periodically reapply DualSense persistent colors
+
+[Timer]
+OnBootSec=15s
+OnUnitActiveSec=30s
+AccuracySec=1s
+Unit=dualsense-persist.service
+
+[Install]
+WantedBy=timers.target
