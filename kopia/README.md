@@ -14,51 +14,47 @@ Tux handles all off-site traffic.
 ## 0 → fully set up
 
 ```fish
-# 1. Install + link. Idempotent.
+# 1. Install + link. Idempotent. Seeds ~/.config/kopia/env.
 cd ~/.dotfiles && ./install
 
-# 2. Verify SSH to tux as kopia (add host to kopia-sftp-user ansible role if new)
-ssh -p 22 kopia@tux hostname
-
-# 3. Edit the env stub (./install seeded it from kopia/env.example)
+# 2. Fill in KOPIA_PASSWORD (must match the k8s SOPS secret)
 $EDITOR ~/.config/kopia/env
 
-# 4. One-time bootstrap: connects repo, applies policy, registers sources.
-~/.dotfiles/kopia/scripts/bootstrap-repos.sh
+# 3. Verify SSH to tux works
+ssh -p 22 kopia@tux hostname
 
-# 5. Start KopiaUI (autostarts on login via hypr/execs.conf)
+# 4. Reconcile (one script does everything — see below)
+~/.dotfiles/kopia/scripts/reconcile.sh
+
+# 5. Start KopiaUI (also autostarts on next login via hypr/execs.conf)
 kopia-ui
 ```
 
-After that, KopiaUI's scheduler takes a snapshot at 02:00 every day.
-Tray icon shows status; Electron notifications fire on success/failure.
-KopiaUI connects without prompting (password is persisted in gnome-keyring).
+## reconcile.sh — the only script you need to run
 
-## What each script does
+`reconcile.sh` is idempotent and brings the desktop backup setup to the
+declared state from whatever state it's in now:
 
-- `bootstrap-repos.sh` - makes sure the Kopia repo exists + is connected.
-  No policy, no snapshots. Safe to re-run; no-ops if already connected.
-- `apply-policies.sh` - reconciles retention, ignore rules, and sources
-  against `sources.txt`. New sources get a one-time snapshot to register
-  them (kopia's scheduler picks them up from there). Already-registered
-  sources are left alone - incremental snapshots are the scheduler's job.
-  Orphans (registered sources no longer in `sources.txt`) are logged
-  with the exact `kopia snapshot delete` command to copy-paste.
+1. Ensures the repo exists + is connected (creates via SFTP, or connects if already there)
+2. Applies retention, compression, and schedule policy for `$USER@$hostname`
+3. Rebuilds ignore rules from `ignore-patterns.txt`
+4. Registers any new sources from `sources.txt` (first snapshot = registration)
+5. Reports orphans (sources in Kopia that aren't in `sources.txt`) with the exact delete command
 
-## Editing sources / ignores
+Run it:
+- On a fresh machine after filling in env — it sets up everything
+- After editing `sources.txt` or `ignore-patterns.txt` — it reconciles the diff
+- After a failed/interrupted run — it picks up where it left off (Kopia dedup
+  recognizes already-uploaded content blobs, so resume is fast)
+- Any time you're unsure about state — it's safe to re-run
 
-```fish
-$EDITOR ~/.dotfiles/kopia/{sources.txt,ignore-patterns.txt}
-~/.dotfiles/kopia/scripts/apply-policies.sh
-```
-
-Fast on subsequent runs: only *new* sources get snapshotted, known ones
-are reconciled in-place. Triggering a snapshot manually is a KopiaUI
-click or `kopia snapshot create <path>` away.
+Ongoing daily snapshots are driven by Kopia's internal scheduler (inside
+KopiaUI's server), not by this script. You only re-run reconcile when
+*declarative state* changes.
 
 ## Restore
 
-Use KopiaUI (tray icon → Snapshots), or CLI:
+Via KopiaUI (tray → Snapshots), or CLI:
 
 ```fish
 kopia --config-file=~/.config/kopia/tux-sftp.config snapshot list --all
@@ -66,20 +62,21 @@ kopia --config-file=~/.config/kopia/tux-sftp.config restore <id> /tmp/restore
 kopia --config-file=~/.config/kopia/tux-sftp.config mount <id> /tmp/kopia-mount
 ```
 
-If tux is gone entirely: connect to B2 directly with the same password:
+If tux is gone: connect to B2 directly with the same password:
 ```fish
 kopia repository connect b2 \
     --bucket=tuxcloud-endpoints-backups --prefix=<host>/ \
     --key-id=<endpoints app key id> --key=<endpoints app key>
 ```
 
-## Retention
+## Retention + schedule
 
-10 latest / 30 daily / 12 weekly / 24 monthly / 5 yearly. Set in `apply-policies.sh`.
+10 latest / 30 daily / 12 weekly / 24 monthly / 5 yearly. Daily at 02:00.
+All defined in `reconcile.sh` so every endpoint applies the same policy.
 
-## Schedule
+## Failure notifications
 
-Daily at 02:00 (via kopia policy `--snapshot-time=02:00 --snapshot-interval=24h`).
-KopiaUI must be running for the scheduler to fire — it autostarts from
-`hypr/execs.conf`. If you quit KopiaUI and miss a day, next snapshot runs when
-you reopen it.
+- Desktop: KopiaUI's Electron tray fires native notifications on snapshot
+  errors when KopiaUI is running.
+- Tux side (sync-to-B2): `platform/kopia-endpoints-sync/` CronJob posts
+  to ntfy `alerts-critical` via `trap ERR`.
