@@ -25,8 +25,12 @@
       description: Configuring git audit alias
     - command: mkdir -p ~/.config/systemd/user && ln -sf ~/.dotfiles/systemd/user/yazi-filemanager.service ~/.config/systemd/user/yazi-filemanager.service && systemctl --user daemon-reload && systemctl --user enable --now yazi-filemanager.service 2>/dev/null || true
       description: Enabling yazi FileManager1 D-Bus service
-    - command: mkdir -p ~/.config/systemd/user && for u in kopia-snapshot.service kopia-snapshot.timer kopia-notify@.service; do ln -sf ~/.dotfiles/systemd/user/$u ~/.config/systemd/user/$u; done && systemctl --user daemon-reload && systemctl --user enable --now kopia-snapshot.timer 2>/dev/null || true
+    - command: ~/.dotfiles/kopia/scripts/install-systemd.sh
       description: Enabling Kopia snapshot user timer
+    - command: systemctl --user enable --now protonmail-bridge.service 2>/dev/null || true
+      description: Enabling Proton Mail Bridge user service
+    - command: d=~/.local/share/catppuccin-thunderbird; if [ -d "$d/.git" ]; then git -C "$d" pull --ff-only --quiet; else mkdir -p ~/.local/share && git clone --quiet --depth=1 https://github.com/catppuccin/thunderbird "$d"; fi
+      description: Installing/updating Catppuccin Thunderbird theme repo
     # System files with sudo
     - command: sudo ln -sf $(pwd)/greetd/config.toml /etc/greetd/config.toml
       description: Installing greetd config
