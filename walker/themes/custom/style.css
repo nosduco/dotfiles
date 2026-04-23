@@ -13,9 +13,17 @@
 
 /* Base typography */
 * {
-  font-family: "Google Sans";
-  font-size: 16px;
+  font-family: "Google Sans Display";
+  font-size: 18px;
   color: @text;
+}
+
+/* Give Pango room to render descenders/curves on tight labels */
+label,
+entry {
+  padding-top: 4px;
+  padding-bottom: 6px;
+  min-height: 24px;
 }
 
 /* Icon size classes */
@@ -148,23 +156,32 @@ child:selected .item-box {
   color: @text;
 }
 
-/* Keybinds wrapper */
-.keybinds-wrapper {
-  border-top: 1px solid lighter(@base);
-  font-size: 12px;
-  opacity: 0.5;
-  color: @text;
-}
-
-.keybinds {
-}
-
-.keybind {
-}
-
+/* Hide dynamic keybind hints — walker forces visibility, so we collapse via CSS */
+.keybinds,
+.keybinds *,
+.keybind,
+.keybind-button,
+.keybind-label,
 .keybind-bind {
-  font-weight: bold;
+  min-height: 0;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+  opacity: 0;
 }
 
-.keybind-label {
+/* Prefix legend (footer) */
+.prefix-legend {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: alpha(@text, 0.5);
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid alpha(@border, 0.2);
+}
+
+.prefix-legend b {
+  color: @selected-text;
+  font-weight: bold;
 }

@@ -116,30 +116,27 @@
             </child>
             <child>
               <object class="GtkBox" id="Keybinds">
-                <property name="hexpand">true</property>
-                <property name="spacing">10</property>
+                <property name="visible">false</property>
                 <style>
                   <class name="keybinds"></class>
                 </style>
                 <child>
-                  <object class="GtkBox" id="GlobalKeybinds">
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">10</property>
-                    <style>
-                      <class name="global-keybinds"></class>
-                    </style>
-                  </object>
+                  <object class="GtkBox" id="GlobalKeybinds"></object>
                 </child>
                 <child>
-                  <object class="GtkBox" id="ItemKeybinds">
-                    <property name="hexpand">true</property>
-                    <property name="halign">end</property>
-                    <property name="spacing">10</property>
-                    <style>
-                      <class name="item-keybinds"></class>
-                    </style>
-                  </object>
+                  <object class="GtkBox" id="ItemKeybinds"></object>
                 </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="PrefixLegend">
+                <style>
+                  <class name="prefix-legend"></class>
+                </style>
+                <property name="hexpand">true</property>
+                <property name="halign">center</property>
+                <property name="use-markup">true</property>
+                <property name="label">&lt;b&gt;/&lt;/b&gt; list   &lt;b&gt;.&lt;/b&gt; files   &lt;b&gt;:&lt;/b&gt; symbols   &lt;b&gt;=&lt;/b&gt; calc   &lt;b&gt;@&lt;/b&gt; web   &lt;b&gt;$&lt;/b&gt; clip</property>
               </object>
             </child>
             <child>
