@@ -25,6 +25,8 @@
       description: Configuring git audit alias
     - command: mkdir -p ~/.config/systemd/user && ln -sf ~/.dotfiles/systemd/user/yazi-filemanager.service ~/.config/systemd/user/yazi-filemanager.service && systemctl --user daemon-reload && systemctl --user enable --now yazi-filemanager.service 2>/dev/null || true
       description: Enabling yazi FileManager1 D-Bus service
+    - command: mkdir -p ~/.config/systemd/user && for u in kopia-snapshot.service kopia-snapshot.timer kopia-notify@.service; do ln -sf ~/.dotfiles/systemd/user/$u ~/.config/systemd/user/$u; done && systemctl --user daemon-reload && systemctl --user enable --now kopia-snapshot.timer 2>/dev/null || true
+      description: Enabling Kopia snapshot user timer
     # System files with sudo
     - command: sudo ln -sf $(pwd)/greetd/config.toml /etc/greetd/config.toml
       description: Installing greetd config
