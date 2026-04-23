@@ -25,6 +25,8 @@
       description: Configuring git audit alias
     - command: mkdir -p ~/.config/systemd/user && ln -sf ~/.dotfiles/systemd/user/yazi-filemanager.service ~/.config/systemd/user/yazi-filemanager.service && systemctl --user daemon-reload && systemctl --user enable --now yazi-filemanager.service 2>/dev/null || true
       description: Enabling yazi FileManager1 D-Bus service
+    - command: mkdir -p ~/.config/kopia && [ -f ~/.config/kopia/env ] || install -m 600 ~/.dotfiles/kopia/env.example ~/.config/kopia/env
+      description: Seeding ~/.config/kopia/env from example (no-op if it exists)
     - command: systemctl --user enable --now protonmail-bridge.service 2>/dev/null || true
       description: Enabling Proton Mail Bridge user service
     - command: git -C ~/.local/share/catppuccin-thunderbird pull --ff-only --quiet 2>/dev/null || git clone --quiet --depth=1 https://github.com/catppuccin/thunderbird ~/.local/share/catppuccin-thunderbird

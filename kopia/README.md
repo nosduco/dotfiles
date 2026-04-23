@@ -20,8 +20,7 @@ cd ~/.dotfiles && ./install
 # 2. Verify SSH to tux as kopia (add host to kopia-sftp-user ansible role if new)
 ssh -p 22 kopia@tux hostname
 
-# 3. Creds - copy the example and fill in KOPIA_PASSWORD
-install -m 600 ~/.dotfiles/kopia/env.example ~/.config/kopia/env
+# 3. Edit the env stub (./install seeded it from kopia/env.example)
 $EDITOR ~/.config/kopia/env
 
 # 4. One-time bootstrap: connects repo, applies policy, registers sources.
