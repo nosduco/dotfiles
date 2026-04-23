@@ -61,14 +61,13 @@ fi
 # ---- apply policy + schedule ----
 K policy set "$USER_HOST" \
     --keep-latest=10 \
-    --keep-hourly=0 \
+    --keep-hourly=24 \
     --keep-daily=30 \
     --keep-weekly=12 \
     --keep-monthly=24 \
     --keep-annual=5 \
     --compression=zstd-fastest \
-    --snapshot-time=02:00 \
-    --snapshot-interval=24h0m0s
+    --snapshot-interval=3h0m0s
 
 # ---- rebuild ignore rules ----
 mapfile -t CURRENT < <(K policy show "$USER_HOST" --json 2>/dev/null \
