@@ -53,20 +53,6 @@ done < "$DOTFILES_KOPIA/ignore-patterns.txt"
 
 ((${#ARGS[@]} > 0)) && K policy set "$USER_HOST" "${ARGS[@]}"
 
-if [[ -n "${NTFY_URL:-}" && -n "${NTFY_USER:-}" && -n "${NTFY_PASSWORD:-}" ]]; then
-    AUTH="Basic $(printf '%s:%s' "$NTFY_USER" "$NTFY_PASSWORD" | base64 -w0)"
-    K notification profile configure webhook \
-        --profile-name=ntfy-critical \
-        --endpoint="$NTFY_URL" \
-        --method=POST \
-        --format=txt \
-        --min-severity=error \
-        --http-header="Title:Kopia backup issue on $(hostname -s)" \
-        --http-header="Priority:high" \
-        --http-header="Tags:kopia,desktop,warning" \
-        --http-header="Authorization:$AUTH" >/dev/null
-fi
-
 PATHS=()
 while IFS= read -r line; do
     trimmed="${line%%#*}"
