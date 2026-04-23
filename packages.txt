@@ -82,7 +82,8 @@ firefoxpwa
 obsidian
 vesktop-bin
 element-desktop
-vorta
+kopia-bin
+kopia-ui-bin
 spotify-launcher
 spicetify-cli
 

@@ -1,0 +1,130 @@
+# Kopia ignore patterns (gitignore semantics). Migrated from Vorta presets.
+
+# Caches
+.cache
+Caches
+.var/app/*/cache
+.var/app/*/Cache
+.var/app/*/Code Cache
+.var/app/*/DawnCache
+.var/app/*/GPUCache
+.var/app/*/CacheStorage
+.var/app/*/ScriptCache
+.var/app/*/tmp
+
+# Trash
+.local/share/Trash
+.Trash
+.Trash-*
+
+# Chromium
+chromium/*/Application Cache
+chromium/*/Local Storage
+chromium/*/Service Worker/CacheStorage
+chromium/*/Session Storage
+chromium/*/History Index *
+chromium/GrShaderCache
+chromium/GraphiteDawnCache
+chromium/ShaderCache
+
+# Google Chrome
+google-chrome*/*/Application Cache
+google-chrome*/*/Local Storage
+google-chrome*/*/Service Worker/CacheStorage
+google-chrome*/*/Session Storage
+google-chrome*/*/Feature Engagement Tracker
+google-chrome*/*/History Index *
+google-chrome*/GrShaderCache
+google-chrome*/GraphiteDawnCache
+google-chrome*/Safe Browsing
+google-chrome*/ShaderCache
+
+# Brave
+BraveSoftware/Brave-Browser/*/Local Storage
+BraveSoftware/Brave-Browser/*/Service Worker/CacheStorage
+BraveSoftware/Brave-Browser/*/Session Storage
+BraveSoftware/Brave-Browser/*/Feature Engagement Tracker
+BraveSoftware/Brave-Browser/GrShaderCache
+BraveSoftware/Brave-Browser/GraphiteDawnCache
+BraveSoftware/Brave-Browser/Safe Browsing
+BraveSoftware/Brave-Browser/ShaderCache
+
+# Firefox
+.mozilla/firefox/*/Cache
+.mozilla/firefox/*/.parentlock
+.mozilla/firefox/*/minidumps
+.mozilla/firefox/*/urlclassifier3.sqlite
+.mozilla/firefox/*/extensions.sqlite
+.mozilla/firefox/*/extensions.sqlite-journal
+.mozilla/firefox/*/extensions.cache
+.mozilla/firefox/*/extensions.ini
+.mozilla/firefox/*/extensions.rdf
+.mozilla/firefox/*/compreg.dat
+.mozilla/firefox/*/blocklist.xml
+.mozilla/firefox/*/XPC.mfasl
+.mozilla/firefox/*/XUL.mfasl
+.mozilla/firefox/*/pluginreg.dat
+.mozilla/firefox/*/xpti.dat
+
+# Spotify
+.config/spotify
+.var/app/com.spotify.Client/config/spotify
+
+# Node
+node_modules
+.npm
+npm-global
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+.virtualenvs
+venv
+.venv
+
+# Rust
+.cargo
+.rustup
+target
+
+# JVM
+.jdk
+.m2
+.gradle
+
+# Android
+.android
+Android/Sdk
+.AndroidStudio
+
+# VS Code
+.config/Code
+.vscode/extensions
+
+# JetBrains
+.config/JetBrains
+.cache/JetBrains
+.local/share/JetBrains
+
+# Cloud / container tools
+.aws
+.docker
+.flatpak-builder
+.local/share/containers
+
+# VM images
+*.vmdk
+*.vdi
+*.qcow2
+*.iso
+
+# Logs / temp / swap / partial
+*.log
+logs
+.tmp
+temp
+*.swp
+*.bak
+*.part
+*~

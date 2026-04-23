@@ -1,0 +1,16 @@
+# Kopia snapshot sources. One path per line.
+~/.config
+~/.gnupg
+~/.ssh
+~/Desktop
+~/Documents
+~/Downloads
+~/Music
+~/Pictures
+~/Public
+~/Templates
+~/Videos
+~/backups
+~/notes
+~/projects
+~/work
