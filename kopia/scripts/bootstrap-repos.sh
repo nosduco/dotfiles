@@ -20,8 +20,6 @@ SFTP_HOST="${KOPIA_SFTP_HOST:-tux}"
 SFTP_PORT="${KOPIA_SFTP_PORT:-22}"
 SFTP_USER="${KOPIA_SFTP_USER:-kopia}"
 SFTP_BASE="${KOPIA_SFTP_BASE:-/tank/data/backups/endpoints}"
-SSH_KEYFILE="${KOPIA_SSH_KEYFILE:-$HOME/.ssh/id_ed25519}"
-SSH_KNOWN_HOSTS="${KOPIA_SSH_KNOWN_HOSTS:-$HOME/.ssh/known_hosts}"
 
 HOSTNAME_SHORT="$(hostname -s)"
 SFTP_PATH="$SFTP_BASE/$HOSTNAME_SHORT"
@@ -30,13 +28,14 @@ mkdir -p "$(dirname "$CONFIG_FILE")"
 K() { kopia --config-file="$CONFIG_FILE" "$@"; }
 
 if ! K repository status >/dev/null 2>&1; then
+    # --external shells out to real `ssh` so it picks up ssh-agent
+    # (gnome-keyring unlocks passphrase-protected keys on login).
     SFTP_ARGS=(
         --host="$SFTP_HOST"
         --port="$SFTP_PORT"
         --username="$SFTP_USER"
         --path="$SFTP_PATH"
-        --keyfile="$SSH_KEYFILE"
-        --known-hosts="$SSH_KNOWN_HOSTS"
+        --external
         --persist-credentials
     )
 
