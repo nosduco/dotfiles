@@ -41,6 +41,10 @@ $EDITOR ~/.dotfiles/kopia/{sources.txt,ignore-patterns.txt}
 ~/.dotfiles/kopia/scripts/apply-policies.sh
 ```
 
+Removing a line from `sources.txt` won't auto-delete existing snapshots -
+apply-policies prints the orphan + the exact `kopia snapshot delete` to run.
+This keeps destructive ops explicit.
+
 ## Restore
 
 Use KopiaUI (tray icon → Snapshots), or CLI:
