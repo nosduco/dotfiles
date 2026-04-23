@@ -3,7 +3,7 @@
 Replaces Vorta. Snapshots to tux over LAN; tux replicates the repo to B2.
 
 ```
-sources ──► sftp://kopia@tux/tank/data/backups/endpoints/<host>   (02:00, kopia scheduler)
+sources ──► sftp://kopia@tux/tank/data/backups/endpoints/<host>   (every 3h, kopia scheduler)
                          │
                          └──► b2://tuxcloud-endpoints-backups/<host>/  (03:30, tux CronJob)
 ```
@@ -71,8 +71,12 @@ kopia repository connect b2 \
 
 ## Retention + schedule
 
-10 latest / 30 daily / 12 weekly / 24 monthly / 5 yearly. Daily at 02:00.
+Every 3h (8/day). 10 latest / 24 hourly / 30 daily / 12 weekly / 24 monthly / 5 yearly.
 All defined in `reconcile.sh` so every endpoint applies the same policy.
+
+Sub-daily cadence means KopiaUI's success notifications get noisy. Open
+Preferences → Notifications and disable "notify on success" (keep "notify
+on failure"). The tray icon still shows overall health at a glance.
 
 ## Failure notifications
 
