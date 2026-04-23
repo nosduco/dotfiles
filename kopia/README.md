@@ -34,6 +34,17 @@ After that, KopiaUI's scheduler takes a snapshot at 02:00 every day.
 Tray icon shows status; Electron notifications fire on success/failure.
 KopiaUI connects without prompting (password is persisted in gnome-keyring).
 
+## What each script does
+
+- `bootstrap-repos.sh` - makes sure the Kopia repo exists + is connected.
+  No policy, no snapshots. Safe to re-run; no-ops if already connected.
+- `apply-policies.sh` - reconciles retention, ignore rules, and sources
+  against `sources.txt`. New sources get a one-time snapshot to register
+  them (kopia's scheduler picks them up from there). Already-registered
+  sources are left alone - incremental snapshots are the scheduler's job.
+  Orphans (registered sources no longer in `sources.txt`) are logged
+  with the exact `kopia snapshot delete` command to copy-paste.
+
 ## Editing sources / ignores
 
 ```fish
@@ -41,9 +52,9 @@ $EDITOR ~/.dotfiles/kopia/{sources.txt,ignore-patterns.txt}
 ~/.dotfiles/kopia/scripts/apply-policies.sh
 ```
 
-Removing a line from `sources.txt` won't auto-delete existing snapshots -
-apply-policies prints the orphan + the exact `kopia snapshot delete` to run.
-This keeps destructive ops explicit.
+Fast on subsequent runs: only *new* sources get snapshotted, known ones
+are reconciled in-place. Triggering a snapshot manually is a KopiaUI
+click or `kopia snapshot create <path>` away.
 
 ## Restore
 
