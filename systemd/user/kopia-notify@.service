@@ -1,6 +1,0 @@
-[Unit]
-Description=ntfy notify on Kopia failure: %i
-
-[Service]
-Type=oneshot
-ExecStart=%h/.dotfiles/kopia/scripts/notify-fail.sh %i
