@@ -64,17 +64,25 @@ while IFS= read -r line; do
     [[ -d "$expanded" ]] && PATHS+=("$expanded") || echo "skip (missing): $expanded" >&2
 done < "$DOTFILES_KOPIA/sources.txt"
 
-((${#PATHS[@]} > 0)) && K snapshot create "${PATHS[@]}"
-
-# Drift check: any source registered in Kopia but not in sources.txt is
-# an orphan. We log + print the delete command instead of removing it,
-# so deletions stay explicit.
+# Compare sources.txt (WANTED) vs what Kopia already has registered
+# (EXISTING). NEW sources get a first snapshot to register them; known
+# sources are left to the scheduler. ORPHANS are logged for manual delete.
 WANTED=$(printf '%s\n' "${PATHS[@]}" | sort -u)
 EXISTING=$(K snapshot list --all --json 2>/dev/null \
     | jq -r --arg u "$USER" --arg h "$(hostname -s)" \
         '.[] | select(.source.userName == $u and .source.host == $h) | .source.path' \
     | sort -u) || EXISTING=""
+
+NEW=$(comm -23 <(echo "$WANTED") <(echo "$EXISTING") | grep -v '^$' || true)
 ORPHANS=$(comm -13 <(echo "$WANTED") <(echo "$EXISTING") | grep -v '^$' || true)
+
+if [[ -n "$NEW" ]]; then
+    echo ""
+    echo "Registering new sources (first snapshot):"
+    printf '  %s\n' $NEW
+    mapfile -t NEW_PATHS <<< "$NEW"
+    K snapshot create "${NEW_PATHS[@]}"
+fi
 
 if [[ -n "$ORPHANS" ]]; then
     echo ""
