@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Ableton Live 12 Standard
+Exec=/home/tony/.local/bin/ableton %F
+Terminal=false
+Type=Application
+Icon=/home/tony/.dotfiles/applications/ableton.png
+StartupWMClass=explorer.exe
+Comment=Ableton Live 12 on Wine
+MimeType=application/x-ableton-live-set;x-scheme-handler/ableton;
+Categories=AudioVideo;Audio;Music;
+Keywords=ableton;live;daw;music;production;
