@@ -22,9 +22,6 @@ ssh -p 22 kopia@tux hostname
 # 3. Drop creds in. Single file, 600-mode.
 install -m 600 /dev/stdin ~/.config/kopia/env <<'EOF'
 KOPIA_PASSWORD=<strong random password - save in password manager!>
-NTFY_URL=https://ntfy.tuxcloud.xyz/alerts-critical
-NTFY_USER=bot
-NTFY_PASSWORD=<bot password - SOPS: tux-infra/bootstrap/ansible/group_vars/all/secrets.sops.yaml>
 EOF
 ```
 
@@ -66,9 +63,7 @@ KopiaUI (`kopia-ui`) auto-discovers the config for browse/restore.
 
 ## Failure notifications
 
-- Kopia's native webhook profile posts `alerts-critical` on snapshot errors
-  (configured by `apply-policies.sh` when `NTFY_*` is in env).
-- systemd `OnFailure=kopia-notify@%n.service` posts journalctl tail to ntfy
-  if the snapshot unit itself exits non-zero.
-- The sync-to-B2 side is handled by `platform/kopia-endpoints-sync/` in
-  tux-infra, which alerts via the standard `trap ERR` CronJob pattern.
+- Desktop side: `systemd OnFailure=kopia-notify@%n.service` fires a local
+  `notify-send` desktop notification if the timer unit exits non-zero.
+- Tux side (sync-to-B2): `platform/kopia-endpoints-sync/` CronJob posts to
+  ntfy `alerts-critical` via the standard `trap ERR` pattern.
