@@ -33,6 +33,7 @@ SFTP_ARGS=(
     --path="$SFTP_PATH"
     --keyfile="$HOME/.ssh/id_ed25519"
     --known-hosts="$HOME/.ssh/known_hosts"
+    --persist-credentials
 )
 
 if K repository connect sftp "${SFTP_ARGS[@]}" 2>/dev/null; then
