@@ -3,44 +3,49 @@
 Replaces Vorta. Snapshots to tux over LAN; tux replicates the repo to B2.
 
 ```
-sources ──► sftp://kopia@tux/tank/data/backups/endpoints/<host>   (02:00, daily, LAN)
+sources ──► sftp://kopia@tux/tank/data/backups/endpoints/<host>   (02:00, kopia scheduler)
                          │
-                         └──► b2://tuxcloud-endpoints-backups/<host>/  (03:30, driven by tux-side CronJob)
+                         └──► b2://tuxcloud-endpoints-backups/<host>/  (03:30, tux CronJob)
 ```
 
-Desktop does LAN-only; tux handles all off-site traffic.
+Desktop does LAN-only. KopiaUI runs the scheduler + tray + notifications.
+Tux handles all off-site traffic.
 
 ## 0 → fully set up
 
 ```fish
-# 1. Install packages, symlink units, enable timer. Idempotent.
+# 1. Install + link. Idempotent.
 cd ~/.dotfiles && ./install
 
 # 2. Verify SSH to tux as kopia (add host to kopia-sftp-user ansible role if new)
 ssh -p 22 kopia@tux hostname
 
-# 3. Drop creds in. Single file, 600-mode.
+# 3. Creds (one file, 600-mode)
 install -m 600 /dev/stdin ~/.config/kopia/env <<'EOF'
 KOPIA_PASSWORD=<strong random password - save in password manager!>
 EOF
+
+# 4. One-time bootstrap: connects repo, applies policy, registers sources.
+~/.dotfiles/kopia/scripts/bootstrap-repos.sh
+
+# 5. Start KopiaUI (autostarts on login via hypr/execs.conf)
+kopia-ui
 ```
 
-Done. On the next 02:00 tick the snapshot timer auto-creates the repo, reconciles
-policy from `sources.txt` / `ignore-patterns.txt`, snapshots all 15 paths. Tux's
-`kopia-endpoints-sync` CronJob picks it up at 03:30 and replicates to B2.
-
-Skip the wait: `systemctl --user start kopia-snapshot.service`.
+After that, KopiaUI's scheduler takes a snapshot at 02:00 every day.
+Tray icon shows status; Electron notifications fire on success/failure.
+KopiaUI connects without prompting (password is persisted in gnome-keyring).
 
 ## Editing sources / ignores
 
 ```fish
 $EDITOR ~/.dotfiles/kopia/{sources.txt,ignore-patterns.txt}
+~/.dotfiles/kopia/scripts/apply-policies.sh
 ```
 
-Next daily run reconciles automatically. Force-apply sooner with
-`~/.dotfiles/kopia/scripts/apply-policies.sh`.
-
 ## Restore
+
+Use KopiaUI (tray icon → Snapshots), or CLI:
 
 ```fish
 kopia --config-file=~/.config/kopia/tux-sftp.config snapshot list --all
@@ -55,15 +60,13 @@ kopia repository connect b2 \
     --key-id=<endpoints app key id> --key=<endpoints app key>
 ```
 
-KopiaUI (`kopia-ui`) auto-discovers the config for browse/restore.
-
 ## Retention
 
 10 latest / 30 daily / 12 weekly / 24 monthly / 5 yearly. Set in `apply-policies.sh`.
 
-## Failure notifications
+## Schedule
 
-- Desktop side: `systemd OnFailure=kopia-notify@%n.service` fires a local
-  `notify-send` desktop notification if the timer unit exits non-zero.
-- Tux side (sync-to-B2): `platform/kopia-endpoints-sync/` CronJob posts to
-  ntfy `alerts-critical` via the standard `trap ERR` pattern.
+Daily at 02:00 (via kopia policy `--snapshot-time=02:00 --snapshot-interval=24h`).
+KopiaUI must be running for the scheduler to fire — it autostarts from
+`hypr/execs.conf`. If you quit KopiaUI and miss a day, next snapshot runs when
+you reopen it.

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Reconciles Kopia repo against the declarative config in ~/.dotfiles/kopia/:
-# retention, compression, ignore rules, sources. Idempotent.
+# retention, compression, schedule, ignore rules, sources. Idempotent.
 set -euo pipefail
 
 DOTFILES_KOPIA="$(cd "$(dirname "$0")/.." && pwd)"
@@ -34,7 +34,8 @@ K policy set "$USER_HOST" \
     --keep-monthly=24 \
     --keep-annual=5 \
     --compression=zstd-fastest \
-    --manual
+    --snapshot-time=02:00 \
+    --snapshot-interval=24h0m0s
 
 mapfile -t CURRENT < <(K policy show "$USER_HOST" --json 2>/dev/null \
     | jq -r '.files.ignore[]?' 2>/dev/null || true)
