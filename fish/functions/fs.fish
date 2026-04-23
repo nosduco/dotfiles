@@ -4,6 +4,7 @@ function fs
 	yazi $argv --cwd-file="$tmp"
 	if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
 		builtin cd -- "$cwd"
+		commandline -f repaint
 	end
 	rm -f -- "$tmp"
 end
