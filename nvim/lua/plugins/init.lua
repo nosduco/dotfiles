@@ -266,8 +266,8 @@ return {
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
     dependencies = {
       {
@@ -279,8 +279,9 @@ return {
         end,
       },
     },
-    opts = treesitter.opts,
-    lazy = false,
+    config = function()
+      require("nvim-treesitter").install(treesitter.ensure_installed)
+    end,
   },
 
   -- Mason
@@ -533,7 +534,7 @@ return {
   -- Wakatime
   {
     "wakatime/vim-wakatime",
-    lazy = false,
+    enabled = false,
   },
 
   -- Codeium
