@@ -1,0 +1,24 @@
+text_prefix = ""
+engines_as_actions = false
+always_show_default = true
+
+[[entries]]
+name = "DuckDuckGo"
+prefix = "ddg"
+default = true
+url = "https://duckduckgo.com/?q=%TERM%"
+
+[[entries]]
+name = "GitHub"
+prefix = "gh"
+url = "https://github.com/search?q=%TERM%"
+
+[[entries]]
+name = "Subreddit"
+prefix = "r"
+url = "https://www.reddit.com/r/%TERM%"
+
+[[entries]]
+name = "Reddit Search"
+prefix = "rs"
+url = "https://www.reddit.com/search/?q=%TERM%"

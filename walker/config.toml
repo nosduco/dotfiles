@@ -31,6 +31,9 @@ default = ["desktopapplications", "websearch"]
 empty = ["desktopapplications", "websearch"]
 max_results = 50
 
+[columns]
+"symbols" = 1
+
 [providers.sets]
 [providers.max_results_provider]
 
