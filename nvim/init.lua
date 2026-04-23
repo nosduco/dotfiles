@@ -27,20 +27,19 @@ require "options"
 -- Autocmds
 local autocmd = vim.api.nvim_create_autocmd
 
--- Treesitter auto-start on all filetypes
+-- Treesitter: enable highlight, folds, and indent per filetype (main-branch API)
+local ts_config = require "configs.treesitter"
 autocmd("FileType", {
   pattern = "*",
-  callback = function()
-    pcall(vim.treesitter.start)
+  callback = function(args)
+    if not pcall(vim.treesitter.start, args.buf) then
+      return
+    end
+    if not ts_config.indent_disabled[vim.bo[args.buf].filetype] then
+      vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
   end,
 })
-
--- TSInstallAll command
-vim.api.nvim_create_user_command("TSInstallAll", function()
-  local spec = require("lazy.core.config").plugins["nvim-treesitter"]
-  local opts = type(spec.opts) == "table" and spec.opts or {}
-  require("nvim-treesitter").install(opts.ensure_installed)
-end, {})
 
 -- Load mappings (deferred to avoid conflicts)
 vim.schedule(function()
