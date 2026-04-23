@@ -65,3 +65,26 @@ while IFS= read -r line; do
 done < "$DOTFILES_KOPIA/sources.txt"
 
 ((${#PATHS[@]} > 0)) && K snapshot create "${PATHS[@]}"
+
+# Drift check: any source registered in Kopia but not in sources.txt is
+# an orphan. We log + print the delete command instead of removing it,
+# so deletions stay explicit.
+WANTED=$(printf '%s\n' "${PATHS[@]}" | sort -u)
+EXISTING=$(K snapshot list --all --json 2>/dev/null \
+    | jq -r --arg u "$USER" --arg h "$(hostname -s)" \
+        '.[] | select(.source.userName == $u and .source.host == $h) | .source.path' \
+    | sort -u) || EXISTING=""
+ORPHANS=$(comm -13 <(echo "$WANTED") <(echo "$EXISTING") | grep -v '^$' || true)
+
+if [[ -n "$ORPHANS" ]]; then
+    echo ""
+    echo "Orphan sources (registered in Kopia but not in sources.txt):"
+    printf '  %s\n' $ORPHANS
+    echo ""
+    echo "To unregister + delete all their snapshots, run:"
+    while IFS= read -r p; do
+        echo "  kopia --config-file=\"$CONFIG_FILE\" snapshot delete \\"
+        echo "    --all-snapshots-for-source \"$USER_HOST:$p\" --delete"
+    done <<< "$ORPHANS"
+fi
+

@@ -4,7 +4,6 @@
 ~/.ssh
 ~/Desktop
 ~/Documents
-~/Downloads
 ~/Music
 ~/Pictures
 ~/Public
