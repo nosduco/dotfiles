@@ -16,7 +16,7 @@ set -euo pipefail
 
 DOTFILES_KOPIA="$(cd "$(dirname "$0")/.." && pwd)"
 ENV_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/kopia/env"
-CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/kopia/tux-sftp.config"
+CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/kopia/sftp.config"
 
 if [[ ! -f "$ENV_FILE" ]]; then
     echo "Missing $ENV_FILE - see kopia/README.md" >&2
@@ -27,10 +27,12 @@ source "$ENV_FILE"
 : "${KOPIA_PASSWORD:?must be set in $ENV_FILE}"
 export KOPIA_PASSWORD
 
-SFTP_HOST="${KOPIA_SFTP_HOST:-tux}"
+: "${KOPIA_SFTP_HOST:?must be set in $ENV_FILE}"
+: "${KOPIA_SFTP_BASE:?must be set in $ENV_FILE}"
+SFTP_HOST="$KOPIA_SFTP_HOST"
 SFTP_PORT="${KOPIA_SFTP_PORT:-22}"
 SFTP_USER="${KOPIA_SFTP_USER:-kopia}"
-SFTP_BASE="${KOPIA_SFTP_BASE:-/tank/data/backups/endpoints}"
+SFTP_BASE="$KOPIA_SFTP_BASE"
 HOSTNAME_SHORT="$(hostname -s)"
 SFTP_PATH="$SFTP_BASE/$HOSTNAME_SHORT"
 USER_HOST="$USER@$HOSTNAME_SHORT"
