@@ -1,15 +1,15 @@
 # Kopia desktop backups
 
-Replaces Vorta. Snapshots to tux over LAN; tux replicates the repo to B2.
+Replaces Vorta. Snapshots to a remote `<server>` over LAN; `<server>` replicates the repo to B2.
 
 ```
-sources ──► sftp://kopia@tux/tank/data/backups/endpoints/<host>   (every 3h, kopia scheduler)
+sources ──► sftp://kopia@<server>/<sftp-base>/<host>   (every 3h, kopia scheduler)
                          │
-                         └──► b2://tuxcloud-endpoints-backups/<host>/  (03:30, tux CronJob)
+                         └──► b2://<b2-bucket>/<host>/  (03:30, server-side CronJob)
 ```
 
 Desktop does LAN-only. KopiaUI runs the scheduler + tray + notifications.
-Tux handles all off-site traffic.
+The server handles all off-site traffic.
 
 ## 0 → fully set up
 
@@ -17,11 +17,11 @@ Tux handles all off-site traffic.
 # 1. Install + link. Idempotent. Seeds ~/.config/kopia/env.
 cd ~/.dotfiles && ./install
 
-# 2. Fill in KOPIA_PASSWORD (must match the k8s SOPS secret)
+# 2. Fill in KOPIA_PASSWORD + SFTP host/base (must match the remote sync secret)
 $EDITOR ~/.config/kopia/env
 
-# 3. Verify SSH to tux works
-ssh -p 22 kopia@tux hostname
+# 3. Verify SSH to the server works
+ssh -p 22 kopia@<server> hostname
 
 # 4. Reconcile (one script does everything — see below)
 ~/.dotfiles/kopia/scripts/reconcile.sh
@@ -57,15 +57,15 @@ KopiaUI's server), not by this script. You only re-run reconcile when
 Via KopiaUI (tray → Snapshots), or CLI:
 
 ```fish
-kopia --config-file=~/.config/kopia/tux-sftp.config snapshot list --all
-kopia --config-file=~/.config/kopia/tux-sftp.config restore <id> /tmp/restore
-kopia --config-file=~/.config/kopia/tux-sftp.config mount <id> /tmp/kopia-mount
+kopia --config-file=~/.config/kopia/sftp.config snapshot list --all
+kopia --config-file=~/.config/kopia/sftp.config restore <id> /tmp/restore
+kopia --config-file=~/.config/kopia/sftp.config mount <id> /tmp/kopia-mount
 ```
 
-If tux is gone: connect to B2 directly with the same password:
+If `<server>` is gone: connect to B2 directly with the same password:
 ```fish
 kopia repository connect b2 \
-    --bucket=tuxcloud-endpoints-backups --prefix=<host>/ \
+    --bucket=<b2-bucket> --prefix=<host>/ \
     --key-id=<endpoints app key id> --key=<endpoints app key>
 ```
 
@@ -82,5 +82,5 @@ on failure"). The tray icon still shows overall health at a glance.
 
 - Desktop: KopiaUI's Electron tray fires native notifications on snapshot
   errors when KopiaUI is running.
-- Tux side (sync-to-B2): `platform/kopia-endpoints-sync/` CronJob posts
-  to ntfy `alerts-critical` via `trap ERR`.
+- Server side (sync-to-B2): your CronJob is responsible for surfacing
+  failures (e.g. ntfy via `trap ERR`).
