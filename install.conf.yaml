@@ -145,6 +145,13 @@
       create: true
       glob: true
       path: applications/*
+    # GTK4 user CSS (catppuccin -> libadwaita 1.6+ token bridge)
+    ~/.config/gtk-4.0/gtk.css:
+      path: gtk/gtk-4.0/gtk.css
+      create: true
+    ~/.config/gtk-4.0/gtk-dark.css:
+      path: gtk/gtk-4.0/gtk-dark.css
+      create: true
     # VPN scripts
     ~/.local/bin/vpn-up:
       path: scripts/vpn/vpn-up.sh

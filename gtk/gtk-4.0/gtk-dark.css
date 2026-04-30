@@ -1,0 +1,70 @@
+/*
+ * Identical to gtk.css. GTK4 selects gtk-dark.css over gtk.css when
+ * the active theme is loaded as the dark variant, so the libadwaita
+ * color-token bridge needs to be present here too.
+ *
+ * If you change one file, change both.
+ */
+
+:root {
+  --window-bg-color:               @window_bg_color;
+  --window-fg-color:               @window_fg_color;
+
+  --view-bg-color:                 @view_bg_color;
+  --view-fg-color:                 @view_fg_color;
+
+  --headerbar-bg-color:            @headerbar_bg_color;
+  --headerbar-fg-color:            @headerbar_fg_color;
+  --headerbar-border-color:        @headerbar_border_color;
+  --headerbar-backdrop-color:      @headerbar_backdrop_color;
+  --headerbar-shade-color:         @headerbar_shade_color;
+
+  --sidebar-bg-color:              @headerbar_bg_color;
+  --sidebar-fg-color:              @headerbar_fg_color;
+  --sidebar-backdrop-color:        @headerbar_backdrop_color;
+  --sidebar-border-color:          @headerbar_border_color;
+  --sidebar-shade-color:           @headerbar_shade_color;
+
+  --secondary-sidebar-bg-color:    @headerbar_bg_color;
+  --secondary-sidebar-fg-color:    @headerbar_fg_color;
+  --secondary-sidebar-backdrop-color: @headerbar_backdrop_color;
+  --secondary-sidebar-border-color:   @headerbar_border_color;
+  --secondary-sidebar-shade-color:    @headerbar_shade_color;
+
+  --card-bg-color:                 @card_bg_color;
+  --card-fg-color:                 @card_fg_color;
+  --card-shade-color:              @card_shade_color;
+
+  --dialog-bg-color:               @dialog_bg_color;
+  --dialog-fg-color:               @dialog_fg_color;
+
+  --popover-bg-color:              @popover_bg_color;
+  --popover-fg-color:              @popover_fg_color;
+  --popover-shade-color:           @card_shade_color;
+
+  --thumbnail-bg-color:            @card_bg_color;
+  --thumbnail-fg-color:            @card_fg_color;
+
+  --shade-color:                   @shade_color;
+  --scrollbar-outline-color:       @scrollbar_outline_color;
+
+  --accent-bg-color:               @accent_bg_color;
+  --accent-fg-color:               @accent_fg_color;
+  --accent-color:                  @accent_color;
+
+  --destructive-bg-color:          @destructive_bg_color;
+  --destructive-fg-color:          @destructive_fg_color;
+  --destructive-color:             @destructive_color;
+
+  --success-bg-color:              @success_bg_color;
+  --success-fg-color:              @success_fg_color;
+  --success-color:                 @success_color;
+
+  --warning-bg-color:              @warning_bg_color;
+  --warning-fg-color:              @warning_fg_color;
+  --warning-color:                 @warning_color;
+
+  --error-bg-color:                @error_bg_color;
+  --error-fg-color:                @error_fg_color;
+  --error-color:                   @error_color;
+}
