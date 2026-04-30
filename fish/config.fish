@@ -68,6 +68,7 @@ alias nvm='fnm'
 alias cat='bat'
 alias top='btop'
 alias htop='btop'
+alias gd='gh dash'
 
 # Override rm for trash
 alias rm='trash'
