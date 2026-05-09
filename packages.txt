@@ -25,7 +25,7 @@ fish
 fisher
 tmux
 zoxide
-fnm-bin
+fnm
 
 # CLI Tools
 bat
