@@ -1,0 +1,6 @@
+"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+
+[mgr]
+prepend_keymap = [
+	{ on = "Y", run = 'shell -- case "$(file -b --mime-type %h)" in image/*) wl-copy --type "$(file -b --mime-type %h)" < %h ;; *) echo -n "file://%h" | wl-copy -t text/uri-list ;; esac && notify-send -t 2000 "Yazi" "Copied to clipboard"', desc = "Copy file to system clipboard" },
+]

@@ -1,4 +1,5 @@
 .env
+.codex
 hypr/host.conf
 fish/fish_variables
 nvim/lazy-lock.json
@@ -20,3 +21,12 @@ cava/shaders/
 wireguard/configs/*.conf
 hypr/hypridle.conf
 hypr/hyprlock.conf
+
+# Tide prompt (Fisher-managed runtime files)
+fish/completions/tide.fish
+fish/conf.d/_tide_init.fish
+fish/functions/_tide_*
+fish/functions/fish_prompt.fish
+fish/functions/fish_mode_prompt.fish
+fish/functions/tide.fish
+fish/functions/tide/

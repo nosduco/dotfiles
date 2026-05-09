@@ -1,0 +1,10 @@
+[Unit]
+Description=Yazi FileManager1 D-Bus service
+
+[Service]
+Type=simple
+ExecStart=%h/.dotfiles/scripts/yazi-filemanager-dbus.py
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

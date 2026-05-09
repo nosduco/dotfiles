@@ -10,4 +10,7 @@ function fish_user_key_bindings
     # Shift-Tab - Complete autosuggestion
     # bind --erase --preset -k btab
     # bind -k btab accept-autosuggestion
+
+    # p in normal mode pastes from system clipboard
+    bind --mode default p 'commandline -i (wl-paste --no-newline)'
 end

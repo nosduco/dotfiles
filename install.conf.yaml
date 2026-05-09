@@ -5,8 +5,28 @@
       force: true
 - clean: ["~"]
 - shell:
-    # Clone NvChad configuration to be overridden by custom config below
-    - command: git -C ~/.config/nvim pull || git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+    # Install packages
+    - command: ./scripts/install-missing-packages.sh
+      description: Installing missing packages from packages.txt
+      stdin: true
+      stdout: true
+      stderr: true
+    - command: git -C ~/.tmux/plugins/tpm pull || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+      description: Installing tmux plugin manager (TPM)
+    - command: ~/.tmux/plugins/tpm/bin/install_plugins
+      description: Installing tmux plugins
+    - command: ya pkg add yazi-rs/flavors:catppuccin-mocha 2>/dev/null || ya pkg upgrade 2>/dev/null || true
+      description: Installing yazi catppuccin-mocha flavor
+    - command: fish -c "fisher update" 2>/dev/null || true
+      description: Installing fish plugins via fisher
+    - command: git config --global --get-all include.path | grep -q 'delta/catppuccin.gitconfig' || git config --global --add include.path ~/.dotfiles/delta/catppuccin.gitconfig; git config --global --get-all include.path | grep -q 'delta/config.gitconfig' || git config --global --add include.path ~/.dotfiles/delta/config.gitconfig
+      description: Configuring delta with catppuccin theme
+    - command: git config --global alias.audit '!~/.dotfiles/scripts/git-audit.sh'
+      description: Configuring git audit alias
+    - command: mkdir -p ~/.config/systemd/user && ln -sf ~/.dotfiles/systemd/user/yazi-filemanager.service ~/.config/systemd/user/yazi-filemanager.service && systemctl --user daemon-reload && systemctl --user enable --now yazi-filemanager.service 2>/dev/null || true
+      description: Enabling yazi FileManager1 D-Bus service
+    - command: mkdir -p ~/.config/kopia && [ -f ~/.config/kopia/env ] || /usr/bin/install -m 600 ~/.dotfiles/kopia/env.example ~/.config/kopia/env
+      description: Seeding ~/.config/kopia/env from example (no-op if it exists)
     # System files with sudo
     - command: sudo ln -sf $(pwd)/greetd/config.toml /etc/greetd/config.toml
       description: Installing greetd config
@@ -62,8 +82,6 @@
       create: true
       glob: true
       path: cava
-    # Starship (Shell Prompt)
-    ~/.config/starship.toml: starship.toml
     # Ghostty (terminal emulator)
     ~/.config/ghostty:
       create: true
@@ -107,6 +125,21 @@
       create: true
       glob: true
       path: btop
+    # XDG Desktop Portal
+    ~/.config/xdg-desktop-portal:
+      create: true
+      glob: true
+      path: xdg-desktop-portal
+    # XDG Desktop Portal - Terminal File Chooser (yazi)
+    ~/.config/xdg-desktop-portal-termfilechooser:
+      create: true
+      glob: true
+      path: xdg-desktop-portal-termfilechooser
+    # D-Bus overrides (block nautilus FileManager1 activation)
+    ~/.local/share/dbus-1/services:
+      create: true
+      glob: true
+      path: dbus-services/*
     # Desktop Applications (Wayland flags)
     ~/.local/share/applications:
       create: true
@@ -153,6 +186,16 @@
       path: hypr/hypridle/nighthawk.conf
     ~/.config/hypr/hyprlock.conf:
       path: hypr/hyprlock/nighthawk.conf
+- shell:
+    - command: sudo install -m 755 $(pwd)/scripts/dualsense-init.sh /usr/local/bin/dualsense-init
+      description: Installing DualSense init script
+      if: "[ $(hostname) = nighthawk ]"
+    - command: sudo install -m 644 $(pwd)/system/udev/rules.d/99-dualsense.rules /etc/udev/rules.d/99-dualsense.rules && sudo udevadm control --reload-rules && sudo udevadm trigger
+      description: Installing DualSense udev rule
+      if: "[ $(hostname) = nighthawk ]"
+    - command: mkdir -p ~/.config/systemd/user && ln -sf $(pwd)/systemd/user/dualsense-persist.service ~/.config/systemd/user/dualsense-persist.service && ln -sf $(pwd)/systemd/user/dualsense-persist.timer ~/.config/systemd/user/dualsense-persist.timer && systemctl --user daemon-reload && systemctl --user enable --now dualsense-persist.timer
+      description: Enabling DualSense persistent-color user timer
+      if: "[ $(hostname) = nighthawk ]"
 # Voyager (Laptop)
 - defaults:
     link:

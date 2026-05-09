@@ -9,7 +9,7 @@ M.opts = {
       {
         desc = "󰱼 Find Files",
         group = "@function",
-        action = "Telescope find_files",
+        action = function() Snacks.picker.files() end,
         key = "f",
       },
       {
@@ -45,10 +45,18 @@ M.opts = {
         desc = " Projects",
         group = "@string",
         action = function()
-          require("telescope").extensions.file_browser.file_browser {
-            path = vim.fn.expand "$HOME" .. "/projects",
-            hide_parent_dir = true,
-          }
+          Snacks.picker.pick("files", {
+            cmd = "fd",
+            args = { "--type", "d", "--max-depth", "1" },
+            dirs = { vim.fn.expand "$HOME" .. "/projects" },
+            confirm = function(picker, item)
+              picker:close()
+              if item then
+                vim.cmd("cd " .. item.file)
+                Snacks.picker.files()
+              end
+            end,
+          })
         end,
         key = "p",
       },
@@ -56,10 +64,18 @@ M.opts = {
         desc = " Work",
         group = "@file",
         action = function()
-          require("telescope").extensions.file_browser.file_browser {
-            path = vim.fn.expand "$HOME" .. "/work",
-            hide_parent_dir = true,
-          }
+          Snacks.picker.pick("files", {
+            cmd = "fd",
+            args = { "--type", "d", "--max-depth", "1" },
+            dirs = { vim.fn.expand "$HOME" .. "/work" },
+            confirm = function(picker, item)
+              picker:close()
+              if item then
+                vim.cmd("cd " .. item.file)
+                Snacks.picker.files()
+              end
+            end,
+          })
         end,
         key = "w",
       },
@@ -67,9 +83,7 @@ M.opts = {
         desc = " dotfiles",
         group = "Number",
         action = function()
-          require("telescope.builtin").find_files {
-            cwd = vim.fn.expand "$HOME" .. "/.dotfiles",
-          }
+          Snacks.picker.files { dirs = { vim.fn.expand "$HOME" .. "/.dotfiles" } }
         end,
         key = "d",
       },

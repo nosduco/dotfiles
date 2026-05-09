@@ -1,6 +1,39 @@
-require "nvchad.options"
-
+local o = vim.opt
+local g = vim.g
 local autocmd = vim.api.nvim_create_autocmd
+
+-- Core options (previously from NvChad)
+o.laststatus = 3
+o.showmode = false
+o.splitkeep = "screen"
+o.clipboard = "unnamedplus"
+o.cursorline = true
+o.cursorlineopt = "number"
+o.expandtab = true
+o.shiftwidth = 2
+o.tabstop = 2
+o.softtabstop = 2
+o.smartindent = true
+o.fillchars = { eob = " " }
+o.mouse = "a"
+o.number = true
+o.numberwidth = 2
+o.ruler = false
+o.shortmess:append "sI"
+o.signcolumn = "yes"
+o.splitbelow = true
+o.splitright = true
+o.timeoutlen = 400
+o.undofile = true
+o.updatetime = 250
+o.whichwrap:append "<>[]hl"
+
+-- Disable unused providers
+g.loaded_perl_provider = 0
+g.loaded_ruby_provider = 0
+
+-- Add mason binaries to PATH
+vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin:" .. vim.env.PATH
 
 -- Auto resize panes when resizing nvim window
 autocmd("VimResized", {
@@ -69,11 +102,6 @@ vim.cmd [[autocmd BufRead,BufNewFile hyprland.conf,hyprpaper.conf set filetype=h
 -- Conceal setting for Obsidian
 vim.opt.conceallevel = 1
 
-vim.opt.signcolumn = "yes"
-
--- Settings for avante nvim
-vim.opt.laststatus = 3
-vim.opt.splitkeep = "screen"
 
 -- Add HTTP filetype
 vim.filetype.add {
@@ -81,6 +109,20 @@ vim.filetype.add {
     ["http"] = "http",
   },
 }
+
+-- Keep cursor centered
+vim.opt.scrolloff = 999
+
+-- Snacks Picker highlights
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "SnacksPickerMatch", { fg = "#fab387", bold = true })
+    vim.api.nvim_set_hl(0, "SnacksPickerPrompt", { fg = "#fab387" })
+    vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = "#7f849c" })
+    vim.api.nvim_set_hl(0, "SnacksPickerFile", { fg = "#cdd6f4" })
+  end,
+})
+vim.cmd "doautocmd ColorScheme"
 
 -- Search Options
 vim.opt.ignorecase = true

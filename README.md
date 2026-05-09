@@ -8,8 +8,8 @@ A collection of sane dotfiles I share between my machines as a software engineer
 
 - **WM**: Hyprland
 - **Terminal**: Ghostty + tmux + fish
-- **Editor**: Neovim (NvChad)
-- **Shell Prompt**: Starship
+- **Editor**: Neovim
+- **Shell Prompt**: Tide
 - **Theme**: Catppuccin Mocha
 
 ## Installation

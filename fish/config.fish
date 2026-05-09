@@ -68,6 +68,7 @@ alias nvm='fnm'
 alias cat='bat'
 alias top='btop'
 alias htop='btop'
+alias gd='gh dash'
 
 # Override rm for trash
 alias rm='trash'
@@ -86,8 +87,8 @@ alias ci='gh run watch "$(gh run list --limit 1 --json databaseId --jq \'.[0].da
 # Tmuxinator shorthand
 alias mux='tmuxinator'
 
-# Initialize Starship prompt
-starship init fish | source
+# Prompt: Tide (configured in conf.d/tide.fish)
+# starship init fish | source
 
 # Import .env variables
 for i in (cat ~/.dotfiles/.env)

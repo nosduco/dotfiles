@@ -2,7 +2,6 @@
 
 [mgr]
 show_hidden = true
-
-# keymap = [
-#
-# ]
+sort_by = "mtime"
+sort_reverse = true
+sort_dir_first = false
