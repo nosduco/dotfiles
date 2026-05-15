@@ -130,6 +130,11 @@
       create: true
       glob: true
       path: voxtype
+    # gh-dash (GitHub TUI)
+    ~/.config/gh-dash:
+      create: true
+      glob: true
+      path: gh-dash
     # XDG Desktop Portal
     ~/.config/xdg-desktop-portal:
       create: true
