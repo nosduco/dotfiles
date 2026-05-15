@@ -7,7 +7,7 @@
 - shell:
     # Install packages
     - command: ./scripts/install-missing-packages.sh
-      description: Installing missing packages from packages.txt
+      description: Installing missing packages from packages/{common,$(hostname)}.txt
       stdin: true
       stdout: true
       stderr: true

@@ -1,0 +1,7 @@
+# nighthawk (desktop) - RTX 4090, DualSense controller.
+
+# Gaming
+gamemode
+steam
+gamescope
+dualsensectl

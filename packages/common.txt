@@ -1,6 +1,7 @@
-# Dotfiles package dependencies
-# Install: paru -S --needed - < packages.txt
-# Lines starting with # are ignored
+# Shared packages - installed on every host.
+# Host-specific packages live in packages/<hostname>.txt
+# Install: paru -S --needed - < packages/common.txt
+# Lines starting with # are ignored.
 
 # Window Manager & Desktop
 hyprland
@@ -77,6 +78,7 @@ pipewire-alsa
 wireplumber
 pavucontrol
 
+
 # Applications
 firefox
 firefoxpwa
@@ -105,9 +107,3 @@ noto-fonts-emoji
 catppuccin-gtk-theme-mocha
 papirus-icon-theme
 papirus-folders-catppuccin-git
-
-# Gaming
-gamemode
-steam
-gamescope
-dualsensectl
