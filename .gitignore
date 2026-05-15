@@ -1,7 +1,7 @@
 .env
 .codex
 hypr/host.conf
-fish/fish_variables
+fish/fish_variables*
 nvim/lazy-lock.json
 
 streamcontroller/*
