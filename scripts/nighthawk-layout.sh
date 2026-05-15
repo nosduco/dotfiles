@@ -81,9 +81,15 @@ uwsm app -- firefox &
 await_class firefox || true
 dispatch focuswindow class:firefox
 
+# Right column (stacked): Planify on top, GNOME Calendar below
 dispatch layoutmsg preselect r
-uwsm app -- obsidian &
-await_class obsidian || true
+uwsm app -- io.github.alainm23.planify &
+await_class io.github.alainm23.planify || true
+
+dispatch focuswindow class:io.github.alainm23.planify
+dispatch layoutmsg preselect d
+uwsm app -- gnome-calendar &
+await_class org.gnome.Calendar || true
 
 dispatch focuswindow class:firefox
 dispatch resizeactive 997 0
@@ -93,8 +99,8 @@ dispatch resizeactive 997 0
 # ---------------------------------------------------------------------------
 
 uwsm app -- spotify-launcher &
-await_class spotify || true
-dispatch movetoworkspacesilent name:top-monitor,class:spotify
+await_class Spotify || true
+dispatch movetoworkspacesilent name:top-monitor,class:Spotify
 
 # ---------------------------------------------------------------------------
 dispatch workspace 1
