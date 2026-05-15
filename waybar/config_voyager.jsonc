@@ -4,6 +4,9 @@
   "spacing": 8,
   "position": "top",
   "height": 32,
+  "margin-left": 9,
+  "margin-right": 9,
+  "margin-top": 6,
   "gtk-layer-shell": true,
   "modules-left": [
     "hyprland/workspaces",

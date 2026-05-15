@@ -30,3 +30,16 @@ fish/functions/fish_prompt.fish
 fish/functions/fish_mode_prompt.fish
 fish/functions/tide.fish
 fish/functions/tide/
+
+# oh-my-fish/plugin-bang-bang (Fisher-managed runtime files)
+fish/conf.d/plugin-bang-bang.fish
+fish/functions/__history_previous_command.fish
+fish/functions/__history_previous_command_arguments.fish
+
+# catppuccin/fish (Fisher-managed runtime files)
+fish/themes/catppuccin-*.theme
+fish/themes/static/
+
+# Yazi flavors (managed by `ya pkg`)
+yazi/flavors/
+yazi/package.toml
