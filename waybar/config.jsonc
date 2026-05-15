@@ -27,6 +27,7 @@
     "pulseaudio",
     "privacy",
     "custom/vpn",
+    "custom/voxtype",
     "network",
     "custom/dunst",
     "clock"
@@ -240,6 +241,13 @@
     "on-click": "$HOME/.dotfiles/scripts/vpn/vpn-toggle.sh",
     "on-click-right": "$HOME/.dotfiles/scripts/vpn/vpn-menu.sh",
     "tooltip": true
+  },
+  "custom/voxtype": {
+    "exec": "voxtype status --follow --format json",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "on-click": "systemctl --user restart voxtype"
   },
   "wlr/taskbar": {
     "format": "{icon}",

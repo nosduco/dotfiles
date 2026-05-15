@@ -139,3 +139,31 @@ window#waybar.solo {
 #custom-vpn.disconnected {
   color: @red;
 }
+
+#custom-voxtype {
+  margin-top: 2px;
+  padding: 0 6px;
+}
+
+#custom-voxtype.idle {
+  color: @green;
+}
+
+#custom-voxtype.recording {
+  color: @red;
+  animation: voxtype-pulse 1s ease-in-out infinite;
+}
+
+#custom-voxtype.transcribing {
+  color: @yellow;
+}
+
+#custom-voxtype.stopped {
+  color: @overlay0;
+}
+
+@keyframes voxtype-pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}

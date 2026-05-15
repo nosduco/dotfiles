@@ -125,6 +125,11 @@
       create: true
       glob: true
       path: btop
+    # Voxtype (Voice Dictation) - config only; manual install
+    ~/.config/voxtype:
+      create: true
+      glob: true
+      path: voxtype
     # XDG Desktop Portal
     ~/.config/xdg-desktop-portal:
       create: true

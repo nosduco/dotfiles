@@ -1,0 +1,77 @@
+# Voxtype configuration
+# Docs: https://github.com/peteonrails/voxtype/blob/main/docs/CONFIGURATION.md
+
+engine = "cohere"
+state_file = "auto"
+
+[hotkey]
+# Compositor (Hyprland) handles push-to-talk via SUPER+Y bind/bindr.
+enabled = false
+key = "HOME"
+mode = "push_to_talk"
+
+[audio]
+device = "default"
+sample_rate = 16000
+max_duration_secs = 300
+
+[cohere]
+# q4f16: 1.5 GB, fastest CPU variant. #1 ASR leaderboard accuracy.
+model = "cohere-transcribe-q4f16"
+language = "en"
+on_demand_loading = false
+
+[output]
+mode = "paste"
+fallback_to_clipboard = true
+auto_submit = false
+shift_enter_newlines = false
+
+[output.notification]
+on_recording_start = false
+on_recording_stop = false
+on_transcription = false
+show_engine_icon = false
+
+[status]
+icon_theme = "nerd-font"
+
+[whisper]
+model = ""
+mode = "local"
+language = "auto"
+translate = false
+flash_attention = false
+on_demand_loading = false
+gpu_isolation = false
+eager_processing = false
+
+[text]
+spoken_punctuation = false
+smart_auto_submit = false
+
+[meeting]
+enabled = false
+
+[meeting.diarization]
+enabled = false
+
+[meeting.audio]
+source = "mic"
+
+[osd]
+enabled = true
+frontend = "gtk4"
+position = "bottom-center"
+width_px = 400
+height_px = 48
+margin_px = 24
+top_margin = 0.85
+opacity = 0.95
+waveform_window_secs = 3.0
+peak_decay_db_per_sec = 6.0
+waveform_gain = 10.0
+
+[omnilingual]
+model = "omnilingual-300m"
+on_demand_loading = false
