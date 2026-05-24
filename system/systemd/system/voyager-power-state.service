@@ -1,0 +1,12 @@
+[Unit]
+Description=Apply voyager AC/battery power state at boot
+After=multi-user.target power-profiles-daemon.service
+Wants=power-profiles-daemon.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/voyager-power
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target

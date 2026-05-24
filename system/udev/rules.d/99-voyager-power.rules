@@ -1,0 +1,4 @@
+# 99-voyager-power.rules — fire voyager-power.sh on every AC/battery transition.
+# Matches the AC adapter (KERNEL=="A*"), not BAT*, to avoid double-firing on
+# every battery percentage report.
+SUBSYSTEM=="power_supply", KERNEL=="A*", RUN+="/usr/local/bin/voyager-power"
