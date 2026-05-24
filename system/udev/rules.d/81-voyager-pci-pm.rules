@@ -1,0 +1,8 @@
+# 81-voyager-pci-pm.rules — enable runtime PM for PCI devices that don't
+# autosuspend by default but should.
+#
+# Currently:
+#   MT7922 WiFi (vendor 14c3 device 7922) — kernel leaves it at control=on so
+#   it never enters D3hot when idle. Costs ~0.5-1 W. Setting control=auto
+#   lets the kernel runtime-suspend it when no traffic.
+ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x14c3", ATTR{device}=="0x7922", ATTR{power/control}="auto"

@@ -1,0 +1,4 @@
+# 81-voyager-nvme.rules — enable runtime PM on NVMe devices at hotplug.
+# voyager-power.sh also enforces this on every AC/battery transition; this rule
+# covers boot before voyager-power-state.service runs.
+ACTION=="add", SUBSYSTEM=="nvme", ATTR{power/control}="auto"
