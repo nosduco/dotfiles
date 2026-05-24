@@ -225,3 +225,33 @@
       path: hypr/hypridle/voyager.conf
     ~/.config/hypr/hyprlock.conf:
       path: hypr/hyprlock/voyager.conf
+- shell:
+    - command: sudo install -m 755 $(pwd)/scripts/voyager-power.sh /usr/local/bin/voyager-power
+      description: Installing voyager-power root script
+      if: "[ $(hostname) = voyager ]"
+    - command: sudo install -m 644 -D $(pwd)/system/udev/rules.d/99-voyager-power.rules /etc/udev/rules.d/99-voyager-power.rules && sudo install -m 644 -D $(pwd)/system/udev/rules.d/81-voyager-nvme.rules /etc/udev/rules.d/81-voyager-nvme.rules && sudo install -m 644 -D $(pwd)/system/udev/rules.d/81-voyager-pci-pm.rules /etc/udev/rules.d/81-voyager-pci-pm.rules && sudo udevadm control --reload-rules && sudo udevadm trigger --subsystem-match=power_supply --subsystem-match=pci
+      description: Installing voyager udev rules (power-state + NVMe + PCI runtime PM)
+      if: "[ $(hostname) = voyager ]"
+    - command: sudo install -m 644 -D $(pwd)/system/systemd/logind.conf.d/voyager-lid.conf /etc/systemd/logind.conf.d/voyager-lid.conf && sudo install -m 644 -D $(pwd)/system/systemd/sleep.conf.d/voyager-hibernate.conf /etc/systemd/sleep.conf.d/voyager-hibernate.conf && sudo systemctl kill -s HUP systemd-logind
+      description: Installing voyager logind + sleep configs (lid + hibernate-delay)
+      if: "[ $(hostname) = voyager ]"
+    - command: sudo install -m 644 -D $(pwd)/system/modprobe.d/voyager-audio.conf /etc/modprobe.d/voyager-audio.conf
+      description: Installing voyager audio codec power-save modprobe config
+      if: "[ $(hostname) = voyager ]"
+    - command: sudo install -m 644 $(pwd)/system/system76-scheduler/config.kdl /etc/system76-scheduler/config.kdl && sudo systemctl restart com.system76.Scheduler 2>/dev/null || true
+      description: Installing voyager system76-scheduler config (drops execsnoop)
+      if: "[ $(hostname) = voyager ]"
+    - command: sudo install -m 644 -D $(pwd)/system/systemd/system/voyager-power-state.service /etc/systemd/system/voyager-power-state.service && sudo systemctl daemon-reload && sudo systemctl enable voyager-power-state.service
+      description: Installing + enabling voyager-power-state.service (boot-time apply)
+      if: "[ $(hostname) = voyager ]"
+    - command: sudo /usr/local/bin/voyager-power
+      description: Applying voyager power state for current AC/battery condition
+      if: "[ $(hostname) = voyager ]"
+    # Kernel cmdline tweaks (ABM). Idempotent. Reboot required for cmdline changes.
+    - command: $(pwd)/scripts/voyager-cmdline-tweaks.sh
+      description: Managing /etc/kernel/cmdline tokens (amdgpu.abmlevel=1)
+      if: "[ $(hostname) = voyager ]"
+    # PCIe ASPM policy via systemd-tmpfiles (applies at boot, no reboot needed).
+    - command: sudo install -m 644 -D $(pwd)/system/tmpfiles.d/voyager-aspm.conf /etc/tmpfiles.d/voyager-aspm.conf && sudo systemd-tmpfiles --create /etc/tmpfiles.d/voyager-aspm.conf
+      description: Installing + applying PCIe ASPM policy (powersave)
+      if: "[ $(hostname) = voyager ]"
