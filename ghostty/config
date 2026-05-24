@@ -30,4 +30,8 @@ shell-integration-features = no-cursor
 #custom-shader = ./shaders/nosduco.gsls
 custom-shader = ./shaders/cursor_smear_fade_gsls.gsls
 #custom-shader = ./shaders/animated-gradient-shader.glsl
-custom-shader-animation = always
+# `true` (default) animates only when ghostty window is focused. `always`
+# animates regardless of focus (worse for battery). Smear effect still works
+# when you're typing in ghostty; when you're focused elsewhere, the per-frame
+# shader pass is skipped.
+custom-shader-animation = true
