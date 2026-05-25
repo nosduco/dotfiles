@@ -10,8 +10,9 @@ power & sleep tuning applied by `./install` when the hostname is `voyager`.
 - BOE NE160QDM-NY2 — 2560×1600 eDP, native 120 Hz
 - Kingston KC3000 1 TB NVMe
 - MediaTek MT7922 Wi-Fi/BT
-- LUKS-encrypted root + swap (single-passphrase, dracut SSO)
-- BIOS AHP938_V00.10TSY4 (Pluton TPM)
+- LUKS-encrypted root + swap — passwordless boot via TPM2 + Secure Boot
+  (see [VOYAGER-secureboot-tpm2.md](VOYAGER-secureboot-tpm2.md))
+- BIOS AHP938 (AMI UEFI 2.80, Microsoft Pluton TPM)
 
 ## What gets installed
 
@@ -65,11 +66,12 @@ The real lever — `power_dpm_force_performance_level=low` — bypasses the ques
 Top of `scripts/voyager-power.sh`:
 - `BATTERY_GPU_LEVEL="low"` — pins MCLK + SCLK to lowest DPM on battery. Set to `"auto"` if you ever see compositor stutter under heavy GPU workload.
 
-## Future work
+## Passwordless boot (done)
 
-- **Phase 5 (TPM2 LUKS auto-unlock)**: bind LUKS to Pluton TPM via
-  `systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=7+11`, add `tpm2-tss`
-  to dracut. Eliminates the passphrase prompt on hibernate-resume.
+TPM2 LUKS auto-unlock under enforced Secure Boot is live — cold boot and
+hibernate-resume are both passwordless. This is a **manual one-time bootstrap**,
+deliberately not automated. Full runbook + recovery:
+**[VOYAGER-secureboot-tpm2.md](VOYAGER-secureboot-tpm2.md)**.
 
 ## Verifying state
 
