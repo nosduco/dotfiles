@@ -90,6 +90,10 @@ kopia-ui-bin
 spotify-launcher
 spicetify-cli
 
+# Sync
+syncthing
+syncthingtray
+
 # Security
 seahorse
 gnome-keyring
