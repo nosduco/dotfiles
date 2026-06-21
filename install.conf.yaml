@@ -157,6 +157,10 @@
       create: true
       glob: true
       path: applications/*
+    # Claude Desktop (theme override only; app state lives elsewhere in ~/.config/Claude)
+    ~/.config/Claude/claude-desktop-bin.json:
+      path: claude/claude-desktop-bin.json
+      create: true
     # GTK4 user CSS (catppuccin -> libadwaita 1.6+ token bridge)
     ~/.config/gtk-4.0/gtk.css:
       path: gtk/gtk-4.0/gtk.css

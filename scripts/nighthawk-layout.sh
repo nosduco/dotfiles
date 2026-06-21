@@ -53,11 +53,11 @@ await_new_ghostty "$ghostty_count" || true
 # 3. Focus Discord, preselect down -> Claude inserts between Vesktop and btop
 dispatch focuswindow class:vesktop
 dispatch layoutmsg preselect d
-uwsm app -- firefoxpwa site launch 01KBH7FDJN0SMRXM47M6HHR694 &
-await_class FFPWA-01KBH7FDJN0SMRXM47M6HHR694 || true
+uwsm app -- claude-desktop &
+await_class claude-desktop || true
 
 # 4. Focus Claude, preselect right -> Element beside Claude
-dispatch focuswindow class:FFPWA-01KBH7FDJN0SMRXM47M6HHR694
+dispatch focuswindow class:claude-desktop
 dispatch layoutmsg preselect r
 uwsm app -- element-desktop &
 await_class Element || true
