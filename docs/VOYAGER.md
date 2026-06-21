@@ -24,8 +24,9 @@ Linked via dotbot on hostname=voyager. Idempotent — re-run `./install` any tim
 | `/etc/udev/rules.d/99-voyager-power.rules` | Fires `voyager-power` on AC/battery transition. |
 | `/etc/udev/rules.d/81-voyager-nvme.rules` | NVMe runtime PM=auto at hotplug. |
 | `/etc/systemd/system/voyager-power-state.service` | Runs `voyager-power` once at boot. |
-| `/etc/systemd/logind.conf.d/voyager-lid.conf` | Lid close → suspend-then-hibernate on battery, suspend on AC. |
-| `/etc/systemd/sleep.conf.d/voyager-hibernate.conf` | `HibernateDelaySec=2h`. |
+| `/etc/systemd/logind.conf.d/voyager-lid.conf` | Lid close → plain s2idle suspend (AC and battery). |
+| `/usr/lib/systemd/system-sleep/voyager-deferred-hibernate` | On battery, arms the RTC so a suspend falls through to hibernate after 2h. Replaces systemd's broken suspend-then-hibernate (see below). |
+| `/etc/systemd/sleep.conf.d/voyager-hibernate.conf` | `HibernateMode=platform shutdown` (the 2h delay lives in the hook). |
 | `/etc/modprobe.d/voyager-audio.conf` | snd_hda_intel power_save=1. |
 | `/etc/system76-scheduler/config.kdl` | Drops `execsnoop` (parse-error spam on kernel 7.x). |
 | `/etc/kernel/cmdline` (modified) | Adds `amdgpu.abmlevel=1` (Adaptive Backlight Mgmt, ~1-2 W). Original backed up at `cmdline.bak`. |
@@ -47,6 +48,23 @@ Linked via dotbot on hostname=voyager. Idempotent — re-run `./install` any tim
 - system76-scheduler runs without execsnoop (kernel-7 BPF format mismatch was spamming journald and waking kcryptd).
 - AMD Adaptive Backlight Management (`amdgpu.abmlevel=1`) — driver dynamically lowers backlight on dark content while compensating with contrast.
 - PCIe ASPM `powersave` policy — devices enter L1/L1.2 substates aggressively.
+
+## Suspend / hibernate
+
+Lid close suspends (s2idle) on AC and battery. On battery,
+`scripts/voyager-deferred-hibernate.sh` (a system-sleep hook) hibernates after
+2h so a closed lid doesn't drain overnight; resume is passwordless via TPM2
+(see [VOYAGER-secureboot-tpm2.md](VOYAGER-secureboot-tpm2.md)).
+
+Not done with systemd's `suspend-then-hibernate`: since v252 it ignores
+`HibernateDelaySec` and estimates battery discharge instead, and this machine
+has no usable ACPI `_BTP`, so it loops without ever hibernating
+([systemd#35743](https://github.com/systemd/systemd/issues/35743)). The hook
+works around three hardware quirks: the touchpad wakes it instantly with the lid
+open (only the closed lid is reliable); the firmware wakes from s2idle every
+~30min (so it tracks an absolute deadline that survives the wakes, not a single
+suspend); and an inline `systemctl hibernate` is dropped mid-resume (so it fires
+via a deferred `systemd-run` timer). Window: `DELAY=` at the top of the script.
 
 ## What's deliberately NOT installed
 

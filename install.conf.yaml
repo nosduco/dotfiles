@@ -238,8 +238,8 @@
     - command: sudo install -m 644 -D $(pwd)/system/udev/rules.d/99-voyager-power.rules /etc/udev/rules.d/99-voyager-power.rules && sudo install -m 644 -D $(pwd)/system/udev/rules.d/81-voyager-nvme.rules /etc/udev/rules.d/81-voyager-nvme.rules && sudo install -m 644 -D $(pwd)/system/udev/rules.d/81-voyager-pci-pm.rules /etc/udev/rules.d/81-voyager-pci-pm.rules && sudo udevadm control --reload-rules && sudo udevadm trigger --subsystem-match=power_supply --subsystem-match=pci
       description: Installing voyager udev rules (power-state + NVMe + PCI runtime PM)
       if: "[ $(hostname) = voyager ]"
-    - command: sudo install -m 644 -D $(pwd)/system/systemd/logind.conf.d/voyager-lid.conf /etc/systemd/logind.conf.d/voyager-lid.conf && sudo install -m 644 -D $(pwd)/system/systemd/sleep.conf.d/voyager-hibernate.conf /etc/systemd/sleep.conf.d/voyager-hibernate.conf && sudo systemctl kill -s HUP systemd-logind
-      description: Installing voyager logind + sleep configs (lid + hibernate-delay)
+    - command: sudo install -m 644 -D $(pwd)/system/systemd/logind.conf.d/voyager-lid.conf /etc/systemd/logind.conf.d/voyager-lid.conf && sudo install -m 644 -D $(pwd)/system/systemd/sleep.conf.d/voyager-hibernate.conf /etc/systemd/sleep.conf.d/voyager-hibernate.conf && sudo install -m 755 $(pwd)/scripts/voyager-deferred-hibernate.sh /usr/lib/systemd/system-sleep/voyager-deferred-hibernate && sudo rm -f /etc/systemd/sleep.conf.d/hibernate-delay.conf && sudo systemctl kill -s HUP systemd-logind
+      description: Installing voyager lid/sleep config + deferred-hibernate sleep hook
       if: "[ $(hostname) = voyager ]"
     - command: sudo install -m 644 -D $(pwd)/system/modprobe.d/voyager-audio.conf /etc/modprobe.d/voyager-audio.conf
       description: Installing voyager audio codec power-save modprobe config
