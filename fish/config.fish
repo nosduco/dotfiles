@@ -39,9 +39,6 @@ fish_add_path $HOME/.cargo/bin
 # Go Path
 fish_add_path $HOME/go/bin
 
-# Node Path
-fish_add_path $(pnpm global bin)
-
 # Pipx Path
 fish_add_path $HOME/.local/bin
 
