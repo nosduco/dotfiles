@@ -216,16 +216,16 @@
       path: hypr/hypridle/nighthawk.conf
     ~/.config/hypr/hyprlock.conf:
       path: hypr/hyprlock/nighthawk.conf
+# NOTE: `if:` works on link entries but NOT on shell entries - dotbot's shell
+# plugin silently drops the key (only link.py implements it). Host gating for
+# shell commands MUST go through scripts/host-gate.sh.
 - shell:
-    - command: sudo install -m 755 $(pwd)/scripts/dualsense-init.sh /usr/local/bin/dualsense-init
+    - command: ./scripts/host-gate.sh nighthawk "sudo install -m 755 $(pwd)/scripts/dualsense-init.sh /usr/local/bin/dualsense-init"
       description: Installing DualSense init script
-      if: "[ $(hostname) = nighthawk ]"
-    - command: sudo install -m 644 $(pwd)/system/udev/rules.d/99-dualsense.rules /etc/udev/rules.d/99-dualsense.rules && sudo udevadm control --reload-rules && sudo udevadm trigger
+    - command: ./scripts/host-gate.sh nighthawk "sudo install -m 644 $(pwd)/system/udev/rules.d/99-dualsense.rules /etc/udev/rules.d/99-dualsense.rules && sudo udevadm control --reload-rules && sudo udevadm trigger"
       description: Installing DualSense udev rule
-      if: "[ $(hostname) = nighthawk ]"
-    - command: mkdir -p ~/.config/systemd/user && ln -sf $(pwd)/systemd/user/dualsense-persist.service ~/.config/systemd/user/dualsense-persist.service && ln -sf $(pwd)/systemd/user/dualsense-persist.timer ~/.config/systemd/user/dualsense-persist.timer && systemctl --user daemon-reload && systemctl --user enable --now dualsense-persist.timer
+    - command: ./scripts/host-gate.sh nighthawk "mkdir -p ~/.config/systemd/user && ln -sf $(pwd)/systemd/user/dualsense-persist.service ~/.config/systemd/user/dualsense-persist.service && ln -sf $(pwd)/systemd/user/dualsense-persist.timer ~/.config/systemd/user/dualsense-persist.timer && systemctl --user daemon-reload && systemctl --user enable --now dualsense-persist.timer"
       description: Enabling DualSense persistent-color user timer
-      if: "[ $(hostname) = nighthawk ]"
 # Voyager (Laptop)
 - defaults:
     link:
@@ -238,33 +238,26 @@
       path: hypr/hypridle/voyager.conf
     ~/.config/hypr/hyprlock.conf:
       path: hypr/hyprlock/voyager.conf
+# NOTE: `if:` does not work on shell entries - see the comment above the
+# nighthawk shell block. Gate through scripts/host-gate.sh.
 - shell:
-    - command: sudo install -m 755 $(pwd)/scripts/voyager-power.sh /usr/local/bin/voyager-power
+    - command: ./scripts/host-gate.sh voyager "sudo install -m 755 $(pwd)/scripts/voyager-power.sh /usr/local/bin/voyager-power"
       description: Installing voyager-power root script
-      if: "[ $(hostname) = voyager ]"
-    - command: sudo install -m 644 -D $(pwd)/system/udev/rules.d/99-voyager-power.rules /etc/udev/rules.d/99-voyager-power.rules && sudo install -m 644 -D $(pwd)/system/udev/rules.d/81-voyager-nvme.rules /etc/udev/rules.d/81-voyager-nvme.rules && sudo install -m 644 -D $(pwd)/system/udev/rules.d/81-voyager-pci-pm.rules /etc/udev/rules.d/81-voyager-pci-pm.rules && sudo udevadm control --reload-rules && sudo udevadm trigger --subsystem-match=power_supply --subsystem-match=pci
+    - command: ./scripts/host-gate.sh voyager "sudo install -m 644 -D $(pwd)/system/udev/rules.d/99-voyager-power.rules /etc/udev/rules.d/99-voyager-power.rules && sudo install -m 644 -D $(pwd)/system/udev/rules.d/81-voyager-nvme.rules /etc/udev/rules.d/81-voyager-nvme.rules && sudo install -m 644 -D $(pwd)/system/udev/rules.d/81-voyager-pci-pm.rules /etc/udev/rules.d/81-voyager-pci-pm.rules && sudo udevadm control --reload-rules && sudo udevadm trigger --subsystem-match=power_supply --subsystem-match=pci"
       description: Installing voyager udev rules (power-state + NVMe + PCI runtime PM)
-      if: "[ $(hostname) = voyager ]"
-    - command: sudo install -m 644 -D $(pwd)/system/systemd/logind.conf.d/voyager-lid.conf /etc/systemd/logind.conf.d/voyager-lid.conf && sudo install -m 644 -D $(pwd)/system/systemd/sleep.conf.d/voyager-hibernate.conf /etc/systemd/sleep.conf.d/voyager-hibernate.conf && sudo install -m 755 $(pwd)/scripts/voyager-deferred-hibernate.sh /usr/lib/systemd/system-sleep/voyager-deferred-hibernate && sudo rm -f /etc/systemd/sleep.conf.d/hibernate-delay.conf && sudo systemctl kill -s HUP systemd-logind
+    - command: ./scripts/host-gate.sh voyager "sudo install -m 644 -D $(pwd)/system/systemd/logind.conf.d/voyager-lid.conf /etc/systemd/logind.conf.d/voyager-lid.conf && sudo install -m 644 -D $(pwd)/system/systemd/sleep.conf.d/voyager-hibernate.conf /etc/systemd/sleep.conf.d/voyager-hibernate.conf && sudo install -m 755 $(pwd)/scripts/voyager-deferred-hibernate.sh /usr/lib/systemd/system-sleep/voyager-deferred-hibernate && sudo rm -f /etc/systemd/sleep.conf.d/hibernate-delay.conf && sudo systemctl kill -s HUP systemd-logind"
       description: Installing voyager lid/sleep config + deferred-hibernate sleep hook
-      if: "[ $(hostname) = voyager ]"
-    - command: sudo install -m 644 -D $(pwd)/system/modprobe.d/voyager-audio.conf /etc/modprobe.d/voyager-audio.conf
+    - command: ./scripts/host-gate.sh voyager "sudo install -m 644 -D $(pwd)/system/modprobe.d/voyager-audio.conf /etc/modprobe.d/voyager-audio.conf"
       description: Installing voyager audio codec power-save modprobe config
-      if: "[ $(hostname) = voyager ]"
-    - command: sudo install -m 644 $(pwd)/system/system76-scheduler/config.kdl /etc/system76-scheduler/config.kdl && sudo systemctl restart com.system76.Scheduler 2>/dev/null || true
+    - command: ./scripts/host-gate.sh voyager "sudo install -m 644 $(pwd)/system/system76-scheduler/config.kdl /etc/system76-scheduler/config.kdl && sudo systemctl restart com.system76.Scheduler 2>/dev/null || true"
       description: Installing voyager system76-scheduler config (drops execsnoop)
-      if: "[ $(hostname) = voyager ]"
-    - command: sudo install -m 644 -D $(pwd)/system/systemd/system/voyager-power-state.service /etc/systemd/system/voyager-power-state.service && sudo systemctl daemon-reload && sudo systemctl enable voyager-power-state.service
+    - command: ./scripts/host-gate.sh voyager "sudo install -m 644 -D $(pwd)/system/systemd/system/voyager-power-state.service /etc/systemd/system/voyager-power-state.service && sudo systemctl daemon-reload && sudo systemctl enable voyager-power-state.service"
       description: Installing + enabling voyager-power-state.service (boot-time apply)
-      if: "[ $(hostname) = voyager ]"
-    - command: sudo /usr/local/bin/voyager-power
+    - command: ./scripts/host-gate.sh voyager "sudo /usr/local/bin/voyager-power"
       description: Applying voyager power state for current AC/battery condition
-      if: "[ $(hostname) = voyager ]"
     # Kernel cmdline tweaks (ABM). Idempotent. Reboot required for cmdline changes.
-    - command: $(pwd)/scripts/voyager-cmdline-tweaks.sh
+    - command: ./scripts/host-gate.sh voyager "$(pwd)/scripts/voyager-cmdline-tweaks.sh"
       description: Managing /etc/kernel/cmdline tokens (amdgpu.abmlevel=1)
-      if: "[ $(hostname) = voyager ]"
     # PCIe ASPM policy via systemd-tmpfiles (applies at boot, no reboot needed).
-    - command: sudo install -m 644 -D $(pwd)/system/tmpfiles.d/voyager-aspm.conf /etc/tmpfiles.d/voyager-aspm.conf && sudo systemd-tmpfiles --create /etc/tmpfiles.d/voyager-aspm.conf
+    - command: ./scripts/host-gate.sh voyager "sudo install -m 644 -D $(pwd)/system/tmpfiles.d/voyager-aspm.conf /etc/tmpfiles.d/voyager-aspm.conf && sudo systemd-tmpfiles --create /etc/tmpfiles.d/voyager-aspm.conf"
       description: Installing + applying PCIe ASPM policy (powersave)
-      if: "[ $(hostname) = voyager ]"
