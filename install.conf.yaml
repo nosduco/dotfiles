@@ -27,6 +27,21 @@
       description: Enabling yazi FileManager1 D-Bus service
     - command: systemctl --user enable --now syncthing.service 2>/dev/null || true
       description: Enabling syncthing user service
+    - command: |
+        if rclone listremotes 2>/dev/null | grep -qx 'tuxcloud:'; then
+          mkdir -p ~/.config/systemd/user ~/cloud
+          ln -sf ~/.dotfiles/systemd/user/rclone-tuxcloud.service ~/.config/systemd/user/rclone-tuxcloud.service
+          systemctl --user daemon-reload
+          systemctl --user enable --now rclone-tuxcloud.service 2>/dev/null || true
+        else
+          echo "skip: rclone remote 'tuxcloud:' not configured (see docs/TUXCLOUD.md)"
+        fi
+      description: Enabling rclone tuxcloud mount at ~/cloud
+    - command: |
+        mkdir -p ~/.config/gtk-3.0
+        touch ~/.config/gtk-3.0/bookmarks
+        grep -qF "file://$HOME/cloud " ~/.config/gtk-3.0/bookmarks || echo "file://$HOME/cloud tuxcloud" >> ~/.config/gtk-3.0/bookmarks
+      description: Adding tuxcloud bookmark to Nautilus sidebar
     - command: mkdir -p ~/.config/kopia && [ -f ~/.config/kopia/env ] || /usr/bin/install -m 600 ~/.dotfiles/kopia/env.example ~/.config/kopia/env
       description: Seeding ~/.config/kopia/env from example (no-op if it exists)
     # System files with sudo

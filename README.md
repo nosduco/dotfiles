@@ -25,3 +25,4 @@ Uses [dotbot](https://github.com/anishathalye/dotbot) for symlink management. Ho
 
 - [Installation Guide](docs/INSTALL.md) - Full Arch + Hyprland setup
 - [Btrfs Snapshots](docs/BTRFS.md) - Snapper + Btrfs setup
+- [tuxcloud Mount](docs/TUXCLOUD.md) - `~/cloud` via rclone + WebDAV

@@ -1,0 +1,32 @@
+[Unit]
+Description=rclone mount: tuxcloud (files.tuxcloud.xyz) at ~/cloud
+Documentation=man:rclone(1)
+Documentation=https://rclone.org/commands/rclone_mount/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+Environment=RCLONE_CONFIG=%h/.config/rclone/rclone.conf
+ExecStartPre=/usr/bin/mkdir -p %h/cloud
+ExecStart=/usr/bin/rclone mount tuxcloud: %h/cloud \
+    --cache-dir %h/.cache/rclone \
+    --vfs-cache-mode full \
+    --vfs-cache-max-size 10G \
+    --vfs-cache-max-age 168h \
+    --dir-cache-time 5m \
+    --poll-interval 0 \
+    --attr-timeout 5s \
+    --timeout 30s \
+    --contimeout 15s \
+    --low-level-retries 5 \
+    --umask 022 \
+    --dir-perms 0755 \
+    --file-perms 0644 \
+    --log-level INFO
+ExecStop=/usr/bin/fusermount3 -uz %h/cloud
+Restart=on-failure
+RestartSec=30s
+
+[Install]
+WantedBy=default.target
