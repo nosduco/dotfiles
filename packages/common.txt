@@ -47,6 +47,8 @@ gh-dash
 yazi
 nautilus
 wl-clipboard
+rclone
+fuse3
 
 # Screenshots & Display
 grim

@@ -1,4 +1,8 @@
 # Kopia snapshot sources. One path per line.
+#
+# Deliberately NOT here: ~/cloud (the tuxcloud rclone mount, see docs/TUXCLOUD.md).
+# That data already lives on the server and is replicated to B2 from there.
+# Adding it would duplicate ~59 GiB into this repo and snapshot a network mount.
 ~/.config
 ~/.gnupg
 ~/.ssh
