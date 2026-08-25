@@ -116,7 +116,7 @@ tmux_set status-left "$LS"
 tmux_set status-right-bg "$BG"
 tmux_set status-right-fg "G12"
 tmux_set status-right-length 150
-WEATHER='#(curl -s wttr.in/Columbus\?format\="%%c%%t")'
+WEATHER='#(~/.dotfiles/scripts/weather-cached.sh Columbus)'
 MANTLE="#181825"
 RS="$WEATHER #[fg=$MANTLE]$left_arrow_icon#[fg=$TC,bg=$MANTLE] $time_icon $time_format #[fg=$TC,bg=$MANTLE]$left_arrow_icon#[fg=$G04,bg=$TC] $date_icon $date_format  "
 if "$show_download_speed"; then
