@@ -71,7 +71,7 @@ window#waybar.solo {
 #memory,
 #wireplumber,
 #pulseaudio,
-#idle_inhibitor,
+#custom-caffeine,
 #backlight,
 #custom-storage,
 #custom-spotify,
@@ -103,7 +103,7 @@ window#waybar.solo {
   margin-top: 2px;
 }
 
-#idle_inhibitor {
+#custom-caffeine {
   margin-top: 2px;
   margin-left: 4px;
 }

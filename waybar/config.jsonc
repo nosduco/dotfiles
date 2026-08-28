@@ -19,7 +19,7 @@
   "modules-right": [
     // "keyboard-state",
     "group/tray",
-    "idle_inhibitor",
+    "custom/caffeine",
     "custom/weather",
     "battery",
     "battery#charging",
@@ -87,7 +87,12 @@
       "on-click-right": "mode"
     }
   },
-  "idle_inhibitor": {
+  "custom/caffeine": {
+    "exec": "~/.config/waybar/scripts/caffeine.sh status",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 8,
+    "on-click": "~/.config/waybar/scripts/caffeine.sh toggle",
     "format": "{icon}",
     "format-icons": {
       "activated": "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰅶</span>",
