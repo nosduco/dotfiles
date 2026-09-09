@@ -93,6 +93,21 @@ vim.lsp.config("terraformls", {
 })
 vim.lsp.enable("terraformls")
 
+-- Nix
+vim.lsp.config("nixd", {
+  settings = {
+    nixd = {
+      formatting = { command = { "nixfmt" } },
+      -- Once the dotfiles flake exists, point nixd at it for real option completion:
+      -- options = {
+      --   nixos = { expr = '(builtins.getFlake "/home/tony/.dotfiles").nixosConfigurations.nighthawk.options' },
+      --   home_manager = { expr = '(builtins.getFlake "/home/tony/.dotfiles").homeConfigurations.tony.options' },
+      -- },
+    },
+  },
+})
+vim.lsp.enable("nixd")
+
 -- Rust (rustaceanvim handles LSP automatically, no setup needed here)
 
 -- JSON

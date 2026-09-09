@@ -47,6 +47,9 @@ set ANDROID_HOME $HOME/Android/Sdk
 fish_add_path $ANDROID_HOME/emulator
 fish_add_path $ANDROID_HOME/platform-tools
 
+# Nix Profile Path
+fish_add_path $HOME/.nix-profile/bin
+
 # Library Path
 # set LD_LIBRARY_PATH /usr/lib:$LD_LIBRARY_PATH
 

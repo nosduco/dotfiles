@@ -19,6 +19,7 @@ conform.setup {
     lua = { "stylua" },
     python = { "ruff" },
     markdown = { "markdownlint" },
+    nix = { "nixfmt" },
   },
   format_after_save = {
     lsp_fallback = true,

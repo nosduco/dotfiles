@@ -29,6 +29,7 @@ M.ensure_installed = {
   "hcl",
   "markdown",
   "markdown_inline",
+  "nix",
   "graphql",
   "http",
 }
