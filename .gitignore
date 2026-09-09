@@ -1,45 +1,45 @@
 .env
 .codex
-hypr/host.conf
-fish/fish_variables*
-nvim/lazy-lock.json
+config/hypr/host.conf
+config/fish/fish_variables*
+config/nvim/lazy-lock.json
 
-streamcontroller/*
-!streamcontroller/settings/
-!streamcontroller/settings/*
-streamcontroller/settings/settings.json
-!streamcontroller/pages/
-!streamcontroller/pages/*
-streamcontroller/pages/backups/*
+config/streamcontroller/*
+!config/streamcontroller/settings/
+!config/streamcontroller/settings/*
+config/streamcontroller/settings/settings.json
+!config/streamcontroller/pages/
+!config/streamcontroller/pages/*
+config/streamcontroller/pages/backups/*
 
-spicetify/*
-!spicetify/Themes/*
-!spicetify/config-xpui.ini
-cava/shaders/
+config/spicetify/*
+!config/spicetify/Themes/*
+!config/spicetify/config-xpui.ini
+config/cava/shaders/
 
 # WireGuard configs contain private keys
-wireguard/configs/*.conf
-hypr/hypridle.conf
-hypr/hyprlock.conf
+config/wireguard/configs/*.conf
+config/hypr/hypridle.conf
+config/hypr/hyprlock.conf
 
 # Tide prompt (Fisher-managed runtime files)
-fish/completions/tide.fish
-fish/conf.d/_tide_init.fish
-fish/functions/_tide_*
-fish/functions/fish_prompt.fish
-fish/functions/fish_mode_prompt.fish
-fish/functions/tide.fish
-fish/functions/tide/
+config/fish/completions/tide.fish
+config/fish/conf.d/_tide_init.fish
+config/fish/functions/_tide_*
+config/fish/functions/fish_prompt.fish
+config/fish/functions/fish_mode_prompt.fish
+config/fish/functions/tide.fish
+config/fish/functions/tide/
 
 # oh-my-fish/plugin-bang-bang (Fisher-managed runtime files)
-fish/conf.d/plugin-bang-bang.fish
-fish/functions/__history_previous_command.fish
-fish/functions/__history_previous_command_arguments.fish
+config/fish/conf.d/plugin-bang-bang.fish
+config/fish/functions/__history_previous_command.fish
+config/fish/functions/__history_previous_command_arguments.fish
 
 # catppuccin/fish (Fisher-managed runtime files)
-fish/themes/catppuccin-*.theme
-fish/themes/static/
+config/fish/themes/catppuccin-*.theme
+config/fish/themes/static/
 
 # Yazi flavors (managed by `ya pkg`)
-yazi/flavors/
-yazi/package.toml
+config/yazi/flavors/
+config/yazi/package.toml
