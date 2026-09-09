@@ -43,3 +43,8 @@ config/fish/themes/static/
 # Yazi flavors (managed by `ya pkg`)
 config/yazi/flavors/
 config/yazi/package.toml
+
+# Nix build artifacts
+result
+result-*
+*.qcow2
