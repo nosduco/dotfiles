@@ -5,5 +5,6 @@
   ];
 
   networking.hostName = "voyager";
+  home-manager.users.tony = ../../home/tony/voyager.nix;
 
 }

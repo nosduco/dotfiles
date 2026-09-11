@@ -1,4 +1,7 @@
 {
+  # core imports
+  imports = [ ./home-manager.nix ];
+
   # platform
   nixpkgs.hostPlatform = "x86_64-linux";
 

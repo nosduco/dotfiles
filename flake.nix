@@ -2,7 +2,12 @@
   description = "nosduco/dotfiles";
 
   inputs = {
+    # nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    # home manager
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
