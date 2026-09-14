@@ -1,4 +1,7 @@
-{
+{ pkgs, ... }: {
+  # state
+  system.stateVersion = "26.05";
+
   # core imports
   imports = [ ./home-manager.nix ];
 
@@ -27,12 +30,13 @@
       "video"
     ];
     initialPassword = "test";
+    shell = pkgs.fish;
   };
 
   # locale
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # state
-  system.stateVersion = "26.05";
+  # programs
+  programs.fish.enable = true;
 }
