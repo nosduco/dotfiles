@@ -24,9 +24,14 @@
   };
 
   # virtualization
-  virtualisation.vmVariant.virtualisation = {
-    memorySize = 4096;
-    cores = 4;
-    qemu.options = [ "-vga none -device virtio-gpu-pci" ];
+  virtualisation.vmVariant = {
+    virtualisation = {
+      memorySize = 4096;
+      cores = 4;
+      qemu.options = [ "-vga none -device virtio-gpu-pci" ];
+      forwardPorts = [ { from = "host"; host.port = 2222; guest.port = 22; } ];
+    };
+    services.openssh.enable = true;
+    environment.systemPackages = [ pkgs.kitty ];
   };
 }

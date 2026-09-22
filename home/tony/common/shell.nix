@@ -29,17 +29,7 @@ in
     enable = true;
 
     shellAliases = {
-      grep = "rg --color=always";
-      cat = "bat";
-      top = "btop";
-      htop = "btop";
-      rm = "trash";
-      svim = "sudo -E nvim";
-      fsi = "nautilus . &";
-      gd = "gh dash";
       bell = ''echo -e "\a"'';
-      docker-compose = "docker compose";
-      ci = ''gh run watch "$(gh run list --limit 1 --json databaseId --jq '.[0].databaseId')" && notify-send "GitHub CI" "Workflow has finished"'';
     };
 
     interactiveShellInit = ''
@@ -57,7 +47,7 @@ in
   # eza
   programs.eza = {
     enable = true;
-    icons = true;
+    icons = "auto";
     extraOptions = [ "--time-style=+%a %b %d %I:%M:%S %p %Y" ];
   };
 
@@ -76,6 +66,16 @@ in
     enable = true;
     options = [ "--cmd" "cd" ];
   };
+
+  # fzf
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = false;
+  };
+  home.packages = with pkgs; [
+    fd
+    wl-clipboard
+  ];
 
   # Existing function FILES, kept verbatim. xdg.configFile."fish/functions/x.fish"
   # coexists with programs.fish because HM writes files by name and these

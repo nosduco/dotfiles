@@ -1,4 +1,4 @@
-function open_vim
-    vim
+function open_yazi
+    yazi
     commandline -f repaint
 end
