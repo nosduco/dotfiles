@@ -1,4 +1,21 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  image-buffer-to-path = pkgs.writeShellApplication {
+    name = "image-buffer-to-path";
+    runtimeInputs = [ pkgs.wl-clipboard ];
+    text = ''
+      types=$(wl-paste --list-types)
+      if grep -q '^image/' <<<"$types"; then
+        ext=$(grep -m1 '^image/' <<<"$types" | cut -d/ -f2 | cut -d';' -f1)
+        file="/tmp/clip_$(date +%s).''${ext}"
+        wl-paste > "$file"
+        printf '%q' "$file"
+      else
+        wl-paste --no-newline
+      fi
+    '';
+  };
+in
 {
   # --- Session environment ---------------------------------------------------
   # home.sessionVariables : attrset  -> EDITOR, ANDROID_HOME, PNPM_HOME
@@ -72,44 +89,47 @@
   #     -> z becomes cd, zi becomes cdi. Replaces both aliases AND the
   #        manual `zoxide init` line. Fish integration defaults to on.
 
-  # --- tmux ------------------------------------------------------------------
+  # tmux
   programs.tmux = {
-    # enable
+    enable = true;
+    shell = "${pkgs.fish}/bin/fish";
+    shortcut = "a";
+    keyMode = "vi";
+    escapeTime = 0;
+    baseIndex = 1;
+    mouse = true;
+    focusEvents = true;
+    terminal = "tmux-256color";
 
-    # These tmux.conf lines have first-class options:
-    #     set -g prefix C-a         -> shortcut = "a"   (or prefix = "C-a")
-    #     set -s escape-time 0      -> escapeTime = 0
-    #     set -g mode-keys vi       -> keyMode = "vi"
-    #     set -g base-index 1       -> baseIndex = 1
-    #     set -g mouse on           -> mouse = true
-    #     set-option -g focus-events on -> focusEvents = true
-    #     default-terminal tmux-256color -> terminal = "tmux-256color"
-    #     default-shell /bin/fish   -> shell = "${pkgs.fish}/bin/fish"
-    #                                  (/bin/fish DOES NOT EXIST on NixOS)
+    plugins = with pkgs.tmuxPlugins; [
+      yank
+      extrakto
+      vim-tmux-navigator
+      { plugin = fingers; extraConfig = "set -g @fingers-key f"; }
+      { plugin = jump; extraConfig = "set -g @jump-key 'Off'"; }
+    ];
 
-    # plugins : list. Bare package, or { plugin; extraConfig; } for ones
-    # that take @settings. All four are packaged; note the attr names:
-    #     tmuxPlugins.yank
-    #     tmuxPlugins.extrakto
-    #     tmuxPlugins.fingers   + "set -g @fingers-key f"
-    #     tmuxPlugins.jump      + "set -g @jump-key 'Off'"
-    #     DROP  tpm
+    extraConfig = ''
+      bind r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded"
 
-    # extraConfig : everything else, as one '' '' string:
-    #     the split/window binds, the is_vim block and C-hjkl/M-hjkl binds,
-    #     copy-mode-vi binds, the colour/style lines, terminal-overrides,
-    #     run-shell for the theme.
-    #   Fix while porting:
-    #     bind r source-file ~/.tmux.conf   -> ~/.config/tmux/tmux.conf
-    #                                          (that's where HM writes it)
-    #     DROP the tmux_version/bc block; tmux is 3.7, keep only the >=3.0
-    #          bind for C-\ directly
-    #     run-shell "~/.theme.tmux" -> keep the file via home.file below,
-    #          or paste its contents in. catppuccin replaces it later.
-    #     the C-v bind calls ~/.dotfiles/scripts/image-buffer-to-path.sh -
-    #          that path holds until M9. Leave it.
+      bind s split-window -v -c "#{pane_current_path}"
+      bind i split-window -h -c "#{pane_current_path}"
+      bind c new-window -c "#{pane_current_path}"
+      unbind '"'
+      unbind %
+      bind j choose-tree
+      bind v copy-mode
+      bind p paste-buffer
+      bind -T copy-mode-vi Escape send-keys -X cancel
+      bind -T copy-mode-vi s run-shell -b "${pkgs.tmuxPlugins.jump}/share/tmux-plugins/jump/scripts/tmux-jump.sh"
 
+      is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+          | grep -iqE '^[^TXZ ]+ +(\\S+/)?g?\\.?(view|l?n?vim?x?|fzf)(diff)?(-wrapped)?$'"
+      bind -n M-h if-shell "$is_vim" 'send-keys M-h' 'resize-pane -L 3'
+      bind -n M-j if-shell "$is_vim" 'send-keys M-j' 'resize-pane -D 3'
+      bind -n M-k if-shell "$is_vim" 'send-keys M-k' 'resize-pane -U 3'
+      bind -n M-l if-shell "$is_vim" 'send-keys M-l' 'resize-pane -R 3'
+      bind -n C-v if-shell "$is_vim" 'send-keys C-v' 'run-shell -b "${lib.getExe image-buffer-to-path} | tmux load-buffer -; tmux paste-buffer"'
+    '';
   };
-
-  # home.file.".theme.tmux".source = ... (if keeping the theme script as-is)
 }
