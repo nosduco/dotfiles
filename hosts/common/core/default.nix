@@ -24,11 +24,7 @@
   # users
   users.users.tony = {
     isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "docker"
-      "video"
-    ];
+    extraGroups = [ "wheel" ];
     initialPassword = "test";
     shell = pkgs.fish;
   };

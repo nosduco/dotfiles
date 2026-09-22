@@ -9,8 +9,6 @@
   services.greetd = {
     enable = true;
     useTextGreeter = true;
-    settings.default_session.user = "greeter";
-    # TODO: Change the name of the CMD to Hyprland
     settings.default_session.command = "${lib.getExe' pkgs.tuigreet "tuigreet"} --time --remember --cmd 'uwsm start -e -D Hyprland hyprland.desktop'";
   };
 
