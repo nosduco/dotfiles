@@ -1,19 +1,5 @@
 { pkgs, ... }:
 {
-  # sesion
-  home.sessionVariables = {
-    EDITOR = "vim";
-    ANDROID_HOME = "";
-    PNPM_HOME = "";
-  };
-  home.sessionPath = [
-    "$HOME/.cargo/bin"
-    "$HOME/go/bin"
-    "$HOME/.local/bin"
-    "$ANDROID_HOME/{emulator,platform-tools}"
-    "$PNPM_HOME"
-  ];
-
   # --- Session environment ---------------------------------------------------
   # home.sessionVariables : attrset  -> EDITOR, ANDROID_HOME, PNPM_HOME
   # home.sessionPath      : list     -> the fish_add_path lines:
@@ -21,40 +7,28 @@
   #     $PNPM_HOME  (DROP ~/.nix-profile/bin - profiles are on PATH already)
   # Written to hm-session-vars.sh; fish sources it automatically.
 
-  # --- fish ----------------------------------------------------------------
+  # fish
   programs.fish = {
-    # enable
+    enable = true;
 
-    # shellAliases : attrset. Your 23 aliases, minus:
-    #     DROP  pacman='paru'          (no pacman)
-    #     DROP  cd="z"  cdi="zi"        (zoxide's --cmd cd below does this)
-    #     DROP  nvm='fnm'               unless you keep fnm (see conf.d)
-    #     ?     mux='tmuxinator'        tmuxinator is not installed anywhere
+    shellAliases = {
+      grep = "rg --color=always";
+      cat = "bat";
+      top = "btop";
+      htop = "btop";
+      rm = "trash";
+      svim = "sudo -E nvim";
+      fsi = "nautilus . &";
+      gd = "gh dash";
+      bell = ''echo -e "\a"'';
+      docker-compose = "docker compose";
+      ci = ''gh run watch "$(gh run list --limit 1 --json databaseId --jq '.[0].databaseId')" && notify-send "GitHub CI" "Workflow has finished"'';
+    };
 
-    # interactiveShellInit : lines. Only runs for interactive shells, so the
-    # `if not status is-interactive; return; end` guard is implicit. Goes here:
-    #     set fish_greeting
-    #     fish_vi_key_bindings
-    #     fish_user_key_bindings   (the function itself - see functions)
-    #     the `if set -q nvim` alias block
-    #     tabtab sourcing line     (pnpm completions - optional)
-    #     fnm init, ONE line:  fnm env --use-on-cd | source
-    #                          (conf.d/fnm.fish is 78 lines of frozen output;
-    #                           the one-liner is what it expands from)
-    #     DROP  zoxide init fish | source   -> programs.zoxide does this
-    #     M3    posix-source ~/.env, and the ~/.dotfiles/.env loop
-
-    # plugins : list of { name; src; }.
-    #     src MUST be pkgs.fishPlugins.<x>.src  - the .src, not the package.
-    #     (nixpkgs installs to share/fish/vendor_*.d; HM looks for functions/
-    #      at the top of src. Passing the package silently loads nothing.)
-    #     tide, bang-bang, fzf-fish are all packaged.
-    #     DROP  virtualfish (not in nixpkgs, you use uv)
-
-    # functions : attrset name -> BODY (HM adds the function..end wrapper).
-    #     For tiny ones: fs, open_vim, open_yazi, vim.
-    #     For dotenv (48 lines + 8 helpers) and ex (32): see below instead.
-
+    interactiveShellInit = ''
+      set fish_greeting
+      fish_vi_key_bindings
+    '';
   };
 
   # Existing function FILES, kept verbatim. xdg.configFile."fish/functions/x.fish"

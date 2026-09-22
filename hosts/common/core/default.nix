@@ -39,4 +39,7 @@
 
   # programs
   programs.fish.enable = true;
+
+  # environment
+  environment.localBinInPath = true;
 }
