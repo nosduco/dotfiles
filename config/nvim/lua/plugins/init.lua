@@ -1,7 +1,6 @@
 local dashboard = require "configs.dashboard"
 local remotesshfs = require "configs.remote-sshfs"
 local treesitter = require "configs.treesitter"
-local mason = require "configs.mason"
 local colorizer = require "configs.colorizer"
 local oil = require "configs.oil"
 local obsidian = require "configs.obsidian"
@@ -25,7 +24,6 @@ return {
         flash = true,
         gitsigns = true,
         indent_blankline = { enabled = true },
-        mason = true,
         native_lsp = { enabled = true },
         nvim_surround = true,
         snacks = true,
@@ -284,12 +282,6 @@ return {
     end,
   },
 
-  -- Mason
-  {
-    "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-    opts = mason.opts,
-  },
 
   -- File Browser
   {

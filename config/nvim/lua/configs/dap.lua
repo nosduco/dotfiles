@@ -6,7 +6,7 @@ dap.adapters["pwa-node"] = {
   host = "localhost",
   port = "${port}",
   executable = {
-    command = vim.fn.stdpath "data" .. "/mason/bin/js-debug-adapter",
+    command = "js-debug",
     args = { "${port}" },
   },
 }

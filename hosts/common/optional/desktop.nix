@@ -28,6 +28,10 @@
       cores = 4;
       qemu.options = [ "-vga none -device virtio-gpu-pci" ];
       forwardPorts = [ { from = "host"; host.port = 2222; guest.port = 22; } ];
+      sharedDirectories.dotfiles = {
+        source = "/home/tony/nixos-config";
+        target = "/home/tony/.dotfiles";
+      };
     };
     services.openssh.enable = true;
     environment.systemPackages = [ pkgs.kitty ];

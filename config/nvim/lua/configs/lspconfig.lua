@@ -87,11 +87,11 @@ require("typescript-tools").setup {
   capabilities = capabilities,
 }
 
--- Terraform
-vim.lsp.config("terraformls", {
+-- OpenTofu
+vim.lsp.config("tofu_ls", {
   filetypes = { "tf", "terraform", "terraform-vars" },
 })
-vim.lsp.enable("terraformls")
+vim.lsp.enable("tofu_ls")
 
 -- Nix
 vim.lsp.config("nixd", {

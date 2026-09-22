@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
+{ inputs, pkgs, ... }: {
   # state
   system.stateVersion = "26.05";
+  system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
   # core imports
   imports = [ ./home-manager.nix ];
@@ -35,6 +36,14 @@
 
   # programs
   programs.fish.enable = true;
+  programs.nh = {
+    enable = true;
+    flake = "/home/tony/.dotfiles";
+    clean = {
+      enable = true;
+      extraArgs = "--keep 5 --keep-since 7d";
+    };
+  };
 
   # environment
   environment.localBinInPath = true;

@@ -15,7 +15,7 @@ conform.setup {
     typescriptreact = node,
     rust = { "rustfmt" },
     java = { "astyle" },
-    terraform = { "terraform_fmt" },
+    terraform = { "tofu_fmt" },
     lua = { "stylua" },
     python = { "ruff" },
     markdown = { "markdownlint" },

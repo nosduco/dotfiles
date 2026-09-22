@@ -32,9 +32,6 @@ o.whichwrap:append "<>[]hl"
 g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0
 
--- Add mason binaries to PATH
-vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin:" .. vim.env.PATH
-
 -- Auto resize panes when resizing nvim window
 autocmd("VimResized", {
   pattern = "*",
