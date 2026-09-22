@@ -29,6 +29,35 @@
       set fish_greeting
       fish_vi_key_bindings
     '';
+
+    plugins = [
+      { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+      { name = "bang-bang"; src = pkgs.fishPlugins.bang-bang.src; }
+      { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+    ];
+  };
+
+  # eza
+  programs.eza = {
+    enable = true;
+    icons = true;
+    extraOptions = [ "--time-style=+%a %b %d %I:%M:%S %p %Y" ];
+  };
+
+  # fish functions
+  xdg.configFile."fish/functions" = {
+    source = ../../../config/fish/functions;
+    recursive = true;
+  };
+  xdg.configFile."fish/completions" = {
+    source = ../../../config/fish/completions;
+    recursive = true;
+  };
+
+  # zoxide
+  programs.zoxide = {
+    enable = true;
+    options = [ "--cmd" "cd" ];
   };
 
   # Existing function FILES, kept verbatim. xdg.configFile."fish/functions/x.fish"
