@@ -71,7 +71,24 @@
       "inputs": {
         "catppuccin": "catppuccin",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "yazi-flavors": "yazi-flavors"
+      }
+    },
+    "yazi-flavors": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787401728,
+        "narHash": "sha256-NGnfrQdsnQITKCZ0oh6DCxeCR2ozJoPAZetsi3ghHAI=",
+        "owner": "yazi-rs",
+        "repo": "flavors",
+        "rev": "20b47bfd78880c2674899597fd26bc01b21ff48c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yazi-rs",
+        "repo": "flavors",
+        "type": "github"
       }
     }
   },

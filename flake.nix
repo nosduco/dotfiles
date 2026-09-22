@@ -11,6 +11,10 @@
 
     # catppuccin
     catppuccin.url = "github:catppuccin/nix";
+
+    # yazi flavors
+    yazi-flavors.url = "github:yazi-rs/flavors";
+    yazi-flavors.flake = false;
   };
 
   outputs =
