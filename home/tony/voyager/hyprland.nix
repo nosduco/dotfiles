@@ -1,15 +1,17 @@
-{ lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  monitors = import ./monitors.nix;
+  monitors = config.host.monitors;
 in
 {
   # hyprland
+  host.monitors = import ./monitors.nix;
   wayland.windowManager.hyprland.extraLuaFiles = {
     host = ./host.lua;
-    monitors = {
-      content = "return " + lib.generators.toLua { } monitors;
-      autoLoad = false;
-    };
   };
 
   # env
@@ -19,6 +21,7 @@ in
   services.dunst.settings.global.monitor = monitors.main;
 
   # hypridle
+  home.packages = [ pkgs.brightnessctl ];
   services.hypridle.settings = {
     general.after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'";
     listener = [
@@ -41,7 +44,7 @@ in
 
   # hyprlock
   programs.hyprlock.settings = import ../common/hyprland/hyprlock.nix {
-    monitor = monitors.main;
+    monitor = "";
     brightness = 0.4;
   };
 }

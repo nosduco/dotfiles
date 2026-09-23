@@ -5,8 +5,11 @@
     ./git.nix
     ./neovim.nix
     ./cli.nix
+    ./audio.nix
     ./dunst.nix
+    ./files
     ./gtk
+    ./host.nix
     ./ghostty.nix
     ./swayosd.nix
     ./xdg.nix

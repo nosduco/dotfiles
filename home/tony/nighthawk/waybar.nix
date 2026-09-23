@@ -1,6 +1,4 @@
-let
-  monitors = import ./monitors.nix;
-in
+{ config, ... }:
 {
   programs.waybar.settings.main = {
     battery = {
@@ -74,7 +72,7 @@ in
       "custom/dunst"
       "clock"
     ];
-    output = monitors.main;
+    output = config.host.monitors.main;
     position = "bottom";
   };
 }

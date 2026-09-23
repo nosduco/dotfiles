@@ -9,6 +9,22 @@
   # hyprlock
   programs.hyprlock.enable = true;
 
+  # portals
+  xdg.portal = {
+    extraPortals = [ pkgs.xdg-desktop-portal-termfilechooser ];
+    config.hyprland = {
+      default = [
+        "hyprland"
+        "gtk"
+      ];
+      "org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
+      "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+    };
+  };
+
+  # files
+  services.gvfs.enable = true;
+
   # swayosd
   systemd.packages = [ pkgs.swayosd ];
   systemd.services.swayosd-libinput-backend.wantedBy = [ "graphical.target" ];
@@ -60,5 +76,6 @@
     services.openssh.enable = true;
     environment.systemPackages = [ pkgs.kitty ];
     home-manager.users.tony.xdg.configFile."uwsm/env-hyprland".text = lib.mkForce "";
+    home-manager.sharedModules = [ { host.vm = true; } ];
   };
 }

@@ -1,6 +1,11 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  monitors = import ./monitors.nix;
+  monitors = config.host.monitors;
   # TODO: nvidia resume workaround, verify still needed and drop
   dpms-on = pkgs.writeShellApplication {
     name = "dpms-on";
@@ -19,12 +24,9 @@ let
 in
 {
   # hyprland
+  host.monitors = import ./monitors.nix;
   wayland.windowManager.hyprland.extraLuaFiles = {
     host = ./host.lua;
-    monitors = {
-      content = "return " + lib.generators.toLua { } monitors;
-      autoLoad = false;
-    };
   };
 
   # env

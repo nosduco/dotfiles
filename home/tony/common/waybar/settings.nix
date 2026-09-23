@@ -139,7 +139,7 @@
     format-muted = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰝟</span> {format_source}";
     format-source = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍬</span>";
     format-source-muted = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍭</span>";
-    on-click = "pavucontrol";
+    on-click = "ghostty --title=wiremix -e wiremix";
     on-click-right = "helvum";
     tooltip-format = "{desc}: {volume}%";
   };

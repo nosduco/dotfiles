@@ -1,4 +1,11 @@
-{ inputs, pkgs, ... }:
+{
+  colors,
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 {
   # bat
   programs.bat.enable = true;
@@ -34,6 +41,13 @@
       file
       libnotify
     ];
+    plugins.piper = pkgs.yaziPlugins.piper;
+    settings.plugin.prepend_previewers = [
+      {
+        mime = "text/*";
+        run = ''piper -- ${lib.getExe config.programs.bat.package} --style=numbers --color=always "$1"'';
+      }
+    ];
     settings.mgr = {
       show_hidden = true;
       sort_by = "mtime";
@@ -47,7 +61,10 @@
         desc = "Copy file to system clipboard";
       }
       {
-        on = [ "g" "t" ];
+        on = [
+          "g"
+          "t"
+        ];
         run = "cd ~/cloud";
         desc = "Goto tuxcloud mount";
       }
@@ -56,35 +73,104 @@
     theme = {
       flavor.dark = "catppuccin-mocha";
       indicator = {
-        current = { fg = "#1e1e2e"; bg = "#fab387"; };
-        preview = { fg = "#1e1e2e"; bg = "#fab387"; };
-        padding = { open = "█"; close = "█"; };
+        current = {
+          fg = "#1e1e2e";
+          bg = "#fab387";
+        };
+        preview = {
+          fg = "#1e1e2e";
+          bg = "#fab387";
+        };
+        padding = {
+          open = "█";
+          close = "█";
+        };
       };
       tabs = {
-        active = { fg = "#1e1e2e"; bg = "#fab387"; bold = true; };
-        inactive = { fg = "#fab387"; bg = "#313244"; };
-        sep_inner = { open = ""; close = ""; };
-        sep_outer = { open = ""; close = ""; };
+        active = {
+          fg = "#1e1e2e";
+          bg = "#fab387";
+          bold = true;
+        };
+        inactive = {
+          fg = "#fab387";
+          bg = "#313244";
+        };
+        sep_inner = {
+          open = "";
+          close = "";
+        };
+        sep_outer = {
+          open = "";
+          close = "";
+        };
       };
       mode = {
-        normal_main = { fg = "#1e1e2e"; bg = "#fab387"; bold = true; };
-        normal_alt = { fg = "#fab387"; bg = "#313244"; };
+        normal_main = {
+          fg = "#1e1e2e";
+          bg = "#fab387";
+          bold = true;
+        };
+        normal_alt = {
+          fg = "#fab387";
+          bg = "#313244";
+        };
       };
       filetype.rules = [
-        { mime = "image/*"; fg = "#94e2d5"; }
-        { mime = "{audio,video}/*"; fg = "#f9e2af"; }
-        { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}"; fg = "#f5c2e7"; }
-        { mime = "application/{pdf,doc,rtf}"; fg = "#a6e3a1"; }
-        { mime = "vfs/{absent,stale}"; fg = "#9399b2"; }
-        { url = "*"; fg = "#cdd6f4"; }
-        { url = "*/"; fg = "#fab387"; }
+        {
+          mime = "image/*";
+          fg = "#94e2d5";
+        }
+        {
+          mime = "{audio,video}/*";
+          fg = "#f9e2af";
+        }
+        {
+          mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}";
+          fg = "#f5c2e7";
+        }
+        {
+          mime = "application/{pdf,doc,rtf}";
+          fg = "#a6e3a1";
+        }
+        {
+          mime = "vfs/{absent,stale}";
+          fg = "#9399b2";
+        }
+        {
+          url = "*";
+          fg = "#cdd6f4";
+        }
+        {
+          url = "*/";
+          fg = "#fab387";
+        }
       ];
       icon.prepend_conds = [
-        { "if" = "dir"; text = ""; fg = "#fab387"; }
+        {
+          "if" = "dir";
+          text = "";
+          fg = "#fab387";
+        }
       ];
+      spot = {
+        border.fg = colors.accent;
+        title.fg = colors.accent;
+        tbl_cell = {
+          fg = colors.accent;
+          reversed = true;
+        };
+        tbl_col.bold = true;
+      };
       status = {
-        sep_left = { open = ""; close = ""; };
-        sep_right = { open = ""; close = ""; };
+        sep_left = {
+          open = "";
+          close = "";
+        };
+        sep_right = {
+          open = "";
+          close = "";
+        };
       };
     };
   };

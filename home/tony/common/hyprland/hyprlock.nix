@@ -3,7 +3,6 @@
   brightness ? null,
 }:
 {
-  general.grace = 3;
   background = [
     (
       {
