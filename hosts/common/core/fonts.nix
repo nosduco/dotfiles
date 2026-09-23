@@ -4,6 +4,7 @@
   fonts = {
     packages = with pkgs; [
       noto-fonts
+      inter
       noto-fonts-color-emoji
       jetbrains-mono
       nerd-fonts.jetbrains-mono
@@ -11,7 +12,7 @@
       material-design-icons
     ];
     fontconfig.defaultFonts = {
-      sansSerif = [ "Noto Sans" ];
+      sansSerif = [ "Inter Variable" ];
       serif = [ "Noto Serif" ];
       monospace = [ "JetBrains Mono" ];
       emoji = [ "Noto Color Emoji" ];
