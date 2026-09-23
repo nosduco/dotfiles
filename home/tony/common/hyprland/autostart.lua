@@ -5,9 +5,7 @@ local function later(ms, cmd)
 end
 
 hl.on("hyprland.start", function()
-  hl.exec_cmd("uwsm app -- elephant")
   hl.dispatch(hl.dsp.focus({ workspace = 1 }))
-  later(2000, "uwsm app -- walker --gapplication-service")
   later(5000, "uwsm app -- /opt/KopiaUI/kopia-ui")
   later(5000, "uwsm app -- syncthingtray --wait --single-instance")
 end)

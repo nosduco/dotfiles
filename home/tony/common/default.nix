@@ -12,6 +12,7 @@
     ./xdg.nix
     ./hyprland
     ./waybar
+    ./walker
   ];
 
   home.stateVersion = "26.05";
