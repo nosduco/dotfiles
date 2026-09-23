@@ -121,6 +121,10 @@ in
   gtk = {
     enable = true;
     colorScheme = "dark";
+    font = {
+      name = "Inter Variable";
+      size = 11;
+    };
     theme = {
       name = "adw-gtk3";
       package = pkgs.adw-gtk3;

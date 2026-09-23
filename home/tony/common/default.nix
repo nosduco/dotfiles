@@ -1,6 +1,8 @@
 {
   imports = [
     ./theme.nix
+    ./apps.nix
+    ./work.nix
     ./shell.nix
     ./git.nix
     ./neovim.nix

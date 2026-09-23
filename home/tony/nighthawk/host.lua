@@ -39,8 +39,8 @@ hl.on("hyprland.start", function()
     { focus = "vesktop", preselect = "d", cmd = "claude-desktop", class = "com.anthropic.Claude" },
     { focus = "com.anthropic.Claude", preselect = "r", cmd = "element-desktop", class = "Element" },
     { workspace = 1, cmd = "firefox", class = "firefox" },
-    { focus = "firefox", preselect = "r", cmd = "obsidian", class = "obsidian", ratio = 1.02 },
-    { focus = "obsidian", preselect = "r", cmd = "io.github.alainm23.planify", class = "io.github.alainm23.planify", ratio = 0.86 },
+    { focus = "firefox", preselect = "r", cmd = "obsidian", class = "md.obsidian.Obsidian", ratio = 1.02 },
+    { focus = "md.obsidian.Obsidian", preselect = "r", cmd = "io.github.alainm23.planify", class = "io.github.alainm23.planify", ratio = 0.86 },
     { focus = "io.github.alainm23.planify", preselect = "d", cmd = "gnome-calendar", class = "org.gnome.Calendar" },
     { cmd = "spotify" },
   }, {
