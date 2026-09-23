@@ -72,7 +72,24 @@
         "catppuccin": "catppuccin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2",
+        "tmux-power": "tmux-power",
         "yazi-flavors": "yazi-flavors"
+      }
+    },
+    "tmux-power": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774960584,
+        "narHash": "sha256-NRJcny3hCyqjp8SuzyC3Zc33rJqpUzs6rbWFgO8yb7c=",
+        "owner": "wfxr",
+        "repo": "tmux-power",
+        "rev": "d69c4d7ffc64828ac5ac4b3056dacdd7ef51997f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wfxr",
+        "repo": "tmux-power",
+        "type": "github"
       }
     },
     "yazi-flavors": {

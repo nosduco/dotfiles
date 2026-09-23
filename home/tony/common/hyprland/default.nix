@@ -1,0 +1,62 @@
+{ config, ... }:
+{
+  # hyprland
+  wayland.windowManager.hyprland = {
+    enable = true;
+    package = null;
+    portalPackage = null;
+    systemd.enable = false;
+    extraLuaFiles = {
+      settings = ./settings.lua;
+      animations = ./animations.lua;
+      rules = ./rules.lua;
+      autostart = ./autostart.lua;
+      binds = ./binds.lua;
+    };
+  };
+
+  # env
+  xdg.configFile."uwsm/env".source =
+    "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+
+  # cursor
+  home.pointerCursor = {
+    enable = true;
+    size = 24;
+    gtk.enable = true;
+    hyprcursor.enable = true;
+  };
+
+  # session
+  services.hyprpolkitagent.enable = true;
+
+  # hypridle
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        lock_cmd = "pidof hyprlock || hyprlock";
+        before_sleep_cmd = "loginctl lock-session";
+      };
+      listener = [
+        {
+          timeout = 300;
+          on-timeout = "loginctl lock-session";
+        }
+      ];
+    };
+  };
+
+  # hyprpaper
+  services.hyprpaper = {
+    enable = true;
+    settings.splash = false;
+  };
+
+  # hyprlock
+  programs.hyprlock = {
+    enable = true;
+    package = null;
+  };
+  catppuccin.hyprlock.useDefaultConfig = false;
+}

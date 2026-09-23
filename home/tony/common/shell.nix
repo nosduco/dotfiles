@@ -1,5 +1,14 @@
-{ pkgs, lib, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 let
+  tmux-power = pkgs.tmuxPlugins.power-theme.overrideAttrs (_: {
+    version = "unstable-2026-03-31";
+    src = inputs.tmux-power;
+  });
   image-buffer-to-path = pkgs.writeShellApplication {
     name = "image-buffer-to-path";
     runtimeInputs = [ pkgs.wl-clipboard ];
@@ -38,9 +47,18 @@ in
     '';
 
     plugins = [
-      { name = "tide"; src = pkgs.fishPlugins.tide.src; }
-      { name = "bang-bang"; src = pkgs.fishPlugins.bang-bang.src; }
-      { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+      {
+        name = "tide";
+        src = pkgs.fishPlugins.tide.src;
+      }
+      {
+        name = "bang-bang";
+        src = pkgs.fishPlugins.bang-bang.src;
+      }
+      {
+        name = "fzf-fish";
+        src = pkgs.fishPlugins.fzf-fish.src;
+      }
     ];
   };
 
@@ -52,6 +70,7 @@ in
   };
 
   # fish functions
+  xdg.configFile."fish/conf.d/tide.fish".source = ../../../config/fish/conf.d/tide.fish;
   xdg.configFile."fish/functions" = {
     source = ../../../config/fish/functions;
     recursive = true;
@@ -64,7 +83,10 @@ in
   # zoxide
   programs.zoxide = {
     enable = true;
-    options = [ "--cmd" "cd" ];
+    options = [
+      "--cmd"
+      "cd"
+    ];
   };
 
   # fzf
@@ -90,6 +112,7 @@ in
   #        manual `zoxide init` line. Fish integration defaults to on.
 
   # tmux
+  catppuccin.tmux.enable = false;
   programs.tmux = {
     enable = true;
     shell = "${pkgs.fish}/bin/fish";
@@ -102,11 +125,33 @@ in
     terminal = "tmux-256color";
 
     plugins = with pkgs.tmuxPlugins; [
+      {
+        plugin = tmux-power;
+        extraConfig = ''
+          set -g @tmux_power_theme '#fab387'
+          set -g @tmux_power_g0 '#1e1e2e'
+          set -g @tmux_power_g1 '#1e1e2e'
+          set -g @tmux_power_g2 '#181825'
+          set -g @tmux_power_g3 '#313244'
+          set -g @tmux_power_g4 '#cdd6f4'
+          set -g @tmux_power_left_a ' #h'
+          set -g @tmux_power_left_b '''
+          set -g @tmux_power_right_x '#[fg=#cdd6f4]#(~/.dotfiles/scripts/weather-cached.sh Columbus)'
+          set -g @tmux_power_right_y ' %I:%M%p'
+          set -g @tmux_power_right_z ' %m/%d/%y'
+        '';
+      }
       yank
       extrakto
       vim-tmux-navigator
-      { plugin = fingers; extraConfig = "set -g @fingers-key f"; }
-      { plugin = jump; extraConfig = "set -g @jump-key 'Off'"; }
+      {
+        plugin = fingers;
+        extraConfig = "set -g @fingers-key f";
+      }
+      {
+        plugin = jump;
+        extraConfig = "set -g @jump-key 'Off'";
+      }
     ];
 
     extraConfig = ''

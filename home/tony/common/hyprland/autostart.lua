@@ -1,0 +1,16 @@
+local function later(ms, cmd)
+  hl.timer(function()
+    hl.exec_cmd(cmd)
+  end, { timeout = ms, type = "oneshot" })
+end
+
+hl.on("hyprland.start", function()
+  hl.exec_cmd("uwsm app -- dunst")
+  hl.exec_cmd("uwsm app -- elephant")
+  hl.dispatch(hl.dsp.focus({ workspace = 1 }))
+  later(2000, "uwsm app -- " .. os.getenv("HOME") .. "/.dotfiles/scripts/wallpaper-random.sh " .. os.getenv("HOME") .. "/Pictures/Wallpapers")
+  later(2000, "uwsm app -- walker --gapplication-service")
+  later(5000, "uwsm app -- /opt/KopiaUI/kopia-ui")
+  later(5000, "uwsm app -- syncthingtray --wait --single-instance")
+  later(5000, "uwsm app -- obsidian")
+end)

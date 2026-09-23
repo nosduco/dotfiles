@@ -15,6 +15,10 @@
     # yazi flavors
     yazi-flavors.url = "github:yazi-rs/flavors";
     yazi-flavors.flake = false;
+
+    # tmux power
+    tmux-power.url = "github:wfxr/tmux-power";
+    tmux-power.flake = false;
   };
 
   outputs =

@@ -4,7 +4,10 @@
   system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
   # core imports
-  imports = [ ./home-manager.nix ];
+  imports = [
+    ./home-manager.nix
+    ./fonts.nix
+  ];
 
   # platform
   nixpkgs.hostPlatform = "x86_64-linux";

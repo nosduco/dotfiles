@@ -4,6 +4,18 @@
   # hyprland
   programs.hyprland.enable = true;
   programs.hyprland.withUWSM = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # hyprlock
+  programs.hyprlock.enable = true;
+
+  # keyring
+  services.gnome.gnome-keyring.enable = true;
+  programs.ssh = {
+    enableAskPassword = true;
+    askPassword = "${pkgs.gcr_4}/libexec/gcr4-ssh-askpass";
+  };
+  environment.sessionVariables.SSH_ASKPASS_REQUIRE = "prefer";
 
   # greeter
   services.greetd = {
@@ -27,7 +39,13 @@
       memorySize = 4096;
       cores = 4;
       qemu.options = [ "-vga none -device virtio-gpu-pci" ];
-      forwardPorts = [ { from = "host"; host.port = 2222; guest.port = 22; } ];
+      forwardPorts = [
+        {
+          from = "host";
+          host.port = 2222;
+          guest.port = 22;
+        }
+      ];
       sharedDirectories.dotfiles = {
         source = "/home/tony/nixos-config";
         target = "/home/tony/.dotfiles";
@@ -35,5 +53,6 @@
     };
     services.openssh.enable = true;
     environment.systemPackages = [ pkgs.kitty ];
+    home-manager.users.tony.xdg.configFile."uwsm/env-hyprland".text = lib.mkForce "";
   };
 }

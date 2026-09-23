@@ -7,5 +7,7 @@
     enable = true;
     autoEnable = true;
     accent = "peach";
+    cursors.enable = true;
   };
+
 }

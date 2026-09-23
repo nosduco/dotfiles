@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # Caffeine toggle for waybar. Takes a systemd inhibitor lock covering
 # idle, sleep, and lid-switch handling, so with caffeine on the laptop
 # runs clamshell (lid closed, no suspend). logind always honors

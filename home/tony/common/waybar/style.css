@@ -1,9 +1,9 @@
-@import "mocha.css";
+@import "catppuccin.css";
 
 * {
   border: none;
   border-radius: 10px;
-  font-family: "Google Sans", "Material Design Icons";
+  font-family: "Noto Sans", "Material Design Icons";
   font-weight: bold;
   font-size: 16px;
   box-shadow: none;
