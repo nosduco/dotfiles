@@ -8,6 +8,7 @@
     ./audio.nix
     ./dunst.nix
     ./files
+    ./firefox
     ./gtk
     ./host.nix
     ./ghostty.nix

@@ -19,6 +19,10 @@
     # tmux power
     tmux-power.url = "github:wfxr/tmux-power";
     tmux-power.flake = false;
+
+    # betterfox
+    betterfox.url = "github:yokoffing/Betterfox";
+    betterfox.flake = false;
   };
 
   outputs =
