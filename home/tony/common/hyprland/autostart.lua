@@ -5,7 +5,6 @@ local function later(ms, cmd)
 end
 
 hl.on("hyprland.start", function()
-  hl.exec_cmd("uwsm app -- dunst")
   hl.exec_cmd("uwsm app -- elephant")
   hl.dispatch(hl.dsp.focus({ workspace = 1 }))
   later(2000, "uwsm app -- walker --gapplication-service")

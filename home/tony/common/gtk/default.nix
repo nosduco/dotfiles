@@ -1,16 +1,15 @@
 {
+  colors,
   config,
   lib,
   pkgs,
   ...
 }:
 let
-  inherit (config.catppuccin) flavor accent;
-  palette = (lib.importJSON "${config.catppuccin.sources.palette}/palette.json").${flavor}.colors;
-  hex = name: palette.${name}.hex;
+  hex = name: colors.${name};
   semantic = {
-    accent_color = accent;
-    accent_bg_color = accent;
+    accent_color = "accent";
+    accent_bg_color = "accent";
     accent_fg_color = "base";
     destructive_color = "red";
     destructive_bg_color = "red";
@@ -91,8 +90,30 @@ let
   vars = lib.concatStrings (
     lib.mapAttrsToList (n: c: "  --${lib.replaceStrings [ "_" ] [ "-" ] n}: ${hex c};\n") semantic
   );
+  icons = pkgs.catppuccin-papirus-folders.override {
+    inherit (config.catppuccin.gtk.icon) accent flavor;
+  };
+  recolor = lib.concatStringsSep " " (
+    lib.mapAttrsToList (from: to: "-e 's/${from}/${colors.${to}}/gI'") {
+      "#f44336" = "red";
+      "#ff9800" = "peach";
+      "#4285f4" = "blue";
+      "#4caf50" = "green";
+    }
+  );
 in
 {
+  # icons
+  gtk.iconTheme.package = lib.mkForce (
+    icons.overrideAttrs (old: {
+      postInstall = (old.postInstall or "") + ''
+        find $out/share/icons \( -path '*/status/*' -o -path '*/panel/*' \) -name '*.svg' -type f \
+          -exec chmod u+w {} + \
+          -exec sed -i ${recolor} {} +
+      '';
+    })
+  );
+
   # gtk
   gtk = {
     enable = true;

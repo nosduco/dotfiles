@@ -1,14 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-let
-  inherit (config.catppuccin) flavor accent;
-  palette = (lib.importJSON "${config.catppuccin.sources.palette}/palette.json").${flavor}.colors;
-  c = name: palette.${name}.hex;
-in
+{ colors, pkgs, ... }:
 {
   # swayosd
   services.swayosd = {
@@ -16,15 +6,15 @@ in
     stylePath = pkgs.writeText "swayosd.css" ''
       window#osd {
         border-radius: 10px;
-        border: 2px solid ${c accent};
-        background: ${c "base"};
+        border: 2px solid ${colors.accent};
+        background: ${colors.base};
       }
       window#osd #container {
         margin: 16px;
       }
       window#osd image,
       window#osd label {
-        color: ${c "text"};
+        color: ${colors.text};
       }
       window#osd progressbar:disabled,
       window#osd image:disabled {
@@ -42,14 +32,14 @@ in
         min-height: inherit;
         border-radius: inherit;
         border: none;
-        background: ${c "surface0"};
+        background: ${colors.surface0};
       }
       window#osd progress,
       window#osd segment.active {
         min-height: inherit;
         border-radius: inherit;
         border: none;
-        background: ${c accent};
+        background: ${colors.accent};
       }
     '';
   };

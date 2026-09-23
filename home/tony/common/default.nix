@@ -5,6 +5,7 @@
     ./git.nix
     ./neovim.nix
     ./cli.nix
+    ./dunst.nix
     ./gtk
     ./ghostty.nix
     ./swayosd.nix
