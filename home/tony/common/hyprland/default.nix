@@ -1,4 +1,17 @@
-{ config, ... }:
+{ config, pkgs, ... }:
+let
+  screenshot = pkgs.writeShellApplication {
+    name = "screenshot";
+    runtimeInputs = with pkgs; [
+      hyprshot
+      satty
+      wl-clipboard
+      procps
+      xdg-user-dirs
+    ];
+    text = builtins.readFile ./screenshot.sh;
+  };
+in
 {
   # hyprland
   wayland.windowManager.hyprland = {
@@ -12,6 +25,10 @@
       rules = ./rules.lua;
       autostart = ./autostart.lua;
       binds = ./binds.lua;
+      session = {
+        content = ./session.lua;
+        autoLoad = false;
+      };
     };
   };
 
@@ -50,8 +67,21 @@
   # hyprpaper
   services.hyprpaper = {
     enable = true;
-    settings.splash = false;
+    settings = {
+      splash = false;
+      wallpaper = [
+        {
+          monitor = "";
+          path = "${config.xdg.userDirs.pictures}/wallpapers";
+          order = "random";
+          timeout = 3600;
+        }
+      ];
+    };
   };
+
+  # screenshot
+  home.packages = [ screenshot ];
 
   # hyprlock
   programs.hyprlock = {

@@ -36,7 +36,6 @@
     signal = 8;
   };
   "custom/dunst" = {
-    exec = "~/.dotfiles/scripts/dunst_tray.sh";
     on-click = "dunstctl set-paused toggle";
     restart-interval = 1;
   };
@@ -44,31 +43,18 @@
     format = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰅁</span>";
     tooltip = false;
   };
-  "custom/media" = {
-    escape = true;
-    exec = "$HOME/.dotfiles/scripts/mediaplayer.py --player spotify 2> /dev/null";
-    format = "{icon}   {}";
-    format-icons = {
+  mpris = {
+    player = "spotify";
+    format = "{player_icon}   {dynamic}";
+    format-paused = "{player_icon}   <i>{dynamic}</i>";
+    player-icons = {
       default = "🎜";
       spotify = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰓇</span>";
     };
     max-length = 40;
-    return-type = "json";
-  };
-  "custom/vpn" = {
-    exec = "$HOME/.dotfiles/scripts/vpn/vpn-status.sh";
-    format = "{}";
-    interval = 5;
-    on-click = "$HOME/.dotfiles/scripts/vpn/vpn-toggle.sh";
-    on-click-right = "$HOME/.dotfiles/scripts/vpn/vpn-menu.sh";
-    return-type = "json";
   };
   "custom/weather" = {
-    exec = "$HOME/.dotfiles/scripts/weather.sh Columbus";
-    exec-if = "ping wttr.in -c1";
     format = "{}";
-    format-alt = "{alt}: {}";
-    format-alt-click = "click-right";
     interval = 1800;
     return-type = "json";
   };
@@ -100,21 +86,13 @@
       "4" = [ ];
     };
   };
-  keyboard-state = {
-    capslock = true;
-    format = "{icon}";
-    format-icons = {
-      locked = "<span font=\"Material Design Icons\"></span>";
-      unlocked = "";
-    };
-  };
   layer = "top";
   margin-left = 9;
   margin-right = 9;
   modules-center = [ "wlr/taskbar" ];
   modules-left = [
     "hyprland/workspaces"
-    "custom/media"
+    "mpris"
   ];
   network = {
     format-disconnected = "Disconnected ⚠";
@@ -142,5 +120,27 @@
       "Foot Server" = "Terminal";
     };
     tooltip-format = "{title}";
+  };
+  pulseaudio = {
+    format = "{icon} {format_source}";
+    format-icons = {
+      headphone = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰋋</span>";
+      speaker = [
+        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰕿</span>"
+        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰖀</span>"
+        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰕾</span>"
+      ];
+      default = [
+        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰕿</span>"
+        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰖀</span>"
+        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰕾</span>"
+      ];
+    };
+    format-muted = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰝟</span> {format_source}";
+    format-source = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍬</span>";
+    format-source-muted = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍭</span>";
+    on-click = "pavucontrol";
+    on-click-right = "helvum";
+    tooltip-format = "{desc}: {volume}%";
   };
 }

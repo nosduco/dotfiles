@@ -50,13 +50,6 @@ in
     clock = {
       format = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰙹</span> {:%A, %b %d}";
     };
-    "custom/voxtype" = {
-      exec = "voxtype status --follow --format json";
-      format = "{}";
-      on-click = "systemctl --user restart voxtype";
-      return-type = "json";
-      tooltip = true;
-    };
     gamemode = {
       format-alt = "{glyph} {count}";
       glyph = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰊴</span>";
@@ -77,27 +70,11 @@ in
       "gamemode"
       "pulseaudio"
       "privacy"
-      "custom/vpn"
-      "custom/voxtype"
       "network"
       "custom/dunst"
       "clock"
     ];
     output = monitors.main;
     position = "bottom";
-    pulseaudio = {
-      format = "{icon} {format_source}";
-      format-icons = {
-        headphone = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰋋</span>";
-        speaker = [
-          "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰕿</span>"
-          "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰖀</span>"
-          "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰕾</span>"
-        ];
-      };
-      format-muted = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰝟</span> {format_source}";
-      on-click = "pavucontrol";
-      on-click-right = "helvum";
-    };
   };
 }

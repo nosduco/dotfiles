@@ -136,7 +136,6 @@ in
           set -g @tmux_power_g4 '#cdd6f4'
           set -g @tmux_power_left_a ' #h'
           set -g @tmux_power_left_b '''
-          set -g @tmux_power_right_x '#[fg=#cdd6f4]#(~/.dotfiles/scripts/weather-cached.sh Columbus)'
           set -g @tmux_power_right_y ' %I:%M%p'
           set -g @tmux_power_right_z ' %m/%d/%y'
         '';

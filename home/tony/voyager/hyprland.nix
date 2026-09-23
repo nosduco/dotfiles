@@ -17,7 +17,7 @@ in
 
   # hypridle
   services.hypridle.settings = {
-    general.after_sleep_cmd = "hyprctl dispatch dpms on";
+    general.after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'";
     listener = [
       {
         timeout = 150;
@@ -26,8 +26,8 @@ in
       }
       {
         timeout = 330;
-        on-timeout = "hyprctl dispatch dpms off";
-        on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
+        on-timeout = "hyprctl dispatch 'hl.dsp.dpms({ action = \"disable\" })'";
+        on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })' && brightnessctl -r";
       }
       {
         timeout = 1800;

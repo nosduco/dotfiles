@@ -7,6 +7,8 @@
     ./cli.nix
     ./gtk
     ./ghostty.nix
+    ./swayosd.nix
+    ./xdg.nix
     ./hyprland
     ./waybar
   ];

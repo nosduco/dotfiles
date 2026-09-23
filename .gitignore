@@ -48,3 +48,4 @@ config/yazi/package.toml
 result
 result-*
 *.qcow2
+.vmtest/

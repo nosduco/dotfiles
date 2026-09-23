@@ -6,12 +6,12 @@ let
     name = "dpms-on";
     runtimeInputs = [ pkgs.hyprland ];
     text = ''
-      hyprctl dispatch dpms on ${monitors.main}
+      hyprctl dispatch 'hl.dsp.dpms({ action = "enable", monitor = "${monitors.main}" })'
       sleep 1
-      hyprctl dispatch dpms on ${monitors.top}
+      hyprctl dispatch 'hl.dsp.dpms({ action = "enable", monitor = "${monitors.top}" })'
       sleep 2
       for _ in 1 2 3; do
-        hyprctl dispatch dpms on ${monitors.right}
+        hyprctl dispatch 'hl.dsp.dpms({ action = "enable", monitor = "${monitors.right}" })'
         sleep 1
       done
     '';
@@ -50,8 +50,8 @@ in
     listener = [
       {
         timeout = 600;
-        on-timeout = "hyprctl dispatch dpms off";
-        on-resume = "hyprctl dispatch dpms on";
+        on-timeout = "hyprctl dispatch 'hl.dsp.dpms({ action = \"disable\" })'";
+        on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'";
       }
     ];
   };

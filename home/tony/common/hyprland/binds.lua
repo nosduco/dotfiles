@@ -1,5 +1,4 @@
 local mod = "SUPER"
-local scripts = os.getenv("HOME") .. "/.dotfiles/scripts"
 local monitors = require("monitors")
 
 -- apps
@@ -20,11 +19,11 @@ hl.bind(mod .. " + O", hl.dsp.layout("togglesplit"))
 
 -- screenshots
 hl.bind(mod .. " + S", hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
-hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd(scripts .. "/screenshot.sh"))
-hl.bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd(scripts .. "/screenshot.sh window"))
+hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd("screenshot"))
+hl.bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("screenshot window"))
 hl.bind(mod .. " + SHIFT + I", hl.dsp.exec_cmd("grim -o " .. monitors.main .. " | wl-copy"))
 hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd("hyprpicker -a"))
-hl.bind(mod .. " + N", hl.dsp.exec_cmd(scripts .. "/next-wallpaper.sh"))
+hl.bind(mod .. " + N", hl.dsp.exec_cmd("systemctl --user restart hyprpaper"))
 
 -- focus
 hl.bind(mod .. " + h", hl.dsp.focus({ direction = "l" }))
@@ -58,19 +57,8 @@ hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
--- media
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(scripts .. "/change_volume.sh increase"))
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(scripts .. "/change_volume.sh decrease"))
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd(scripts .. "/change_volume.sh mute"))
 
 -- notifications
 hl.bind(mod .. " + D", hl.dsp.exec_cmd("dunstctl history-pop"))
 hl.bind(mod .. " + SHIFT + D", hl.dsp.exec_cmd("dunstctl close-all"))
 
--- vpn
-hl.bind(mod .. " + V", hl.dsp.exec_cmd(scripts .. "/vpn/vpn-toggle.sh"))
-hl.bind(mod .. " + SHIFT + V", hl.dsp.exec_cmd(scripts .. "/vpn/vpn-menu.sh"))
-
--- dictation
-hl.bind(mod .. " + Y", hl.dsp.exec_cmd(scripts .. "/voxtype-ptt.sh start"), { description = "Dictation" })
-hl.bind(mod .. " + Y", hl.dsp.exec_cmd(scripts .. "/voxtype-ptt.sh stop"), { release = true })

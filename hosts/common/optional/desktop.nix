@@ -9,6 +9,12 @@
   # hyprlock
   programs.hyprlock.enable = true;
 
+  # swayosd
+  systemd.packages = [ pkgs.swayosd ];
+  systemd.services.swayosd-libinput-backend.wantedBy = [ "graphical.target" ];
+  services.dbus.packages = [ pkgs.swayosd ];
+  services.udev.packages = [ pkgs.swayosd ];
+
   # keyring
   services.gnome.gnome-keyring.enable = true;
   programs.ssh = {

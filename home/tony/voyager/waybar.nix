@@ -74,14 +74,12 @@
     };
     margin-top = 6;
     modules-right = [
-      "keyboard-state"
       "group/tray"
       "custom/caffeine"
       "custom/weather"
       "battery#laptop"
       "pulseaudio"
       "privacy"
-      "custom/vpn"
       "network"
       "custom/dunst"
       "clock"
@@ -92,21 +90,5 @@
       tooltip-format-wifi = "{essid} ({signalStrength}%)";
     };
     position = "top";
-    pulseaudio = {
-      format = "{icon} {volume}% {format_source}";
-      format-icons = {
-        headphone = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰋋</span>";
-        speaker = [
-          "<span font=\"Material Design Icons\">󰕿</span>"
-          "<span font=\"Material Design Icons\">󰖀</span>"
-          "<span font=\"Material Design Icons\">󰕾</span>"
-        ];
-      };
-      format-muted = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰖁</span>{format_source}";
-      format-source = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍬</span>";
-      format-source-muted = "󰍭";
-      on-click = "pavucontrol";
-      on-click-right = "helvum";
-    };
   };
 }

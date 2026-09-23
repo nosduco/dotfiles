@@ -5,6 +5,7 @@
   ];
 
   networking.hostName = "voyager";
+  users.users.tony.extraGroups = [ "video" ];
   home-manager.users.tony = ../../home/tony/voyager;
 
 }
