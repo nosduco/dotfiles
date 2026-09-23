@@ -4,7 +4,7 @@ local monitors = require("monitors")
 -- apps
 hl.bind(mod .. " + Return", hl.dsp.exec_cmd("ghostty"))
 hl.bind(mod .. " + Q", hl.dsp.window.close())
-hl.bind(mod .. " + M", hl.dsp.exec_cmd("wlogout --protocol layer-shell"))
+hl.bind(mod .. " + M", hl.dsp.exec_cmd("walker -m menus:power"))
 hl.bind(mod .. " + L", hl.dsp.exec_cmd("pidof hyprlock || hyprlock"))
 hl.bind(mod .. " + E", hl.dsp.exec_cmd("EDITOR=vim ghostty -e yazi"))
 hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd("uwsm app -- nautilus"))

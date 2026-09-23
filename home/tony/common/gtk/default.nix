@@ -99,6 +99,9 @@ let
       "#ff9800" = "peach";
       "#4285f4" = "blue";
       "#4caf50" = "green";
+      "#ff5722" = "maroon";
+      "#00bcd4" = "sky";
+      "#673ab7" = "mauve";
     }
   );
 in
@@ -107,7 +110,7 @@ in
   gtk.iconTheme.package = lib.mkForce (
     icons.overrideAttrs (old: {
       postInstall = (old.postInstall or "") + ''
-        find $out/share/icons \( -path '*/status/*' -o -path '*/panel/*' \) -name '*.svg' -type f \
+        find $out/share/icons \( -path '*/status/*' -o -path '*/panel/*' -o -name 'system-*' \) -name '*.svg' -type f \
           -exec chmod u+w {} + \
           -exec sed -i ${recolor} {} +
       '';
