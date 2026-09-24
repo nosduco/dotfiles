@@ -3,6 +3,12 @@
   # obsidian
   programs.obsidian.package = pkgs.obsidian.override { commandLineArgs = "--disable-gpu"; };
 
+  # prismlauncher
+  programs.prismlauncher.settings = {
+    MinMemAlloc = 8000;
+    MaxMemAlloc = 16000;
+  };
+
   # nvtop
   home.packages = [ pkgs.nvtopPackages.nvidia ];
 }

@@ -1,6 +1,6 @@
 local c = require("themes.catppuccin")
 
--- env
+-- env (NOTE: nixpkgs cap_sys_nice wrapper makes glibc strip TZDIR)
 hl.env("TZDIR", "/etc/zoneinfo")
 
 hl.config({

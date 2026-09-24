@@ -36,7 +36,7 @@ hl.on("hyprland.start", function()
     { workspace = "name:right-monitor", cmd = "vesktop", class = "vesktop" },
     { focus = "vesktop", preselect = "d", cmd = "ghostty -e btop", class = "com.mitchellh.ghostty", ratio = 1.38 },
     { focus = "vesktop", preselect = "d", cmd = "claude-desktop", class = "com.anthropic.Claude" },
-    { focus = "com.anthropic.Claude", preselect = "r", cmd = "element-desktop", class = "Element" },
+    { focus = "com.anthropic.Claude", preselect = "r", cmd = "element-desktop", class = "element" },
     { workspace = 1, cmd = "firefox", class = "firefox" },
     { focus = "firefox", preselect = "r", cmd = "obsidian", class = "md.obsidian.Obsidian", ratio = 1.02 },
     { focus = "md.obsidian.Obsidian", preselect = "r", cmd = "io.github.alainm23.planify", class = "io.github.alainm23.planify", ratio = 0.86 },
