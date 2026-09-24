@@ -23,5 +23,9 @@
       owner = "tony";
       key = "syncthing-key-${config.networking.hostName}";
     };
+    kopia-password = {
+      owner = "tony";
+      key = "kopia-password-${config.networking.hostName}";
+    };
   };
 }

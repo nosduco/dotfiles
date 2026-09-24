@@ -54,4 +54,8 @@
 
   # environment
   environment.localBinInPath = true;
+
+  # ssh
+  programs.ssh.knownHosts."tux-pve.nosnet".publicKey =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKg4b4qSd+oh1pUDCaAqsXGDs8/Fd1ByWUfRKR78jhh7";
 }

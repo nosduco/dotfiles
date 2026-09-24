@@ -111,6 +111,7 @@ in
       {
         host.vm = true;
         services.syncthing.settings.devices.tux-hub.paused = true;
+        systemd.user.timers.kopia.Install.WantedBy = lib.mkForce [ ];
       }
     ];
   };

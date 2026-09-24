@@ -2,6 +2,7 @@
   imports = [
     ./theme.nix
     ./apps.nix
+    ./backup.nix
     ./cloud.nix
     ./syncthing
     ./dev.nix
