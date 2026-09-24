@@ -55,6 +55,8 @@ in
   home.packages = [
     aws-vpn
     mongodb-compass
+    pkgs.mongosh
     pkgs.slack
+    pkgs.snowsql
   ];
 }

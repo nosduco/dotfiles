@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   fm1 = pkgs.org-freedesktop-filemanager1-common;
   fm1Exec = "${fm1}/libexec/file_manager_dbus";
@@ -10,6 +15,10 @@ in
     hyprpicker
   ];
   programs.fish.shellAliases.fsi = "nautilus . &";
+  gtk.gtk3.bookmarks = [
+    "file://${config.home.homeDirectory}/projects projects"
+    "file://${config.xdg.userDirs.download} downloads"
+  ];
 
   # file chooser
   xdg.configFile."xdg-desktop-portal-termfilechooser/config".text = ''

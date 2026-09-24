@@ -2,8 +2,11 @@
   imports = [
     ./theme.nix
     ./apps.nix
+    ./cloud.nix
+    ./dev.nix
     ./work.nix
     ./shell.nix
+    ./tide.nix
     ./git.nix
     ./neovim.nix
     ./cli.nix

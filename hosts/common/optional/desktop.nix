@@ -76,6 +76,7 @@ in
   virtualisation.vmVariant = {
     virtualisation = {
       memorySize = 4096;
+      diskSize = 8192;
       cores = 4;
       qemu.options = [ "-vga none -device virtio-gpu-pci" ];
       forwardPorts = [

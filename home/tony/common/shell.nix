@@ -70,7 +70,6 @@ in
   };
 
   # fish functions
-  xdg.configFile."fish/conf.d/tide.fish".source = ../../../config/fish/conf.d/tide.fish;
   xdg.configFile."fish/functions" = {
     source = ../../../config/fish/functions;
     recursive = true;

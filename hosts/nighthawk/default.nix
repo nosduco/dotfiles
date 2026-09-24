@@ -3,6 +3,7 @@
   imports = [
     ../common/core
     ../common/optional/desktop.nix
+    ../common/optional/dev.nix
     ../common/optional/gaming.nix
     ../common/optional/printing.nix
     ../common/optional/work.nix
@@ -16,6 +17,15 @@
   # stream deck
   programs.streamcontroller.enable = true;
 
-  # oversteer
-  services.udev.packages = [ pkgs.oversteer ];
+  # udev
+  services.udev.packages = [
+    pkgs.oversteer
+    pkgs.xr-hardware
+  ];
+
+  # ollama
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-cuda;
+  };
 }
