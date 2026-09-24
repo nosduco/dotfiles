@@ -5,7 +5,7 @@
 
 /* Base typography */
 * {
-  font-family: "Inter Variable";
+  font-family: sans-serif;
   font-size: 15px;
   color: @text;
 }

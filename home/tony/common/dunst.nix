@@ -7,7 +7,7 @@
     iconTheme = config.gtk.iconTheme;
     settings = {
       global = {
-        font = "Inter Variable 10";
+        font = "sans-serif 10";
         show_age_threshold = -1;
         width = 320;
         height = 500;

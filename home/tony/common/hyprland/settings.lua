@@ -1,5 +1,8 @@
 local c = require("themes.catppuccin")
 
+-- env
+hl.env("TZDIR", "/etc/zoneinfo")
+
 hl.config({
   input = {
     follow_mouse = 2,

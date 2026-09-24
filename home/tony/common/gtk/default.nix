@@ -122,7 +122,7 @@ in
     enable = true;
     colorScheme = "dark";
     font = {
-      name = "Inter Variable";
+      name = "sans-serif";
       size = 11;
     };
     theme = {

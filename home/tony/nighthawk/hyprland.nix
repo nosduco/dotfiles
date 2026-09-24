@@ -29,6 +29,12 @@ in
     host = ./host.lua;
   };
 
+  # night light
+  services.gammastep = {
+    latitude = 39.962;
+    longitude = -82.996;
+  };
+
   # env
   xdg.configFile."uwsm/env-hyprland".text = "export AQ_DRM_DEVICES=/dev/dri/card0";
   home.sessionVariables = {
@@ -41,7 +47,6 @@ in
     PROTON_ENABLE_NGX_UPDATER = "1";
     _JAVA_AWT_WM_NONREPARENTING = "1";
     QT_QPA_PLATFORM = "wayland;xcb";
-    QT_QPA_PLATFORMTHEME = "qt6ct";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
   };

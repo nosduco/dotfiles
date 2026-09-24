@@ -32,7 +32,6 @@ end, { locked = true })
 
 -- autostart
 hl.on("hyprland.start", function()
-  hl.exec_cmd("gammastep -l 56.6:14.3")
   hl.exec_cmd("libinput-gestures-setup start")
   hl.timer(function()
     hl.exec_cmd("uwsm app -- obsidian")

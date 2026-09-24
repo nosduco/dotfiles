@@ -1,5 +1,4 @@
 local mod = "SUPER"
-local monitors = require("monitors")
 
 -- apps
 hl.bind(mod .. " + Return", hl.dsp.exec_cmd("ghostty"))
@@ -18,10 +17,10 @@ hl.bind(mod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mod .. " + O", hl.dsp.layout("togglesplit"))
 
 -- screenshots
-hl.bind(mod .. " + S", hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
+hl.bind(mod .. " + S", hl.dsp.exec_cmd("grimblast --freeze copy area"))
 hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd("screenshot"))
-hl.bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("screenshot window"))
-hl.bind(mod .. " + SHIFT + I", hl.dsp.exec_cmd("grim -o " .. monitors.main .. " | wl-copy"))
+hl.bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("screenshot active"))
+hl.bind(mod .. " + SHIFT + I", hl.dsp.exec_cmd("grimblast copy output"))
 hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd("hyprpicker -a"))
 hl.bind(mod .. " + N", hl.dsp.exec_cmd("systemctl --user restart hyprpaper"))
 

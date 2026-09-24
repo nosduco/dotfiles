@@ -12,6 +12,7 @@
     ./files
     ./firefox
     ./gtk
+    ./qt.nix
     ./host.nix
     ./ghostty.nix
     ./swayosd.nix

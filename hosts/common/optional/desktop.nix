@@ -25,6 +25,10 @@
   # files
   services.gvfs.enable = true;
 
+  # calendar
+  services.gnome.evolution-data-server.enable = true;
+  services.gnome.gnome-online-accounts.enable = true;
+
   # swayosd
   systemd.packages = [ pkgs.swayosd ];
   systemd.services.swayosd-libinput-backend.wantedBy = [ "graphical.target" ];

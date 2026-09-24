@@ -14,6 +14,9 @@ in
     host = ./host.lua;
   };
 
+  # night light
+  services.gammastep.provider = "geoclue2";
+
   # env
   xdg.configFile."uwsm/env-hyprland".text = "export AQ_DRM_DEVICES=/dev/dri/card1";
 

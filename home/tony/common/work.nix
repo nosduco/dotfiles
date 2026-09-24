@@ -13,6 +13,9 @@ let
   };
 in
 {
-  # mongodb compass
-  home.packages = [ mongodb-compass ];
+  # apps
+  home.packages = [
+    mongodb-compass
+    pkgs.slack
+  ];
 }

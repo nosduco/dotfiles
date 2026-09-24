@@ -3,7 +3,7 @@ let
   screenshot = pkgs.writeShellApplication {
     name = "screenshot";
     runtimeInputs = with pkgs; [
-      hyprshot
+      grimblast
       satty
       wl-clipboard
       procps
@@ -64,6 +64,15 @@ in
     };
   };
 
+  # night light
+  services.gammastep = {
+    enable = true;
+    temperature = {
+      day = 6500;
+      night = 4500;
+    };
+  };
+
   # hyprpaper
   services.hyprpaper = {
     enable = true;
@@ -81,7 +90,10 @@ in
   };
 
   # screenshot
-  home.packages = [ screenshot ];
+  home.packages = [
+    screenshot
+    pkgs.grimblast
+  ];
 
   # hyprlock
   programs.hyprlock = {

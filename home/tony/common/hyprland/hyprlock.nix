@@ -46,7 +46,7 @@
       text = "tony, is that you?";
       color = "$text";
       font_size = 25;
-      font_family = "Inter Variable";
+      font_family = "sans-serif";
       position = "0, 80";
       halign = "center";
       valign = "center";

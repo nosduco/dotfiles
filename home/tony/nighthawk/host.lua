@@ -32,7 +32,6 @@ hl.bind("XF86AudioMute", osd("--output-volume mute-toggle"), { locked = true })
 
 -- autostart
 hl.on("hyprland.start", function()
-  hl.exec_cmd("gammastep -l 39.962:-82.996")
   session.start({
     { workspace = "name:right-monitor", cmd = "vesktop", class = "vesktop" },
     { focus = "vesktop", preselect = "d", cmd = "ghostty -e btop", class = "com.mitchellh.ghostty", ratio = 1.38 },
