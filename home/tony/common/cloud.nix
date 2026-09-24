@@ -1,7 +1,12 @@
-{ config, pkgs, ... }:
+{
+  config,
+  osConfig,
+  pkgs,
+  ...
+}:
 let
   mount = "${config.home.homeDirectory}/cloud";
-  rcloneConfig = "${config.xdg.configHome}/rclone/rclone.conf";
+  rcloneConfig = osConfig.sops.secrets.rclone-tuxcloud.path;
 in
 {
   # tuxcloud

@@ -93,8 +93,25 @@ in
       };
     };
     services.openssh.enable = true;
+    services.comin = {
+      hostname = "vmtest";
+      remotes = lib.mkForce [
+        {
+          name = "vmtest";
+          url = "/var/lib/comin-vmtest";
+          branches.main.name = "main";
+          poller.period = 5;
+        }
+      ];
+      sshAllowedSignersPath = lib.mkForce "/var/lib/comin-vmtest-signers";
+    };
     environment.systemPackages = [ pkgs.kitty ];
     home-manager.users.tony.xdg.configFile."uwsm/env-hyprland".text = lib.mkForce "";
-    home-manager.sharedModules = [ { host.vm = true; } ];
+    home-manager.sharedModules = [
+      {
+        host.vm = true;
+        services.syncthing.settings.devices.tux-hub.paused = true;
+      }
+    ];
   };
 }

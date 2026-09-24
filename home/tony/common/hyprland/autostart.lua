@@ -7,5 +7,4 @@ end
 hl.on("hyprland.start", function()
   hl.dispatch(hl.dsp.focus({ workspace = 1 }))
   later(5000, "uwsm app -- /opt/KopiaUI/kopia-ui")
-  later(5000, "uwsm app -- syncthingtray --wait --single-instance")
 end)

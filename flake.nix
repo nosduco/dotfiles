@@ -28,6 +28,14 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    # sops
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # comin
+    comin.url = "github:nlewo/comin";
+    comin.inputs.nixpkgs.follows = "nixpkgs";
+
     # claude desktop
     claude-desktop.url = "github:patrickjaja/claude-desktop-extra";
     claude-desktop.inputs.nixpkgs.follows = "nixpkgs";

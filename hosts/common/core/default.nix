@@ -7,6 +7,8 @@
   imports = [
     ./home-manager.nix
     ./fonts.nix
+    ./sops.nix
+    ./upgrade.nix
   ];
 
   # platform

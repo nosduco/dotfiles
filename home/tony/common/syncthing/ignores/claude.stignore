@@ -1,0 +1,29 @@
+// --- portable config: global instructions + prefs ---
+!/CLAUDE.md
+!/RTK.md
+!/settings.json
+
+// --- custom slash commands ---
+!/commands
+!/commands/**
+
+// --- hook scripts (caveman + context-mode); referenced by settings.json ---
+!/hooks
+!/hooks/**
+
+// --- /spec skill + saved plans ---
+!/spec
+!/spec/**
+!/plans
+!/plans/**
+
+// --- per-project auto-memory ONLY (skips the 667M of session transcripts) ---
+// ladder un-ignores projects -> each project dir -> its memory dir -> contents.
+!/projects/*/memory/**
+!/projects/*/memory
+!/projects/*
+!/projects
+
+// --- ignore everything else: secrets, caches, plugin clones, live dbs,
+//     session/file history, logs, venvs, telemetry ---
+*

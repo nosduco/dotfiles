@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   # git
   programs.git = {
@@ -7,6 +7,12 @@
       user.name = "tony duco";
       user.email = "td@tonydu.co";
       init.defaultBranch = "main";
+    };
+    signing = {
+      format = "ssh";
+      key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
+      signByDefault = true;
+      allowedSigners = builtins.readFile ../../../keys/allowed_signers;
     };
   };
 

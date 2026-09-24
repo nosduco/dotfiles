@@ -3,6 +3,7 @@
     ./theme.nix
     ./apps.nix
     ./cloud.nix
+    ./syncthing
     ./dev.nix
     ./work.nix
     ./shell.nix
