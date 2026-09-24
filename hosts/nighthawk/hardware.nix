@@ -1,5 +1,18 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
+  # nvidia
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia = {
+    open = true;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    powerManagement.enable = true;
+    nvidiaSettings = false;
+    moduleParams = {
+      nvidia.NVreg_TemporaryFilePath = "/var/tmp";
+      nvidia-modeset.conceal_vrr_caps = 1;
+    };
+  };
+
   # cpu
   powerManagement.cpuFreqGovernor = "performance";
 

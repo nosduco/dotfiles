@@ -35,6 +35,12 @@ in
   # env
   xdg.configFile."uwsm/env".source =
     "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+  home.sessionVariables = {
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+    QT_QPA_PLATFORM = "wayland;xcb";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+  };
 
   # cursor
   home.pointerCursor = {

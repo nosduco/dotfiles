@@ -40,15 +40,11 @@ in
   home.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
     MOZ_DISABLE_RDD_SANDBOX = "1";
+    CUDA_DISABLE_PERF_BOOST = "1";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    NVD_BACKEND = "direct";
     __GL_GSYNC_ALLOWED = "1";
     __GL_VRR_ALLOWED = "1";
     PROTON_ENABLE_NGX_UPDATER = "1";
-    _JAVA_AWT_WM_NONREPARENTING = "1";
-    QT_QPA_PLATFORM = "wayland;xcb";
-    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
   };
 
   # hypridle
