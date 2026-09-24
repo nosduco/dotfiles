@@ -1,0 +1,25 @@
+name: update flake.lock
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 * * 6"
+
+jobs:
+  update:
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      # TODO: switch ref and base to main after M9 merge
+      - uses: actions/checkout@v6
+        with:
+          ref: nixos
+      - uses: DeterminateSystems/determinate-nix-action@v3
+      - uses: DeterminateSystems/update-flake-lock@v29
+        with:
+          base: nixos
+          pr-title: "chore(flake): update inputs"
+          commit-msg: "chore(flake): update inputs"
