@@ -17,7 +17,7 @@ hl.workspace_rule({ workspace = "name:top-monitor", monitor = m.top, persistent 
 -- windows
 hl.window_rule({ match = { class = "^(vesktop)$" }, workspace = "right-monitor silent" })
 hl.window_rule({ match = { class = "^(com.anthropic.Claude)$" }, workspace = "right-monitor silent" })
-hl.window_rule({ match = { class = "^(Element)$" }, workspace = "right-monitor silent" })
+hl.window_rule({ match = { class = "^(element)$" }, workspace = "right-monitor silent" })
 hl.window_rule({ match = { title = "^(Google Meet)" }, tile = true, monitor = m.right })
 hl.window_rule({ match = { title = "^(Spotify)" }, workspace = "top-monitor silent" })
 hl.window_rule({ match = { class = "^(spotify)$" }, workspace = "top-monitor silent" })

@@ -38,7 +38,7 @@
                         {
                             "id": "com_core447_OSPlugin::RunCommand",
                             "settings": {
-                                "command": "~/.dotfiles/scripts/change_volume.sh decrease"
+                                "command": "swayosd-client --output-volume lower"
                             }
                         }
                     ],
@@ -61,7 +61,7 @@
                         {
                             "id": "com_core447_OSPlugin::RunCommand",
                             "settings": {
-                                "command": "~/.dotfiles/scripts/change_volume.sh increase"
+                                "command": "swayosd-client --output-volume raise --max-volume 100"
                             }
                         }
                     ],
@@ -84,7 +84,7 @@
                         {
                             "id": "com_core447_OSPlugin::RunCommand",
                             "settings": {
-                                "command": "~/.dotfiles/scripts/change_volume.sh mute"
+                                "command": "swayosd-client --output-volume mute-toggle"
                             }
                         }
                     ],
@@ -222,7 +222,7 @@
                         {
                             "id": "com_core447_OSPlugin::RunCommand",
                             "settings": {
-                                "command": "~/.dotfiles/scripts/vpn/vpn-toggle.sh"
+                                "command": "uwsm app -- waybar-caffeine toggle"
                             },
                             "comment": "VPN Toggle"
                         }
@@ -234,7 +234,7 @@
                         0
                     ],
                     "media": {
-                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/shield-check-green.svg"
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/coffee-yellow.svg"
                     }
                 }
             }
@@ -268,7 +268,7 @@
                         {
                             "id": "com_core447_OSPlugin::RunCommand",
                             "settings": {
-                                "command": "~/.dotfiles/scripts/change_office_hue_scene.sh default"
+                                "command": "dunstctl set-paused toggle"
                             }
                         }
                     ],
@@ -279,7 +279,7 @@
                         0
                     ],
                     "media": {
-                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/lightbulb-yellow.svg"
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/bell-off-yellow.svg"
                     }
                 }
             }
@@ -291,7 +291,7 @@
                         {
                             "id": "com_core447_OSPlugin::RunCommand",
                             "settings": {
-                                "command": "~/.dotfiles/scripts/change_office_hue_scene.sh chill"
+                                "command": "systemctl --user kill -s USR1 gammastep.service"
                             }
                         }
                     ],
@@ -302,7 +302,7 @@
                         0
                     ],
                     "media": {
-                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/lamp-yellow.svg"
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/moon-yellow.svg"
                     }
                 }
             }

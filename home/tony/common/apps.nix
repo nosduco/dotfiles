@@ -1,5 +1,16 @@
-{ colors, pkgs, ... }:
 {
+  colors,
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
+let
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+in
+{
+  imports = [ inputs.spicetify-nix.homeManagerModules.spicetify ];
+
   # obsidian
   programs.obsidian.enable = true;
 
@@ -39,6 +50,14 @@
 
   # media
   programs.mpv.enable = true;
+
+  # spotify
+  programs.spicetify = {
+    enable = true;
+    theme = spicePkgs.themes.catppuccin;
+    colorScheme = config.catppuccin.flavor;
+    experimentalFeatures = true;
+  };
 
   # office
   programs.libreoffice.enable = true;

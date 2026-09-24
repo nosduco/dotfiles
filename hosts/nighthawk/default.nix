@@ -6,4 +6,7 @@
 
   networking.hostName = "nighthawk";
   home-manager.users.tony = ../../home/tony/nighthawk;
+
+  # stream deck
+  programs.streamcontroller.enable = true;
 }

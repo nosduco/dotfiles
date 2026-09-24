@@ -11,6 +11,9 @@ config/streamcontroller/settings/settings.json
 !config/streamcontroller/pages/
 !config/streamcontroller/pages/*
 config/streamcontroller/pages/backups/*
+!config/streamcontroller/Assets/
+config/streamcontroller/Assets/*
+!config/streamcontroller/Assets/custom/
 
 config/spicetify/*
 !config/spicetify/Themes/*

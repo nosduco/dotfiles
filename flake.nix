@@ -23,6 +23,10 @@
     # betterfox
     betterfox.url = "github:yokoffing/Betterfox";
     betterfox.flake = false;
+
+    # spicetify
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

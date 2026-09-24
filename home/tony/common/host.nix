@@ -9,7 +9,7 @@ in
     monitors = lib.mkOption {
       type = lib.types.attrsOf lib.types.str;
       default = { };
-      apply = m: if cfg.vm then lib.mapAttrs (_: _: "Virtual-1") m else m;
+      apply = m: if cfg.vm then lib.mapAttrs (n: _: if n == "main" then "Virtual-1" else "vm-${n}") m else m;
     };
   };
 
