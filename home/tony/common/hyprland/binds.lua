@@ -16,6 +16,15 @@ hl.bind(mod .. " + U", hl.dsp.window.fullscreen())
 hl.bind(mod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mod .. " + O", hl.dsp.layout("togglesplit"))
 
+-- media
+local function osd(arg)
+  return hl.dsp.exec_cmd("swayosd-client " .. arg)
+end
+hl.bind("XF86AudioRaiseVolume", osd("--output-volume raise"), { repeating = true, locked = true })
+hl.bind("XF86AudioLowerVolume", osd("--output-volume lower"), { repeating = true, locked = true })
+hl.bind("XF86AudioMute", osd("--output-volume mute-toggle"), { locked = true })
+hl.bind("XF86AudioMicMute", osd("--input-volume mute-toggle"), { locked = true })
+
 -- screenshots
 hl.bind(mod .. " + S", hl.dsp.exec_cmd("grimblast --freeze copy area"))
 hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd("screenshot"))

@@ -61,7 +61,7 @@
                         {
                             "id": "com_core447_OSPlugin::RunCommand",
                             "settings": {
-                                "command": "swayosd-client --output-volume raise --max-volume 100"
+                                "command": "swayosd-client --output-volume raise"
                             }
                         }
                     ],

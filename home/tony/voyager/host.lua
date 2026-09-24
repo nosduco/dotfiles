@@ -10,14 +10,10 @@ hl.workspace_rule({ workspace = "2", monitor = m.main, persistent = true })
 hl.workspace_rule({ workspace = "3", monitor = m.main, persistent = true })
 hl.workspace_rule({ workspace = "4", monitor = m.main, persistent = true })
 
--- keys
+-- brightness
 local function osd(arg)
   return hl.dsp.exec_cmd("swayosd-client " .. arg)
 end
-hl.bind("XF86AudioRaiseVolume", osd("--output-volume raise --max-volume 200"), { repeating = true, locked = true })
-hl.bind("XF86AudioLowerVolume", osd("--output-volume lower"), { repeating = true, locked = true })
-hl.bind("XF86AudioMute", osd("--output-volume mute-toggle"), { locked = true })
-hl.bind("XF86AudioMicMute", osd("--input-volume mute-toggle"), { locked = true })
 hl.bind("XF86MonBrightnessUp", osd("--brightness raise"), { repeating = true, locked = true })
 hl.bind("XF86MonBrightnessDown", osd("--brightness lower"), { repeating = true, locked = true })
 

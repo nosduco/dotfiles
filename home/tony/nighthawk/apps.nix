@@ -9,6 +9,9 @@
     MaxMemAlloc = 16000;
   };
 
-  # nvtop
-  home.packages = [ pkgs.nvtopPackages.nvidia ];
+  # apps
+  home.packages = [
+    pkgs.nvtopPackages.nvidia
+    pkgs.oversteer
+  ];
 }

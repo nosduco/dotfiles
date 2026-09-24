@@ -2,6 +2,9 @@
   imports = [
     ../common/core
     ../common/optional/desktop.nix
+    ../common/optional/gaming.nix
+    ../common/optional/printing.nix
+    ./power.nix
   ];
 
   networking.hostName = "voyager";

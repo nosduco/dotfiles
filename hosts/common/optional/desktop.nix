@@ -1,5 +1,10 @@
 # Desktop base configuration
 { lib, pkgs, ... }:
+let
+  keychron = pkgs.writeTextDir "lib/udev/rules.d/70-keychron.rules" ''
+    KERNEL=="hidraw*", ATTRS{idVendor}=="3434", TAG+="uaccess"
+  '';
+in
 {
   # hyprland
   programs.hyprland.enable = true;
@@ -25,6 +30,9 @@
   # files
   services.gvfs.enable = true;
 
+  # ledger
+  hardware.ledger.enable = true;
+
   # calendar
   services.gnome.evolution-data-server.enable = true;
   services.gnome.gnome-online-accounts.enable = true;
@@ -33,7 +41,12 @@
   systemd.packages = [ pkgs.swayosd ];
   systemd.services.swayosd-libinput-backend.wantedBy = [ "graphical.target" ];
   services.dbus.packages = [ pkgs.swayosd ];
-  services.udev.packages = [ pkgs.swayosd ];
+
+  # udev
+  services.udev.packages = [
+    pkgs.swayosd
+    keychron
+  ];
 
   # keyring
   services.gnome.gnome-keyring.enable = true;

@@ -23,6 +23,50 @@
     on-click = "xdg-open https://calendar.google.com";
     tooltip-format = "<tt><small>{calendar}</small></tt>";
   };
+  "battery#mouse" = {
+    bat = "hidpp_battery_0";
+    format = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍽</span>{capacity}%";
+    format-alt = "{time} {icon}";
+    format-charging = "";
+    format-full = "";
+    format-good = "";
+    format-icons = [
+      ""
+      ""
+      ""
+      ""
+      ""
+    ];
+    format-plugged = "";
+    states = {
+      critical = 15;
+      full = 100;
+      good = 95;
+      warning = 30;
+    };
+  };
+  "battery#mousecharging" = {
+    bat = "hidpp_battery_1";
+    format = "";
+    format-alt = "{time} {icon}";
+    format-charging = " {capacity}%";
+    format-full = "";
+    format-good = "";
+    format-icons = [
+      ""
+      ""
+      ""
+      ""
+      ""
+    ];
+    format-plugged = " {capacity}%";
+    states = {
+      critical = 15;
+      full = 100;
+      good = 95;
+      warning = 30;
+    };
+  };
   "custom/caffeine" = {
     exec = "waybar-caffeine status";
     format = "{icon}";

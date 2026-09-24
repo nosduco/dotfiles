@@ -69,6 +69,7 @@ in
   home.packages = with pkgs; [
     gnome-calendar
     gnome-disk-utility
+    ledger-live-desktop
     mixxx
     multiviewer-for-f1
     planify

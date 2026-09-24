@@ -20,8 +20,10 @@ in
   # env
   xdg.configFile."uwsm/env-hyprland".text = "export AQ_DRM_DEVICES=/dev/dri/card1";
 
-  # dunst
-  services.dunst.settings.global.monitor = monitors.main;
+  # swayosd
+  xdg.configFile."swayosd/config.toml".source = (pkgs.formats.toml { }).generate "swayosd-config" {
+    server.max_volume = 200;
+  };
 
   # hypridle
   home.packages = [ pkgs.brightnessctl ];

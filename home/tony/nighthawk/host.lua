@@ -22,14 +22,6 @@ hl.window_rule({ match = { title = "^(Google Meet)" }, tile = true, monitor = m.
 hl.window_rule({ match = { title = "^(Spotify)" }, workspace = "top-monitor silent" })
 hl.window_rule({ match = { class = "^(spotify)$" }, workspace = "top-monitor silent" })
 
--- media
-local function osd(arg)
-  return hl.dsp.exec_cmd("swayosd-client " .. arg)
-end
-hl.bind("XF86AudioRaiseVolume", osd("--output-volume raise --max-volume 100"), { repeating = true, locked = true })
-hl.bind("XF86AudioLowerVolume", osd("--output-volume lower"), { repeating = true, locked = true })
-hl.bind("XF86AudioMute", osd("--output-volume mute-toggle"), { locked = true })
-
 -- autostart
 hl.on("hyprland.start", function()
   session.start({

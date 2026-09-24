@@ -8,6 +8,7 @@
     settings = {
       global = {
         font = "sans-serif 10";
+        monitor = config.host.monitors.main;
         show_age_threshold = -1;
         width = 320;
         height = 500;

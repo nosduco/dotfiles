@@ -51,9 +51,6 @@ in
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
   };
 
-  # dunst
-  services.dunst.settings.global.monitor = monitors.main;
-
   # hypridle
   services.hypridle.settings = {
     general.after_sleep_cmd = lib.getExe dpms-on;
