@@ -5,6 +5,7 @@
     ../common/optional/desktop.nix
     ../common/optional/gaming.nix
     ../common/optional/printing.nix
+    ../common/optional/work.nix
     ./dualsense.nix
     ./hardware.nix
   ];

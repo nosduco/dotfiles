@@ -88,6 +88,7 @@ in
       sharedDirectories.dotfiles = {
         source = "/home/tony/nixos-config";
         target = "/home/tony/.dotfiles";
+        writable = true;
       };
     };
     services.openssh.enable = true;

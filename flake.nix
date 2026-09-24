@@ -27,6 +27,18 @@
     # spicetify
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # claude desktop
+    claude-desktop.url = "github:patrickjaja/claude-desktop-extra";
+    claude-desktop.inputs.nixpkgs.follows = "nixpkgs";
+
+    # helium
+    helium.url = "github:amaanq/helium-flake";
+    helium.inputs.nixpkgs.follows = "nixpkgs";
+
+    # aws vpn client
+    awsvpnclient-nix.url = "github:AddG0/awsvpnclient-nix/b187895a5f5998adc9bbc14ca8cdaa24e39ddd5a";
+    awsvpnclient-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
