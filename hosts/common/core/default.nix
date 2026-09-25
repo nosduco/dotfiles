@@ -16,10 +16,12 @@
   nixpkgs.config.allowUnfree = true;
 
   # nix
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   # boot
   boot = {
@@ -27,7 +29,12 @@
     loader.efi.canTouchEfiVariables = true;
     initrd.systemd.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
+    tmp.cleanOnBoot = true;
   };
+
+  # hardware
+  hardware.cpu.amd.updateMicrocode = true;
+  zramSwap.enable = true;
 
   # users
   users.users.tony = {

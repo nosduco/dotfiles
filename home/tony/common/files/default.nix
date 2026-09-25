@@ -19,6 +19,17 @@ in
     "file://${config.home.homeDirectory}/projects projects"
     "file://${config.xdg.userDirs.download} downloads"
   ];
+  dconf.settings = {
+    "org/gnome/nautilus/preferences".default-folder-viewer = "list-view";
+    "org/gtk/gtk4/settings/file-chooser" = {
+      show-hidden = true;
+      sort-directories-first = false;
+    };
+    "org/gtk/settings/file-chooser" = {
+      show-hidden = true;
+      sort-directories-first = false;
+    };
+  };
 
   # file chooser
   xdg.configFile."xdg-desktop-portal-termfilechooser/config".text = ''

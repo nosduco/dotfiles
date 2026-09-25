@@ -113,6 +113,7 @@ in
     gnome-calendar
     gnome-disk-utility
     ledger-live-desktop
+    loupe
     mixxx
     multiviewer-for-f1
     planify

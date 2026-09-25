@@ -10,6 +10,7 @@
     ./shell.nix
     ./tide.nix
     ./git.nix
+    ./ssh.nix
     ./neovim.nix
     ./cli.nix
     ./audio.nix

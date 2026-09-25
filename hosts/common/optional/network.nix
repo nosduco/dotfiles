@@ -12,6 +12,12 @@
     ];
   };
 
+  # syncthing
+  boot.kernel.sysctl = {
+    "net.core.rmem_max" = 7340032;
+    "net.core.wmem_max" = 7340032;
+  };
+
   # tailscale
   services.tailscale = {
     enable = true;

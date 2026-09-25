@@ -33,6 +33,9 @@ in
   # ledger
   hardware.ledger.enable = true;
 
+  # bluetooth
+  hardware.bluetooth.enable = true;
+
   # calendar
   services.gnome.evolution-data-server.enable = true;
   services.gnome.gnome-online-accounts.enable = true;

@@ -30,8 +30,17 @@
   programs.jq.enable = true;
 
   # trash
-  home.packages = [ pkgs.trash-cli ];
   programs.fish.shellAliases.rm = "trash";
+
+  # archives
+  programs.fish.shellAliases.ex = "ouch decompress";
+
+  # packages
+  home.packages = with pkgs; [
+    bitwarden-cli
+    ouch
+    trash-cli
+  ];
 
   # yazi
   catppuccin.yazi.enable = false;

@@ -98,18 +98,6 @@ in
     wl-clipboard
   ];
 
-  # Existing function FILES, kept verbatim. xdg.configFile."fish/functions/x.fish"
-  # coexists with programs.fish because HM writes files by name and these
-  # names don't collide. Store-copied (a relative path is fine here - these
-  # aren't tinker-loop files, and you chose declarative).
-  #     dotenv.fish + _dotenv_*.fish, ex.fish, fish_user_key_bindings.fish
-
-  # --- zoxide ----------------------------------------------------------------
-  # programs.zoxide.enable
-  # programs.zoxide.options = [ "--cmd" "cd" ];
-  #     -> z becomes cd, zi becomes cdi. Replaces both aliases AND the
-  #        manual `zoxide init` line. Fish integration defaults to on.
-
   # tmux
   catppuccin.tmux.enable = false;
   programs.tmux = {

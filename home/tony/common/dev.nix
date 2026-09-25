@@ -1,5 +1,8 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
+  # android
+  home.sessionVariables.ANDROID_HOME = "${config.home.homeDirectory}/Android/Sdk";
+
   # direnv
   programs.direnv = {
     enable = true;
@@ -16,6 +19,7 @@
   programs.git.ignores = [
     ".envrc"
     ".direnv/"
+    "**/.claude/settings.local.json"
   ];
 
   # node
@@ -54,6 +58,7 @@
     # infra
     ansible
     awscli2
+    fluxcd
     kubectl
     kubernetes-helm
     kustomize
