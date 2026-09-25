@@ -50,6 +50,10 @@ in
     exec = "${lib.getExe aws-vpn} %U";
     icon = "awsvpnclient";
   };
+  home.activation.awsvpnclient-metrics = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    run install -Dm644 ${pkgs.writeText "Preferences" ''{"Version":"1","IsMetricsEnabled":false}''} \
+      "$HOME/.config/AWSVPNClient/Preferences"
+  '';
 
   # apps
   home.packages = [
