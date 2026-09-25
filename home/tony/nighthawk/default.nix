@@ -6,4 +6,7 @@
     ./hyprland.nix
     ./waybar.nix
   ];
+
+  # backup
+  backup.sources = [ "backups" ];
 }

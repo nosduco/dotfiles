@@ -26,13 +26,12 @@ hl.bind("switch:off:Lid Switch", function()
   hl.monitor(laptop)
 end, { locked = true })
 
+-- gestures
+hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
+
 -- autostart
 hl.on("hyprland.start", function()
-  hl.exec_cmd("libinput-gestures-setup start")
   hl.timer(function()
     hl.exec_cmd("uwsm app -- obsidian")
   end, { timeout = 5000, type = "oneshot" })
-  hl.timer(function()
-    hl.exec_cmd("nm-applet --indicator")
-  end, { timeout = 1000, type = "oneshot" })
 end)

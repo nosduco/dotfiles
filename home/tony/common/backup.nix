@@ -6,19 +6,7 @@
   ...
 }:
 let
-  sources = map (dir: "${config.home.homeDirectory}/${dir}") [
-    ".config"
-    ".gnupg"
-    ".ssh"
-    "backups"
-    "documents"
-    "music"
-    "notes"
-    "pictures"
-    "projects"
-    "videos"
-    "work"
-  ];
+  sources = map (dir: "${config.home.homeDirectory}/${dir}") config.backup.sources;
   ignores = [
     # caches
     ".cache"
@@ -64,10 +52,12 @@ let
     "--compression=zstd-fastest"
   ];
   target = "${config.home.username}@${osConfig.networking.hostName}";
-  stamp = builtins.hashString "sha256" (builtins.toJSON [
-    policy
-    ignores
-  ]);
+  stamp = builtins.hashString "sha256" (
+    builtins.toJSON [
+      policy
+      ignores
+    ]
+  );
   kopia-backup = pkgs.writeShellApplication {
     name = "kopia-backup";
     runtimeInputs = with pkgs; [
@@ -90,10 +80,12 @@ let
       rm -f "$unreachable"
       KOPIA_PASSWORD=$(cat ${osConfig.sops.secrets.kopia-password.path})
       export KOPIA_PASSWORD
-      kopia repository status >/dev/null 2>&1 || kopia repository connect sftp \
-        --host tux-pve.nosnet --username kopia \
-        --path /tank/data/backups/endpoints/${osConfig.networking.hostName} \
-        --external --ssh-command ssh
+      repo() {
+        kopia repository "$1" sftp --host tux-pve.nosnet --username kopia \
+          --path /tank/data/backups/endpoints/${osConfig.networking.hostName} \
+          --external --ssh-command ssh
+      }
+      kopia repository status >/dev/null 2>&1 || repo connect || repo create
       if [ "$(cat "$state/kopia-policy" 2>/dev/null)" != ${stamp} ]; then
         args=()
         while IFS= read -r p; do
@@ -101,7 +93,12 @@ let
         done < <(kopia policy show ${target} --json | jq -r '.files.ignore[]?')
         kopia policy set ${target} ${lib.escapeShellArgs policy} "''${args[@]}"
         kopia policy set ${target} ${
-          lib.escapeShellArgs (lib.concatMap (p: [ "--add-ignore" p ]) ignores)
+          lib.escapeShellArgs (
+            lib.concatMap (p: [
+              "--add-ignore"
+              p
+            ]) ignores
+          )
         }
         mkdir -p "$state" && echo ${stamp} > "$state/kopia-policy"
       fi
@@ -110,39 +107,58 @@ let
   };
 in
 {
-  # kopia
-  home.packages = with pkgs; [
-    kopia
-    kopia-ui
-  ];
-  systemd.user.services.kopia = {
-    Unit = {
-      Description = "kopia snapshots";
-      OnFailure = [ "kopia-failed.service" ];
-    };
-    Service = {
-      Type = "oneshot";
-      ExecStart = "${kopia-backup}/bin/kopia-backup";
-      Nice = 19;
-      IOSchedulingClass = "idle";
-    };
-  };
-  systemd.user.timers.kopia = {
-    Unit.Description = "kopia snapshots";
-    Timer = {
-      OnCalendar = "0/3:00";
-      Persistent = true;
-      RandomizedDelaySec = "5min";
-    };
-    Install.WantedBy = [ "timers.target" ];
+  options.backup.sources = lib.mkOption {
+    type = lib.types.listOf lib.types.str;
+    description = "Home-relative directories kopia snapshots.";
   };
 
-  # alerts
-  systemd.user.services.kopia-failed = {
-    Unit.Description = "kopia failure alert";
-    Service = {
-      Type = "oneshot";
-      ExecStart = ''${pkgs.libnotify}/bin/notify-send -u critical -a System System "Backup failed. journalctl --user -u kopia"'';
+  config = {
+    # kopia
+    backup.sources = [
+      ".config"
+      ".gnupg"
+      ".ssh"
+      "documents"
+      "music"
+      "notes"
+      "pictures"
+      "projects"
+      "videos"
+      "work"
+    ];
+    home.packages = with pkgs; [
+      kopia
+      kopia-ui
+    ];
+    systemd.user.services.kopia = {
+      Unit = {
+        Description = "kopia snapshots";
+        OnFailure = [ "kopia-failed.service" ];
+      };
+      Service = {
+        Type = "oneshot";
+        ExecStart = "${kopia-backup}/bin/kopia-backup";
+        Nice = 19;
+        IOSchedulingClass = "idle";
+      };
+    };
+    systemd.user.timers.kopia = {
+      Unit.Description = "kopia snapshots";
+      Timer = {
+        OnCalendar = "0/3:00";
+        Persistent = true;
+        RandomizedDelaySec = "5min";
+      };
+      Install.WantedBy = [ "timers.target" ];
+    };
+
+    # alerts
+    systemd.user.services.kopia-failed = {
+      Unit.Description = "kopia failure alert";
+      Service = {
+        Type = "oneshot";
+        ExecStart = ''${pkgs.libnotify}/bin/notify-send -u critical -a System System "Backup failed. journalctl --user -u kopia"'';
+      };
     };
   };
 }

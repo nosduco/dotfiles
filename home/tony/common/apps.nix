@@ -81,6 +81,11 @@ in
 
   # chromium
   programs.chromium.enable = true;
+  xdg.desktopEntries.google-meet = {
+    name = "Google Meet";
+    exec = "chromium --app=https://meet.google.com";
+    icon = "google-meet";
+  };
 
   # claude desktop
   xdg.configFile = {
