@@ -16,6 +16,7 @@
   sops.secrets = {
     rclone-tuxcloud.owner = "tony";
     ssh-hosts.owner = "tony";
+    env.owner = "tony";
     syncthing-cert = {
       owner = "tony";
       key = "syncthing-cert-${config.networking.hostName}";

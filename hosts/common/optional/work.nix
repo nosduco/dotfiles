@@ -20,4 +20,12 @@
       }
     });
   '';
+
+  # credentials
+  sops.secrets = {
+    npmrc.owner = "tony";
+    aws-config.owner = "tony";
+    aws-credentials.owner = "tony";
+    snowsql-config.owner = "tony";
+  };
 }

@@ -4,6 +4,7 @@
     ./apps.nix
     ./backup.nix
     ./cloud.nix
+    ./credentials.nix
     ./syncthing
     ./dev.nix
     ./work.nix

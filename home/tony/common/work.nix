@@ -1,11 +1,14 @@
 {
   colors,
+  config,
   inputs,
   lib,
+  osConfig,
   pkgs,
   ...
 }:
 let
+  secret = name: config.lib.file.mkOutOfStoreSymlink osConfig.sops.secrets.${name}.path;
   aws-vpn = pkgs.writeShellApplication {
     name = "aws-vpn";
     runtimeInputs = [ pkgs.systemd ];
@@ -54,6 +57,14 @@ in
     run install -Dm644 ${pkgs.writeText "Preferences" ''{"Version":"1","IsMetricsEnabled":false}''} \
       "$HOME/.config/AWSVPNClient/Preferences"
   '';
+
+  # credentials
+  home.file = {
+    ".npmrc".source = secret "npmrc";
+    ".aws/config".source = secret "aws-config";
+    ".aws/credentials".source = secret "aws-credentials";
+    ".snowsql/config".source = secret "snowsql-config";
+  };
 
   # apps
   home.packages = [
