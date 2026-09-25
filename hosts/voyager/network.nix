@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   home = "8e835eaf-7c27-4e83-922d-3a04f07bca83";
 in
@@ -27,14 +32,32 @@ in
   # exit node
   networking.networkmanager.dispatcherScripts = [
     {
-      source = pkgs.writeShellScript "exit-node" ''
-        [ "$2" = up ] || exit 0
-        if [ "$CONNECTION_UUID" = ${home} ]; then
-          ${config.services.tailscale.package}/bin/tailscale set --exit-node=
-        else
-          ${config.services.tailscale.package}/bin/tailscale set --exit-node=auto:any
-        fi
-      '';
+      source = lib.getExe (
+        pkgs.writeShellApplication {
+          name = "exit-node";
+          runtimeInputs = [
+            pkgs.coreutils
+            config.networking.networkmanager.package
+            config.services.tailscale.package
+          ];
+          text = ''
+            [ "$2" = up ] && [ -n "''${CONNECTION_UUID:-}" ] || exit 0
+            case "$(nmcli -g connection.type connection show "$CONNECTION_UUID")" in
+              802-11-wireless | 802-3-ethernet) ;;
+              *) exit 0 ;;
+            esac
+            for _ in $(seq 30); do
+              [ -S /var/run/tailscale/tailscaled.sock ] && break
+              sleep 1
+            done
+            if [ "$CONNECTION_UUID" = ${home} ]; then
+              tailscale set --exit-node=
+            else
+              tailscale set --exit-node=auto:any
+            fi
+          '';
+        }
+      );
     }
   ];
 }
