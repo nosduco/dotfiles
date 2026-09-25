@@ -5,6 +5,7 @@
     ../common/optional/desktop.nix
     ../common/optional/dev.nix
     ../common/optional/gaming.nix
+    ../common/optional/network.nix
     ../common/optional/printing.nix
     ../common/optional/work.nix
     ./dualsense.nix
@@ -13,6 +14,9 @@
 
   networking.hostName = "nighthawk";
   home-manager.users.tony = ../../home/tony/nighthawk;
+
+  # tailscale
+  services.tailscale.extraSetFlags = [ "--accept-dns=false" ];
 
   # stream deck
   programs.streamcontroller.enable = true;

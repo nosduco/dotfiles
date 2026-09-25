@@ -92,7 +92,11 @@ in
         writable = true;
       };
     };
-    services.openssh.enable = true;
+    services.openssh = {
+      enable = true;
+      openFirewall = lib.mkForce true;
+      settings.PasswordAuthentication = lib.mkForce true;
+    };
     services.comin = {
       hostname = "vmtest";
       remotes = lib.mkForce [

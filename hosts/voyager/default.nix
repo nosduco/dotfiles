@@ -4,8 +4,10 @@
     ../common/optional/desktop.nix
     ../common/optional/dev.nix
     ../common/optional/gaming.nix
+    ../common/optional/network.nix
     ../common/optional/printing.nix
     ../common/optional/work.nix
+    ./network.nix
     ./power.nix
   ];
 
