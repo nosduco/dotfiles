@@ -7,6 +7,7 @@
     ../common/optional/network.nix
     ../common/optional/printing.nix
     ../common/optional/work.nix
+    ./disko.nix
     ./network.nix
     ./power.nix
   ];

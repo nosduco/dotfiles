@@ -5,6 +5,7 @@
 
   # core imports
   imports = [
+    inputs.disko.nixosModules.disko
     ./home-manager.nix
     ./fonts.nix
     ./sops.nix

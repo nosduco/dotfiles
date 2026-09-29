@@ -36,6 +36,10 @@
     comin.url = "github:nlewo/comin";
     comin.inputs.nixpkgs.follows = "nixpkgs";
 
+    # disko
+    disko.url = "github:nix-community/disko/latest";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
     # claude desktop
     claude-desktop.url = "github:patrickjaja/claude-desktop-extra";
     claude-desktop.inputs.nixpkgs.follows = "nixpkgs";
@@ -61,6 +65,29 @@
           specialArgs = { inherit inputs; };
           modules = [ ./hosts/voyager ];
         };
+      };
+
+      # checks
+      checks.x86_64-linux.voyager-disko = inputs.disko.lib.testLib.makeDiskoTest {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        name = "voyager-disko";
+        disko-config = ./hosts/voyager/disko.nix;
+        extraInstallerConfig.virtualisation.emptyDiskImages = nixpkgs.lib.mkForce [ 102400 ];
+        enableOCR = true;
+        bootCommands = ''
+          machine.wait_for_text("[Pp]assphrase for")
+          machine.send_chars("secretsecret\n")
+        '';
+        extraTestScript = ''
+          machine.succeed("cryptsetup isLuks /dev/vda2")
+          machine.succeed("cryptsetup isLuks /dev/vda3")
+          for m in ["/", "/home", "/nix", "/var/log"]:
+              machine.succeed(f"findmnt -no FSTYPE {m} | grep -qx btrfs")
+          machine.succeed("findmnt -no OPTIONS / | grep -q compress=zstd")
+          machine.succeed("swapon --show=NAME --noheadings | grep -q dm-")
+          machine.succeed("test \"$(cat /sys/power/resume)\" != 0:0")
+          machine.shutdown()
+        '';
       };
     };
 }
