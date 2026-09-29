@@ -9,6 +9,7 @@
     ../common/optional/secureboot.nix
     ../common/optional/work.nix
     ./disko.nix
+    ./hardware-configuration.nix
     ./network.nix
     ./power.nix
   ];
