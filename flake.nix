@@ -40,6 +40,10 @@
     disko.url = "github:nix-community/disko/latest";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    # lanzaboote
+    lanzaboote.url = "github:nix-community/lanzaboote/v1.2.0";
+    lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
+
     # claude desktop
     claude-desktop.url = "github:patrickjaja/claude-desktop-extra";
     claude-desktop.inputs.nixpkgs.follows = "nixpkgs";
