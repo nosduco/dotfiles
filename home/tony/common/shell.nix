@@ -26,13 +26,6 @@ let
   };
 in
 {
-  # --- Session environment ---------------------------------------------------
-  # home.sessionVariables : attrset  -> EDITOR, ANDROID_HOME, PNPM_HOME
-  # home.sessionPath      : list     -> the fish_add_path lines:
-  #     ~/.cargo/bin  ~/go/bin  ~/.local/bin  $ANDROID_HOME/{emulator,platform-tools}
-  #     $PNPM_HOME  (DROP ~/.nix-profile/bin - profiles are on PATH already)
-  # Written to hm-session-vars.sh; fish sources it automatically.
-
   # fish
   programs.fish = {
     enable = true;
