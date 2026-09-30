@@ -37,6 +37,7 @@
       yamllint
       # treesitter
       gcc
+      tree-sitter
       # dap
       vscode-js-debug
     ];
