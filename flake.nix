@@ -58,7 +58,7 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, ... }:
+    inputs@{ self, nixpkgs, ... }:
     {
       nixosConfigurations = {
         nighthawk = nixpkgs.lib.nixosSystem {
@@ -69,6 +69,19 @@
           specialArgs = { inherit inputs; };
           modules = [ ./hosts/voyager ];
         };
+      };
+
+      # install
+      apps.x86_64-linux.install = {
+        type = "app";
+        program = nixpkgs.lib.getExe (
+          nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/install {
+            hosts = builtins.filter (h: builtins.pathExists ./hosts/${h}/disko.nix) (
+              builtins.attrNames self.nixosConfigurations
+            );
+          }
+        );
+        meta.description = "Install a host with nixos-anywhere";
       };
 
       # checks

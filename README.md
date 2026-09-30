@@ -28,13 +28,13 @@ A collection of sane dotfiles I share between my machines as a software engineer
 
 ## Installation
 
-Boot the NixOS installer on the target, then from another machine:
+Boot the NixOS installer on the target and set a root password (`sudo passwd root`), then from another machine in this repo:
 
 ```bash
-nix run github:nix-community/nixos-anywhere -- --flake .#<host> --target-host root@<ip>
+nix run .#install -- <host> <ip>
 ```
 
-Disks are declared with disko (`hosts/<host>/disko.nix`). Secrets need the age key at `/var/lib/sops-nix/key.txt`.
+It generates and pushes `hosts/<host>/hardware-configuration.nix`, partitions with disko (`hosts/<host>/disko.nix`), copies the sops age key and installs. Secure Boot keys are generated and enrolled on first boot, so put the firmware in Setup Mode before booting the disk.
 
 ## Updates
 
