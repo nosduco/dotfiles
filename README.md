@@ -34,7 +34,7 @@ Boot the NixOS installer on the target and set a root password (`sudo passwd roo
 nix run .#install -- <host> <ip>
 ```
 
-It generates and pushes `hosts/<host>/hardware-configuration.nix`, partitions with disko (`hosts/<host>/disko.nix`), copies the sops age key and installs. Secure Boot keys are generated and enrolled on first boot, so put the firmware in Setup Mode before booting the disk.
+Full steps (Secure Boot, TPM unlock): [docs/bootstrap.md](docs/bootstrap.md).
 
 ## Updates
 

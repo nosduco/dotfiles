@@ -89,7 +89,7 @@ git push
 
 # reboot
 if [[ $(nix eval ".#nixosConfigurations.$host.config" --apply 'c: c.boot.lanzaboote.enable or false') == true ]]; then
-  echo "rebooting into firmware setup: reset Secure Boot to Setup Mode, then boot the disk"
+  echo "rebooting into firmware setup, next: docs/bootstrap.md step 3 (Setup Mode, remove USB, boot the disk)"
   ssh "${ssh_opts[@]}" "root@$ip" 'systemctl reboot --firmware-setup || systemctl reboot' || true
 else
   echo "rebooting"
