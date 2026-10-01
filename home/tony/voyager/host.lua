@@ -18,13 +18,28 @@ hl.bind("XF86MonBrightnessUp", osd("--brightness raise"), { repeating = true, lo
 hl.bind("XF86MonBrightnessDown", osd("--brightness lower"), { repeating = true, locked = true })
 
 -- lid
+local function external()
+  for _, mon in ipairs(hl.get_monitors()) do
+    if mon.name ~= m.main and mon.name ~= "FALLBACK" then
+      return true
+    end
+  end
+  return false
+end
 hl.bind("switch:Lid Switch", hl.dsp.exec_cmd("pidof hyprlock || hyprlock"), { locked = true })
 hl.bind("switch:on:Lid Switch", function()
-  hl.monitor({ output = m.main, disabled = true })
+  if external() then
+    hl.monitor({ output = m.main, disabled = true })
+  end
 end, { locked = true })
 hl.bind("switch:off:Lid Switch", function()
   hl.monitor(laptop)
 end, { locked = true })
+hl.on("monitor.removed", function()
+  if not external() then
+    hl.monitor(laptop)
+  end
+end)
 
 -- gestures
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
