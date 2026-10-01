@@ -1,11 +1,21 @@
-{ lib, pkgs, ... }:
+{
+  osConfig,
+  lib,
+  pkgs,
+  ...
+}:
 let
   caffeine = pkgs.writeShellApplication {
     name = "waybar-caffeine";
     runtimeInputs = with pkgs; [
+      coreutils
+      libnotify
       procps
       systemd
     ];
+    runtimeEnv = lib.optionalAttrs osConfig.services.upower.enable {
+      LOW = toString osConfig.services.upower.percentageLow;
+    };
     text = builtins.readFile ./caffeine.sh;
   };
   dunst-tray = pkgs.writeShellApplication {

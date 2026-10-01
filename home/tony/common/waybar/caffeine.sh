@@ -6,19 +6,31 @@
 TAG="waybar-caffeine"
 
 running() {
-  pgrep -f "systemd-inhibit.*$TAG" >/dev/null
+  pgrep -f "^systemd-inhibit .*--who=$TAG" >/dev/null
 }
 
 case "$1" in
   toggle)
     if running; then
-      pkill -f "systemd-inhibit.*$TAG"
+      pkill -f "$TAG hold\$" || true
+      pkill -f "^systemd-inhibit .*--who=$TAG" || true
     else
       systemd-inhibit --what=idle:sleep:handle-lid-switch --who="$TAG" \
-        --why="caffeine: keep system awake (clamshell ok)" sleep infinity &
+        --why="caffeine: keep system awake (clamshell ok)" "$0" hold &
       disown
     fi
-    pkill -RTMIN+8 waybar
+    pkill -RTMIN+8 -x waybar
+    ;;
+  hold)
+    if [[ -z ${LOW:-} ]]; then
+      exec sleep infinity
+    fi
+    bat=(/sys/class/power_supply/BAT*/capacity)
+    while systemd-ac-power || [[ $(<"${bat[0]}") -gt $LOW ]]; do
+      sleep 60
+    done
+    notify-send -u critical "Caffeine off" "Battery low, sleep allowed again"
+    (sleep 1 && pkill -RTMIN+8 -x waybar) &
     ;;
   status)
     if running; then
@@ -28,7 +40,7 @@ case "$1" in
     fi
     ;;
   *)
-    echo "usage: $0 {toggle|status}" >&2
+    echo "usage: $0 {toggle|status|hold}" >&2
     exit 1
     ;;
 esac

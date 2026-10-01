@@ -1,11 +1,21 @@
 {
   config,
+  osConfig,
   lib,
   pkgs,
   ...
 }:
 let
   monitors = config.host.monitors;
+  low-battery-suspend = pkgs.writeShellApplication {
+    name = "low-battery-suspend";
+    runtimeInputs = [ pkgs.systemd ];
+    text = ''
+      if ! systemd-ac-power && [ "$(</sys/class/power_supply/BAT0/capacity)" -le ${toString osConfig.services.upower.percentageLow} ]; then
+        systemctl suspend
+      fi
+    '';
+  };
 in
 {
   # hyprland
@@ -41,11 +51,18 @@ in
         on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })' && brightnessctl -r";
       }
       {
+        timeout = 300;
+        on-timeout = lib.getExe low-battery-suspend;
+      }
+      {
         timeout = 1800;
         on-timeout = "systemctl suspend";
       }
     ];
   };
+
+  # battery alerts
+  services.poweralertd.enable = true;
 
   # hyprlock
   programs.hyprlock.settings = import ../common/hyprland/hyprlock.nix {
