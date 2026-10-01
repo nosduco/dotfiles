@@ -143,7 +143,8 @@ in
     serviceConfig.Type = "oneshot";
     script = ''
       until comin status >/dev/null 2>&1; do sleep 2; done
-      if systemd-ac-power; then comin resume; else comin suspend; fi || true
+      comin suspend || true
+      if systemd-ac-power; then comin resume; fi
     '';
   };
 
