@@ -129,6 +129,9 @@ in
   environment.etc."systemd/system-sleep/voyager-deferred-hibernate".source =
     lib.getExe deferred-hibernate;
 
+  # battery
+  services.upower.enable = true;
+
   # updates on battery
   systemd.services.comin-power = {
     after = [ "comin.service" ];
