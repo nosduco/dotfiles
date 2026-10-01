@@ -15,6 +15,12 @@
       yaml-language-server
       pyright
       jdt-language-server
+      tailwindcss-language-server
+      graphql-language-service-cli
+      docker-compose-language-service
+      dockerfile-language-server
+      helm-ls
+      typescript_5
       # format
       astyle
       eslint_d

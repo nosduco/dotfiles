@@ -1,4 +1,15 @@
-{ config, ... }:
+{
+  config,
+  osConfig,
+  lib,
+  ...
+}:
+let
+  git = lib.getExe config.programs.git.package;
+  dir = osConfig.programs.nh.flake;
+  remote = builtins.head osConfig.services.comin.remotes;
+  pushUrl = builtins.replaceStrings [ "https://github.com/" ] [ "git@github.com:" ] remote.url;
+in
 {
   # git
   programs.git = {
@@ -15,6 +26,15 @@
       allowedSigners = builtins.readFile ../../../keys/allowed_signers;
     };
   };
+
+  # dotfiles
+  home.activation.cloneDotfiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    if [ ! -e ${dir} ]; then
+      run ${git} clone -b ${remote.branches.main.name} ${remote.url} ${dir} \
+        && run ${git} -C ${dir} remote set-url --push origin ${pushUrl} \
+        || warnEcho "could not clone ${remote.url} to ${dir}, retrying on next switch"
+    fi
+  '';
 
   # delta
   programs.delta = {

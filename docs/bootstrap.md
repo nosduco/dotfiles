@@ -44,6 +44,10 @@ for p in root swap; do sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=7
 
 The next boot unlocks without the passphrase.
 
+## Repo on the host
+
+Home-manager clones the repo to `programs.nh.flake` (`~/.dotfiles`) on the first switch with network: the first comin deploy, or `nh os switch`. Fetch is over HTTPS, push over SSH.
+
 ## Reinstall
 
 Same steps. Keys are per install, so the firmware needs Setup Mode again.
