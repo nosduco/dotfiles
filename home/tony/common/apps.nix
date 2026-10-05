@@ -1,11 +1,29 @@
 {
   colors,
   config,
+  osConfig,
   inputs,
+  lib,
   pkgs,
   ...
 }:
 let
+  livesync = pkgs.linkFarm "obsidian-livesync-1.0.34" (
+    lib.mapAttrsToList
+      (name: hash: {
+        inherit name;
+        path = pkgs.fetchurl {
+          url = "https://github.com/vrtmrz/obsidian-livesync/releases/download/1.0.34/${name}";
+          inherit hash;
+        };
+      })
+      {
+        "main.js" = "sha256-RdZWf3rE44NuklGdtFT0Fb618cKqGMTEaVG+cRPXf18=";
+        "manifest.json" = "sha256-fAKyVtlYHaLw7axku6gQRlKBS0/N6BapyRpfTigWgns=";
+        "styles.css" = "sha256-S6AL70F+6Y2aYt2f67eS3GVVlJz8no4GlFCtaZqyufA=";
+      }
+  );
+  notes = "${config.home.homeDirectory}/notes";
   system = pkgs.stdenv.hostPlatform.system;
   spicePkgs = inputs.spicetify-nix.legacyPackages.${system};
   claude-desktop-base = inputs.claude-desktop.packages.${system}.default.override {
@@ -29,7 +47,22 @@ in
   imports = [ inputs.spicetify-nix.homeManagerModules.spicetify ];
 
   # obsidian
-  programs.obsidian.enable = true;
+  programs.obsidian = {
+    enable = true;
+    vaults.notes = { };
+  };
+  home.activation.obsidianLivesync = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    plugin=${notes}/.obsidian/plugins/obsidian-livesync
+    if [ ! -e "$plugin/data.json" ]; then
+      run mkdir -p "$plugin"
+      run install -m644 ${livesync}/* "$plugin"/
+      run install -m600 ${osConfig.sops.templates."obsidian-livesync.json".path} "$plugin/data.json"
+      if [ ! -e ${notes}/.obsidian/community-plugins.json ]; then
+        run install -m644 ${pkgs.writeText "community-plugins.json" (builtins.toJSON [ "obsidian-livesync" ])} ${notes}/.obsidian/community-plugins.json
+      fi
+      run touch ${notes}/flag_fetch.md
+    fi
+  '';
 
   # vesktop
   programs.vesktop = {

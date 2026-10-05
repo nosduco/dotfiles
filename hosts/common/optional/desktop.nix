@@ -1,9 +1,39 @@
 # Desktop base configuration
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   keychron = pkgs.writeTextDir "lib/udev/rules.d/70-keychron.rules" ''
     KERNEL=="hidraw*", ATTRS{idVendor}=="3434", TAG+="uaccess"
   '';
+  livesync = {
+    couchDB_URI = "https://obsidian.tuxcloud.xyz";
+    couchDB_DBNAME = "obsidian";
+    isConfigured = true;
+    liveSync = true;
+    syncOnStart = true;
+    syncOnSave = true;
+    syncOnFileOpen = true;
+    encrypt = true;
+    E2EEAlgorithm = "v2";
+    usePathObfuscation = true;
+    encryptInternalMetadata = true;
+    idDerivationVersion = 0;
+    handleFilenameCaseSensitive = false;
+    useDynamicIterationCount = false;
+    hashAlg = "xxhash64";
+    chunkSplitterVersion = "v3-rabin-karp";
+    customChunkSize = 60;
+    minimumChunkSize = 20;
+    enableCompression = false;
+    useEden = false;
+    usePluginSync = true;
+    usePluginSyncV2 = true;
+    deviceAndVaultName = config.networking.hostName;
+  };
 in
 {
   # hyprland
@@ -75,8 +105,32 @@ in
     pulse.enable = true;
   };
 
+  # obsidian livesync
+  sops.templates."obsidian-livesync.json" = {
+    owner = "tony";
+    content = builtins.toJSON (
+      livesync
+      // {
+        couchDB_USER = config.sops.placeholder.livesync-user;
+        couchDB_PASSWORD = config.sops.placeholder.livesync-password;
+        passphrase = config.sops.placeholder.livesync-passphrase;
+      }
+    );
+  };
+
   # virtualization
   virtualisation.vmVariant = {
+    sops.templates."obsidian-livesync.json".content = lib.mkForce (
+      builtins.toJSON (
+        livesync
+        // {
+          couchDB_URI = "http://127.0.0.1:9";
+          couchDB_USER = "vm";
+          couchDB_PASSWORD = "vm";
+          passphrase = "vm";
+        }
+      )
+    );
     virtualisation = {
       memorySize = 4096;
       diskSize = 8192;

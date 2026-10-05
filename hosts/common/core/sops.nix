@@ -29,5 +29,8 @@
       owner = "tony";
       key = "kopia-password-${config.networking.hostName}";
     };
+    livesync-user = { };
+    livesync-password = { };
+    livesync-passphrase = { };
   };
 }

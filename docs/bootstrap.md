@@ -48,6 +48,10 @@ The next boot unlocks without the passphrase.
 
 Home-manager clones the repo to `programs.nh.flake` (`~/.dotfiles`) on the first switch with network: the first comin deploy, or `nh os switch`. Fetch is over HTTPS, push over SSH.
 
+## Notes vault
+
+Home-manager seeds Obsidian LiveSync into `~/notes` once (plugin, settings from sops, `flag_fetch.md`). On the first Obsidian start, open the `notes` vault, trust its plugins, then pick "Overwrite all with remote files" and "Keep local files". Customization Sync brings the other plugins.
+
 ## Reinstall
 
 Same steps. Keys are per install, so the firmware needs Setup Mode again.
