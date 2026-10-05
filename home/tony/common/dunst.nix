@@ -1,4 +1,9 @@
-{ colors, config, ... }:
+{
+  colors,
+  config,
+  lib,
+  ...
+}:
 {
   # dunst
   catppuccin.dunst.enable = false;
@@ -42,4 +47,5 @@
       };
     };
   };
+  xdg.configFile."dunst/dunstrc".onChange = "${lib.getExe' config.services.dunst.package "dunstctl"} reload || true";
 }
