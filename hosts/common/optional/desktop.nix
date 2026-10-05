@@ -69,6 +69,7 @@ in
   # calendar
   services.gnome.evolution-data-server.enable = true;
   services.gnome.gnome-online-accounts.enable = true;
+  environment.systemPackages = [ pkgs.gnome-online-accounts-gtk ];
 
   # swayosd
   systemd.packages = [ pkgs.swayosd ];
