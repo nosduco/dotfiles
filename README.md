@@ -38,4 +38,4 @@ Full steps (Secure Boot, TPM unlock): [docs/bootstrap.md](docs/bootstrap.md).
 
 ## Updates
 
-Machines deploy the signed tip of the branch automatically via comin. Rebuild by hand with `nh os switch`.
+Machines deploy the signed tip of the branch automatically via comin. Rebuild by hand with `nh os switch`. On battery, voyager holds updates until it is plugged in; `comin resume` installs them now.

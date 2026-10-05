@@ -38,6 +38,13 @@
     let
       summary = config.services.comin.desktop.title;
       after = lib.hm.dag.entryAfter [ "comin" ];
+      quiet =
+        body:
+        after {
+          inherit summary body;
+          skip_display = true;
+          history_ignore = true;
+        };
     in
     {
       services.dunst.settings = {
@@ -45,12 +52,12 @@
           inherit summary;
           new_icon = "system-software-update";
         };
-        comin-started = after {
-          inherit summary;
-          body = "Agent desktop notifications started.";
-          skip_display = true;
-          history_ignore = true;
-        };
+        comin-started = quiet "Agent desktop notifications started.";
+        comin-suspended = quiet "The agent is suspended.";
+        comin-resumed = quiet "The agent is resumed.";
+        comin-building = quiet "A new commit from *";
+        comin-deploying = quiet "A deployment started.";
+        comin-deployed = quiet "The deployment is finished.";
         comin-reboot = after {
           inherit summary;
           body = "*rebooted*";

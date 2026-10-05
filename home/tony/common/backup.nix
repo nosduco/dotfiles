@@ -69,15 +69,17 @@ let
     ];
     text = ''
       state="''${XDG_STATE_HOME:-$HOME/.local/state}"
-      unreachable="$state/kopia-unreachable"
+      last="$state/kopia-last-success"
+      stale="$state/kopia-stale"
       if ! timeout 5 bash -c '</dev/tcp/tux-pve.nosnet/22' 2>/dev/null; then
-        if [ ! -e "$unreachable" ]; then
-          mkdir -p "$(dirname "$unreachable")" && touch "$unreachable"
-          notify-send -u critical -a System System "Backup failed: can't reach server. Retrying every 3 hours."
+        age=$(( $(date +%s) - $(stat -c %Y "$last" 2>/dev/null || echo 0) ))
+        if [ "$age" -gt 259200 ] && [ ! -e "$stale" ]; then
+          mkdir -p "$state" && touch "$stale"
+          notify-send -u critical -a System System "No backup in 3 days: can't reach server."
         fi
         exit 0
       fi
-      rm -f "$unreachable"
+      rm -f "$stale"
       KOPIA_PASSWORD=$(cat ${osConfig.sops.secrets.kopia-password.path})
       export KOPIA_PASSWORD
       repo() {
@@ -103,6 +105,7 @@ let
         mkdir -p "$state" && echo ${stamp} > "$state/kopia-policy"
       fi
       kopia snapshot create ${lib.escapeShellArgs sources}
+      mkdir -p "$state" && touch "$last"
     '';
   };
 in

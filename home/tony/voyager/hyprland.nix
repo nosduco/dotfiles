@@ -63,6 +63,25 @@ in
 
   # battery alerts
   services.poweralertd.enable = true;
+  services.dunst.settings =
+    lib.mapAttrs
+      (
+        _: rule:
+        rule
+        // {
+          appname = "poweralertd";
+          skip_display = true;
+          history_ignore = true;
+        }
+      )
+      {
+        power-status.summary = "Power status*";
+        power-discharging.body = "Warning: system discharging*";
+        power-cleared.body = "Warning cleared*";
+      };
+
+  # wifi alerts
+  dconf.settings."org/gnome/nm-applet".disable-connected-notifications = true;
 
   # hyprlock
   programs.hyprlock.settings = import ../common/hyprland/hyprlock.nix {
