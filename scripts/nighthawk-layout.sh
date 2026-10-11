@@ -56,14 +56,8 @@ dispatch layoutmsg preselect d
 uwsm app -- claude-desktop &
 await_class claude-desktop || true
 
-# 4. Focus Claude, preselect right -> Element beside Claude
+# 4. Adjust splits
 dispatch focuswindow class:claude-desktop
-dispatch layoutmsg preselect r
-uwsm app -- element-desktop &
-await_class Element || true
-
-# 5. Adjust splits
-dispatch focuswindow class:Element
 dispatch movefocus d
 dispatch resizeactive 0 705
 
