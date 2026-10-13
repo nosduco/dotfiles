@@ -62,7 +62,7 @@ window#waybar.solo {
 }
 
 #workspaces button.urgent {
-  color: rgba(238, 46, 36, 1);
+  color: @red;
 }
 
 #mode,
@@ -108,12 +108,20 @@ window#waybar.solo {
   margin-left: 4px;
 }
 
+#custom-vpn {
+  margin-top: 2px;
+}
+
+#custom-vpn.exposed {
+  color: @red;
+}
+
 #battery.warning {
   color: rgba(255, 210, 4, 1);
 }
 
 #battery.critical {
-  color: rgba(238, 46, 36, 1);
+  color: @red;
 }
 
 #battery.charging {
@@ -125,6 +133,6 @@ window#waybar.solo {
 }
 
 #custom-storage.critical {
-  color: rgba(238, 46, 36, 1);
+  color: @red;
 }
 

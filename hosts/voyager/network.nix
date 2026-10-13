@@ -9,7 +9,10 @@ let
 in
 {
   # tailscale
-  services.tailscale.extraSetFlags = [ "--accept-dns=true" ];
+  services.tailscale.extraSetFlags = [
+    "--accept-dns=true"
+    "--operator=tony"
+  ];
 
   # home wifi
   sops.secrets.wifi-home = { };

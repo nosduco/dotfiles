@@ -1,4 +1,24 @@
 {
+  lib,
+  osConfig,
+  pkgs,
+  ...
+}:
+let
+  vpn = pkgs.writeShellApplication {
+    name = "waybar-vpn";
+    runtimeInputs = [
+      pkgs.gnugrep
+      pkgs.jq
+      pkgs.procps
+      osConfig.networking.networkmanager.package
+      osConfig.services.tailscale.package
+    ];
+    runtimeEnv.HOME_UUID = osConfig.networking.networkmanager.ensureProfiles.profiles.nosnet.connection.uuid;
+    text = builtins.readFile ./vpn.sh;
+  };
+in
+{
   programs.waybar.settings.main = {
     "battery#laptop" = {
       bat = "BAT0";
@@ -28,6 +48,19 @@
     clock = {
       format = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰙹</span> {:%A, %b %d %I:%M %p}";
     };
+    "custom/vpn" = {
+      exec = "${lib.getExe vpn} status";
+      format = "{icon}";
+      format-icons = {
+        on = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰦝</span>";
+        home = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰳋</span>";
+        exposed = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰻍</span>";
+      };
+      interval = 5;
+      on-click = "${lib.getExe vpn} toggle";
+      return-type = "json";
+      signal = 9;
+    };
     margin-top = 6;
     modules-right = [
       "group/tray"
@@ -36,6 +69,7 @@
       "battery#laptop"
       "pulseaudio"
       "privacy"
+      "custom/vpn"
       "network"
       "custom/dunst"
       "clock"
