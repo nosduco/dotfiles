@@ -22,6 +22,9 @@
   programs.fish.shellAliases.top = "btop";
   programs.fish.shellAliases.htop = "btop";
 
+  # fastfetch
+  programs.fastfetch.enable = true;
+
   # ripgrep
   programs.ripgrep.enable = true;
   programs.fish.shellAliases.grep = "rg --color=always";
