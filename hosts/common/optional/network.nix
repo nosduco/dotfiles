@@ -27,6 +27,7 @@
     useRoutingFeatures = "client";
     extraSetFlags = [ "--ssh=false" ];
   };
+  systemd.services.tailscaled-set.serviceConfig.RemainAfterExit = true;
 
   # ssh
   services.openssh = {
