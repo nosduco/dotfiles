@@ -1,0 +1,6 @@
+// --- config + mcp keys only; login tokens, install-id, telemetry and audit log stay per machine ---
+!/config.toml
+!/mcp
+!/mcp/**
+
+*

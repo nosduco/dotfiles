@@ -11,6 +11,11 @@ let
       label = "Claude";
       dir = ".claude";
     };
+    edge-cli = {
+      id = "edge-cli";
+      label = "edge-cli";
+      dir = ".edge-cli";
+    };
     edge-workspaces = {
       id = "zxv4y-jwfyp";
       label = "edge-workspaces";
