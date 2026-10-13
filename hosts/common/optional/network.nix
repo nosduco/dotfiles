@@ -3,6 +3,9 @@
   networking.networkmanager.enable = true;
   users.users.tony.extraGroups = [ "networkmanager" ];
 
+  # wifi
+  boot.extraModprobeConfig = "options cfg80211 ieee80211_regdom=US";
+
   # resolved
   services.resolved = {
     enable = true;
