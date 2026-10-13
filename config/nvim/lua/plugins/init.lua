@@ -202,7 +202,7 @@ return {
         },
       },
       {
-        "Exafunction/codeium.nvim",
+        "Exafunction/windsurf.nvim",
       },
     },
 
@@ -521,12 +521,6 @@ return {
       { "<leader>cm", function() Snacks.picker.git_log() end, desc = "Git commits" },
       { "<leader>gt", function() Snacks.picker.git_status() end, desc = "Git status" },
     },
-  },
-
-  -- Wakatime
-  {
-    "wakatime/vim-wakatime",
-    enabled = false,
   },
 
   -- Codeium
