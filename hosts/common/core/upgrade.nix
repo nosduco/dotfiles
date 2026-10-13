@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  lib,
   pkgs,
   ...
 }:
@@ -31,6 +32,10 @@
     serviceConfig = {
       Restart = "on-failure";
       RestartSec = 10;
+      ExecStartPost = "-${pkgs.writeShellScript "comin-reboot-check" ''
+        ${lib.getExe config.services.comin.package} status --json | ${lib.getExe pkgs.jq} -e .need_to_reboot >/dev/null \
+          && ${lib.getExe pkgs.libnotify} ${config.services.comin.desktop.title} "The machine needs to be rebooted to take the deployment into account."
+      ''}";
     };
   };
   home-manager.users.tony =
