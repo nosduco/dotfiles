@@ -7,9 +7,12 @@
     ../common/optional/gaming.nix
     ../common/optional/network.nix
     ../common/optional/printing.nix
+    ../common/optional/secureboot.nix
     ../common/optional/work.nix
     ./audio.nix
+    ./disko.nix
     ./dualsense.nix
+    ./hardware-configuration.nix
     ./hardware.nix
   ];
 
@@ -18,6 +21,15 @@
 
   # tailscale
   services.tailscale.extraSetFlags = [ "--accept-dns=false" ];
+
+  # dns
+  services.resolved.settings.Resolve = {
+    DNS = [ "10.8.8.1" ];
+    Domains = [
+      "~nosnet"
+      "~tuxcloud.xyz"
+    ];
+  };
 
   # stream deck
   programs.streamcontroller.enable = true;

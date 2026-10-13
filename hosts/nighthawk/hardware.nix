@@ -13,6 +13,16 @@
     };
   };
 
+  # data
+  fileSystems."/data" = {
+    device = "/dev/disk/by-uuid/7d83f328-ffbe-4803-bd7b-38237fe79578";
+    fsType = "ext4";
+    options = [
+      "noatime"
+      "nofail"
+    ];
+  };
+
   # cpu
   powerManagement.cpuFreqGovernor = "performance";
 

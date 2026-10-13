@@ -59,6 +59,13 @@
 
   outputs =
     inputs@{ self, nixpkgs, ... }:
+    let
+      inherit (nixpkgs) lib;
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      diskoHosts = builtins.filter (h: builtins.pathExists ./hosts/${h}/disko.nix) (
+        builtins.attrNames self.nixosConfigurations
+      );
+    in
     {
       nixosConfigurations = {
         nighthawk = nixpkgs.lib.nixosSystem {
@@ -74,37 +81,49 @@
       # install
       apps.x86_64-linux.install = {
         type = "app";
-        program = nixpkgs.lib.getExe (
-          nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/install {
-            hosts = builtins.filter (h: builtins.pathExists ./hosts/${h}/disko.nix) (
-              builtins.attrNames self.nixosConfigurations
-            );
-          }
-        );
+        program = lib.getExe (pkgs.callPackage ./pkgs/install { hosts = diskoHosts; });
         meta.description = "Install a host with nixos-anywhere";
       };
 
       # checks
-      checks.x86_64-linux.voyager-disko = inputs.disko.lib.testLib.makeDiskoTest {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        name = "voyager-disko";
-        disko-config = ./hosts/voyager/disko.nix;
-        extraInstallerConfig.virtualisation.emptyDiskImages = nixpkgs.lib.mkForce [ 102400 ];
-        enableOCR = true;
-        bootCommands = ''
-          machine.wait_for_text("[Pp]assphrase for")
-          machine.send_chars("secretsecret\n")
-        '';
-        extraTestScript = ''
-          machine.succeed("cryptsetup isLuks /dev/vda2")
-          machine.succeed("cryptsetup isLuks /dev/vda3")
-          for m in ["/", "/home", "/nix", "/var/log"]:
-              machine.succeed(f"findmnt -no FSTYPE {m} | grep -qx btrfs")
-          machine.succeed("findmnt -no OPTIONS / | grep -q compress=zstd")
-          machine.succeed("swapon --show=NAME --noheadings | grep -q dm-")
-          machine.succeed("test \"$(cat /sys/power/resume)\" != 0:0")
-          machine.shutdown()
-        '';
-      };
+      checks.x86_64-linux = lib.listToAttrs (
+        map (
+          h:
+          let
+            swap = (import ./hosts/${h}/disko.nix).disko.devices.disk.main.content.partitions ? swap;
+          in
+          lib.nameValuePair "${h}-disko" (
+            inputs.disko.lib.testLib.makeDiskoTest {
+              inherit pkgs;
+              name = "${h}-disko";
+              disko-config = ./hosts/${h}/disko.nix;
+              extraInstallerConfig.virtualisation.emptyDiskImages = lib.mkForce [ 102400 ];
+              enableOCR = true;
+              bootCommands = ''
+                machine.wait_for_text("[Pp]assphrase for")
+                machine.send_chars("secretsecret\n")
+              '';
+              extraTestScript = ''
+                machine.succeed("cryptsetup isLuks /dev/vda2")
+              ''
+              + lib.optionalString swap ''
+                machine.succeed("cryptsetup isLuks /dev/vda3")
+              ''
+              + ''
+                for m in ["/", "/home", "/nix", "/var/log"]:
+                    machine.succeed(f"findmnt -no FSTYPE {m} | grep -qx btrfs")
+                machine.succeed("findmnt -no OPTIONS / | grep -q compress=zstd")
+              ''
+              + lib.optionalString swap ''
+                machine.succeed("swapon --show=NAME --noheadings | grep -q dm-")
+                machine.succeed("test \"$(cat /sys/power/resume)\" != 0:0")
+              ''
+              + ''
+                machine.shutdown()
+              '';
+            }
+          )
+        ) diskoHosts
+      );
     };
 }
