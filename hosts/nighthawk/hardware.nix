@@ -23,6 +23,16 @@
     ];
   };
 
+  # scratch
+  fileSystems."/scratch" = {
+    device = "/dev/disk/by-label/scratch";
+    fsType = "ext4";
+    options = [
+      "noatime"
+      "nofail"
+    ];
+  };
+
   # cpu
   powerManagement.cpuFreqGovernor = "performance";
 
