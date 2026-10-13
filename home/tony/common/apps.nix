@@ -155,6 +155,7 @@ in
     mixxx
     multiviewer-for-f1
     planify
+    prusa-slicer
     redact
     video-trimmer
   ]);
