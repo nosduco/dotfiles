@@ -1,0 +1,15 @@
+// --- presets only; PrusaSlicer.ini, vendor bundles, cache and snapshots stay per machine ---
+!/print
+!/print/**
+!/filament
+!/filament/**
+!/printer
+!/printer/**
+!/physical_printer
+!/physical_printer/**
+!/sla_print
+!/sla_print/**
+!/sla_material
+!/sla_material/**
+
+*

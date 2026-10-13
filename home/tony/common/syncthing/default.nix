@@ -16,6 +16,11 @@ let
       label = "edge-workspaces";
       dir = "work/workspaces";
     };
+    prusaslicer = {
+      id = "prusaslicer";
+      label = "PrusaSlicer";
+      dir = ".config/PrusaSlicer";
+    };
   };
   ignore = name: ./ignores + "/${name}.stignore";
 in
