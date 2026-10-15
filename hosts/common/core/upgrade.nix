@@ -15,8 +15,7 @@
       {
         name = "origin";
         url = "https://github.com/nosduco/dotfiles.git";
-        # TODO: switch to main after M9 merge
-        branches.main.name = "nixos";
+        branches.main.name = "main";
       }
     ];
     sshAllowedSignersPath = "${../../../keys/allowed_signers}";
