@@ -1,26 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, ... }:
 let
   monitors = config.host.monitors;
-  # TODO: nvidia resume workaround, verify still needed and drop
-  dpms-on = pkgs.writeShellApplication {
-    name = "dpms-on";
-    runtimeInputs = [ pkgs.hyprland ];
-    text = ''
-      hyprctl dispatch 'hl.dsp.dpms({ action = "enable", monitor = "${monitors.main}" })'
-      sleep 1
-      hyprctl dispatch 'hl.dsp.dpms({ action = "enable", monitor = "${monitors.top}" })'
-      sleep 2
-      for _ in 1 2 3; do
-        hyprctl dispatch 'hl.dsp.dpms({ action = "enable", monitor = "${monitors.right}" })'
-        sleep 1
-      done
-    '';
-  };
 in
 {
   # hyprland
@@ -49,7 +29,6 @@ in
 
   # hypridle
   services.hypridle.settings = {
-    general.after_sleep_cmd = lib.getExe dpms-on;
     listener = [
       {
         timeout = 600;
