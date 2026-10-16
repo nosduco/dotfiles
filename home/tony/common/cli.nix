@@ -40,9 +40,11 @@
 
   # packages
   home.packages = with pkgs; [
+    age
     bitwarden-cli
     gws
     ouch
+    sops
     trash-cli
   ];
 
