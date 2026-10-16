@@ -258,6 +258,7 @@ in
       userChrome = ''
         #TabsToolbar { visibility: collapse !important; }
         #sidebar-panel-header { display: none !important; }
+        #sidebar-box { border: none !important; }
       '';
     };
   };
