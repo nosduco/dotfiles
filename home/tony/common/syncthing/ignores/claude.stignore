@@ -17,11 +17,7 @@
 !/plans
 !/plans/**
 
-// --- per-project auto-memory ONLY (skips the 667M of session transcripts) ---
-// ladder un-ignores projects -> each project dir -> its memory dir -> contents.
-!/projects/*/memory/**
-!/projects/*/memory
-!/projects/*
+// --- per-project memory + session transcripts (cross-machine --resume) ---
 !/projects
 
 // --- claude-hud statusline config (parent dirs follow automatically) ---
