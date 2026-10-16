@@ -27,5 +27,6 @@
     aws-config.owner = "tony";
     aws-credentials.owner = "tony";
     snowsql-config.owner = "tony";
+    snowflake-connections.owner = "tony";
   };
 }
