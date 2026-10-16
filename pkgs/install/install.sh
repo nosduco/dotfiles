@@ -48,6 +48,7 @@ key_file=$(nix eval --raw ".#nixosConfigurations.$host.config.sops.age.keyFile")
 install -m400 "$age_key" "$tmp/extra$key_file"
 
 # ssh
+unset SSH_ASKPASS SSH_ASKPASS_REQUIRE
 ssh-keygen -q -t ed25519 -N "" -C install -f "$tmp/ssh"
 ssh_opts=(-p "$port" -i "$tmp/ssh" -o IdentitiesOnly=yes -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=ERROR)
 read -rsp "root password of the installer on $ip: " SSHPASS
@@ -79,8 +80,10 @@ if [[ -z $pass || $pass != "$pass2" ]]; then
 fi
 
 # commit
-git commit -S -m "feat($host): generate hardware configuration" -- "$hw"
-git push
+if ! git diff --quiet -- "$hw"; then
+  git commit -S -m "feat($host): generate hardware configuration" -- "$hw"
+  git push
+fi
 
 # install
 "${anywhere[@]}" --phases disko,install \
