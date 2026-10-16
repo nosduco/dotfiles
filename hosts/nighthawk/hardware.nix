@@ -12,6 +12,11 @@
       nvidia-modeset.conceal_vrr_caps = 1;
     };
   };
+  boot.initrd.kernelModules = [
+    "nvidia"
+    "nvidia_modeset"
+    "nvidia_drm"
+  ];
 
   # cuda
   nixpkgs.config.cudaCapabilities = [ "8.9" ];
@@ -50,8 +55,9 @@
   users.users.tony.extraGroups = [ "i2c" ];
   environment.systemPackages = [ pkgs.ddcutil ];
 
-  # g923 wheel
+  # udev: g923 wheel, stable rtx4090 path
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c26d", RUN+="${pkgs.usb-modeswitch}/bin/usb_modeswitch -v 046d -p c26d -M 0f00010142 -C 0x03 -m 01 -r 01"
+    KERNEL=="card*", KERNELS=="0000:01:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/rtx4090"
   '';
 }
