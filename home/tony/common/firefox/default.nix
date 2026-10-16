@@ -219,7 +219,7 @@ in
         "browser.translations.enable" = false;
         "general.autoScroll" = true;
         "media.eme.enabled" = true;
-        "sidebar.visibility" = "hide-on-close";
+        "sidebar.visibility" = "hide-launcher";
         "sidebar.main.tools" = lib.concatStringsSep "," [
           "history"
           "bookmarks"
@@ -257,7 +257,7 @@ in
       };
       userChrome = ''
         #TabsToolbar { visibility: collapse !important; }
-        #sidebar-header { visibility: collapse !important; }
+        #sidebar-panel-header { display: none !important; }
       '';
     };
   };

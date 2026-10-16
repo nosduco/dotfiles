@@ -87,16 +87,6 @@
     format = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰅁</span>";
     tooltip = false;
   };
-  mpris = {
-    player = "spotify";
-    format = "{player_icon}   {dynamic}";
-    format-paused = "{player_icon}   <i>{dynamic}</i>";
-    player-icons = {
-      default = "🎜";
-      spotify = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰓇</span>";
-    };
-    max-length = 40;
-  };
   "custom/weather" = {
     format = "{}";
     interval = 1800;
@@ -134,10 +124,7 @@
   margin-left = 9;
   margin-right = 9;
   modules-center = [ "wlr/taskbar" ];
-  modules-left = [
-    "hyprland/workspaces"
-    "mpris"
-  ];
+  modules-left = [ "hyprland/workspaces" ];
   network = {
     format-disconnected = "Disconnected ⚠";
     format-ethernet = "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰈀</span>";
