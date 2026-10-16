@@ -45,7 +45,6 @@
   };
 
   # firmware
-  services.fwupd.enable = true;
   hardware.system76.firmware-daemon.enable = true;
 
   # switch rcm

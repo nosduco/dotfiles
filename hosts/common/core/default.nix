@@ -36,6 +36,7 @@
   # hardware
   hardware.cpu.amd.updateMicrocode = true;
   zramSwap.enable = true;
+  services.fwupd.enable = true;
 
   # users
   users.users.tony = {
