@@ -95,6 +95,9 @@ in
       Language = "en_US";
       IconTheme = "flat";
       BackgroundCat = "rory-flat";
+      AutomaticJavaSwitch = true;
+      AutomaticJavaDownload = false;
+      UserAskedAboutAutomaticJavaDownload = true;
     };
   };
 
