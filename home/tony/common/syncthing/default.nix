@@ -28,6 +28,7 @@ let
     };
   };
   ignore = name: ./ignores + "/${name}.stignore";
+  ignored = lib.filterAttrs (name: _: builtins.pathExists (ignore name)) folders;
 in
 {
   # syncthing
@@ -61,5 +62,8 @@ in
   # ignores
   home.file = lib.mapAttrs' (
     name: f: lib.nameValuePair "${f.dir}/.stignore" { source = ignore name; }
-  ) (lib.filterAttrs (name: _: builtins.pathExists (ignore name)) folders);
+  ) ignored;
+  systemd.user.services.syncthing.Unit.X-Restart-Triggers = lib.mapAttrsToList (
+    name: _: "${ignore name}"
+  ) ignored;
 }

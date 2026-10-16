@@ -24,10 +24,8 @@
 !/projects/*
 !/projects
 
-// --- claude-hud statusline config (ladder, as above) ---
+// --- claude-hud statusline config (parent dirs follow automatically) ---
 !/plugins/claude-hud/config.json
-!/plugins/claude-hud
-!/plugins
 
 // --- ignore everything else: secrets, caches, plugin clones, live dbs,
 //     session/file history, logs, venvs, telemetry ---
