@@ -41,6 +41,7 @@
   # packages
   home.packages = with pkgs; [
     bitwarden-cli
+    gws
     ouch
     trash-cli
   ];
