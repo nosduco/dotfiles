@@ -8,6 +8,12 @@
 let
   toml = pkgs.formats.toml { };
   entry = text: icon: value: { inherit text icon value; };
+  firmware =entry "BIOS Setup" "preferences-system" "systemctl reboot --firmware-setup" // {
+    keywords = [
+      "bios"
+      "uefi"
+    ];
+  };
   power = [
     (entry "Lock" "system-lock-screen" "loginctl lock-session")
     (entry "Suspend" "system-suspend" "systemctl suspend")
@@ -19,6 +25,7 @@ let
     (entry "Logout" "system-log-out" "uwsm stop")
     (entry "Reboot" "system-reboot" "systemctl reboot")
     (entry "Shutdown" "system-shutdown" "systemctl poweroff")
+    firmware
   ];
 in
 {
