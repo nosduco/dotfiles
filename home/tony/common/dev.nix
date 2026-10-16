@@ -36,6 +36,7 @@
   home.packages = with pkgs; [
     android-studio
     android-tools
+    bun
     cargo-tauri
     dioxus-cli
     fnm
@@ -54,6 +55,11 @@
     codex
     cursor-cli
     rtk
+
+    # lsp
+    lua-language-server
+    pyright
+    typescript-language-server
 
     # infra
     ansible
