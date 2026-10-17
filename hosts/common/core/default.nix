@@ -22,6 +22,10 @@
       "nix-command"
       "flakes"
     ];
+    substituters = [ "https://nix.tuxcloud.xyz/dotfiles" ];
+    trusted-public-keys = [ "dotfiles:k0K3s3Ow0wzObZyw4YiBK6+SFacti0CSfowKkN4E0Z8=" ];
+    connect-timeout = 5;
+    fallback = true;
   };
 
   # boot
