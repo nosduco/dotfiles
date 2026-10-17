@@ -109,7 +109,7 @@ in
       (pkgs.writeText "mangohud-settings" ''
 
         no_display
-        toggle_hud=Control_L+Shift_L+h
+        toggle_hud=Control_L+Shift_L+F12
         output_folder=${config.xdg.dataHome}/mangohud
         log_duration=60
       '')
