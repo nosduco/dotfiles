@@ -12,6 +12,14 @@
   # gamescope
   programs.gamescope.enable = true;
 
-  # split lock
-  boot.kernel.sysctl."kernel.split_lock_mitigate" = 0;
+  # ntsync
+  boot.kernelModules = [ "ntsync" ];
+
+  # steamos sysctls
+  boot.kernel.sysctl = {
+    "kernel.split_lock_mitigate" = 0;
+    "kernel.sched_cfs_bandwidth_slice_us" = 3000;
+    "net.ipv4.tcp_fin_timeout" = 5;
+    "vm.max_map_count" = 2147483642;
+  };
 }
