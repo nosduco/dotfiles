@@ -50,6 +50,9 @@
   # qmk
   hardware.keyboard.qmk.enable = true;
 
+  # msi monitor fake usb disk
+  boot.kernelParams = [ "usb-storage.quirks=1462:3fa4:i" ];
+
   # ddc
   hardware.i2c.enable = true;
   users.users.tony.extraGroups = [ "i2c" ];
