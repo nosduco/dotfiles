@@ -101,6 +101,22 @@ in
     };
   };
 
+  # mangohud
+  programs.mangohud.enable = true;
+  xdg.configFile."MangoHud/MangoHud.conf".source = lib.mkForce (
+    pkgs.concatText "MangoHud.conf" [
+      "${config.catppuccin.sources.mangohud}/${config.catppuccin.mangohud.flavor}/MangoHud.conf"
+      (pkgs.writeText "mangohud-settings" ''
+
+        no_display
+        toggle_hud=Control_L+Shift_L+h
+        output_folder=${config.xdg.dataHome}/mangohud
+        log_duration=60
+      '')
+    ]
+  );
+  xdg.dataFile."mangohud/.keep".text = "";
+
   # media
   programs.mpv.enable = true;
 

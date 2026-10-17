@@ -4,6 +4,7 @@ hl.window_rule({ match = { title = "^(FileChooser)" }, float = true, size = { "(
 hl.window_rule({ match = { title = "^(wiremix)$" }, float = true, size = { 800, 600 }, center = true })
 hl.window_rule({ match = { title = "^(Obsidian)" }, float = true })
 hl.window_rule({ match = { class = "^(steam)$", title = "^()$" }, stay_focused = true, min_size = { 1, 1 } })
+hl.window_rule({ match = { class = "^(steam_app_[0-9]+)$" }, idle_inhibit = "focus" })
 hl.window_rule({ match = { class = "^(spotify)$" }, tile = true })
 
 -- layers
