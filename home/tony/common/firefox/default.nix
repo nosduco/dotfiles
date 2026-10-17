@@ -129,6 +129,74 @@ let
         };
       };
     };
+    contextMenu.tabs = [
+      {
+        opts = [
+          "moveToNewWin"
+          "reopenInCtr"
+          "undoRmTab"
+          "mute"
+          "reload"
+          "bookmark"
+        ];
+      }
+      "separator-1"
+      {
+        name = "%menu.tab.move_to_sub_menu_name";
+        opts = [
+          "moveToNewWin"
+          "moveToWin"
+          "separator-5"
+          "moveToPanel"
+          "moveToNewPanel"
+        ];
+      }
+      {
+        name = "%menu.tab.reopen_in_sub_menu_name";
+        opts = [
+          "reopenInNewWin"
+          "reopenInWin"
+          "separator-6"
+          "reopenInCtr"
+          "reopenInNewCtr"
+        ];
+      }
+      {
+        name = "%menu.tab.colorize_";
+        opts = [ "colorizeTab" ];
+      }
+      {
+        name = "%menu.tab.sort_sub_menu_name";
+        opts = [
+          "sortTabsTreeByTitleAscending"
+          "sortTabsTreeByTitleDescending"
+          "sortTabsTreeByUrlAscending"
+          "sortTabsTreeByUrlDescending"
+          "sortTabsTreeByAccessTimeAscending"
+          "sortTabsTreeByAccessTimeDescending"
+          "separator-45654"
+          "sortTabsByTitleAscending"
+          "sortTabsByTitleDescending"
+          "sortTabsByUrlAscending"
+          "sortTabsByUrlDescending"
+          "sortTabsByAccessTimeAscending"
+          "sortTabsByAccessTimeDescending"
+        ];
+      }
+      "separator-2"
+      "pin"
+      "duplicate"
+      "discard"
+      "copyTabsUrls"
+      "copyTabsTitles"
+      "editTabTitle"
+      "separator-3"
+      "group"
+      "flatten"
+      "separator-4"
+      "urlConf"
+      "close"
+    ];
   };
 in
 {

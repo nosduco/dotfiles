@@ -29,8 +29,13 @@ let
     view_fg_color = "text";
     headerbar_bg_color = "mantle";
     headerbar_fg_color = "text";
+    headerbar_backdrop_color = "mantle";
     sidebar_bg_color = "mantle";
     sidebar_fg_color = "text";
+    sidebar_backdrop_color = "mantle";
+    secondary_sidebar_bg_color = "mantle";
+    secondary_sidebar_fg_color = "text";
+    secondary_sidebar_backdrop_color = "mantle";
     card_bg_color = "mantle";
     card_fg_color = "text";
     dialog_bg_color = "mantle";
