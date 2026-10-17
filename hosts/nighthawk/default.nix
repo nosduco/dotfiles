@@ -31,6 +31,19 @@
     ];
   };
 
+  # hyprland: aquamarine 0.14 pin (dp-2 wake freeze)
+  programs.hyprland.package = pkgs.hyprland.override {
+    aquamarine = pkgs.aquamarine.overrideAttrs {
+      version = "0.14.0";
+      src = pkgs.fetchFromGitHub {
+        owner = "hyprwm";
+        repo = "aquamarine";
+        tag = "v0.14.0";
+        hash = "sha256-YMh/llUAd7ENxYQozt8oZEUcD9jlZHIKYDVbOeVkh8Y=";
+      };
+    };
+  };
+
   # stream deck
   programs.streamcontroller.enable = true;
 
