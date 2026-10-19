@@ -38,8 +38,8 @@ let
   ];
   sanitizeExceptions = [
     "google.com"
-    "accounts.google.com"
     "youtube.com"
+    "amazon.com"
     "proton.me"
     "reddit.com"
     "x.com"
@@ -48,8 +48,10 @@ let
     "gitlab.com"
     "tuxcloud.xyz"
     "atlassian.net"
+    "atlassian.com"
     "ouredge.com"
     "grafana.net"
+    "grafana.com"
     "linear.app"
     "posthog.com"
     "miro.com"
