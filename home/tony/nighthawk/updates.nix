@@ -20,7 +20,7 @@ let
       mkdir -p "$state"
       notify() {
         if [ "$(cat "$state/$1" 2>/dev/null)" != "$2" ]; then
-          notify-send -a System "$3" "$4" && echo "$2" > "$state/$1"
+          notify-send -u critical -a System "$3" "$4" && echo "$2" > "$state/$1"
         fi
       }
       GIT_TERMINAL_PROMPT=0 timeout 60 git fetch --quiet --prune origin || true
