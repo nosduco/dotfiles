@@ -5,6 +5,7 @@
     ./streamcontroller.nix
     ./hyprland.nix
     ./waybar.nix
+    ./updates.nix
   ];
 
   # backup
