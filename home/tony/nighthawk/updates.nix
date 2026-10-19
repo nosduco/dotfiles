@@ -6,8 +6,8 @@
   ...
 }:
 let
-  dotfiles-check = pkgs.writeShellApplication {
-    name = "dotfiles-check";
+  os-update-check = pkgs.writeShellApplication {
+    name = "os-update-check";
     runtimeInputs = [
       config.programs.git.package
       pkgs.coreutils
@@ -16,7 +16,7 @@ let
     ];
     text = ''
       cd ${osConfig.programs.nh.flake}
-      state="''${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles-check"
+      state="''${XDG_STATE_HOME:-$HOME/.local/state}/os-update-check"
       mkdir -p "$state"
       notify() {
         if [ "$(cat "$state/$1" 2>/dev/null)" != "$2" ]; then
@@ -45,18 +45,46 @@ let
       fi
     '';
   };
+  os-update = pkgs.writeShellApplication {
+    name = "os-update";
+    runtimeInputs = [
+      config.programs.git.package
+      osConfig.programs.nh.package
+    ];
+    text = ''
+      cd ${osConfig.programs.nh.flake}
+      if ! git diff --quiet HEAD -- flake.lock; then
+        echo "flake.lock has uncommitted changes: commit it or git checkout HEAD -- flake.lock" >&2
+        exit 1
+      fi
+      git pull --quiet --ff-only --prune
+      if ! git rev-parse -q --verify origin/flake-update >/dev/null || git diff --quiet HEAD origin/flake-update -- flake.lock; then
+        echo "No updates"
+        exit 0
+      fi
+      git checkout origin/flake-update -- flake.lock
+      if nh os switch -a; then
+        git commit --quiet -m "chore(flake): update inputs" flake.lock
+        git push --quiet
+      else
+        git checkout HEAD -- flake.lock
+        exit 1
+      fi
+    '';
+  };
 in
 {
   # updates
-  systemd.user.services.dotfiles-check = {
-    Unit.Description = "dotfiles update check";
+  home.packages = [ os-update ];
+  systemd.user.services.os-update-check = {
+    Unit.Description = "os update check";
     Service = {
       Type = "oneshot";
-      ExecStart = lib.getExe dotfiles-check;
+      ExecStart = lib.getExe os-update-check;
     };
   };
-  systemd.user.timers.dotfiles-check = {
-    Unit.Description = "dotfiles update check";
+  systemd.user.timers.os-update-check = {
+    Unit.Description = "os update check";
     Timer = {
       OnCalendar = "hourly";
       Persistent = true;
