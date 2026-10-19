@@ -25,6 +25,29 @@
     };
   };
 
+  # comin boot entry
+  services.comin.postDeploymentCommand = pkgs.writeShellScript "comin-boot-entry" ''
+    [ "$COMIN_STATUS" = done ] || exit 0
+    system=$(readlink -f /nix/var/nix/profiles/system-profiles/comin)
+    [ "$system" = "$(readlink -f /run/current-system)" ] || exit 0
+    ${lib.getExe' config.nix.package "nix-env"} -p /nix/var/nix/profiles/system --set "$system" \
+      && "$system/bin/switch-to-configuration" boot
+  '';
+
+  # comin vm
+  virtualisation.vmVariant.services.comin = {
+    hostname = "vmtest";
+    remotes = lib.mkForce [
+      {
+        name = "vmtest";
+        url = "/var/lib/comin-vmtest";
+        branches.main.name = "main";
+        poller.period = 5;
+      }
+    ];
+    sshAllowedSignersPath = lib.mkForce "/var/lib/comin-vmtest-signers";
+  };
+
   # alerts
   systemd.user.services.comin-desktop = {
     unitConfig.StartLimitIntervalSec = 0;
@@ -40,6 +63,8 @@
   home-manager.users.tony =
     { lib, ... }:
     let
+      git = lib.getExe pkgs.git;
+      dir = config.programs.nh.flake;
       summary = config.services.comin.desktop.title;
       after = lib.hm.dag.entryAfter [ "comin" ];
       quiet =
@@ -78,6 +103,14 @@
           new_icon = "dialog-error";
         };
       };
+
+      # dotfiles
+      home.activation.dotfiles-pull = lib.hm.dag.entryAfter [ "dotfiles" ] ''
+        if [ "$(${git} -C ${dir} branch --show-current 2>/dev/null)" = main ]; then
+          run env GIT_TERMINAL_PROMPT=0 ${pkgs.coreutils}/bin/timeout 30 ${git} -C ${dir} pull --quiet --ff-only \
+            || warnEcho "could not fast-forward ${dir}, pull it by hand"
+        fi
+      '';
     };
   systemd.services.comin = {
     unitConfig = {

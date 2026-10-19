@@ -38,4 +38,6 @@ Full steps (Secure Boot, TPM unlock): [docs/bootstrap.md](docs/bootstrap.md).
 
 ## Updates
 
-Machines deploy the signed tip of the branch automatically via comin. Rebuild by hand with `nh os switch`. On battery, voyager holds updates until it is plugged in; `comin resume` installs them now.
+nighthawk is updated by hand. `nh os switch -a` applies config changes. `nh os switch -u -a` also updates all flake inputs, then shows the package diff and asks before switching. Commit and push the result so voyager picks it up.
+
+voyager deploys the signed tip of `main` automatically via comin. On battery, voyager holds updates until it is plugged in; `comin resume` installs them now.

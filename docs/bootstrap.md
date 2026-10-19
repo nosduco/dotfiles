@@ -22,7 +22,7 @@ Install a host from another machine with one command. The target only runs the N
 nix run .#install -- <host> <ip>
 ```
 
-It asks for the installer root password, the host name to confirm the wipe, and the disk passphrase twice. It commits and pushes the generated `hardware-configuration.nix` before installing, so comin deploys the same commit on first boot. It ends by rebooting the target into firmware setup (Secure Boot hosts) or a normal reboot.
+It asks for the installer root password, the host name to confirm the wipe, and the disk passphrase twice. It commits and pushes the generated `hardware-configuration.nix` before installing, so comin (voyager) deploys the same commit on first boot. It ends by rebooting the target into firmware setup (Secure Boot hosts) or a normal reboot.
 
 ## 3. Target: Secure Boot
 
@@ -46,7 +46,7 @@ The next boot unlocks without the passphrase.
 
 ## Repo on the host
 
-Home-manager clones the repo to `programs.nh.flake` (`~/.dotfiles`) on the first switch with network: the first comin deploy, or `nh os switch`. Fetch is over HTTPS, push over SSH.
+Home-manager clones the repo to `programs.nh.flake` (`~/.dotfiles`) on the first activation with network. If the boot-time activation ran before the network was up, `sudo systemctl restart home-manager-tony` retries it. On comin hosts, every activation also fast-forwards the checkout. Fetch is over HTTPS, push over SSH.
 
 ## Notes vault
 

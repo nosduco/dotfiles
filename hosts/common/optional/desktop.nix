@@ -145,8 +145,8 @@ in
         }
       ];
       sharedDirectories.dotfiles = {
-        source = "/home/tony/nixos-config";
-        target = "/home/tony/.dotfiles";
+        source = config.programs.nh.flake;
+        target = config.programs.nh.flake;
         writable = true;
       };
     };
@@ -154,18 +154,6 @@ in
       enable = true;
       openFirewall = lib.mkForce true;
       settings.PasswordAuthentication = lib.mkForce true;
-    };
-    services.comin = {
-      hostname = "vmtest";
-      remotes = lib.mkForce [
-        {
-          name = "vmtest";
-          url = "/var/lib/comin-vmtest";
-          branches.main.name = "main";
-          poller.period = 5;
-        }
-      ];
-      sshAllowedSignersPath = lib.mkForce "/var/lib/comin-vmtest-signers";
     };
     environment.systemPackages = [ pkgs.kitty ];
     home-manager.users.tony.xdg.configFile."uwsm/env-hyprland".text = lib.mkForce "";
