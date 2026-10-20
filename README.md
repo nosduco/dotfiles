@@ -38,7 +38,7 @@ Full steps (Secure Boot, TPM unlock): [docs/bootstrap.md](docs/bootstrap.md).
 
 ## Updates
 
-nighthawk is updated by hand. `nh os switch -a` applies config changes; commit and push them so voyager picks them up. An hourly check notifies about new commits on `main`, input updates, and unpushed changes.
+nighthawk is updated by hand. `nh os switch -a` applies config changes; commit and push them so voyager picks them up. An hourly check notifies about new commits on `main`, unpushed changes, and input updates once the last one is a week old.
 
 tux prebuilds input updates on the `flake-update` branch. `os-update` applies them: it shows the package diff, asks, then commits and pushes `flake.lock`. `nh os switch -u -a` updates all inputs to the latest instead, without the prebuild.
 
