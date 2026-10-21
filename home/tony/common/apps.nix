@@ -118,7 +118,10 @@ in
   xdg.dataFile."mangohud/.keep".text = "";
 
   # media
-  programs.mpv.enable = true;
+  programs.mpv = {
+    enable = true;
+    config.hwdec = "auto";
+  };
 
   # spotify
   programs.spicetify = {
