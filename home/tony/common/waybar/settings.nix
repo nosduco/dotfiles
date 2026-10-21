@@ -89,6 +89,18 @@
     return-type = "json";
     signal = 8;
   };
+  "custom/nightlight" = {
+    exec = "waybar-nightlight status";
+    format = "{icon}";
+    format-icons = {
+      on = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰖔</span>";
+      off = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰖙</span>";
+    };
+    interval = "once";
+    on-click = "waybar-nightlight toggle";
+    return-type = "json";
+    signal = 9;
+  };
   "custom/dunst" = {
     on-click = "dunstctl set-paused toggle";
     restart-interval = 1;

@@ -8,6 +8,7 @@
     modules-right = [
       "group/tray"
       "custom/caffeine"
+      "custom/nightlight"
       "custom/weather"
       "battery#mouse"
       "battery#mousecharging"

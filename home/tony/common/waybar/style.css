@@ -82,6 +82,10 @@ window#waybar.solo {
   margin-left: 4px;
 }
 
+#custom-nightlight {
+  margin-top: 2px;
+}
+
 #custom-vpn {
   margin-top: 2px;
 }

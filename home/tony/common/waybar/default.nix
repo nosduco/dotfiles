@@ -27,6 +27,14 @@ let
     ];
     text = builtins.readFile ./dunst-tray.sh;
   };
+  nightlight = pkgs.writeShellApplication {
+    name = "waybar-nightlight";
+    runtimeInputs = with pkgs; [
+      coreutils
+      systemd
+    ];
+    text = builtins.readFile ./nightlight.sh;
+  };
 in
 {
   # waybar
@@ -41,7 +49,10 @@ in
         "${lib.getExe pkgs.wttrbar} --location Columbus --fahrenheit --ampm --nerd --custom-indicator '{ICON} {temp_F}°'";
     };
   };
-  home.packages = [ caffeine ];
+  home.packages = [
+    caffeine
+    nightlight
+  ];
 
   # restart on change
   systemd.user.services.waybar.Unit = {
@@ -51,4 +62,7 @@ in
       "${config.xdg.configFile."waybar/style.css".source}"
     ];
   };
+
+  # night light
+  xdg.configFile."gammastep/hooks/waybar".source = lib.getExe nightlight;
 }

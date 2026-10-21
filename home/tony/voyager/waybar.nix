@@ -65,6 +65,7 @@ in
     modules-right = [
       "group/tray"
       "custom/caffeine"
+      "custom/nightlight"
       "custom/weather"
       "battery#laptop"
       "pulseaudio"
