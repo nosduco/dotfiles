@@ -42,6 +42,7 @@
   home.packages = with pkgs; [
     age
     bitwarden-cli
+    bluetui
     gws
     ouch
     sops

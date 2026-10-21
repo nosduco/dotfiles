@@ -13,6 +13,7 @@
       "battery#mousecharging"
       "pulseaudio"
       "privacy"
+      "bluetooth"
       "network"
       "custom/dunst"
       "clock"

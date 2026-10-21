@@ -1,4 +1,14 @@
 {
+  bluetooth = {
+    format = "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰂯</span>";
+    format-connected = "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰂱</span>";
+    format-disabled = "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰂲</span>";
+    format-no-controller = "";
+    format-off = "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰂲</span>";
+    on-click = "ghostty --title=bluetui -e bluetui";
+    tooltip-format = "{status}";
+    tooltip-format-connected = "{num_connections} connected";
+  };
   clock = {
     actions = {
       on-click-backward = "tz_down";

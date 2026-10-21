@@ -70,6 +70,7 @@ in
       "pulseaudio"
       "privacy"
       "custom/vpn"
+      "bluetooth"
       "network"
       "custom/dunst"
       "clock"
