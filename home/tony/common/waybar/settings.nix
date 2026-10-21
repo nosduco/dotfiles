@@ -153,7 +153,7 @@
     tooltip-format = "{title}";
   };
   pulseaudio = {
-    format = "{icon} {format_source}";
+    format = "{icon}{format_source}";
     format-icons = {
       headphone = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰋋</span>";
       speaker = [
@@ -167,9 +167,9 @@
         "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰕾</span>"
       ];
     };
-    format-muted = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰝟</span> {format_source}";
-    format-source = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍬</span>";
-    format-source-muted = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍭</span>";
+    format-muted = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰝟</span>{format_source}";
+    format-source = "";
+    format-source-muted = " <span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍭</span>";
     on-click = "ghostty --title=wiremix -e wiremix";
     on-click-right = "helvum";
     tooltip-format = "{desc}: {volume}%";
