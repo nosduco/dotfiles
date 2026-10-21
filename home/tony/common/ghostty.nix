@@ -19,6 +19,7 @@
       shell-integration = "fish";
       shell-integration-features = "no-cursor";
       custom-shader = "${../../../config/ghostty/shaders/cursor_smear_fade_gsls.gsls}";
+      keybind = [ "shift+enter=csi:13;2u" ];
     };
   };
 }

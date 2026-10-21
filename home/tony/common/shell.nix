@@ -134,6 +134,9 @@ in
     ];
 
     extraConfig = ''
+      set -g extended-keys on
+      set -g extended-keys-format csi-u
+
       bind r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded"
 
       bind s split-window -v -c "#{pane_current_path}"
