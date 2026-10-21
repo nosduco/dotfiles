@@ -17,6 +17,9 @@ end
 hl.bind("XF86MonBrightnessUp", osd("--brightness raise"), { repeating = true, locked = true, description = "Brightness up" })
 hl.bind("XF86MonBrightnessDown", osd("--brightness lower"), { repeating = true, locked = true, description = "Brightness down" })
 
+-- power key
+hl.bind("XF86PowerOff", hl.dsp.exec_cmd("walker -m menus:power"), { description = "Power menu" })
+
 -- lid
 local function external()
   for _, mon in ipairs(hl.get_monitors()) do

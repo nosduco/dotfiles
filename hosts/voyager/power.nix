@@ -132,6 +132,9 @@ in
   # battery
   services.upower.enable = true;
 
+  # power key
+  services.logind.settings.Login.HandlePowerKey = "ignore";
+
   # updates on battery
   systemd.services.comin-power = {
     after = [ "comin.service" ];
