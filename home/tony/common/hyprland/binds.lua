@@ -38,6 +38,11 @@ hl.bind(mod .. " + SHIFT + T", hl.dsp.exec_cmd("scan text"), { description = "Co
 hl.bind(mod .. " + SHIFT + Q", hl.dsp.exec_cmd("scan qr"), { description = "Copy QR code from screen" })
 hl.bind(mod .. " + N", hl.dsp.exec_cmd("systemctl --user restart hyprpaper"), { description = "Next wallpaper" })
 
+-- recording
+hl.bind(mod .. " + R", hl.dsp.exec_cmd("record"), { description = "Start/stop recording" })
+hl.bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd("record replay"), { description = "Replay on/off" })
+hl.bind(mod .. " + CTRL + R", hl.dsp.exec_cmd("record save"), { description = "Save last 60s replay" })
+
 -- focus
 hl.bind(mod .. " + h", hl.dsp.focus({ direction = "l" }), { description = "Focus left" })
 hl.bind(mod .. " + l", hl.dsp.focus({ direction = "r" }), { description = "Focus right" })

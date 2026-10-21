@@ -7,6 +7,7 @@
     margin-bottom = 6;
     modules-right = [
       "group/tray"
+      "custom/recording"
       "custom/caffeine"
       "custom/nightlight"
       "custom/weather"

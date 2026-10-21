@@ -101,6 +101,18 @@
     return-type = "json";
     signal = 9;
   };
+  "custom/recording" = {
+    exec = "record status";
+    format = "{icon}";
+    format-icons = {
+      recording = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰑋</span>";
+      replay = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰑙</span>";
+    };
+    interval = "once";
+    on-click = "record stop";
+    return-type = "json";
+    signal = 10;
+  };
   "custom/dunst" = {
     on-click = "dunstctl set-paused toggle";
     restart-interval = 1;

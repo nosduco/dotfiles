@@ -60,6 +60,9 @@ in
   # files
   services.gvfs.enable = true;
 
+  # recording
+  programs.gpu-screen-recorder.enable = true;
+
   # ledger
   hardware.ledger.enable = true;
 

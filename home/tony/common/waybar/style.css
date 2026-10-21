@@ -86,6 +86,14 @@ window#waybar.solo {
   margin-top: 2px;
 }
 
+#custom-recording {
+  margin-top: 2px;
+}
+
+#custom-recording.recording {
+  color: @red;
+}
+
 #custom-vpn {
   margin-top: 2px;
 }

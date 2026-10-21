@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  osConfig,
+  pkgs,
+  ...
+}:
 let
   screenshot = pkgs.writeShellApplication {
     name = "screenshot";
@@ -21,6 +26,20 @@ let
       zbar
     ];
     text = builtins.readFile ./scan.sh;
+  };
+  record = pkgs.writeShellApplication {
+    name = "record";
+    runtimeInputs = with pkgs; [
+      osConfig.programs.gpu-screen-recorder.package
+      coreutils
+      jq
+      libnotify
+      losslesscut-bin
+      systemd
+      wl-clipboard
+      xdg-user-dirs
+    ];
+    text = builtins.readFile ./record.sh;
   };
   keybinds = pkgs.writeShellApplication {
     name = "keybinds";
@@ -119,6 +138,7 @@ in
   home.packages = [
     screenshot
     scan
+    record
     keybinds
     pkgs.grimblast
   ];
