@@ -11,9 +11,7 @@ hl.workspace_rule({ workspace = "3", monitor = m.main, persistent = true })
 hl.workspace_rule({ workspace = "4", monitor = m.main, persistent = true })
 
 -- brightness
-local function osd(arg)
-  return hl.dsp.exec_cmd("swayosd-client " .. arg)
-end
+local osd = require("osd").run
 hl.bind("XF86MonBrightnessUp", osd("--brightness raise"), { repeating = true, locked = true, description = "Brightness up" })
 hl.bind("XF86MonBrightnessDown", osd("--brightness lower"), { repeating = true, locked = true, description = "Brightness down" })
 

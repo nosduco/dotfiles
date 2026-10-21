@@ -18,13 +18,15 @@ hl.bind(mod .. " + P", hl.dsp.window.pseudo(), { description = "Pseudotile" })
 hl.bind(mod .. " + O", hl.dsp.layout("togglesplit"), { description = "Toggle split" })
 
 -- media
-local function osd(arg)
-  return hl.dsp.exec_cmd("swayosd-client " .. arg)
-end
+local osd = require("osd").run
 hl.bind("XF86AudioRaiseVolume", osd("--output-volume raise"), { repeating = true, locked = true, description = "Volume up" })
 hl.bind("XF86AudioLowerVolume", osd("--output-volume lower"), { repeating = true, locked = true, description = "Volume down" })
 hl.bind("XF86AudioMute", osd("--output-volume mute-toggle"), { locked = true, description = "Mute" })
 hl.bind("XF86AudioMicMute", osd("--input-volume mute-toggle"), { locked = true, description = "Mute mic" })
+hl.bind("XF86AudioPlay", osd("--playerctl play-pause"), { locked = true, description = "Play/pause" })
+hl.bind("XF86AudioPause", osd("--playerctl play-pause"), { locked = true, description = "Play/pause" })
+hl.bind("XF86AudioNext", osd("--playerctl next"), { locked = true, description = "Next track" })
+hl.bind("XF86AudioPrev", osd("--playerctl prev"), { locked = true, description = "Previous track" })
 
 -- screenshots
 hl.bind(mod .. " + S", hl.dsp.exec_cmd("grimblast --freeze copy area"), { description = "Screenshot area to clipboard" })

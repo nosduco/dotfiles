@@ -6,6 +6,9 @@ hl.monitor({ output = m.main, mode = "highrr", position = "0x0", scale = 1 })
 hl.monitor({ output = m.right, mode = "preferred", position = "-2160x-1100", scale = 1, transform = 3 })
 hl.monitor({ output = m.top, mode = "highrr", position = "0x-1440", scale = 1 })
 
+-- osd
+require("osd").monitor = m.main
+
 -- workspaces
 hl.workspace_rule({ workspace = "name:1", monitor = m.main, persistent = true, default = true })
 hl.workspace_rule({ workspace = "name:2", monitor = m.main, persistent = true })

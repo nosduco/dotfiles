@@ -30,6 +30,10 @@ in
       rules = ./rules.lua;
       autostart = ./autostart.lua;
       binds = ./binds.lua;
+      osd = {
+        content = ./osd.lua;
+        autoLoad = false;
+      };
       session = {
         content = ./session.lua;
         autoLoad = false;
