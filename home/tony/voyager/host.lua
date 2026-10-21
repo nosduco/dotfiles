@@ -14,8 +14,8 @@ hl.workspace_rule({ workspace = "4", monitor = m.main, persistent = true })
 local function osd(arg)
   return hl.dsp.exec_cmd("swayosd-client " .. arg)
 end
-hl.bind("XF86MonBrightnessUp", osd("--brightness raise"), { repeating = true, locked = true })
-hl.bind("XF86MonBrightnessDown", osd("--brightness lower"), { repeating = true, locked = true })
+hl.bind("XF86MonBrightnessUp", osd("--brightness raise"), { repeating = true, locked = true, description = "Brightness up" })
+hl.bind("XF86MonBrightnessDown", osd("--brightness lower"), { repeating = true, locked = true, description = "Brightness down" })
 
 -- lid
 local function external()

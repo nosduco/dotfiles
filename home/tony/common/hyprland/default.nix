@@ -11,6 +11,11 @@ let
     ];
     text = builtins.readFile ./screenshot.sh;
   };
+  keybinds = pkgs.writeShellApplication {
+    name = "keybinds";
+    runtimeInputs = [ pkgs.jq ];
+    text = builtins.readFile ./keybinds.sh;
+  };
 in
 {
   # hyprland
@@ -98,6 +103,7 @@ in
   # screenshot
   home.packages = [
     screenshot
+    keybinds
     pkgs.grimblast
   ];
 
