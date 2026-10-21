@@ -1,4 +1,5 @@
 {
+  config,
   osConfig,
   lib,
   pkgs,
@@ -41,4 +42,13 @@ in
     };
   };
   home.packages = [ caffeine ];
+
+  # restart on change
+  systemd.user.services.waybar.Unit = {
+    X-Reload-Triggers = lib.mkForce [ ];
+    X-Restart-Triggers = [
+      "${config.xdg.configFile."waybar/config".source}"
+      "${config.xdg.configFile."waybar/style.css".source}"
+    ];
+  };
 }
