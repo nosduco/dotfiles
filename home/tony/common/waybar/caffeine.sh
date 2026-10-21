@@ -19,7 +19,7 @@ case "$1" in
         --why="caffeine: keep system awake (clamshell ok)" "$0" hold &
       disown
     fi
-    pkill -RTMIN+8 -x waybar
+    systemctl --user kill --kill-whom=main -s SIGRTMIN+8 waybar
     ;;
   hold)
     if [[ -z ${LOW:-} ]]; then
@@ -30,7 +30,7 @@ case "$1" in
       sleep 60
     done
     notify-send -u critical "Caffeine off" "Battery low, sleep allowed again"
-    (sleep 1 && pkill -RTMIN+8 -x waybar) &
+    (sleep 1 && systemctl --user kill --kill-whom=main -s SIGRTMIN+8 waybar) &
     ;;
   status)
     if running; then
