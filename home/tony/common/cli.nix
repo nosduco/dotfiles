@@ -9,7 +9,7 @@
 {
   # bat
   programs.bat.enable = true;
-  programs.fish.shellAliases.cat = "bat";
+  programs.fish.shellAbbrs.cat = "bat";
 
   # btop
   programs.btop = {
@@ -27,13 +27,13 @@
 
   # ripgrep
   programs.ripgrep.enable = true;
-  programs.fish.shellAliases.grep = "rg --color=always";
+  programs.fish.shellAbbrs.grep = "rg";
 
   # jq
   programs.jq.enable = true;
 
   # trash
-  programs.fish.shellAliases.rm = "trash";
+  programs.fish.shellAbbrs.rm = "trash";
 
   # archives
   programs.fish.shellAliases.ex = "ouch decompress";
@@ -53,6 +53,7 @@
   catppuccin.yazi.enable = false;
   programs.yazi = {
     enable = true;
+    shellWrapperName = "fs";
     extraPackages = with pkgs; [
       file
       libnotify

@@ -4,8 +4,8 @@ function fish_user_key_bindings
     bind \ce --mode insert open_vim
 
     # Ctrl-F - Files
-    bind \cf --mode default fs
-    bind \cf --mode insert fs
+    bind \cf --mode default fs repaint
+    bind \cf --mode insert fs repaint
 
     # Shift-Tab - Complete autosuggestion
     # bind --erase --preset -k btab
