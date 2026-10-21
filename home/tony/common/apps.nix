@@ -173,12 +173,12 @@ in
     gnome-calendar
     gnome-disk-utility
     ledger-live-desktop
+    losslesscut-bin
     loupe
     mixxx
     multiviewer-for-f1
     planify
     prusa-slicer
     redact
-    video-trimmer
   ]);
 }
