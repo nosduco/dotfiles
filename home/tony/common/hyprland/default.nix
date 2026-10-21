@@ -11,6 +11,17 @@ let
     ];
     text = builtins.readFile ./screenshot.sh;
   };
+  scan = pkgs.writeShellApplication {
+    name = "scan";
+    runtimeInputs = with pkgs; [
+      grimblast
+      libnotify
+      tesseract
+      wl-clipboard
+      zbar
+    ];
+    text = builtins.readFile ./scan.sh;
+  };
   keybinds = pkgs.writeShellApplication {
     name = "keybinds";
     runtimeInputs = [ pkgs.jq ];
@@ -107,6 +118,7 @@ in
   # screenshot
   home.packages = [
     screenshot
+    scan
     keybinds
     pkgs.grimblast
   ];

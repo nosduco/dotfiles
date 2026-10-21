@@ -34,6 +34,8 @@ hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd("screenshot"), { description = "S
 hl.bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("screenshot active"), { description = "Screenshot window and edit" })
 hl.bind(mod .. " + SHIFT + I", hl.dsp.exec_cmd("grimblast copy output"), { description = "Screenshot monitor to clipboard" })
 hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd("hyprpicker -a"), { description = "Color picker" })
+hl.bind(mod .. " + SHIFT + T", hl.dsp.exec_cmd("scan text"), { description = "Copy text from screen (OCR)" })
+hl.bind(mod .. " + SHIFT + Q", hl.dsp.exec_cmd("scan qr"), { description = "Copy QR code from screen" })
 hl.bind(mod .. " + N", hl.dsp.exec_cmd("systemctl --user restart hyprpaper"), { description = "Next wallpaper" })
 
 -- focus
