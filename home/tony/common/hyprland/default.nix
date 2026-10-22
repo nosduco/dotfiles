@@ -118,6 +118,15 @@ in
     };
   };
 
+  # screen share
+  wayland.windowManager.hyprland.xdph.settings.screencopy = {
+    allow_token_by_default = true;
+    custom_picker_binary = lib.getExe pkgs.hyprland-preview-share-picker;
+  };
+  xdg.configFile."hyprland-preview-share-picker/config.yaml".source =
+    (pkgs.formats.yaml { }).generate "share-picker"
+      { default_page = "outputs"; };
+
   # hypridle
   services.hypridle = {
     enable = true;
