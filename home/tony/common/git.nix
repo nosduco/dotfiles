@@ -18,6 +18,14 @@ in
       user.name = "tony duco";
       user.email = "td@tonydu.co";
       init.defaultBranch = "main";
+      push.autoSetupRemote = true;
+      pull.rebase = true;
+      branch.sort = "-committerdate";
+      diff = {
+        algorithm = "histogram";
+        colorMoved = "default";
+      };
+      merge.conflictStyle = "zdiff3";
     };
     signing = {
       format = "ssh";
