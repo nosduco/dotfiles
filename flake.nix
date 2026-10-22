@@ -55,6 +55,10 @@
     # aws vpn client
     awsvpnclient-nix.url = "github:AddG0/awsvpnclient-nix/b187895a5f5998adc9bbc14ca8cdaa24e39ddd5a";
     awsvpnclient-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # voxtype
+    voxtype.url = "github:peteonrails/voxtype/v1.1.1";
+    voxtype.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

@@ -12,6 +12,9 @@
     MaxMemAlloc = 16000;
   };
 
+  # voxtype
+  programs.voxtype.model.name = "large-v3-turbo";
+
   # apps
   home.packages = [
     pkgs.nvtopPackages.nvidia

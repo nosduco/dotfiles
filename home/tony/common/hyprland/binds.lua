@@ -43,6 +43,25 @@ hl.bind(mod .. " + R", hl.dsp.exec_cmd("record"), { description = "Start/stop re
 hl.bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd("record replay"), { description = "Replay on/off" })
 hl.bind(mod .. " + CTRL + R", hl.dsp.exec_cmd("record save"), { description = "Save last 60s replay" })
 
+-- dictation
+local dictating = false
+hl.bind(mod .. " + V", function()
+  dictating = true
+  hl.exec_cmd("voxtype record start")
+end, { description = "Dictate (hold)" })
+hl.bind(mod .. " + V", function()
+  if dictating then
+    dictating = false
+    hl.exec_cmd("voxtype record stop")
+  end
+end, { release = true, ignore_mods = true, transparent = true, non_consuming = true })
+hl.define_submap("voxtype_suppress", function()
+  for _, key in ipairs({ "Super_L", "Super_R", "Control_L", "Control_R", "Alt_L", "Alt_R", "Shift_L", "Shift_R" }) do
+    hl.bind(key, hl.dsp.no_op())
+  end
+  hl.bind("F12", hl.dsp.submap("reset"))
+end)
+
 -- focus
 hl.bind(mod .. " + h", hl.dsp.focus({ direction = "l" }), { description = "Focus left" })
 hl.bind(mod .. " + l", hl.dsp.focus({ direction = "r" }), { description = "Focus right" })
