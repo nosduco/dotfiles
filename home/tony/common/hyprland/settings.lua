@@ -52,6 +52,9 @@ hl.config({
       text_color_inactive = c.overlay1,
     },
   },
+  cursor = {
+    hide_on_key_press = true,
+  },
   dwindle = {
     preserve_split = true,
   },

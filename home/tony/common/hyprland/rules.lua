@@ -1,4 +1,5 @@
 -- windows
+hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
 hl.window_rule({ match = { title = "^(waybar)" }, float = true, border_size = 0 })
 hl.window_rule({ match = { title = "^(FileChooser)" }, float = true, size = { "(monitor_w*0.6)", "(monitor_h*0.7)" }, center = true })
 hl.window_rule({ match = { title = "^(wiremix|bluetui)$" }, float = true, size = { 800, 600 }, center = true })

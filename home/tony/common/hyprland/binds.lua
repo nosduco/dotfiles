@@ -14,6 +14,7 @@ hl.bind(mod .. " + slash", hl.dsp.exec_cmd("keybinds"), { description = "Keybind
 -- layout
 hl.bind(mod .. " + F", hl.dsp.window.float(), { description = "Float window" })
 hl.bind(mod .. " + U", hl.dsp.window.fullscreen(), { description = "Fullscreen" })
+hl.bind(mod .. " + SHIFT + U", hl.dsp.window.fullscreen({ mode = "maximized" }), { description = "Maximize" })
 hl.bind(mod .. " + P", hl.dsp.window.pseudo(), { description = "Pseudotile" })
 hl.bind(mod .. " + O", hl.dsp.layout("togglesplit"), { description = "Toggle split" })
 hl.bind(mod .. " + ESCAPE", function()
