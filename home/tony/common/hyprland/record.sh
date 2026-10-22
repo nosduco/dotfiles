@@ -1,6 +1,7 @@
 
 DIR="$(xdg-user-dir VIDEOS)"
 LAST="$XDG_RUNTIME_DIR/record-last"
+PORT=18080
 REFRESH=(--user kill --kill-whom=main -s SIGRTMIN+10 waybar)
 
 running() {
@@ -25,9 +26,9 @@ stop() {
 finish() {
   stop record
   file="$(<"$LAST")"
-  wl-copy "$file"
-  notify-send -t 2000 "Recording" "Saved, path copied"
-  exec uwsm app -- losslesscut -- "$file"
+  "$SHARE" "$file" &
+  running record-exports || systemd-run --user -q --collect --unit=record-exports "$0" exports
+  exec uwsm app -- losslesscut --http-api="$PORT" -- "$file"
 }
 
 case "${1:-clip}" in
@@ -46,7 +47,7 @@ case "${1:-clip}" in
       notify-send -t 2000 "Replay" "Off"
     else
       mkdir -p "$DIR/replays"
-      start replay -c mp4 -r 60 -o "$DIR/replays"
+      start replay -c mp4 -r 60 -sc "$SHARE" -o "$DIR/replays"
       notify-send -t 2000 "Replay" "On: keeping the last 60 seconds"
     fi
     ;;
@@ -62,6 +63,13 @@ case "${1:-clip}" in
     elif running replay; then
       stop replay
     fi
+    ;;
+  exports)
+    while json="$(curl -sf --retry 30 --retry-connrefused --retry-delay 1 -X POST "http://127.0.0.1:$PORT/api/await-event/export-complete")"; do
+      jq -r '.paths[]?' <<<"$json" | while read -r path; do
+        "$SHARE" "$path"
+      done
+    done
     ;;
   status)
     if running record; then

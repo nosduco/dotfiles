@@ -1,6 +1,7 @@
 {
   config,
   osConfig,
+  lib,
   pkgs,
   ...
 }:
@@ -27,18 +28,31 @@ let
     ];
     text = builtins.readFile ./scan.sh;
   };
+  share = pkgs.writeShellApplication {
+    name = "share";
+    runtimeInputs = with pkgs; [
+      coreutils
+      ffmpeg
+      libnotify
+      wl-clipboard
+    ];
+    text = builtins.readFile ./share.sh;
+  };
   record = pkgs.writeShellApplication {
     name = "record";
     runtimeInputs = with pkgs; [
       osConfig.programs.gpu-screen-recorder.package
       coreutils
+      curl
       jq
       libnotify
       losslesscut-bin
       systemd
-      wl-clipboard
       xdg-user-dirs
     ];
+    runtimeEnv.SHARE = "${pkgs.writeShellScript "record-share" ''
+      exec ${pkgs.systemd}/bin/systemd-run --user --scope -q ${lib.getExe share} "$1"
+    ''}";
     text = builtins.readFile ./record.sh;
   };
   keybinds = pkgs.writeShellApplication {
@@ -138,6 +152,7 @@ in
   home.packages = [
     screenshot
     scan
+    share
     record
     keybinds
     pkgs.grimblast
