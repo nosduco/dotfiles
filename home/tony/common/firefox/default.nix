@@ -1,4 +1,9 @@
-{ inputs, lib, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 let
   extensions = {
     "uBlock0@raymondhill.net" = "ublock-origin";
@@ -330,6 +335,15 @@ in
         #sidebar-panel-header { display: none !important; }
         #sidebar-box { border: none !important; }
       '';
+    };
+  };
+
+  # shortcuts
+  home.file."${config.programs.firefox.configPath}/default/customKeys.json".text = builtins.toJSON {
+    key_savePage = { };
+    key_addTabSplitView = {
+      modifiers = "accel";
+      key = "S";
     };
   };
 }
