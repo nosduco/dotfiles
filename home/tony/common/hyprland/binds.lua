@@ -16,6 +16,23 @@ hl.bind(mod .. " + F", hl.dsp.window.float(), { description = "Float window" })
 hl.bind(mod .. " + U", hl.dsp.window.fullscreen(), { description = "Fullscreen" })
 hl.bind(mod .. " + P", hl.dsp.window.pseudo(), { description = "Pseudotile" })
 hl.bind(mod .. " + O", hl.dsp.layout("togglesplit"), { description = "Toggle split" })
+hl.bind(mod .. " + ESCAPE", function()
+  local win = hl.get_active_window()
+  if not win then
+    return
+  end
+  if win.pinned then
+    hl.dispatch(hl.dsp.window.pin({ action = "unset" }))
+    hl.dispatch(hl.dsp.window.float({ action = "unset" }))
+  else
+    hl.dispatch(hl.dsp.window.float({ action = "set" }))
+    hl.dispatch(hl.dsp.window.resize({ x = 1280, y = 720 }))
+    hl.dispatch(hl.dsp.window.move({ direction = "r" }))
+    hl.dispatch(hl.dsp.window.move({ direction = "u" }))
+    hl.dispatch(hl.dsp.window.pin({ action = "set" }))
+    hl.dispatch(hl.dsp.window.alter_zorder({ mode = "top" }))
+  end
+end, { description = "Pop window out" })
 
 -- media
 local osd = require("osd").run
@@ -91,8 +108,6 @@ for i = 1, 4 do
   hl.bind(mod .. " + " .. i, hl.dsp.focus({ workspace = i }), { description = "Workspace " .. i })
   hl.bind(mod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }), { description = "Move window to workspace " .. i })
 end
-hl.bind(mod .. " + ESCAPE", hl.dsp.workspace.toggle_special(), { description = "Scratchpad" })
-hl.bind(mod .. " + SHIFT + ESCAPE", hl.dsp.window.move({ workspace = "special" }), { description = "Move window to scratchpad" })
 hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
