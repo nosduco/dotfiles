@@ -106,6 +106,18 @@ in
   # session
   services.hyprpolkitagent.enable = true;
 
+  # automount
+  services.udiskie = {
+    enable = true;
+    tray = "never";
+    settings.notifications = {
+      device_mounted = 5;
+      device_unmounted = false;
+      device_added = false;
+      device_removed = false;
+    };
+  };
+
   # hypridle
   services.hypridle = {
     enable = true;
