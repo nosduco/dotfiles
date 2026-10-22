@@ -27,6 +27,31 @@ hl.config({
       render_power = 4,
     },
   },
+  group = {
+    col = {
+      border_active = { colors = { c.accent, c.yellow }, angle = 45 },
+      border_inactive = c.surface1,
+    },
+    groupbar = {
+      font_family = "monospace",
+      font_size = 12,
+      font_weight_active = "bold",
+      font_weight_inactive = "normal",
+      height = 22,
+      gradients = true,
+      gradient_rounding = 10,
+      indicator_height = 0,
+      gaps_in = 2,
+      gaps_out = 4,
+      blur = true,
+      col = {
+        active = "rgba(" .. c.surface1Alpha .. "cc)",
+        inactive = "rgba(" .. c.surface0Alpha .. "aa)",
+      },
+      text_color = c.accent,
+      text_color_inactive = c.overlay1,
+    },
+  },
   dwindle = {
     preserve_split = true,
   },

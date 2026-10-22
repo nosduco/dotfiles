@@ -69,10 +69,16 @@ hl.bind(mod .. " + k", hl.dsp.focus({ direction = "u" }), { description = "Focus
 hl.bind(mod .. " + j", hl.dsp.focus({ direction = "d" }), { description = "Focus down" })
 
 -- move
-hl.bind("CTRL + SHIFT + h", hl.dsp.window.move({ direction = "l" }), { description = "Move window left" })
-hl.bind("CTRL + SHIFT + l", hl.dsp.window.move({ direction = "r" }), { description = "Move window right" })
-hl.bind("CTRL + SHIFT + k", hl.dsp.window.move({ direction = "u" }), { description = "Move window up" })
-hl.bind("CTRL + SHIFT + j", hl.dsp.window.move({ direction = "d" }), { description = "Move window down" })
+hl.bind("CTRL + SHIFT + h", hl.dsp.window.move({ direction = "l", group_aware = true }), { description = "Move window left" })
+hl.bind("CTRL + SHIFT + l", hl.dsp.window.move({ direction = "r", group_aware = true }), { description = "Move window right" })
+hl.bind("CTRL + SHIFT + k", hl.dsp.window.move({ direction = "u", group_aware = true }), { description = "Move window up" })
+hl.bind("CTRL + SHIFT + j", hl.dsp.window.move({ direction = "d", group_aware = true }), { description = "Move window down" })
+
+-- groups
+hl.bind(mod .. " + G", hl.dsp.group.toggle(), { description = "Toggle group" })
+hl.bind(mod .. " + SHIFT + G", hl.dsp.window.move({ out_of_group = true }), { description = "Move window out of group" })
+hl.bind(mod .. " + Tab", hl.dsp.group.next(), { description = "Next tab in group" })
+hl.bind(mod .. " + SHIFT + Tab", hl.dsp.group.prev(), { description = "Previous tab in group" })
 
 -- resize
 hl.bind(mod .. " + SHIFT + h", hl.dsp.window.resize({ x = -20, y = 0, relative = true }), { repeating = true, description = "Shrink width" })

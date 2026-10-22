@@ -31,6 +31,12 @@ function M.start(steps, opts)
     if s.preselect then
       hl.dispatch(hl.dsp.layout("preselect " .. s.preselect))
     end
+    if s.group then
+      local w = hl.get_active_window()
+      if w and not w.group then
+        hl.dispatch(hl.dsp.group.toggle())
+      end
+    end
     hl.exec_cmd("uwsm app -- " .. s.cmd)
     if not s.class then
       next_step()
