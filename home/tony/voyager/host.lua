@@ -27,10 +27,11 @@ local function external()
   end
   return false
 end
-hl.bind("switch:Lid Switch", hl.dsp.exec_cmd("pidof hyprlock || hyprlock"), { locked = true })
 hl.bind("switch:on:Lid Switch", function()
   if external() then
     hl.monitor({ output = m.main, disabled = true })
+  else
+    hl.exec_cmd("pidof hyprlock || hyprlock")
   end
 end, { locked = true })
 hl.bind("switch:off:Lid Switch", function()
