@@ -63,6 +63,9 @@ in
   # recording
   programs.gpu-screen-recorder.enable = true;
 
+  # debug symbols
+  services.nixseparatedebuginfod2.enable = true;
+
   # ledger
   hardware.ledger.enable = true;
 
