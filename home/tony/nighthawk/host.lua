@@ -20,9 +20,11 @@ hl.workspace_rule({ workspace = "name:top-monitor", monitor = m.top, persistent 
 -- windows
 hl.window_rule({ match = { class = "^(vesktop)$" }, workspace = "right-monitor silent" })
 hl.window_rule({ match = { class = "^(com.anthropic.Claude)$" }, workspace = "right-monitor silent" })
+hl.window_rule({ match = { class = "^(slack)$" }, workspace = "right-monitor silent" })
 hl.window_rule({ match = { title = "^(Google Meet)" }, tile = true, monitor = m.right })
 hl.window_rule({ match = { title = "^(Spotify)" }, workspace = "top-monitor silent" })
 hl.window_rule({ match = { class = "^(spotify)$" }, workspace = "top-monitor silent" })
+hl.window_rule({ match = { class = "^(io.github.alainm23.planify|org.gnome.Calendar)$" }, workspace = "top-monitor silent" })
 
 -- autostart
 hl.on("hyprland.start", function()
@@ -30,11 +32,12 @@ hl.on("hyprland.start", function()
     { workspace = "name:right-monitor", cmd = "vesktop", class = "vesktop" },
     { focus = "vesktop", preselect = "d", cmd = "ghostty -e btop", class = "com.mitchellh.ghostty", ratio = 1.38 },
     { focus = "vesktop", preselect = "d", cmd = "claude-desktop", class = "com.anthropic.Claude" },
+    { focus = "vesktop", group = true, cmd = "slack", class = "slack" },
     { workspace = 1, cmd = "firefox", class = "firefox" },
-    { focus = "firefox", preselect = "r", cmd = "obsidian", class = "md.obsidian.Obsidian", ratio = 1.02 },
-    { focus = "md.obsidian.Obsidian", preselect = "r", cmd = "io.github.alainm23.planify", class = "io.github.alainm23.planify", ratio = 0.86 },
+    { focus = "firefox", preselect = "r", cmd = "obsidian", class = "md.obsidian.Obsidian", ratio = 1.333 },
+    { workspace = "name:top-monitor", cmd = "spotify", class = "spotify" },
+    { focus = "spotify", preselect = "r", cmd = "io.github.alainm23.planify", class = "io.github.alainm23.planify" },
     { focus = "io.github.alainm23.planify", preselect = "d", cmd = "gnome-calendar", class = "org.gnome.Calendar" },
-    { cmd = "spotify" },
   }, {
     done = function()
       hl.dispatch(hl.dsp.focus({ workspace = 1 }))
