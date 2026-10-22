@@ -32,6 +32,12 @@ in
     };
   };
 
+  # captive portals
+  networking.networkmanager.settings.connectivity = {
+    uri = "http://nmcheck.gnome.org/check_network_status.txt";
+    response = "NetworkManager is online";
+  };
+
   # exit node
   networking.networkmanager.dispatcherScripts = [
     {
@@ -40,24 +46,36 @@ in
           name = "exit-node";
           runtimeInputs = [
             pkgs.coreutils
+            pkgs.gnugrep
             config.networking.networkmanager.package
             config.services.tailscale.package
           ];
           text = ''
-            [ "$2" = up ] && [ -n "''${CONNECTION_UUID:-}" ] || exit 0
-            case "$(nmcli -g connection.type connection show "$CONNECTION_UUID")" in
-              802-11-wireless | 802-3-ethernet) ;;
-              *) exit 0 ;;
+            case "$2" in
+              up)
+                [ -n "''${CONNECTION_UUID:-}" ] || exit 0
+                case "$(nmcli -g connection.type connection show "$CONNECTION_UUID")" in
+                  802-11-wireless | 802-3-ethernet) ;;
+                  *) exit 0 ;;
+                esac
+                for _ in $(seq 30); do
+                  [ -S /var/run/tailscale/tailscaled.sock ] && break
+                  sleep 1
+                done
+                if [ "$CONNECTION_UUID" = ${home} ]; then
+                  tailscale set --exit-node=
+                else
+                  tailscale set --exit-node=auto:any
+                fi
+                ;;
+              connectivity-change)
+                nmcli -t -f UUID connection show --active | grep -qx ${home} && exit 0
+                case "''${CONNECTIVITY_STATE:-}" in
+                  PORTAL) tailscale set --exit-node= ;;
+                  FULL) tailscale set --exit-node=auto:any ;;
+                esac
+                ;;
             esac
-            for _ in $(seq 30); do
-              [ -S /var/run/tailscale/tailscaled.sock ] && break
-              sleep 1
-            done
-            if [ "$CONNECTION_UUID" = ${home} ]; then
-              tailscale set --exit-node=
-            else
-              tailscale set --exit-node=auto:any
-            fi
           '';
         }
       );

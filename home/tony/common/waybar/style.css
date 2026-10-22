@@ -102,6 +102,13 @@ window#waybar.solo {
   color: @red;
 }
 
+#custom-vpn.portal {
+  background: @red;
+  color: @base;
+  border-radius: 8px;
+  padding: 0 8px;
+}
+
 #battery.warning {
   color: @yellow;
 }

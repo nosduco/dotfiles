@@ -10,11 +10,12 @@ let
     runtimeInputs = [
       pkgs.gnugrep
       pkgs.jq
-      pkgs.procps
+      pkgs.systemd
       osConfig.networking.networkmanager.package
       osConfig.services.tailscale.package
     ];
-    runtimeEnv.HOME_UUID = osConfig.networking.networkmanager.ensureProfiles.profiles.nosnet.connection.uuid;
+    runtimeEnv.HOME_UUID =
+      osConfig.networking.networkmanager.ensureProfiles.profiles.nosnet.connection.uuid;
     text = builtins.readFile ./vpn.sh;
   };
 in
@@ -55,6 +56,7 @@ in
         on = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰦝</span>";
         home = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰳋</span>";
         exposed = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰻍</span>";
+        portal = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰖟</span> VPN paused";
       };
       interval = 5;
       on-click = "${lib.getExe vpn} toggle";

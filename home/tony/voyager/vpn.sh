@@ -1,9 +1,9 @@
 # VPN (tailscale exit node) toggle for waybar. The NetworkManager
 # dispatcher in hosts/voyager/network.nix picks the exit node on every
-# connect; this shows the result and lets it be flipped by hand until
-# the next connect. HOME_UUID is the nosnet profile UUID.
+# connect and pauses it behind captive portals; this shows the result
+# and lets it be flipped by hand. HOME_UUID is the nosnet profile UUID.
 
-SIGNAL=9
+REFRESH=(--user kill --kill-whom=main -s SIGRTMIN+9 waybar)
 
 exit_node() {
   tailscale status --json | jq -r '
@@ -26,6 +26,8 @@ case "${1:-}" in
       emit on "VPN on: $node"
     elif home; then
       emit home "VPN off: home network"
+    elif [ "$(nmcli networking connectivity)" = portal ]; then
+      emit portal "VPN paused: Wi-Fi login page. Log in, then click to turn the VPN back on"
     else
       emit exposed "VPN off: not on home network"
     fi
@@ -36,7 +38,7 @@ case "${1:-}" in
     else
       tailscale set --exit-node=auto:any
     fi
-    pkill -RTMIN+"$SIGNAL" -x waybar
+    systemctl "${REFRESH[@]}"
     ;;
   *)
     echo "usage: $0 {toggle|status}" >&2
