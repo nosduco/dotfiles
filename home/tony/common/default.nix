@@ -23,6 +23,7 @@
     ./host.nix
     ./ghostty.nix
     ./swayosd.nix
+    ./crash
     ./xdg.nix
     ./hyprland
     ./waybar
