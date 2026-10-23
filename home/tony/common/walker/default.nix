@@ -8,7 +8,7 @@
 let
   toml = pkgs.formats.toml { };
   entry = text: icon: value: { inherit text icon value; };
-  firmware =entry "BIOS Setup" "preferences-system" "systemctl reboot --firmware-setup" // {
+  firmware = entry "BIOS Setup" "preferences-system" "systemctl reboot --firmware-setup" // {
     keywords = [
       "bios"
       "uefi"
@@ -42,9 +42,11 @@ in
         "calc"
         "clipboard"
         "menus"
+        "todo"
       ];
     };
   };
+  home.packages = [ pkgs.libnotify ];
   xdg.configFile = {
     "elephant/desktopapplications.toml".source = toml.generate "desktopapplications.toml" {
       show_actions = true;
@@ -147,6 +149,10 @@ in
           {
             prefix = "$";
             provider = "clipboard";
+          }
+          {
+            prefix = "!";
+            provider = "todo";
           }
         ];
       };
