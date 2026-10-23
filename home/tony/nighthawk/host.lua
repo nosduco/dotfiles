@@ -10,10 +10,10 @@ hl.monitor({ output = m.top, mode = "highrr", position = "0x-1440", scale = 1 })
 require("osd").monitor = m.main
 
 -- workspaces
-hl.workspace_rule({ workspace = "name:1", monitor = m.main, persistent = true, default = true })
-hl.workspace_rule({ workspace = "name:2", monitor = m.main, persistent = true })
-hl.workspace_rule({ workspace = "name:3", monitor = m.main, persistent = true })
-hl.workspace_rule({ workspace = "name:4", monitor = m.main, persistent = true })
+hl.workspace_rule({ workspace = "1", monitor = m.main, persistent = true, default = true })
+hl.workspace_rule({ workspace = "2", monitor = m.main, persistent = true })
+hl.workspace_rule({ workspace = "3", monitor = m.main, persistent = true })
+hl.workspace_rule({ workspace = "4", monitor = m.main, persistent = true })
 hl.workspace_rule({ workspace = "name:right-monitor", monitor = m.right, persistent = true, default = true })
 hl.workspace_rule({ workspace = "name:top-monitor", monitor = m.top, persistent = true, default = true })
 
