@@ -14,7 +14,7 @@ hl.workspace_rule({ workspace = "1", monitor = m.main, persistent = true, defaul
 hl.workspace_rule({ workspace = "2", monitor = m.main, persistent = true })
 hl.workspace_rule({ workspace = "3", monitor = m.main, persistent = true })
 hl.workspace_rule({ workspace = "4", monitor = m.main, persistent = true })
-hl.workspace_rule({ workspace = "name:right-monitor", monitor = m.right, persistent = true, default = true })
+hl.workspace_rule({ workspace = "name:right-monitor", monitor = m.right, persistent = true, default = true, layout = "scrolling", layout_opts = { direction = "down" } })
 hl.workspace_rule({ workspace = "name:top-monitor", monitor = m.top, persistent = true, default = true })
 
 -- windows
@@ -30,8 +30,8 @@ hl.window_rule({ match = { class = "^(io.github.alainm23.planify|org.gnome.Calen
 hl.on("hyprland.start", function()
   session.start({
     { workspace = "name:right-monitor", cmd = "vesktop", class = "vesktop" },
-    { focus = "vesktop", preselect = "d", cmd = "ghostty -e btop", class = "com.mitchellh.ghostty", ratio = 1.38 },
-    { focus = "vesktop", preselect = "d", cmd = "claude-desktop", class = "com.anthropic.Claude" },
+    { focus = "vesktop", cmd = "ghostty -e btop", class = "com.mitchellh.ghostty" },
+    { focus = "vesktop", cmd = "claude-desktop", class = "com.anthropic.Claude" },
     { focus = "vesktop", group = true, cmd = "slack", class = "slack" },
     { workspace = 1, cmd = "firefox", class = "firefox" },
     { focus = "firefox", preselect = "r", cmd = "obsidian", class = "md.obsidian.Obsidian", ratio = 1.333 },

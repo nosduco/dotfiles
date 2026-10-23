@@ -61,6 +61,9 @@ hl.config({
   master = {
     new_status = "master",
   },
+  scrolling = {
+    focus_fit_method = 0,
+  },
   misc = {
     vrr = 2,
     disable_hyprland_logo = true,

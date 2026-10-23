@@ -109,8 +109,22 @@ for i = 1, 4 do
   hl.bind(mod .. " + " .. i, hl.dsp.focus({ workspace = i }), { description = "Workspace " .. i })
   hl.bind(mod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }), { description = "Move window to workspace " .. i })
 end
-hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+local function wheel(sign)
+  return function()
+    local mon = hl.get_monitor_at_cursor()
+    local ws = mon and mon.active_workspace
+    if ws and ws.tiled_layout == "scrolling" then
+      if not mon.focused then
+        hl.dispatch(hl.dsp.focus({ monitor = mon.name }))
+      end
+      hl.dispatch(hl.dsp.layout("move " .. sign .. "col"))
+    else
+      hl.dispatch(hl.dsp.focus({ workspace = "e" .. sign .. "1" }))
+    end
+  end
+end
+hl.bind(mod .. " + mouse_down", wheel("+"))
+hl.bind(mod .. " + mouse_up", wheel("-"))
 
 -- mouse
 hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
