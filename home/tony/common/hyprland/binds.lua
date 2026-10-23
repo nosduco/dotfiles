@@ -116,6 +116,12 @@ hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
+-- zoom
+hl.bind(mod .. " + Z", function()
+  local zoom = hl.get_config("cursor.zoom_factor")
+  hl.config({ cursor = { zoom_factor = zoom >= 3 and 1 or zoom + 1 } })
+end, { description = "Zoom 2x, 3x, off" })
+
 -- notifications
 hl.bind(mod .. " + D", hl.dsp.exec_cmd("dunstctl history-pop"), { description = "Show last notification" })
 hl.bind(mod .. " + SHIFT + D", hl.dsp.exec_cmd("dunstctl close-all"), { description = "Clear notifications" })
