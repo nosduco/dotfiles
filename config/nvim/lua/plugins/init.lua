@@ -424,8 +424,14 @@ return {
 
   -- Multiplexer Integration
   {
-    "mrjones2014/smart-splits.nvim",
+    "smart-splits-nvim/smart-splits.nvim",
     lazy = false,
+    dependencies = {
+      { "smart-splits-nvim/backend-tmux", main = "smart-splits-backend-tmux" },
+    },
+    opts = {
+      mux = { backend = "smart-splits-backend-tmux" },
+    },
   },
 
   -- Markdown Preview
