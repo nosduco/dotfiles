@@ -13,7 +13,10 @@
   };
 
   # voxtype
-  programs.voxtype.model.name = "large-v3-turbo";
+  programs.voxtype = {
+    model.name = "large-v3-turbo";
+    settings.whisper.gpu_isolation = true;
+  };
 
   # apps
   home.packages = [
