@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   lib,
+  colors,
   ...
 }:
 let
@@ -108,12 +109,13 @@ in
       {
         plugin = tmux-power;
         extraConfig = ''
-          set -g @tmux_power_theme '#fab387'
-          set -g @tmux_power_g0 '#1e1e2e'
-          set -g @tmux_power_g1 '#1e1e2e'
-          set -g @tmux_power_g2 '#181825'
-          set -g @tmux_power_g3 '#313244'
-          set -g @tmux_power_g4 '#cdd6f4'
+          set -g @tmux_power_theme '${colors.accent}'
+          set -g @tmux_power_g0 '${colors.base}'
+          set -g @tmux_power_g1 '${colors.base}'
+          set -g @tmux_power_g2 '${colors.mantle}'
+          set -g @tmux_power_g3 '${colors.surface0}'
+          set -g @tmux_power_g4 '${colors.text}'
+          set -g window-status-current-style default
           set -g @tmux_power_left_a ' #h'
           set -g @tmux_power_left_b '''
           set -g @tmux_power_right_y ' %I:%M%p'
