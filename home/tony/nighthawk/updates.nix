@@ -44,6 +44,10 @@ let
       if [ -n "$(git rev-list origin/main..main)" ] || { [ "$rev" = "$(git rev-parse main)-dirty" ] && ! git diff --quiet HEAD; }; then
         notify unpushed "$(git rev-parse main) $rev" "Unpushed changes" "Commit and push ${osConfig.programs.nh.flake}."
       fi
+
+      if [ "$(readlink /run/booted-system/{initrd,kernel,kernel-modules})" != "$(readlink /run/current-system/{initrd,kernel,kernel-modules})" ]; then
+        notify reboot "$(readlink /run/current-system)" "Reboot needed" "Kernel or initrd changed since boot."
+      fi
     '';
   };
   os-update = pkgs.writeShellApplication {
