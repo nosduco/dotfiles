@@ -137,4 +137,7 @@ in
     gtk3.extraCss = defines;
     gtk4.extraCss = defines + ":root {\n" + vars + "}\n";
   };
+
+  # clock
+  dconf.settings."org/gnome/desktop/interface".clock-format = "12h";
 }
