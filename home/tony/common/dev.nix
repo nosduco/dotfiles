@@ -32,6 +32,12 @@
     clipboardType = "regular";
   };
 
+  # pi
+  programs.pi-coding-agent = {
+    enable = true;
+    mutableSettings = true;
+  };
+
   # toolchains
   home.packages = with pkgs; [
     android-studio
