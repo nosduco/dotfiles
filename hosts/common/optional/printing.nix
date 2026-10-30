@@ -18,6 +18,26 @@
     ensureDefaultPrinter = "HP-DeskJet-2700-series";
   };
 
+  # scanning
+  hardware.sane = {
+    enable = true;
+    extraBackends = [
+      pkgs.sane-airscan
+      (pkgs.writeTextFile {
+        name = "airscan.conf";
+        destination = "/etc/sane.d/airscan.conf";
+        text = ''
+          [devices]
+          "HP DeskJet 2700" = http://HP28C5C89717BD.local:8080/eSCL
+
+          [options]
+          discovery = disable
+        '';
+      })
+    ];
+    disabledDefaultBackends = [ "escl" ];
+  };
+
   # discovery
   services.avahi = {
     enable = true;

@@ -181,5 +181,6 @@ in
     planify
     prusa-slicer
     redact
+    simple-scan
   ]);
 }
