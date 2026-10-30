@@ -70,7 +70,7 @@ in
     settings = {
       minimizeToTray = true;
       arRPC = true;
-      splashColor = colors.text;
+      enableSplashScreen = false;
       splashBackground = colors.crust;
       spellCheckLanguages = [
         "en-US"
@@ -177,6 +177,7 @@ in
     loupe
     mixxx
     multiviewer-for-f1
+    photocraft
     planify
     prusa-slicer
     redact
