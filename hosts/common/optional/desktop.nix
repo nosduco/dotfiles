@@ -118,6 +118,16 @@ in
     pulse.enable = true;
   };
 
+  # btrfs
+  systemd.services."btrfs-scrub@".unitConfig.OnFailure = [ "btrfs-scrub-failed.service" ];
+  systemd.services.btrfs-scrub-failed = {
+    serviceConfig.Type = "oneshot";
+    script = ''
+      ${config.systemd.package}/bin/systemd-run --user --machine=tony@ --quiet \
+        ${pkgs.libnotify}/bin/notify-send -u critical -a System System "btrfs scrub found errors. journalctl -u 'btrfs-scrub@*'"
+    '';
+  };
+
   # backup
   sops.secrets.kopia-password = {
     owner = "tony";
