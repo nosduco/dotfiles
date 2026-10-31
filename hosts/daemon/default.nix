@@ -21,4 +21,7 @@
 
   # qemu
   services.qemuGuest.enable = true;
+
+  # linger
+  users.users.tony.linger = true;
 }
