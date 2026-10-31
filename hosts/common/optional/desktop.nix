@@ -118,7 +118,21 @@ in
     pulse.enable = true;
   };
 
+  # backup
+  sops.secrets.kopia-password = {
+    owner = "tony";
+    key = "kopia-password-${config.networking.hostName}";
+  };
+
+  # tuxcloud
+  sops.secrets.rclone-tuxcloud.owner = "tony";
+
   # obsidian livesync
+  sops.secrets = {
+    livesync-user = { };
+    livesync-password = { };
+    livesync-passphrase = { };
+  };
   sops.templates."obsidian-livesync.json" = {
     owner = "tony";
     content = builtins.toJSON (

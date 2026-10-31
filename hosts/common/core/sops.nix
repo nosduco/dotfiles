@@ -14,7 +14,6 @@
 
   # secrets
   sops.secrets = {
-    rclone-tuxcloud.owner = "tony";
     ssh-hosts.owner = "tony";
     env.owner = "tony";
     syncthing-cert = {
@@ -25,12 +24,5 @@
       owner = "tony";
       key = "syncthing-key-${config.networking.hostName}";
     };
-    kopia-password = {
-      owner = "tony";
-      key = "kopia-password-${config.networking.hostName}";
-    };
-    livesync-user = { };
-    livesync-password = { };
-    livesync-passphrase = { };
   };
 }
