@@ -19,6 +19,9 @@
   # ssh
   networking.firewall.interfaces.ens18.allowedTCPPorts = [ 22 ];
 
+  # comin
+  services.comin.exporter.openFirewall = true;
+
   # qemu
   services.qemuGuest.enable = true;
 
