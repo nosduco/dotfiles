@@ -84,7 +84,7 @@ in
   dconf.settings."org/gnome/nm-applet".disable-connected-notifications = true;
 
   # hyprlock
-  programs.hyprlock.settings = import ../common/hyprland/hyprlock.nix {
+  programs.hyprlock.settings = import ../desktop/hyprland/hyprlock.nix {
     monitor = "";
     brightness = 0.4;
   };

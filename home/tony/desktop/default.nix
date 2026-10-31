@@ -1,0 +1,25 @@
+{
+  imports = [
+    ./apps.nix
+    ./backup.nix
+    ./cloud.nix
+    ./syncthing.nix
+    ./dev.nix
+    ./work.nix
+    ./audio.nix
+    ./dunst.nix
+    ./files
+    ./firefox
+    ./gtk
+    ./qt.nix
+    ./host.nix
+    ./ghostty.nix
+    ./swayosd.nix
+    ./voxtype.nix
+    ./crash
+    ./xdg.nix
+    ./hyprland
+    ./waybar
+    ./walker
+  ];
+}

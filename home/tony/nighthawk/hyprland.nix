@@ -39,5 +39,5 @@ in
   };
 
   # hyprlock
-  programs.hyprlock.settings = import ../common/hyprland/hyprlock.nix { monitor = monitors.main; };
+  programs.hyprlock.settings = import ../desktop/hyprland/hyprlock.nix { monitor = monitors.main; };
 }

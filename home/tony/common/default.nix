@@ -1,9 +1,6 @@
 {
   imports = [
     ./theme.nix
-    ./apps.nix
-    ./backup.nix
-    ./cloud.nix
     ./credentials.nix
     ./syncthing
     ./dev.nix
@@ -14,21 +11,6 @@
     ./ssh.nix
     ./neovim.nix
     ./cli.nix
-    ./audio.nix
-    ./dunst.nix
-    ./files
-    ./firefox
-    ./gtk
-    ./qt.nix
-    ./host.nix
-    ./ghostty.nix
-    ./swayosd.nix
-    ./voxtype.nix
-    ./crash
-    ./xdg.nix
-    ./hyprland
-    ./waybar
-    ./walker
   ];
 
   home.stateVersion = "26.05";

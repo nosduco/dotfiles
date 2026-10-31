@@ -96,6 +96,7 @@ in
   };
 
   # cursor
+  catppuccin.cursors.enable = true;
   home.pointerCursor = {
     enable = true;
     size = 24;

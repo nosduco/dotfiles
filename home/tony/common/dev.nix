@@ -26,12 +26,6 @@
   programs.fish.interactiveShellInit = "fnm env --use-on-cd | source";
   programs.fish.shellAliases.nvm = "fnm";
 
-  # clipboard
-  services.wl-clip-persist = {
-    enable = true;
-    clipboardType = "regular";
-  };
-
   # pi
   programs.pi-coding-agent = {
     enable = true;
@@ -40,7 +34,6 @@
 
   # toolchains
   home.packages = with pkgs; [
-    android-studio
     android-tools
     bun
     cargo-tauri

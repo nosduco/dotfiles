@@ -36,7 +36,6 @@ in
     enable = true;
     cert = osConfig.sops.secrets.syncthing-cert.path;
     key = osConfig.sops.secrets.syncthing-key.path;
-    tray.enable = true;
     settings = {
       devices.tux-hub = {
         id = "LI4KBIR-NDK6NQ2-PHOIWNF-JHSRWZ3-TLZJLMM-PA4CUSJ-IBLU3IN-3C5SUQL";

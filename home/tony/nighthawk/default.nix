@@ -1,6 +1,7 @@
 {
   imports = [
     ../common
+    ../desktop
     ./apps.nix
     ./streamcontroller.nix
     ./hyprland.nix

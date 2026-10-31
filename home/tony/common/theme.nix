@@ -12,7 +12,6 @@
     enable = true;
     autoEnable = true;
     accent = "peach";
-    cursors.enable = true;
   };
   _module.args.colors =
     let
