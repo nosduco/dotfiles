@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 {
   imports = [
     ../common/core
@@ -24,4 +24,19 @@
 
   # linger
   users.users.tony.linger = true;
+
+  # ovis
+  systemd.services.tailscale-serve-ovis = {
+    after = [
+      "tailscaled.service"
+      "tailscaled-set.service"
+    ];
+    wants = [ "tailscaled.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${lib.getExe config.services.tailscale.package} serve --bg --https=443 http://127.0.0.1:7317";
+    };
+  };
 }
