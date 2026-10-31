@@ -80,6 +80,10 @@
           specialArgs = { inherit inputs; };
           modules = [ ./hosts/voyager ];
         };
+        daemon = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [ ./hosts/daemon ];
+        };
       };
 
       # install
