@@ -40,6 +40,9 @@ if [[ ! -r $age_key ]] || [[ $(age-keygen -y "$age_key") != "$dotfiles_pub" ]]; 
   exit 1
 fi
 
+# encryption
+luks=$(nix eval --raw -f "hosts/$host/disko.nix" disko.devices.disk.main.content.partitions.root.content.type)
+
 # extra files
 tmp=$(mktemp -d -p "${XDG_RUNTIME_DIR:?}")
 trap 'rm -rf "$tmp"' EXIT
@@ -70,13 +73,15 @@ if [[ $answer != "$host" ]]; then
 fi
 
 # luks passphrase
-read -rsp "disk passphrase: " pass
-echo
-read -rsp "disk passphrase again: " pass2
-echo
-if [[ -z $pass || $pass != "$pass2" ]]; then
-  echo "passphrases are empty or differ" >&2
-  exit 1
+if [[ $luks == luks ]]; then
+  read -rsp "disk passphrase: " pass
+  echo
+  read -rsp "disk passphrase again: " pass2
+  echo
+  if [[ -z $pass || $pass != "$pass2" ]]; then
+    echo "passphrases are empty or differ" >&2
+    exit 1
+  fi
 fi
 
 # commit
@@ -86,9 +91,14 @@ if ! git diff --quiet -- "$hw"; then
 fi
 
 # install
-"${anywhere[@]}" --phases disko,install \
-  --disk-encryption-keys /tmp/secret.key <(printf %s "$pass") \
-  --extra-files "$tmp/extra"
+install_host() {
+  "${anywhere[@]}" --phases disko,install --extra-files "$tmp/extra" "$@"
+}
+if [[ $luks == luks ]]; then
+  install_host --disk-encryption-keys /tmp/secret.key <(printf %s "$pass")
+else
+  install_host
+fi
 
 # reboot
 if [[ $(nix eval ".#nixosConfigurations.$host.config" --apply 'c: c.boot.lanzaboote.enable or false') == true ]]; then

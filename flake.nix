@@ -94,7 +94,9 @@
         map (
           h:
           let
-            swap = (import ./hosts/${h}/disko.nix).disko.devices.disk.main.content.partitions ? swap;
+            partitions = (import ./hosts/${h}/disko.nix).disko.devices.disk.main.content.partitions;
+            swap = partitions ? swap;
+            luks = partitions.root.content.type == "luks";
           in
           lib.nameValuePair "${h}-disko" (
             inputs.disko.lib.testLib.makeDiskoTest {
@@ -102,29 +104,30 @@
               name = "${h}-disko";
               disko-config = ./hosts/${h}/disko.nix;
               extraInstallerConfig.virtualisation.emptyDiskImages = lib.mkForce [ 102400 ];
-              enableOCR = true;
-              bootCommands = ''
+              enableOCR = luks;
+              bootCommands = lib.optionalString luks ''
                 machine.wait_for_text("[Pp]assphrase for")
                 machine.send_chars("secretsecret\n")
               '';
-              extraTestScript = ''
-                machine.succeed("cryptsetup isLuks /dev/vda2")
-              ''
-              + lib.optionalString swap ''
-                machine.succeed("cryptsetup isLuks /dev/vda3")
-              ''
-              + ''
-                for m in ["/", "/home", "/nix", "/var/log"]:
-                    machine.succeed(f"findmnt -no FSTYPE {m} | grep -qx btrfs")
-                machine.succeed("findmnt -no OPTIONS / | grep -q compress=zstd")
-              ''
-              + lib.optionalString swap ''
-                machine.succeed("swapon --show=NAME --noheadings | grep -q dm-")
-                machine.succeed("test \"$(cat /sys/power/resume)\" != 0:0")
-              ''
-              + ''
-                machine.shutdown()
-              '';
+              extraTestScript =
+                lib.optionalString luks ''
+                  machine.succeed("cryptsetup isLuks /dev/vda2")
+                ''
+                + lib.optionalString (luks && swap) ''
+                  machine.succeed("cryptsetup isLuks /dev/vda3")
+                  machine.succeed("swapon --show=NAME --noheadings | grep -q dm-")
+                ''
+                + ''
+                  for m in ["/", "/home", "/nix", "/var/log"]:
+                      machine.succeed(f"findmnt -no FSTYPE {m} | grep -qx btrfs")
+                  machine.succeed("findmnt -no OPTIONS / | grep -q compress=zstd")
+                ''
+                + lib.optionalString swap ''
+                  machine.succeed("test \"$(cat /sys/power/resume)\" != 0:0")
+                ''
+                + ''
+                  machine.shutdown()
+                '';
             }
           )
         ) diskoHosts

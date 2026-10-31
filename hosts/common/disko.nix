@@ -1,21 +1,27 @@
 {
   device,
   swap ? null,
+  encrypt ? true,
 }:
 let
   btrfs = [
     "compress=zstd"
     "noatime"
   ];
-  luks = name: content: {
-    type = "luks";
-    inherit name content;
-    passwordFile = "/tmp/secret.key";
-    settings = {
-      allowDiscards = true;
-      crypttabExtraOpts = [ "tpm2-device=auto" ];
-    };
-  };
+  luks =
+    name: content:
+    if encrypt then
+      {
+        type = "luks";
+        inherit name content;
+        passwordFile = "/tmp/secret.key";
+        settings = {
+          allowDiscards = true;
+          crypttabExtraOpts = [ "tpm2-device=auto" ];
+        };
+      }
+    else
+      content;
 in
 {
   # disk

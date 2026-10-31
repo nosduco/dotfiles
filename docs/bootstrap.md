@@ -22,7 +22,7 @@ Install a host from another machine with one command. The target only runs the N
 nix run .#install -- <host> <ip>
 ```
 
-It asks for the installer root password, the host name to confirm the wipe, and the disk passphrase twice. It commits and pushes the generated `hardware-configuration.nix` before installing, so comin (voyager) deploys the same commit on first boot. It ends by rebooting the target into firmware setup (Secure Boot hosts) or a normal reboot.
+It asks for the installer root password, the host name to confirm the wipe, and, for LUKS hosts, the disk passphrase twice (hosts with `encrypt = false` in `disko.nix` skip it). It commits and pushes the generated `hardware-configuration.nix` before installing, so comin (voyager) deploys the same commit on first boot. It ends by rebooting the target into firmware setup (Secure Boot hosts) or a normal reboot.
 
 ## 3. Target: Secure Boot
 
@@ -35,7 +35,7 @@ Hosts importing `hosts/common/optional/secureboot.nix`. Keys are generated on th
 
 ## 4. Target: TPM unlock
 
-Only after step 3, since enrolling the keys changes PCR 7. Save both recovery keys in Bitwarden.
+LUKS hosts only. Only after step 3, since enrolling the keys changes PCR 7. Save both recovery keys in Bitwarden.
 
 ```bash
 for p in root swap; do sudo systemd-cryptenroll --recovery-key /dev/disk/by-partlabel/disk-main-$p; done
