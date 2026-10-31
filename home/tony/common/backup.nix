@@ -32,13 +32,7 @@ let
     ".gradle"
     ".next"
     ".turbo"
-    # images
-    "*.qcow2"
-    "*.vmdk"
-    "*.vdi"
-    "*.iso"
     # temp
-    "*.log"
     "*.swp"
     "*.part"
   ];
