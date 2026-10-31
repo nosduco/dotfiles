@@ -56,6 +56,9 @@ function M.start(steps, opts)
       return
     end
     opened[s.class] = w
+    if s.group and opened[s.focus] and opened[s.focus].group then
+      opened[s.focus].group:add(w)
+    end
     if s.ratio then
       hl.dispatch(hl.dsp.focus({ window = w }))
       hl.dispatch(hl.dsp.layout("splitratio " .. s.ratio .. " exact"))
