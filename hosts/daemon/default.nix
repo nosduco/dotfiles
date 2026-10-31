@@ -22,6 +22,14 @@
   # comin
   services.comin.exporter.openFirewall = true;
 
+  # node exporter
+  services.prometheus.exporters.node = {
+    enable = true;
+    enabledCollectors = [ "systemd" ];
+    extraFlags = [ "--collector.disable-defaults" ];
+    openFirewall = true;
+  };
+
   # qemu
   services.qemuGuest.enable = true;
 
