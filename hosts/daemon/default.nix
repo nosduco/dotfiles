@@ -16,6 +16,9 @@
   # tailscale
   services.tailscale.extraSetFlags = lib.mkForce [ "--ssh" ];
 
+  # ssh
+  networking.firewall.interfaces.ens18.allowedTCPPorts = [ 22 ];
+
   # qemu
   services.qemuGuest.enable = true;
 }
