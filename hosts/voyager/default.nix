@@ -2,6 +2,7 @@
   imports = [
     ../common/core
     ../common/optional/comin.nix
+    ../common/optional/comin-desktop.nix
     ../common/optional/desktop.nix
     ../common/optional/dev.nix
     ../common/optional/gaming.nix
