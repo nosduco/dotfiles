@@ -6,4 +6,7 @@
     ./hyprland.nix
     ./waybar.nix
   ];
+
+  # tide
+  tide.contextColor = "mauve";
 }

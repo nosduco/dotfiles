@@ -1,5 +1,6 @@
 {
   colors,
+  config,
   lib,
   pkgs,
   ...
@@ -52,9 +53,9 @@ let
     pwd_icon_home = "\\x1d";
     pwd_icon_unwritable = "\\x1d";
     context_always_display = "true";
-    context_color_default = (c "red");
+    context_color_default = (c config.tide.contextColor);
     context_color_root = (c "green");
-    context_color_ssh = (c "red");
+    context_color_ssh = (c config.tide.contextColor);
     git_icon = "' '";
     git_color_branch = (c "mauve");
     git_color_dirty = (c "yellow");
@@ -95,7 +96,12 @@ let
 in
 {
   # tide
-  xdg.configFile."fish/conf.d/tide.fish".text = ''
+  options.tide.contextColor = lib.mkOption {
+    type = lib.types.str;
+    default = "red";
+  };
+
+  config.xdg.configFile."fish/conf.d/tide.fish".text = ''
     string match -r '^set -g _tide_color_.*' < ${src}/functions/_tide_sub_configure.fish | source
     string replace -r '^' 'set -g ' < ${src}/functions/tide/configure/icons.fish | source
     string replace -r '^' 'set -g ' < ${src}/functions/tide/configure/configs/lean.fish | source

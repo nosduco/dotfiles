@@ -2,6 +2,9 @@
 {
   imports = [ ../common ];
 
+  # tide
+  tide.contextColor = "green";
+
   # herdr server
   systemd.user.services.herdr = {
     Unit = {
