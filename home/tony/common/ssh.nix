@@ -7,19 +7,20 @@
     includes = [ osConfig.sops.secrets.ssh-hosts.path ];
     settings = {
       "*".AddKeysToAgent = "yes";
-      "pve.tux" = {
+      "pve pve.tux" = {
         HostName = "pve.tux.nosnet";
         User = "root";
         ForwardAgent = "yes";
       };
-      "gameserver.tux" = {
+      "gameserver gameserver.tux" = {
         HostName = "gameserver.tux.nosnet";
         User = "tony";
       };
-      "home.tux" = {
+      "home home.tux" = {
         HostName = "home.tux.nosnet";
         User = "root";
       };
+      "daemon daemon.tux".HostName = "daemon.tux.nosnet";
     };
   };
 }
