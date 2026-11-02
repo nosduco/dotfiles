@@ -1,6 +1,6 @@
 title=${NTFY_TITLE:-$NTFY_TOPIC}
 case "${NTFY_PRIORITY:-3}" in
-  1 | 2) urgency=low ;;
+  1 | 2) exit 0 ;;
   4 | 5) urgency=critical ;;
   *) urgency=normal ;;
 esac
