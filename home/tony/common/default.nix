@@ -11,7 +11,7 @@
     ./ssh.nix
     ./neovim.nix
     ./cli.nix
-    ./herdr.nix
+    ./herdr
   ];
 
   home.stateVersion = "26.05";

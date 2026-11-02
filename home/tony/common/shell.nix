@@ -19,6 +19,7 @@ let
         ext=$(grep -m1 '^image/' <<<"$types" | cut -d/ -f2 | cut -d';' -f1)
         file="/tmp/clip_$(date +%s).''${ext}"
         wl-paste > "$file"
+        if [ -n "''${1:-}" ]; then scp -q "$file" "$1:$file"; fi
         printf '%q' "$file"
       else
         wl-paste --no-newline
@@ -159,7 +160,7 @@ in
       bind -n M-k if-shell "$is_vim" 'send-keys M-k' 'resize-pane -U 3'
       bind -n M-l if-shell "$is_vim" 'send-keys M-l' 'resize-pane -R 3'
       is_herdr="ps -o state= -o comm= -t '#{pane_tty}' | grep -qE '^[^TXZ ]+ +herdr$'"
-      bind -n C-v if-shell "$is_vim || $is_herdr" 'send-keys C-v' 'run-shell -b "${lib.getExe image-buffer-to-path} | tmux load-buffer -; tmux paste-buffer"'
+      bind -n C-v if-shell "$is_vim || $is_herdr" 'send-keys C-v' 'run-shell -b "${lib.getExe image-buffer-to-path} #{@ag_target} | tmux load-buffer -; tmux paste-buffer"'
     '';
   };
 }
