@@ -45,6 +45,11 @@
         foreground = colors.text;
         frame_color = colors.accent;
       };
+      ntfy_image = {
+        category = "ntfy.image";
+        icon_position = "top";
+        max_icon_size = 292;
+      };
     };
   };
   xdg.configFile."dunst/dunstrc".onChange = "${lib.getExe' config.services.dunst.package "dunstctl"} reload || true";

@@ -17,6 +17,7 @@
     ./swayosd.nix
     ./voxtype.nix
     ./crash
+    ./ntfy
     ./xdg.nix
     ./hyprland
     ./waybar

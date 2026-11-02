@@ -137,6 +137,9 @@ in
   # tuxcloud
   sops.secrets.rclone-tuxcloud.owner = "tony";
 
+  # ntfy
+  sops.secrets.ntfy-token.owner = "tony";
+
   # obsidian livesync
   sops.secrets = {
     livesync-user = { };
