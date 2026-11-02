@@ -61,7 +61,7 @@ in
   # tmux
   programs.tmux.extraConfig = ''
     bind h new-window -S -n herdr ${lib.getExe config.programs.herdr.package}
-    bind T run-shell -b "${lib.getExe tp} '#{pane_id}'"
+    bind t run-shell -b "${lib.getExe tp} '#{pane_id}'"
     set -g pane-border-format "#{?@ag_host, #{?@ag_target,#[fg=${colors.green}],#[fg=${
       colors.${config.tide.contextColor}
     }]}#{@ag_host}#[default] #{@ag_agent} #{@ag_dir} ,}"
