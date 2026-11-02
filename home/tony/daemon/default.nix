@@ -6,17 +6,7 @@
   tide.contextColor = "green";
 
   # herdr server
-  systemd.user.services.herdr = {
-    Unit = {
-      Description = "herdr server";
-      X-SwitchMethod = "keep-old";
-    };
-    Service = {
-      ExecStart = "${lib.getExe config.programs.herdr.package} server";
-      Restart = "on-failure";
-    };
-    Install.WantedBy = [ "default.target" ];
-  };
+  systemd.user.services.herdr.Install.WantedBy = [ "default.target" ];
 
   # herdr integrations
   home.activation.herdrIntegrations = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
