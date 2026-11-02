@@ -50,13 +50,29 @@ in
   '';
 
   # fish
-  programs.fish.functions.__herdr_agent_exit = {
-    onEvent = "fish_postexec";
-    body = ''
-      set -q HERDR_PANE_ID; or return
-      string match -qr '^(exec )?(claude|codex|pi)\b' -- $argv[1]; and exit
-    '';
-  };
+  programs.fish.functions =
+    lib.mapAttrs
+      (agent: starts: ''
+        if status is-interactive; and not set -q HERDR_PANE_ID; and string match -qr '^(${starts})?$' -- "$argv"
+          ag ${agent} $argv
+        else
+          command ${agent} $argv
+        end
+      '')
+      {
+        claude = ''-c|--continue|(-r|--resume)( \S+)?'';
+        codex = ''resume( \S+)?'';
+        pi = ''-c|--continue|-r|--resume|--session \S+'';
+      }
+    // {
+      __herdr_agent_exit = {
+        onEvent = "fish_postexec";
+        body = ''
+          set -q HERDR_PANE_ID; or return
+          string match -qr '^(exec )?(claude|codex|pi)\b' -- $argv[1]; and exit
+        '';
+      };
+    };
 
   # tmux
   programs.tmux.extraConfig = ''
