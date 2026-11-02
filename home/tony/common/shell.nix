@@ -158,7 +158,8 @@ in
       bind -n M-j if-shell "$is_vim" 'send-keys M-j' 'resize-pane -D 3'
       bind -n M-k if-shell "$is_vim" 'send-keys M-k' 'resize-pane -U 3'
       bind -n M-l if-shell "$is_vim" 'send-keys M-l' 'resize-pane -R 3'
-      bind -n C-v if-shell "$is_vim" 'send-keys C-v' 'run-shell -b "${lib.getExe image-buffer-to-path} | tmux load-buffer -; tmux paste-buffer"'
+      is_herdr="ps -o state= -o comm= -t '#{pane_tty}' | grep -qE '^[^TXZ ]+ +herdr$'"
+      bind -n C-v if-shell "$is_vim || $is_herdr" 'send-keys C-v' 'run-shell -b "${lib.getExe image-buffer-to-path} | tmux load-buffer -; tmux paste-buffer"'
     '';
   };
 }
