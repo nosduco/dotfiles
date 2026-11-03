@@ -32,6 +32,12 @@
     mutableSettings = true;
   };
 
+  # python
+  programs.uv = {
+    enable = true;
+    settings.python-preference = "system";
+  };
+
   # toolchains
   home.packages = with pkgs; [
     android-tools
@@ -46,7 +52,6 @@
     ruby
     rustup
     trunk
-    uv
     yarn
 
     # ai
