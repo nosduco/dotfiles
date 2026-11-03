@@ -9,6 +9,7 @@ hl.bind(mod .. " + E", hl.dsp.exec_cmd("EDITOR=vim ghostty -e yazi"), { descript
 hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd("uwsm app -- nautilus"), { description = "Files (nautilus)" })
 hl.bind(mod .. " + B", hl.dsp.exec_cmd("ghostty -e btop"), { description = "btop" })
 hl.bind(mod .. " + Space", hl.dsp.exec_cmd("walker"), { description = "Launcher" })
+hl.bind(mod .. " + T", hl.dsp.exec_cmd("io.github.alainm23.planify.quick-add"), { description = "Quick add todo" })
 hl.bind(mod .. " + slash", hl.dsp.exec_cmd("keybinds"), { description = "Keybinds" })
 
 -- layout

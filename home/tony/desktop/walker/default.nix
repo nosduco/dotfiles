@@ -42,7 +42,6 @@ in
         "calc"
         "clipboard"
         "menus"
-        "todo"
       ];
     };
   };
@@ -149,10 +148,6 @@ in
           {
             prefix = "$";
             provider = "clipboard";
-          }
-          {
-            prefix = "!";
-            provider = "todo";
           }
         ];
       };

@@ -164,6 +164,9 @@ in
     };
   };
 
+  # planify
+  dconf.settings."io/github/alainm23/planify".run-in-background = true;
+
   # apps
   home.packages = [
     claude-desktop
