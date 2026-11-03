@@ -27,17 +27,6 @@ in
     PROTON_ENABLE_NGX_UPDATER = "1";
   };
 
-  # hypridle
-  services.hypridle.settings = {
-    listener = [
-      {
-        timeout = 600;
-        on-timeout = "hyprctl dispatch 'hl.dsp.dpms({ action = \"disable\" })'";
-        on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'";
-      }
-    ];
-  };
-
   # hyprlock
   programs.hyprlock.settings = import ../desktop/hyprland/hyprlock.nix { monitor = monitors.main; };
 }

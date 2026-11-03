@@ -46,11 +46,6 @@ in
         on-resume = "brightnessctl -r";
       }
       {
-        timeout = 330;
-        on-timeout = "hyprctl dispatch 'hl.dsp.dpms({ action = \"disable\" })'";
-        on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })' && brightnessctl -r";
-      }
-      {
         timeout = 300;
         on-timeout = lib.getExe low-battery-suspend;
       }

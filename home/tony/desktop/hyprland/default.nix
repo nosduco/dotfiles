@@ -141,6 +141,13 @@ in
           timeout = 300;
           on-timeout = "pidof hyprlock || hyprlock --grace 3";
         }
+        {
+          timeout = 5;
+          condition_cmd = "pidof hyprlock";
+          condition_retry = 5;
+          ignore_inhibit = true;
+          on-timeout = "hyprctl dispatch 'hl.dsp.dpms({ action = \"disable\" })'";
+        }
       ];
     };
   };
