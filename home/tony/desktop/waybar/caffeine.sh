@@ -9,6 +9,14 @@ running() {
   pgrep -f "^systemd-inhibit .*--who=$TAG" >/dev/null
 }
 
+# other idle blockers: logind locks and hyprland windows
+inhibitors() {
+  busctl --json=short call org.freedesktop.login1 /org/freedesktop/login1 \
+    org.freedesktop.login1.Manager ListInhibitors |
+    jq -r '.data[0][] | select((.[0] | split(":") | index("idle")) and .[3] == "block") | @html "\(.[1]): \(.[2])"'
+  hyprctl clients -j | jq -r '.[] | select(.inhibitingIdle) | @html "\(.class) (window)"'
+}
+
 case "$1" in
   toggle)
     if running; then
@@ -35,6 +43,8 @@ case "$1" in
   status)
     if running; then
       printf '{"alt":"activated","class":"activated","tooltip":"Caffeine on: idle/sleep/lid suspend blocked"}\n'
+    elif others=$(inhibitors); [[ -n $others ]]; then
+      jq -cn --arg t "$others" '{alt: "activated", class: "inhibited", tooltip: ("Idle inhibited by:\n" + $t)}'
     else
       printf '{"alt":"deactivated","class":"deactivated","tooltip":"Caffeine off"}\n'
     fi

@@ -82,6 +82,10 @@ window#waybar.solo {
   margin-left: 4px;
 }
 
+#custom-caffeine.inhibited {
+  color: @yellow;
+}
+
 #custom-nightlight {
   margin-top: 2px;
 }

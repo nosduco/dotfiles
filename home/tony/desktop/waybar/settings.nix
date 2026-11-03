@@ -84,7 +84,7 @@
       activated = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰅶</span>";
       deactivated = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰾫</span>";
     };
-    interval = "once";
+    interval = 5;
     on-click = "waybar-caffeine toggle";
     return-type = "json";
     signal = 8;

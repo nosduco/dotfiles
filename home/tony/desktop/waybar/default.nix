@@ -10,6 +10,7 @@ let
     name = "waybar-caffeine";
     runtimeInputs = with pkgs; [
       coreutils
+      jq
       libnotify
       procps
       systemd
