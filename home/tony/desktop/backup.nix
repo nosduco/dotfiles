@@ -112,6 +112,7 @@ in
   config = {
     # kopia
     backup.sources = [
+      ".claude"
       ".config"
       ".gnupg"
       ".ssh"
@@ -123,6 +124,27 @@ in
       "videos"
       "work"
     ];
+    home.file.".claude/.kopiaignore".text = ''
+      *
+      !/CLAUDE.md
+      !/RTK.md
+      !/settings.json
+      !/commands/
+      !/commands/**
+      !/hooks/
+      !/hooks/**
+      !/spec/
+      !/spec/**
+      !/plans/
+      !/plans/**
+      !/projects/
+      !/projects/*/
+      !/projects/*/memory/
+      !/projects/*/memory/**
+      !/plugins/
+      !/plugins/claude-hud/
+      !/plugins/claude-hud/config.json
+    '';
     home.packages = with pkgs; [
       kopia
       kopia-ui
