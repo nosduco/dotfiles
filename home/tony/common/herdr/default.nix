@@ -96,6 +96,7 @@ in
     Service = {
       ExecStart = "${lib.getExe config.programs.herdr.package} server";
       Restart = "on-failure";
+      OOMPolicy = "continue";
     };
   };
 }

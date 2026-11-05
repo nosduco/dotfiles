@@ -25,7 +25,11 @@
   # node exporter
   services.prometheus.exporters.node = {
     enable = true;
-    enabledCollectors = [ "systemd" ];
+    enabledCollectors = [
+      "systemd"
+      "meminfo"
+      "pressure"
+    ];
     extraFlags = [ "--collector.disable-defaults" ];
     openFirewall = true;
   };
@@ -33,16 +37,28 @@
   # qemu
   services.qemuGuest.enable = true;
 
+  # earlyoom
+  services.earlyoom = {
+    enable = true;
+    extraArgs = [
+      "--ignore"
+      "^(herdr|[.]claude-wrapped|codex|[.]?pi(-wrapped)?)$"
+    ];
+  };
+
+  # sysrq
+  boot.kernel.sysctl."kernel.sysrq" = 80;
+
   # linger
   users.users.tony.linger = true;
 
   # ovis
   systemd.services.tailscale-serve-ovis = {
     after = [
-      "tailscaled.service"
+      "tailscale-online.target"
       "tailscaled-set.service"
     ];
-    wants = [ "tailscaled.service" ];
+    wants = [ "tailscale-online.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
