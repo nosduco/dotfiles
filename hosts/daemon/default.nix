@@ -46,6 +46,9 @@
     ];
   };
 
+  # zram
+  zramSwap.memoryPercent = 100;
+
   # sysrq
   boot.kernel.sysctl."kernel.sysrq" = 80;
 
