@@ -96,10 +96,8 @@ in
 
   # keyring
   services.gnome.gnome-keyring.enable = true;
-  programs.ssh = {
-    enableAskPassword = true;
-    askPassword = "${pkgs.gcr_4}/libexec/gcr4-ssh-askpass";
-  };
+  programs.seahorse.enable = true;
+  programs.ssh.enableAskPassword = true;
   environment.sessionVariables.SSH_ASKPASS_REQUIRE = "prefer";
 
   # greeter
