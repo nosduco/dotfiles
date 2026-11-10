@@ -59,6 +59,10 @@
     # voxtype
     voxtype.url = "github:peteonrails/voxtype/v1.1.1";
     voxtype.inputs.nixpkgs.follows = "nixpkgs";
+
+    # millennium
+    millennium.url = "github:SteamClientHomebrew/Millennium/f7a356f6789bc7d23f44bfbcdd95c71f0385cc1a?dir=packages/nix";
+    millennium.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
