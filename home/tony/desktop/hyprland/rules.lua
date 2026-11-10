@@ -4,7 +4,7 @@ hl.window_rule({ match = { title = "^(waybar)" }, float = true, border_size = 0 
 hl.window_rule({ match = { title = "^(FileChooser)" }, float = true, size = { "(monitor_w*0.6)", "(monitor_h*0.7)" }, center = true })
 hl.window_rule({ match = { title = "^(wiremix|bluetui)$" }, float = true, size = { 800, 600 }, center = true })
 hl.window_rule({ match = { title = "^(Obsidian)" }, float = true })
-hl.window_rule({ match = { class = "^(steam)$", title = "^()$" }, stay_focused = true, min_size = { 1, 1 } })
+hl.window_rule({ match = { class = "^(steam)$", title = "^()$" }, stay_focused = true, min_size = { 1, 1 }, no_anim = true })
 hl.window_rule({ match = { class = "^(steam_app_[0-9]+)$" }, idle_inhibit = "focus" })
 hl.window_rule({ match = { class = "^()$", title = "^()$", xwayland = true, float = true, fullscreen = false, pin = false }, no_focus = true })
 hl.window_rule({ match = { class = "^(spotify)$" }, tile = true })
