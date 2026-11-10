@@ -29,8 +29,8 @@ let
         notify generation "$(git rev-parse origin/main)" "Generation available" "$(git log --format=%s main..origin/main)"
       fi
 
-      age=$(( ($(date +%s) - $(git log -1 --format=%ct main -- flake.lock)) / 86400 ))
-      if [ "$age" -ge 7 ] && git rev-parse -q --verify origin/flake-update >/dev/null; then
+      age=$(( ($(date +%s) - $(git log -1 --format=%ct --grep='^chore(flake): update inputs' main -- flake.lock)) / 86400 ))
+      if [ "$age" -ge 7 ] && [ "$(git rev-parse -q --verify origin/flake-update^)" = "$(git rev-parse origin/main)" ]; then
         inputs=$(jq -r --argjson new "$(git show origin/flake-update:flake.lock)" '
           def mods: .nodes as $n | $n[.root].inputs | with_entries(select(.value | type == "string") | .value = $n[.value].locked.lastModified);
           mods as $old | [$new | mods | to_entries[] | select($old[.key] and .value > $old[.key]) | .key] | join(", ")
@@ -63,8 +63,8 @@ let
         exit 1
       fi
       git pull --quiet --ff-only --prune
-      if ! git rev-parse -q --verify origin/flake-update >/dev/null || git diff --quiet HEAD origin/flake-update -- flake.lock; then
-        echo "No updates"
+      if [ "$(git rev-parse -q --verify origin/flake-update^)" != "$(git rev-parse HEAD)" ]; then
+        echo "No prebuilt update for this commit"
         exit 0
       fi
       git checkout origin/flake-update -- flake.lock
