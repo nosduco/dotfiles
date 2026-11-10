@@ -117,6 +117,32 @@ in
   );
   xdg.dataFile."mangohud/.keep".text = "";
 
+  # millennium
+  xdg.dataFile."Steam/millennium/themes/Adwaita".source = pkgs.fetchFromGitHub {
+    owner = "nosduco";
+    repo = "Adwaita-for-Steam";
+    rev = "c13bbf4e3df2eb7ebe01b0a3e38597efbf1f6e57";
+    hash = "sha256-+t0t5OWudV8HIr06e/dFwBaaAqL7WbE7laM7ENMS5bw=";
+  };
+  xdg.configFile."millennium/config.json" = {
+    force = true;
+    text = builtins.toJSON {
+      general = {
+        checkForMillenniumUpdates = false;
+        checkForPluginAndThemeUpdates = false;
+        accentColor = colors.accent;
+      };
+      misc.hasShownWelcomeModal = true;
+      themes = {
+        activeTheme = "Adwaita";
+        conditions.Adwaita = {
+          "Color theme" = "Catppuccin ${lib.toSentenceCase config.catppuccin.flavor}";
+          "Accent color" = "System";
+        };
+      };
+    };
+  };
+
   # media
   programs.mpv = {
     enable = true;
