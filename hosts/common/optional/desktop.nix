@@ -44,14 +44,18 @@ in
   # hyprlock
   programs.hyprlock = {
     enable = true;
-    package = pkgs.hyprlock.overrideAttrs (old: {
-      patches = (old.patches or [ ]) ++ [
-        (pkgs.fetchpatch {
-          url = "https://github.com/hyprwm/hyprlock/commit/69dc06ac0e04c75a95b1ffdf71992bfb03663c3f.patch";
-          hash = "sha256-8rv4kKGonK6L/h+sv2tiyWv0BvN/6sfUx/21I9txXlg=";
-        })
-      ];
-    });
+    package =
+      if lib.versionOlder "0.9.7" pkgs.hyprlock.version then
+        lib.warn "hyprlock ${pkgs.hyprlock.version} has the buffer fix: drop the patch" pkgs.hyprlock
+      else
+        pkgs.hyprlock.overrideAttrs (old: {
+          patches = (old.patches or [ ]) ++ [
+            (pkgs.fetchpatch {
+              url = "https://github.com/hyprwm/hyprlock/commit/69dc06ac0e04c75a95b1ffdf71992bfb03663c3f.patch";
+              hash = "sha256-8rv4kKGonK6L/h+sv2tiyWv0BvN/6sfUx/21I9txXlg=";
+            })
+          ];
+        });
   };
 
   # portals
