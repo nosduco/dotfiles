@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ../common/core
@@ -18,6 +23,28 @@
 
   # ssh
   networking.firewall.interfaces.ens18.allowedTCPPorts = [ 22 ];
+
+  # docker
+  virtualisation.docker.enable = lib.mkForce false;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+
+  # auth logs
+  services.rsyslogd = {
+    enable = true;
+    defaultConfig = "";
+    extraConfig = ''
+      if $syslogfacility-text == "auth" or $syslogfacility-text == "authpriv" then {
+        action(type="omfwd" target="10.8.40.14" port="514" protocol="tcp" template="RSYSLOG_SyslogProtocol23Format" TCP_Framing="octet-counted" KeepAlive="on" queue.type="LinkedList" queue.size="10000" action.resumeRetryCount="-1")
+      }
+    '';
+  };
+  systemd.services.auth-log-heartbeat = {
+    startAt = "hourly";
+    serviceConfig.ExecStart = "${pkgs.util-linux}/bin/logger -p auth.info -t auth-heartbeat ok";
+  };
 
   # comin
   services.comin.exporter.openFirewall = true;
