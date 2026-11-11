@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   imports = [ ../common ];
 
@@ -14,4 +14,7 @@
     DO_NOT_TRACK=1
     OVIS_AUTO_UPDATE=0
   '';
+
+  # sops
+  home.sessionVariables.SOPS_AGE_KEY_CMD = "age -d ${config.xdg.configHome}/sops/age/keys.txt.age";
 }
