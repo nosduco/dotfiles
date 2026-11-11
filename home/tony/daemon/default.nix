@@ -13,6 +13,7 @@
     OVIS_TELEMETRY=0
     DO_NOT_TRACK=1
     OVIS_AUTO_UPDATE=0
+    OVIS_TAILSCALE_OWNER=nosduco@gmail.com
   '';
 
   # sops
