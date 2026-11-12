@@ -4,5 +4,8 @@
   home.packages = [ pkgs.nvtopPackages.amd ];
 
   # voxtype
-  programs.voxtype.model.name = "base.en";
+  services.voxtype.settings.whisper.model = "${pkgs.fetchurl {
+    url = "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin";
+    hash = "sha256-oDd5yG3zMjB19eeWyyzlAp8A7Ihp7uP9+4l6/jbG0AI=";
+  }}";
 }
