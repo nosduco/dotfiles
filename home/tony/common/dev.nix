@@ -43,12 +43,10 @@
     android-tools
     bun
     cargo-tauri
-    dioxus-cli
     fnm
     nodejs
     pnpm
     python3
-    rojo
     ruby
     rustup
     trunk
