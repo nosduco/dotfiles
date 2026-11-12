@@ -152,8 +152,31 @@ in
   # spotify
   programs.spicetify = {
     enable = true;
-    theme = spicePkgs.themes.catppuccin;
-    colorScheme = config.catppuccin.flavor;
+    theme = spicePkgs.themes.text;
+    customColorScheme = lib.mapAttrs (_: lib.removePrefix "#") {
+      accent = colors.accent;
+      accent-active = colors.accent;
+      accent-inactive = colors.base;
+      banner = colors.accent;
+      border-active = colors.accent;
+      border-inactive = colors.surface0;
+      header = colors.surface2;
+      highlight = colors.surface2;
+      main = colors.base;
+      notification = colors.blue;
+      notification-error = colors.red;
+      subtext = colors.subtext0;
+      text = colors.text;
+    };
+    enabledSnippets = [
+      ''
+        :root {
+          --display-coverart-image: block;
+          --display-header-image: block;
+          --display-tracklist-image: block;
+        }
+      ''
+    ];
     experimentalFeatures = true;
   };
 
