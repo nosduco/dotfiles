@@ -1,18 +1,12 @@
-{ inputs, lib, pkgs, ... }:
+{ pkgs, ... }:
 {
-  # millennium
-  nixpkgs.overlays = [ inputs.millennium.overlays.default ];
-
   # steam
   programs.steam = {
     enable = true;
     protontricks.enable = true;
     extraCompatPackages = [ pkgs.proton-ge-bin ];
     extraPackages = [ pkgs.mangohud ];
-    package =
-      lib.warnIf (pkgs ? steamWithMillennium)
-        "nixos-unstable has steamWithMillennium: drop the millennium input and overlay"
-        (pkgs.millennium-steam.override { extraEnv.MANGOHUD = true; });
+    package = pkgs.steamWithMillennium.override { extraEnv.MANGOHUD = true; };
   };
 
   # gamescope

@@ -55,10 +55,6 @@
     # aws vpn client
     awsvpnclient-nix.url = "github:AddG0/awsvpnclient-nix/b187895a5f5998adc9bbc14ca8cdaa24e39ddd5a";
     awsvpnclient-nix.inputs.nixpkgs.follows = "nixpkgs";
-
-    # millennium
-    millennium.url = "github:SteamClientHomebrew/Millennium/f7a356f6789bc7d23f44bfbcdd95c71f0385cc1a?dir=packages/nix";
-    millennium.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
