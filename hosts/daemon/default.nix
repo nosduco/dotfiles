@@ -56,8 +56,12 @@
       "systemd"
       "meminfo"
       "pressure"
+      "filesystem"
     ];
-    extraFlags = [ "--collector.disable-defaults" ];
+    extraFlags = [
+      "--collector.disable-defaults"
+      "--collector.filesystem.mount-points-exclude=^/(dev|home|nix|proc|run|sys|tmp|var)"
+    ];
     openFirewall = true;
   };
 
