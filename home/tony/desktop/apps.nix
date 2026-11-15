@@ -79,6 +79,7 @@ in
     };
     vencord.settings.plugins.FakeNitro.enabled = true;
   };
+  home.file."${config.xdg.configHome}/vesktop/settings.json".force = true;
 
   # element
   programs.element-desktop = {
