@@ -12,6 +12,9 @@
   # gamescope
   programs.gamescope.enable = true;
 
+  # mods
+  environment.systemPackages = [ pkgs.r2modman ];
+
   # ntsync
   boot.kernelModules = [ "ntsync" ];
 
