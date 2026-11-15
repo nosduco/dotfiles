@@ -58,9 +58,10 @@
   users.users.tony.extraGroups = [ "i2c" ];
   environment.systemPackages = [ pkgs.ddcutil ];
 
-  # udev: g923 wheel, stable rtx4090 path
+  # udev: g923 wheel, stable rtx4090 path, mystic light off
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c26d", RUN+="${pkgs.usb-modeswitch}/bin/usb_modeswitch -v 046d -p c26d -M 0f00010142 -C 0x03 -m 01 -r 01"
     KERNEL=="card*", KERNELS=="0000:01:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/rtx4090"
+    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0db0", ATTR{idProduct}=="0076", ATTR{authorized}="0"
   '';
 }
