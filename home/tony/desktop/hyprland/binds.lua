@@ -94,9 +94,32 @@ hl.bind("CTRL + SHIFT + k", hl.dsp.window.move({ direction = "u", group_aware = 
 hl.bind("CTRL + SHIFT + j", hl.dsp.window.move({ direction = "d", group_aware = true }), { description = "Move window down" })
 
 -- groups
+local mx = { "logitech-mx-master-3" }
+local function hovered()
+  local mon = hl.get_monitor_at_cursor()
+  local ws = mon and mon.active_workspace
+  if not ws then
+    return nil
+  end
+  local pos = hl.get_cursor_pos()
+  local hit
+  for _, w in ipairs(hl.get_workspace_windows(ws)) do
+    if not w.hidden and pos.x >= w.at.x and pos.x < w.at.x + w.size.x and pos.y >= w.at.y and pos.y < w.at.y + w.size.y then
+      if w.floating then
+        return w
+      end
+      hit = w
+    end
+  end
+  return hit
+end
 hl.bind(mod .. " + G", hl.dsp.group.toggle(), { description = "Toggle group" })
 hl.bind(mod .. " + SHIFT + G", hl.dsp.window.move({ out_of_group = true }), { description = "Move window out of group" })
-hl.bind(mod .. " + Tab", hl.dsp.group.next(), { description = "Next tab in group" })
+hl.bind(mod .. " + Tab", hl.dsp.group.next(), { description = "Next tab in group", device = { inclusive = false, list = mx } })
+hl.bind(mod .. " + Tab", function()
+  local win = hovered()
+  hl.dispatch(hl.dsp.group.next(win and { window = win }))
+end, { device = { list = mx } })
 hl.bind(mod .. " + SHIFT + Tab", hl.dsp.group.prev(), { description = "Previous tab in group" })
 
 -- resize
@@ -110,7 +133,7 @@ for i = 1, 4 do
   hl.bind(mod .. " + " .. i, hl.dsp.focus({ workspace = i }), { description = "Workspace " .. i })
   hl.bind(mod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }), { description = "Move window to workspace " .. i })
 end
-local function wheel(sign)
+local function wheel(sign, pass)
   return function()
     local mon = hl.get_monitor_at_cursor()
     local ws = mon and mon.active_workspace
@@ -119,6 +142,8 @@ local function wheel(sign)
         hl.dispatch(hl.dsp.focus({ monitor = mon.name }))
       end
       hl.dispatch(hl.dsp.layout("move " .. sign .. "col"))
+    elseif pass then
+      return { pass_event = true }
     else
       hl.dispatch(hl.dsp.focus({ workspace = "e" .. sign .. "1" }))
     end
@@ -126,6 +151,8 @@ local function wheel(sign)
 end
 hl.bind(mod .. " + mouse_down", wheel("+"))
 hl.bind(mod .. " + mouse_up", wheel("-"))
+hl.bind("mouse_right", wheel("-", true))
+hl.bind("mouse_left", wheel("+", true))
 
 -- mouse
 hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
