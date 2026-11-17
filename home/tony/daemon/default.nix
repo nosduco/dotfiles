@@ -1,6 +1,26 @@
-{ config, ... }:
+{
+  config,
+  osConfig,
+  pkgs,
+  ...
+}:
+let
+  work-vpn = pkgs.writeShellApplication {
+    name = "work-vpn";
+    runtimeInputs = [
+      pkgs.coreutils
+      pkgs.jq
+      pkgs.systemd
+      osConfig.services.awsvpnclient.cliPackage
+    ];
+    text = builtins.readFile ./work-vpn.sh;
+  };
+in
 {
   imports = [ ../common ];
+
+  # work vpn
+  home.packages = [ work-vpn ];
 
   # tide
   tide.contextColor = "green";

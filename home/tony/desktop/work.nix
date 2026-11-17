@@ -51,6 +51,17 @@ in
     icon = "awsvpnclient";
   };
 
+  # daemon's vpn: forward the SAML callback, run work-vpn up, close once connected
+  programs.ssh.settings.daemon-work-vpn = {
+    HostName = "daemon.tux.nosnet";
+    LocalForward = "35001 127.0.0.1:35001";
+    ExitOnForwardFailure = "yes";
+    # hides the browser's retries after the callback server closes (logged at INFO)
+    LogLevel = "ERROR";
+    RemoteCommand = "work-vpn up";
+    RequestTTY = "yes";
+  };
+
   # apps
   home.packages = [
     aws-vpn
