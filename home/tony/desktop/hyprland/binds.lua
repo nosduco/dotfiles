@@ -138,8 +138,10 @@ local function wheel(sign, pass)
     local mon = hl.get_monitor_at_cursor()
     local ws = mon and mon.active_workspace
     if ws and ws.tiled_layout == "scrolling" then
-      if not mon.focused then
-        hl.dispatch(hl.dsp.focus({ monitor = mon.name }))
+      local active = hl.get_active_window()
+      if not (active and active.workspace and active.workspace.id == ws.id) then
+        local win = hovered()
+        hl.dispatch(hl.dsp.focus(win and { window = win } or { monitor = mon.name }))
       end
       hl.dispatch(hl.dsp.layout("move " .. sign .. "col"))
     elseif pass then
