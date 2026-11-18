@@ -9,9 +9,6 @@
     ./updates.nix
   ];
 
-  # backup
-  backup.sources = [ "backups" ];
-
   # ssh
   programs.ssh.settings.voyager.HostName = "100.106.108.12";
 }
