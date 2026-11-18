@@ -65,6 +65,50 @@
     openFirewall = true;
   };
 
+  # backup
+  fileSystems."/backup" = {
+    device = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1";
+    fsType = "ext4";
+    autoFormat = true;
+    options = [
+      "noatime"
+      "nofail"
+    ];
+  };
+  systemd.services.work-backup = {
+    startAt = "0/3:00";
+    unitConfig.RequiresMountsFor = "/backup";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "tony";
+      WorkingDirectory = config.users.users.tony.home;
+      ExecStartPre = "+${pkgs.coreutils}/bin/install -d -o tony -g ${config.users.users.tony.group} -m 700 /backup/tony";
+      ExecStart = lib.escapeShellArgs [
+        (lib.getExe pkgs.rsync)
+        "--archive"
+        "--delete"
+        "--delete-excluded"
+        "--filter=+ repos/"
+        "--filter=+ docs/platform/"
+        "--filter=+ .claude/"
+        "--filter=+ .claude/worktrees/"
+        "--filter=- .claude/*"
+        "--filter=:- .gitignore"
+        "work"
+        "projects"
+        ".dotfiles"
+        "/backup/tony/"
+      ];
+      SuccessExitStatus = 24;
+      Nice = 19;
+      IOSchedulingClass = "idle";
+    };
+  };
+  systemd.timers.work-backup.timerConfig = {
+    Persistent = true;
+    RandomizedDelaySec = "5min";
+  };
+
   # qemu
   services.qemuGuest.enable = true;
 
