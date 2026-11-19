@@ -165,9 +165,6 @@ return {
           require "configs.conform"
         end,
       },
-      {
-        "mfussenegger/nvim-jdtls",
-      },
     },
     config = function()
       require "configs.lspconfig"

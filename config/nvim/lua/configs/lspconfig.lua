@@ -155,31 +155,3 @@ vim.lsp.config("pyright", {
   },
 })
 vim.lsp.enable("pyright")
-
--- Java
-local home = vim.env.HOME
-local WORKSPACE_PATH = home .. "/workspace/"
-vim.lsp.config("jdtls", {
-  cmd = {
-    "java",
-    "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-    "-Dosgi.bundles.defaultStartLevel=4",
-    "-Declipse.product=org.eclipse.jdt.ls.core.product",
-    "-Dlog.protocol=true",
-    "-Dlog.level=ALL",
-    "-javaagent:" .. "/home/tony/tools/jdtls/lombok.jar",
-    "-Xmx1g",
-    "--add-modules=ALL-SYSTEM",
-    "--add-opens",
-    "java.base/java.util=ALL-UNNAMED",
-    "--add-opens",
-    "java.base/java.lang=ALL-UNNAMED",
-    "-jar",
-    "/home/tony/tools/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
-    "-configuration",
-    "/home/tony/tools/jdtls/config_linux",
-    "-data",
-    WORKSPACE_PATH,
-  },
-})
-vim.lsp.enable("jdtls")
