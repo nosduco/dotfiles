@@ -47,7 +47,7 @@ in
         devices = [ "tux-hub" ];
         versioning = {
           type = "trashcan";
-          params.cleanoutDays = "0";
+          params.cleanoutDays = "7";
         };
       }) folders;
       options = {
