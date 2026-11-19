@@ -91,12 +91,12 @@
       flavor.dark = "catppuccin-mocha";
       indicator = {
         current = {
-          fg = "#1e1e2e";
-          bg = "#fab387";
+          fg = colors.base;
+          bg = colors.accent;
         };
         preview = {
-          fg = "#1e1e2e";
-          bg = "#fab387";
+          fg = colors.base;
+          bg = colors.accent;
         };
         padding = {
           open = "█";
@@ -105,13 +105,13 @@
       };
       tabs = {
         active = {
-          fg = "#1e1e2e";
-          bg = "#fab387";
+          fg = colors.base;
+          bg = colors.accent;
           bold = true;
         };
         inactive = {
-          fg = "#fab387";
-          bg = "#313244";
+          fg = colors.accent;
+          bg = colors.surface0;
         };
         sep_inner = {
           open = "";
@@ -124,50 +124,50 @@
       };
       mode = {
         normal_main = {
-          fg = "#1e1e2e";
-          bg = "#fab387";
+          fg = colors.base;
+          bg = colors.accent;
           bold = true;
         };
         normal_alt = {
-          fg = "#fab387";
-          bg = "#313244";
+          fg = colors.accent;
+          bg = colors.surface0;
         };
       };
       filetype.rules = [
         {
           mime = "image/*";
-          fg = "#94e2d5";
+          fg = colors.teal;
         }
         {
           mime = "{audio,video}/*";
-          fg = "#f9e2af";
+          fg = colors.yellow;
         }
         {
           mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}";
-          fg = "#f5c2e7";
+          fg = colors.pink;
         }
         {
           mime = "application/{pdf,doc,rtf}";
-          fg = "#a6e3a1";
+          fg = colors.green;
         }
         {
           mime = "vfs/{absent,stale}";
-          fg = "#9399b2";
+          fg = colors.overlay2;
         }
         {
           url = "*";
-          fg = "#cdd6f4";
+          fg = colors.text;
         }
         {
           url = "*/";
-          fg = "#fab387";
+          fg = colors.accent;
         }
       ];
       icon.prepend_conds = [
         {
           "if" = "dir";
           text = "";
-          fg = "#fab387";
+          fg = colors.accent;
         }
       ];
       spot = {
