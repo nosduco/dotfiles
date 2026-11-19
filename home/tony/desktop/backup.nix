@@ -100,7 +100,11 @@ let
         }
         mkdir -p "$state" && echo ${stamp} > "$state/kopia-policy"
       fi
-      kopia snapshot create ${lib.escapeShellArgs sources}
+      present=()
+      for source in ${lib.escapeShellArgs sources}; do
+        if [ -e "$source" ]; then present+=("$source"); fi
+      done
+      kopia snapshot create "''${present[@]}"
       mkdir -p "$state" && touch "$last"
     '';
   };
