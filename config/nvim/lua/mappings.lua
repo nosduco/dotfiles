@@ -93,11 +93,6 @@ map("n", "<leader>t4", "4gt", { desc = "Go to tab #4" })
 map("n", "<leader>t5", "5gt", { desc = "Go to tab #5" })
 map("n", "<leader>t6", "6gt", { desc = "Go to tab #6" })
 
--- Yank (Copy/Paste)
-map("n", "<leader>pp", "<cmd> YankyRingHistory <CR>", { desc = "Open yank history dialog" })
-map("n", "<leader>pb", "<Plug>(YankyCycleBackward)", { desc = "Cycle current yank backward" })
-map("n", "<leader>pn", "<Plug>(YankyCycleForeward)", { desc = "Cycle current yank forward" })
-
 -- Multiplexer Navigation (Terminal splits)
 map("n", "<C-a>i", "<cmd> vsplit | terminal <CR>", { desc = "Create terminal vertical split" })
 map("n", "<C-a>s", "<cmd> split | terminal <CR>", { desc = "Create terminal horizontal split" })
@@ -198,6 +193,3 @@ map("n", "<leader>ga", function()
 end, { desc = "View actions/CI checks" })
 map("n", "<leader>gc", "<cmd> Octo pr create <CR>", { desc = "Create pull request" })
 map("n", "<leader>gr", "<cmd> Octo review start <CR>", { desc = "Start/resume PR review" })
-
--- Claude Code
-map("n", "<leader>cc", "<cmd>ClaudeCodeContinue<CR>", { desc = "Toggle Claude Code" })
