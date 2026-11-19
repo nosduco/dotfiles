@@ -21,7 +21,7 @@ hl.workspace_rule({ workspace = "name:top-monitor", monitor = m.top, persistent 
 hl.window_rule({ match = { class = "^(vesktop)$" }, workspace = "right-monitor silent" })
 hl.window_rule({ match = { class = "^(com.anthropic.Claude)$" }, workspace = "right-monitor silent" })
 hl.window_rule({ match = { class = "^(slack)$" }, workspace = "right-monitor silent" })
-hl.window_rule({ match = { title = "^(Google Meet)" }, tile = true, monitor = m.right })
+hl.window_rule({ match = { class = "^(chrome-meet.google.com__-Default)$" }, float = true, pin = true, size = { "monitor_w-20", "monitor_h*0.33" }, move = { 10, 10 }, monitor = m.right })
 hl.window_rule({ match = { title = "^(Spotify)" }, workspace = "top-monitor silent" })
 hl.window_rule({ match = { class = "^(spotify)$" }, workspace = "top-monitor silent" })
 hl.window_rule({ match = { class = "^(io.github.alainm23.planify|org.gnome.Calendar)$" }, workspace = "top-monitor silent" })
