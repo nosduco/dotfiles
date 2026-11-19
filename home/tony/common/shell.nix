@@ -17,7 +17,7 @@ let
       types=$(wl-paste --list-types)
       if grep -q '^image/' <<<"$types"; then
         ext=$(grep -m1 '^image/' <<<"$types" | cut -d/ -f2 | cut -d';' -f1)
-        file="/tmp/clip_$(date +%s).''${ext}"
+        file=$(mktemp --suffix=".''${ext}" /tmp/clip_XXXXXX)
         wl-paste > "$file"
         if [ -n "''${1:-}" ]; then scp -q "$file" "$1:$file"; fi
         printf '%q' "$file"
