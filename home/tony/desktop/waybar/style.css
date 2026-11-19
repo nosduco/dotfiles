@@ -23,11 +23,6 @@ window {
   border: 2px solid @surface1;
 }
 
-window#waybar.solo {
-  background-color: alpha(@base, 0.6);
-  border: 2px solid @surface1;
-}
-
 #workspaces {
   margin: 0 5px;
 }
@@ -121,12 +116,4 @@ window#waybar.solo {
 
 #battery.charging {
   color: @text;
-}
-
-#custom-storage.warning {
-  color: @yellow;
-}
-
-#custom-storage.critical {
-  color: @red;
 }
