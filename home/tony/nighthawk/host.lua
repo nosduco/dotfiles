@@ -44,7 +44,6 @@ hl.on("hyprland.start", function()
     end,
   })
   hl.timer(function()
-    hl.exec_cmd("streamcontroller -b")
     hl.exec_cmd("xrandr --output " .. m.main .. " --primary")
   end, { timeout = 5000, type = "oneshot" })
 end)
