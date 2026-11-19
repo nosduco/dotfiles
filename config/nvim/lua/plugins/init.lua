@@ -305,7 +305,7 @@ return {
   -- Debugger
   {
     "mfussenegger/nvim-dap",
-    ft = { "js", "ts" },
+    ft = { "javascript", "typescript" },
     config = function()
       require "configs.dap"
     end,
@@ -333,7 +333,7 @@ return {
       "haydenmeade/neotest-jest",
       "antoinemadec/FixCursorHold.nvim",
     },
-    ft = { "js", "ts" },
+    ft = { "javascript", "typescript" },
     config = function()
       require("neotest").setup {
         adapters = {
