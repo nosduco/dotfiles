@@ -8,7 +8,6 @@
       font-family = "JetBrains Mono";
       font-size = 10;
       cursor-style = "underline";
-      mouse-hide-while-typing = true;
       background-opacity = "0.7";
       background-blur = true;
       command = "tmux new-session";
