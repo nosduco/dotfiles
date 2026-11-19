@@ -4,7 +4,7 @@ local mod = "SUPER"
 hl.bind(mod .. " + Return", hl.dsp.exec_cmd("ghostty"), { description = "Terminal" })
 hl.bind(mod .. " + Q", hl.dsp.window.close(), { description = "Close window" })
 hl.bind(mod .. " + M", hl.dsp.exec_cmd("walker -m menus:power"), { description = "Power menu" })
-hl.bind(mod .. " + L", hl.dsp.exec_cmd("pidof hyprlock || hyprlock"), { description = "Lock" })
+hl.bind(mod .. " + CTRL + L", hl.dsp.exec_cmd("pidof hyprlock || hyprlock"), { description = "Lock" })
 hl.bind(mod .. " + E", hl.dsp.exec_cmd("EDITOR=vim ghostty -e yazi"), { description = "Files (yazi)" })
 hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd("uwsm app -- nautilus"), { description = "Files (nautilus)" })
 hl.bind(mod .. " + B", hl.dsp.exec_cmd("ghostty -e btop"), { description = "btop" })
