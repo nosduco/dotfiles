@@ -53,10 +53,10 @@ return {
         return "󰉋 " .. dir
       end
 
-      -- Custom theme with peach accent
+      -- Custom theme with the accent color
       local C = require("catppuccin.palettes").get_palette "mocha"
       local custom_theme = require("lualine.themes.catppuccin-mocha")
-      custom_theme.normal.a = { bg = C.peach, fg = C.base, gui = "bold" }
+      custom_theme.normal.a = { bg = C[vim.g.catppuccin_accent], fg = C.base, gui = "bold" }
       custom_theme.normal.b = { bg = C.surface0, fg = C.text }
       custom_theme.normal.c = { bg = C.base, fg = C.text }
 

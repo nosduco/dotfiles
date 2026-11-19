@@ -1,4 +1,9 @@
-{ config, osConfig, pkgs, ... }:
+{
+  config,
+  osConfig,
+  pkgs,
+  ...
+}:
 {
   # neovim
   programs.neovim = {
@@ -6,6 +11,7 @@
     defaultEditor = true;
     vimAlias = true;
     sideloadInitLua = true;
+    initLua = ''vim.g.catppuccin_accent = "${config.catppuccin.accent}"'';
     extraPackages = with pkgs; [
       # lsp
       lua-language-server

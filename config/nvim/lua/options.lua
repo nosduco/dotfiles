@@ -113,10 +113,12 @@ vim.opt.scrolloff = 999
 -- Snacks Picker highlights
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
-    vim.api.nvim_set_hl(0, "SnacksPickerMatch", { fg = "#fab387", bold = true })
-    vim.api.nvim_set_hl(0, "SnacksPickerPrompt", { fg = "#fab387" })
-    vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = "#7f849c" })
-    vim.api.nvim_set_hl(0, "SnacksPickerFile", { fg = "#cdd6f4" })
+    local C = require("catppuccin.palettes").get_palette "mocha"
+    local accent = C[vim.g.catppuccin_accent]
+    vim.api.nvim_set_hl(0, "SnacksPickerMatch", { fg = accent, bold = true })
+    vim.api.nvim_set_hl(0, "SnacksPickerPrompt", { fg = accent })
+    vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = C.overlay1 })
+    vim.api.nvim_set_hl(0, "SnacksPickerFile", { fg = C.text })
   end,
 })
 vim.cmd "doautocmd ColorScheme"
