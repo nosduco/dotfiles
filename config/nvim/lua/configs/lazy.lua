@@ -1,5 +1,6 @@
 return {
   defaults = { lazy = true },
+  dev = { path = "~/projects", fallback = true },
   install = { colorscheme = { "catppuccin-mocha" } },
 
   ui = {

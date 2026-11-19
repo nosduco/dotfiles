@@ -384,8 +384,8 @@ return {
 
   -- Remote Development
   {
-    name = "remote-sshfs.nvim",
-    dir = "~/projects/remote-sshfs.nvim",
+    "NOSDuco/remote-sshfs.nvim",
+    dev = true,
     lazy = false,
     opts = remotesshfs.opts,
   },
