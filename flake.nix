@@ -82,6 +82,9 @@
             }
           );
 
+      # format
+      formatter.x86_64-linux = pkgs.nixfmt-tree;
+
       # install
       apps.x86_64-linux.install = {
         type = "app";
