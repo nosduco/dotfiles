@@ -3,7 +3,7 @@
 # connect and pauses it behind captive portals; this shows the result
 # and lets it be flipped by hand. HOME_UUID is the nosnet profile UUID.
 
-REFRESH=(--user kill --kill-whom=main -s SIGRTMIN+9 waybar)
+REFRESH=(--user kill --kill-whom=main -s SIGRTMIN+11 waybar)
 
 exit_node() {
   tailscale status --json | jq -r '

@@ -61,7 +61,7 @@ in
       interval = 5;
       on-click = "${lib.getExe vpn} toggle";
       return-type = "json";
-      signal = 9;
+      signal = 11;
     };
     margin-top = 6;
     modules-right = [
