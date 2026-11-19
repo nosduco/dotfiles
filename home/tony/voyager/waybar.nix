@@ -1,4 +1,5 @@
 {
+  icon,
   lib,
   osConfig,
   pkgs,
@@ -24,20 +25,20 @@ in
     "battery#laptop" = {
       bat = "BAT0";
       format = "{icon}";
-      format-charging = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰂄</span> {capacity}%";
+      format-charging = "${icon "󰂄"} {capacity}%";
       format-icons = [
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰁺</span>"
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰁻</span>"
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰁼</span>"
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰁽</span>"
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰁾</span>"
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰁿</span>"
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰂀</span>"
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰂁</span>"
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰂂</span>"
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰁹</span>"
+        (icon "󰁺")
+        (icon "󰁻")
+        (icon "󰁼")
+        (icon "󰁽")
+        (icon "󰁾")
+        (icon "󰁿")
+        (icon "󰂀")
+        (icon "󰂁")
+        (icon "󰂂")
+        (icon "󰁹")
       ];
-      format-plugged = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰂄</span> {capacity}%";
+      format-plugged = "${icon "󰂄"} {capacity}%";
       interval = 60;
       states = {
         critical = 15;
@@ -47,16 +48,16 @@ in
       };
     };
     clock = {
-      format = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰙹</span> {:%A, %b %d %I:%M %p}";
+      format = "${icon "󰙹"} {:%A, %b %d %I:%M %p}";
     };
     "custom/vpn" = {
       exec = "${lib.getExe vpn} status";
       format = "{icon}";
       format-icons = {
-        on = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰦝</span>";
-        home = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰳋</span>";
-        exposed = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰻍</span>";
-        portal = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰖟</span> VPN paused";
+        on = icon "󰦝";
+        home = icon "󰳋";
+        exposed = icon "󰻍";
+        portal = "${icon "󰖟"} VPN paused";
       };
       interval = 5;
       on-click = "${lib.getExe vpn} toggle";

@@ -1,10 +1,16 @@
 {
+  colors,
+  flatIcon,
+  icon,
+  iconTheme,
+}:
+{
   bluetooth = {
-    format = "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰂯</span>";
-    format-connected = "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰂱</span>";
-    format-disabled = "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰂲</span>";
+    format = flatIcon "󰂯";
+    format-connected = flatIcon "󰂱";
+    format-disabled = flatIcon "󰂲";
     format-no-controller = "";
-    format-off = "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰂲</span>";
+    format-off = flatIcon "󰂲";
     on-click = "ghostty --title=bluetui -e bluetui";
     tooltip-format = "{status}";
     tooltip-format-connected = "{num_connections} connected";
@@ -19,11 +25,11 @@
     };
     calendar = {
       format = {
-        days = "<span color='#ecc6d9'><b>{}</b></span>";
-        months = "<span color='#ffead3'><b>{}</b></span>";
-        today = "<span color='#ff6699'><b><u>{}</u></b></span>";
-        weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-        weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+        days = "<span color='${colors.flamingo}'><b>{}</b></span>";
+        months = "<span color='${colors.rosewater}'><b>{}</b></span>";
+        today = "<span color='${colors.accent}'><b><u>{}</u></b></span>";
+        weekdays = "<span color='${colors.yellow}'><b>{}</b></span>";
+        weeks = "<span color='${colors.teal}'><b>W{}</b></span>";
       };
       mode = "month";
       mode-mon-col = 3;
@@ -35,7 +41,7 @@
   };
   "battery#mouse" = {
     bat = "hidpp_battery_0";
-    format = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍽</span>{capacity}%";
+    format = "${icon "󰍽"}{capacity}%";
     format-alt = "{time} {icon}";
     format-charging = "";
     format-full = "";
@@ -81,8 +87,8 @@
     exec = "waybar-caffeine status";
     format = "{icon}";
     format-icons = {
-      activated = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰅶</span>";
-      deactivated = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰾫</span>";
+      activated = icon "󰅶";
+      deactivated = icon "󰾫";
     };
     interval = 5;
     on-click = "waybar-caffeine toggle";
@@ -93,8 +99,8 @@
     exec = "waybar-nightlight status";
     format = "{icon}";
     format-icons = {
-      on = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰖔</span>";
-      off = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰖙</span>";
+      on = icon "󰖔";
+      off = icon "󰖙";
     };
     interval = "once";
     on-click = "waybar-nightlight toggle";
@@ -105,8 +111,8 @@
     exec = "record status";
     format = "{icon}";
     format-icons = {
-      recording = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰑋</span>";
-      replay = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰑙</span>";
+      recording = icon "󰑋";
+      replay = icon "󰑙";
     };
     interval = "once";
     on-click = "record stop";
@@ -118,7 +124,7 @@
     restart-interval = 1;
   };
   "custom/expand-icon" = {
-    format = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰅁</span>";
+    format = icon "󰅁";
     tooltip = false;
   };
   "custom/weather" = {
@@ -161,8 +167,8 @@
   modules-left = [ "hyprland/workspaces" ];
   network = {
     format-disconnected = "Disconnected ⚠";
-    format-ethernet = "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰈀</span>";
-    format-wifi = "<span font=\"Material Design Icons\" size='large' font_weight='normal'>󰖩</span>";
+    format-ethernet = flatIcon "󰈀";
+    format-wifi = flatIcon "󰖩";
     tooltip-format = "{gwaddr} via {ifname}";
   };
   spacing = 8;
@@ -172,38 +178,34 @@
   };
   "wlr/taskbar" = {
     all-outputs = true;
-    app_ids-mapping = {
-      firefoxdeveloperedition = "firefox-developer-edition";
-    };
     format = "{icon}";
     icon-size = 24;
-    icon-theme = "Papirus-Dark";
+    icon-theme = iconTheme;
     on-click = "activate";
     on-click-middle = "close";
     rewrite = {
       "Firefox Web Browser" = "Firefox";
-      "Foot Server" = "Terminal";
     };
     tooltip-format = "{title}";
   };
   pulseaudio = {
     format = "{icon}{format_source}";
     format-icons = {
-      headphone = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰋋</span>";
+      headphone = icon "󰋋";
       speaker = [
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰕿</span>"
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰖀</span>"
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰕾</span>"
+        (icon "󰕿")
+        (icon "󰖀")
+        (icon "󰕾")
       ];
       default = [
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰕿</span>"
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰖀</span>"
-        "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰕾</span>"
+        (icon "󰕿")
+        (icon "󰖀")
+        (icon "󰕾")
       ];
     };
-    format-muted = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰝟</span>{format_source}";
+    format-muted = "${icon "󰝟"}{format_source}";
     format-source = "";
-    format-source-muted = " <span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰍭</span>";
+    format-source-muted = " ${icon "󰍭"}";
     on-click = "ghostty --title=wiremix -e wiremix";
     on-click-right = "helvum";
     tooltip-format = "{desc}: {volume}%";

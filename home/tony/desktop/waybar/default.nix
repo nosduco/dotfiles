@@ -1,4 +1,5 @@
 {
+  colors,
   config,
   osConfig,
   lib,
@@ -6,6 +7,11 @@
   ...
 }:
 let
+  flatIcon =
+    glyph: "<span font=\"Material Design Icons\" size='large' font_weight='normal'>${glyph}</span>";
+  icon =
+    glyph:
+    "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>${glyph}</span>";
   caffeine = pkgs.writeShellApplication {
     name = "waybar-caffeine";
     runtimeInputs = with pkgs; [
@@ -39,16 +45,28 @@ let
 in
 {
   # waybar
+  _module.args = { inherit flatIcon icon; };
   catppuccin.waybar.mode = "createLink";
   programs.waybar = {
     enable = true;
     systemd.enable = true;
-    style = ./style.css;
-    settings.main = lib.recursiveUpdate (import ./settings.nix) {
-      "custom/dunst".exec = lib.getExe dunst-tray;
-      "custom/weather".exec =
-        "${lib.getExe pkgs.wttrbar} --location Columbus --fahrenheit --ampm --nerd --custom-indicator '{ICON} {temp_F}°'";
-    };
+    style = ''
+      @import "catppuccin.css";
+      @define-color accent @${config.catppuccin.accent};
+
+      ${builtins.readFile ./style.css}
+    '';
+    settings.main =
+      lib.recursiveUpdate
+        (import ./settings.nix {
+          inherit colors flatIcon icon;
+          iconTheme = config.gtk.iconTheme.name;
+        })
+        {
+          "custom/dunst".exec = lib.getExe dunst-tray;
+          "custom/weather".exec =
+            "${lib.getExe pkgs.wttrbar} --location Columbus --fahrenheit --ampm --nerd --custom-indicator '{ICON} {temp_F}°'";
+        };
   };
   home.packages = [
     caffeine

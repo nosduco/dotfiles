@@ -1,8 +1,8 @@
-{ config, ... }:
+{ config, icon, ... }:
 {
   programs.waybar.settings.main = {
     clock = {
-      format = "<span font=\"Material Design Icons\" size='large' font_weight='normal' rise='-1500'>󰙹</span> {:%A, %b %d}";
+      format = "${icon "󰙹"} {:%A, %b %d}";
     };
     margin-bottom = 6;
     modules-right = [
