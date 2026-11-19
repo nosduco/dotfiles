@@ -42,10 +42,6 @@ scrollbar {
   min-width: 600px;
 }
 
-/* Main box */
-.box {
-}
-
 .preview-box,
 .elephant-hint,
 .placeholder {
@@ -82,19 +78,9 @@ scrollbar {
   min-height: 400px;
 }
 
-/* Placeholder */
-.placeholder {}
-
-/* Scroll area */
-.scroll {}
-
 /* List */
 .list {
   background: transparent;
-}
-
-/* List items */
-child {
 }
 
 /* Item box */
@@ -114,14 +100,6 @@ child {
 child:hover .item-box,
 child:selected .item-box {
   background: alpha(@selected-text, 0.25);
-}
-
-/* Item text container */
-.item-text-box {
-}
-
-/* Item text */
-.item-text {
 }
 
 /* Item subtext */
