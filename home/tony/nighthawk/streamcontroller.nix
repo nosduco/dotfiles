@@ -1,4 +1,5 @@
 {
+  colors,
   config,
   lib,
   osConfig,
@@ -9,14 +10,27 @@ let
     path:
     config.lib.file.mkOutOfStoreSymlink "${osConfig.programs.nh.flake}/config/streamcontroller/${path}";
   data = ".var/app/com.core447.StreamController/data";
+  assets = ../../../config/streamcontroller/Assets/custom;
+  palette = lib.filterAttrs (_: builtins.isString) colors;
+  paint = builtins.replaceStrings (map (c: "@${c}@") (builtins.attrNames palette)) (
+    builtins.attrValues palette
+  );
+  icon =
+    name:
+    if lib.hasSuffix ".svg" name then
+      { text = paint (builtins.readFile (assets + "/${name}")); }
+    else
+      { source = assets + "/${name}"; };
 in
 {
   # streamcontroller
   home.file = {
     "${data}/pages".source = link "pages";
     "${data}/settings".source = link "settings";
-    "${data}/Assets/custom".source = link "Assets/custom";
-  };
+  }
+  // lib.mapAttrs' (name: _: lib.nameValuePair "${data}/Assets/custom/${name}" (icon name)) (
+    builtins.readDir assets
+  );
 
   # service
   systemd.user.services.streamcontroller = {

@@ -26,7 +26,7 @@
                         0
                     ],
                     "media": {
-                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/mic-peach.svg"
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/mic-accent.svg"
                     }
                 }
             }
@@ -49,7 +49,7 @@
                         0
                     ],
                     "media": {
-                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/volume-down-peach.svg"
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/volume-down-accent.svg"
                     }
                 }
             }
@@ -72,7 +72,7 @@
                         0
                     ],
                     "media": {
-                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/volume-up-peach.svg"
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/volume-up-accent.svg"
                     }
                 }
             }
@@ -95,7 +95,7 @@
                         0
                     ],
                     "media": {
-                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/volume-x-peach.svg"
+                        "path": "/home/tony/.var/app/com.core447.StreamController/data/Assets/custom/volume-x-accent.svg"
                     }
                 }
             }
