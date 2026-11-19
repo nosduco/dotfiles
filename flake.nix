@@ -67,20 +67,20 @@
       );
     in
     {
-      nixosConfigurations = {
-        nighthawk = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [ ./hosts/nighthawk ];
-        };
-        voyager = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [ ./hosts/voyager ];
-        };
-        daemon = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [ ./hosts/daemon ];
-        };
-      };
+      nixosConfigurations =
+        lib.genAttrs
+          [
+            "nighthawk"
+            "voyager"
+            "daemon"
+          ]
+          (
+            host:
+            lib.nixosSystem {
+              specialArgs = { inherit inputs; };
+              modules = [ ./hosts/${host} ];
+            }
+          );
 
       # install
       apps.x86_64-linux.install = {
