@@ -455,12 +455,11 @@ return {
 
   -- Obsidian
   {
-    "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim",
     version = "*",
     lazy = true,
     ft = "markdown",
-    cmd = { "ObsidianToday", "ObsidianNew" },
-    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = "Obsidian",
     opts = obsidian.opts,
     config = function(_, opts)
       require("obsidian").setup(opts)

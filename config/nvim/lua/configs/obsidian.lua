@@ -1,26 +1,26 @@
 local M = {}
 
 M.opts = {
+  legacy_commands = false,
   workspaces = {
     {
       name = "notes",
       path = "~/notes",
     },
   },
-  mappings = {
-    ["<leader>ch"] = {
-      action = function()
-        return require("obsidian").util.toggle_checkbox()
-      end,
-      opts = { buffer = true },
-    },
+  callbacks = {
+    enter_note = function()
+      vim.keymap.set("n", "<leader>ch", "<cmd>Obsidian toggle_checkbox<cr>", { buffer = true, desc = "Toggle checkbox" })
+    end,
+  },
+  checkbox = {
+    order = { " ", "x" },
   },
   templates = {
-    subdir = "60-Templates",
+    folder = "60-Templates",
   },
   daily_notes = {
     folder = "10-Journal",
-    date_format = "%Y-%m-%d",
   },
   notes_subdir = "00-Inbox",
   new_notes_location = "notes_subdir",

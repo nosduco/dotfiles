@@ -27,7 +27,7 @@ M.opts = {
         desc = " Daily Note",
         group = "@type",
         action = function()
-          vim.api.nvim_command ":ObsidianToday"
+          vim.api.nvim_command ":Obsidian today"
         end,
         key = "N",
       },
@@ -36,8 +36,8 @@ M.opts = {
         group = "@type",
         action = function()
           local datetime = os.date "%Y-%m-%d-%I-%M%p"
-          vim.api.nvim_command(":ObsidianNew " .. datetime)
-          -- vim.api.nvim_command ":ObsidianNew"
+          vim.api.nvim_command(":Obsidian new " .. datetime)
+          -- vim.api.nvim_command ":Obsidian new"
         end,
         key = "n",
       },

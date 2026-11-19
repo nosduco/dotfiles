@@ -61,15 +61,6 @@ end, { desc = "Resize pane to the right" })
 -- Git
 map("n", "<leader>df", "<cmd> DiffviewOpen <CR>", { desc = "View git diff interactively" })
 
--- Obsidian
-map("n", "gf", function()
-  if require("obsidian").util.cursor_on_markdown_link() then
-    return "<cmd>ObsidianFollowLink<CR>"
-  else
-    return "gf"
-  end
-end, { desc = "Follow link under cursor" })
-
 -- Terminal
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Exit terminal mode" })
 map("t", "<Esc>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), { desc = "Escape terminal mode" })
