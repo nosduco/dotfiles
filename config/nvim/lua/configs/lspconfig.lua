@@ -98,11 +98,12 @@ vim.lsp.config("nixd", {
   settings = {
     nixd = {
       formatting = { command = { "nixfmt" } },
-      -- Once the dotfiles flake exists, point nixd at it for real option completion:
-      -- options = {
-      --   nixos = { expr = '(builtins.getFlake "/home/tony/.dotfiles").nixosConfigurations.nighthawk.options' },
-      --   home_manager = { expr = '(builtins.getFlake "/home/tony/.dotfiles").homeConfigurations.tony.options' },
-      -- },
+      options = {
+        nixos = { expr = '(builtins.getFlake "/home/tony/.dotfiles").nixosConfigurations.nighthawk.options' },
+        home_manager = {
+          expr = '(builtins.getFlake "/home/tony/.dotfiles").nixosConfigurations.nighthawk.options.home-manager.users.type.getSubOptions []',
+        },
+      },
     },
   },
 })
