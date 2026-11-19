@@ -74,12 +74,6 @@ vim.o.cmdheight = 0
 -- Enable relative line numbers
 vim.cmd "set rnu!"
 
--- Allow clipboard copy paste in neovim
-vim.api.nvim_set_keymap("", "<C-S-v>", "+p<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("!", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
-
 -- Set underscores as keyword for horizontal movement
 vim.cmd "set iskeyword-=_"
 

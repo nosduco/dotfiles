@@ -118,7 +118,7 @@ map(
 map(
   "t",
   "<C-a>c",
-  vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true) .. "<cmd> split | terminal<CR>",
+  vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true) .. "<cmd> tabnew | terminal<CR>",
   { desc = "Create new terminal tab" }
 )
 
@@ -165,8 +165,8 @@ map("n", "<leader>ts", function()
   require("neotest").run.stop()
 end, { desc = "Stop test under cursor" })
 map("n", "<leader>td", function()
-  require("neotest").run.stop { strategy = "dap" }
-end, { desc = "Toggle test debugger UI" })
+  require("neotest").run.run { strategy = "dap" }
+end, { desc = "Debug test under cursor" })
 map("n", "<leader>tt", function()
   require("neotest").summary.toggle()
 end, { desc = "Toggle tests pane" })
