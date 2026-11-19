@@ -29,7 +29,8 @@ let
         notify generation "$(git rev-parse origin/main)" "Generation available" "$(git log --format=%s main..origin/main)"
       fi
 
-      age=$(( ($(date +%s) - $(git log -1 --format=%ct --grep='^chore(flake): update inputs' main -- flake.lock)) / 86400 ))
+      last=$(git log -1 --format=%ct --grep='^chore(flake): update inputs' main -- flake.lock)
+      age=$(( ($(date +%s) - ''${last:-0}) / 86400 ))
       if [ "$age" -ge 7 ] && [ "$(git rev-parse -q --verify origin/flake-update^)" = "$(git rev-parse origin/main)" ]; then
         inputs=$(jq -r --argjson new "$(git show origin/flake-update:flake.lock)" '
           def mods: .nodes as $n | $n[.root].inputs | with_entries(select(.value | type == "string") | .value = $n[.value].locked.lastModified);
