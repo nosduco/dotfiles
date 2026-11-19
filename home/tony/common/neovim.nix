@@ -14,12 +14,10 @@
     initLua = ''vim.g.catppuccin_accent = "${config.catppuccin.accent}"'';
     extraPackages = with pkgs; [
       # lsp
-      lua-language-server
       tofu-ls
       nixd
       vscode-langservers-extracted
       yaml-language-server
-      pyright
       jdt-language-server
       tailwindcss-language-server
       graphql-language-service-cli
@@ -32,7 +30,6 @@
       eslint_d
       markdownlint-cli
       nixfmt
-      opentofu
       prettier
       ruff
       rustfmt
