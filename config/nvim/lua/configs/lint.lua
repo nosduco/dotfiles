@@ -8,7 +8,9 @@ local node = {}
 -- local node = { "eslint_d" }
 
 lint.linters.markdownlint.args = {
-  "--disable MD013",
+  "--stdin",
+  "--disable",
+  "MD013",
 }
 
 vim.filetype.add {
