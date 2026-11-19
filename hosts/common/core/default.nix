@@ -16,6 +16,10 @@
   nixpkgs.config.allowUnfree = true;
 
   # nix
+  nix.optimise = {
+    automatic = true;
+    dates = [ "weekly" ];
+  };
   nix.settings = {
     experimental-features = [
       "nix-command"
