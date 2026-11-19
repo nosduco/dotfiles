@@ -13,7 +13,10 @@
   programs.gamescope.enable = true;
 
   # mods
-  environment.systemPackages = [ (pkgs.r2modman.override { electron = pkgs.electron_44; }) ];
+  environment.systemPackages = [
+    (pkgs.r2modman.override { electron = pkgs.electron_44; })
+    pkgs.wowup-cf
+  ];
 
   # ntsync
   boot.kernelModules = [ "ntsync" ];
