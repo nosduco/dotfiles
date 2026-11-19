@@ -198,9 +198,6 @@ return {
           disable_filetype = { "snacks_picker_input", "vim" },
         },
       },
-      {
-        "Exafunction/windsurf.nvim",
-      },
     },
 
     opts_extend = { "sources.default" },
@@ -235,18 +232,7 @@ return {
       },
 
       sources = {
-        default = { "lsp", "snippets", "buffer", "path", "codeium" },
-        providers = {
-          codeium = {
-            name = "Codeium",
-            module = "codeium.blink",
-            async = true,
-            enabled = function()
-              local disabled_fts = { oil = true, snacks_picker_input = true }
-              return not disabled_fts[vim.bo.filetype]
-            end,
-          },
-        },
+        default = { "lsp", "snippets", "buffer", "path" },
       },
     },
   },
@@ -522,23 +508,6 @@ return {
       { "<leader>cm", function() Snacks.picker.git_log() end, desc = "Git commits" },
       { "<leader>gt", function() Snacks.picker.git_status() end, desc = "Git status" },
     },
-  },
-
-  -- Codeium
-  {
-    "Exafunction/windsurf.nvim",
-    event = "VeryLazy",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("codeium").setup {
-        enable_chat = false,
-        enable_cmp_source = false,
-        filetypes = {
-          oil = false,
-          snacks_picker_input = false,
-        },
-      }
-    end,
   },
 
   -- Vim Be Better
