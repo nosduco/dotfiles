@@ -21,8 +21,12 @@
   # tailscale
   services.tailscale.extraSetFlags = lib.mkForce [ "--ssh" ];
 
-  # ssh
-  networking.firewall.interfaces.ens18.allowedTCPPorts = [ 22 ];
+  # lan
+  networking.firewall.interfaces.ens18.allowedTCPPorts = [
+    22
+    config.services.comin.exporter.port
+    config.services.prometheus.exporters.node.port
+  ];
 
   # docker
   virtualisation.docker.enable = lib.mkForce false;
@@ -46,9 +50,6 @@
     serviceConfig.ExecStart = "${pkgs.util-linux}/bin/logger -p auth.info -t auth-heartbeat ok";
   };
 
-  # comin
-  services.comin.exporter.openFirewall = true;
-
   # node exporter
   services.prometheus.exporters.node = {
     enable = true;
@@ -62,7 +63,6 @@
       "--collector.disable-defaults"
       "--collector.filesystem.mount-points-exclude=^/(dev|home|nix|proc|run|sys|tmp|var)"
     ];
-    openFirewall = true;
   };
 
   # backup
