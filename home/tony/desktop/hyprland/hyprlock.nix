@@ -31,7 +31,7 @@
       outer_color = "$accent $yellow 45deg";
       check_color = "$sky $sapphire 120deg";
       fail_color = "$red $maroon 40deg";
-      font_color = "rgb(143, 143, 143)";
+      font_color = "$overlay2";
       fade_on_empty = true;
       fade_timeout = 4000;
       rounding = 10;
