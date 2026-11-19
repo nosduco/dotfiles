@@ -69,10 +69,6 @@ in
     source = ../../../config/fish/functions;
     recursive = true;
   };
-  xdg.configFile."fish/completions" = {
-    source = ../../../config/fish/completions;
-    recursive = true;
-  };
 
   # zoxide
   programs.zoxide = {
