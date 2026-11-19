@@ -5,7 +5,6 @@
   ...
 }:
 let
-  # nixpkgs builds no OSD frontend; add the gtk4 one next to the voxtype-osd launcher.
   voxtype = pkgs.voxtype-vulkan.overrideAttrs (old: {
     cargoBuildFeatures = old.cargoBuildFeatures ++ [ "osd-gtk4" ];
     nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.wrapGAppsHook4 ];
@@ -24,9 +23,7 @@ in
   services.voxtype = {
     enable = true;
     package = voxtype;
-    # The module's PATH has no sh, which runs the output hooks, and no hyprctl.
     environment.PATH = "/run/wrappers/bin:/etc/profiles/per-user/${config.home.username}/bin:/run/current-system/sw/bin";
-    # Upstream's default.toml sets these two away from the built-in defaults.
     settings.hotkey.enabled = false;
     settings.output = {
       paste_keys = "shift+insert";
@@ -42,12 +39,13 @@ in
 
   # osd
   xdg.configFile."omarchy/current/theme/colors.toml".source =
-    (pkgs.formats.toml { }).generate "voxtype-colors" {
-      background = colors.base;
-      foreground = colors.text;
-      accent = colors.accent;
-      color1 = colors.red;
-      color2 = colors.green;
-      color3 = colors.yellow;
-    };
+    (pkgs.formats.toml { }).generate "voxtype-colors"
+      {
+        background = colors.base;
+        foreground = colors.text;
+        accent = colors.accent;
+        color1 = colors.red;
+        color2 = colors.green;
+        color3 = colors.yellow;
+      };
 }

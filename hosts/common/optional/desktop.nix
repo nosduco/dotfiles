@@ -1,4 +1,3 @@
-# Desktop base configuration
 {
   config,
   lib,
