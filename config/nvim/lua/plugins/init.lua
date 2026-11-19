@@ -239,7 +239,7 @@ return {
 
   -- Colorizer
   {
-    "NvChad/nvim-colorizer.lua",
+    "catgoose/nvim-colorizer.lua",
     event = { "BufReadPost", "BufNewFile" },
     opts = colorizer.opts,
   },
@@ -276,7 +276,7 @@ return {
 
   -- Startup Dashboard
   {
-    "glepnir/dashboard-nvim",
+    "nvimdev/dashboard-nvim",
     event = "VimEnter",
     opts = dashboard.opts,
     config = function(_, opts)
@@ -312,7 +312,7 @@ return {
   {
     "nvim-neotest/neotest",
     dependencies = {
-      "haydenmeade/neotest-jest",
+      "nvim-neotest/neotest-jest",
       "antoinemadec/FixCursorHold.nvim",
     },
     ft = { "javascript", "typescript" },
@@ -396,9 +396,8 @@ return {
   -- Rust Tooling
   {
     "mrcjkb/rustaceanvim",
-    version = "^5",
+    version = "^9",
     lazy = false,
-    ft = { "rust" },
   },
 
   -- SchemaStore Support
