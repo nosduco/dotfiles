@@ -36,7 +36,6 @@
   };
 
   # hardware
-  hardware.cpu.amd.updateMicrocode = true;
   zramSwap.enable = true;
   boot.kernel.sysctl = {
     "vm.swappiness" = 100;
