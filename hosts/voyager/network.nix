@@ -32,6 +32,12 @@ in
     };
   };
 
+  # mdns
+  services.avahi.openFirewall = lib.mkForce false;
+  networking.firewall.extraCommands = ''
+    iptables -A nixos-fw -p udp -s 10.8.0.0/16 --dport 5353 -j nixos-fw-accept
+  '';
+
   # captive portals
   networking.networkmanager.settings.connectivity = {
     uri = "http://nmcheck.gnome.org/check_network_status.txt";
