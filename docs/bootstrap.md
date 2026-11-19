@@ -6,7 +6,7 @@ Install a host from another machine with one command. The target only runs the N
 
 - The host is in `flake.nix` with `hosts/<host>/disko.nix` and a placeholder `hosts/<host>/hardware-configuration.nix` (`{ }`). The app refuses any other host.
 - The host's secrets are in `secrets/secrets.yaml`: `syncthing-cert-<host>`, `syncthing-key-<host>`, `kopia-password-<host>`.
-- The host's SSH key is in `keys/allowed_signers` and `keys/authorized_keys`.
+- A workstation's SSH key is in `keys/allowed_signers` and `keys/authorized_keys`. daemon's key stays out of both, because agents run there as tony.
 - The driving machine has this repo committed and pushed, working commit signing, and the dotfiles age key at `~/.config/sops/age/dotfiles.txt` (or `AGE_KEY=<path>`).
 
 ## 1. Target: boot the installer
