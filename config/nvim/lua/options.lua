@@ -84,9 +84,6 @@ vim.cmd [[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]
 vim.cmd [[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]]
 vim.cmd [[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]]
 
--- Fix hyprland config
-vim.cmd [[autocmd BufRead,BufNewFile hyprland.conf,hyprpaper.conf set filetype=hypr]]
-
 -- Conceal setting for Obsidian
 vim.opt.conceallevel = 1
 
