@@ -7,5 +7,6 @@
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs; };
     backupFileExtension = "backup";
+    overwriteBackup = true;
   };
 }
