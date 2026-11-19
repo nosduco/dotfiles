@@ -291,7 +291,7 @@
                         {
                             "id": "com_core447_OSPlugin::RunCommand",
                             "settings": {
-                                "command": "systemctl --user kill -s USR1 gammastep.service"
+                                "command": "uwsm app -- waybar-nightlight toggle"
                             }
                         }
                     ],
