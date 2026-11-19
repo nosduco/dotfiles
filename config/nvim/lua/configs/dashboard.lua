@@ -1,5 +1,3 @@
-local utils = require "utils"
-
 local M = {}
 
 M.opts = {
@@ -11,17 +9,6 @@ M.opts = {
         group = "@function",
         action = function() Snacks.picker.files() end,
         key = "f",
-      },
-      {
-        desc = " Todos",
-        group = "@comment",
-        action = function()
-          local path = vim.fn.expand "$HOME" .. "/notes/50-Life Ops/Tasks/index.md"
-          vim.api.nvim_command("edit " .. path)
-          local notes_dir = vim.fn.expand "$HOME" .. "/notes/"
-          utils.set_cwd(notes_dir)
-        end,
-        key = "t",
       },
       {
         desc = " Daily Note",
