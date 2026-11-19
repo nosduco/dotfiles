@@ -1,12 +1,10 @@
 {
-  config,
   osConfig,
   lib,
   pkgs,
   ...
 }:
 let
-  monitors = config.host.monitors;
   low-battery-suspend = pkgs.writeShellApplication {
     name = "low-battery-suspend";
     runtimeInputs = [ pkgs.systemd ];

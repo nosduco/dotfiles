@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, ... }: {
+{ inputs, pkgs, ... }: {
   # state
   system.stateVersion = "26.05";
   system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
