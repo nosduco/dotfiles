@@ -51,6 +51,16 @@ in
       show_actions = true;
       only_search_title = true;
     };
+    "elephant/files.toml".source = toml.generate "files.toml" {
+      fd_flags = [
+        "--ignore-vcs"
+        "--type"
+        "file"
+        "--type"
+        "directory"
+        "--one-file-system"
+      ];
+    };
     "elephant/menus/power.toml".source = toml.generate "power.toml" {
       name = "power";
       name_pretty = "Power";
