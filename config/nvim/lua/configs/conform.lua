@@ -17,7 +17,7 @@ conform.setup {
     java = { "astyle" },
     terraform = { "tofu_fmt" },
     lua = { "stylua" },
-    python = { "ruff" },
+    python = { "ruff_fix", "ruff_format" },
     markdown = { "markdownlint" },
     nix = { "nixfmt" },
   },
