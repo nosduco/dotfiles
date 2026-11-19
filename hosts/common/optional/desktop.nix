@@ -140,6 +140,12 @@ in
     '';
   };
 
+  # smartd
+  services.smartd = {
+    enable = true;
+    notifications.systembus-notify.enable = true;
+  };
+
   # backup
   sops.secrets.kopia-password = {
     owner = "tony";
