@@ -28,7 +28,6 @@ lint.linters_by_ft = {
   javascriptreact = node,
   typescriptreact = node,
   dockerfile = { "hadolint" },
-  -- TODO: Does this work?
   terraform = { "tfsec" },
   tf = { "tfsec" },
   python = { "ruff" },
