@@ -154,7 +154,5 @@ in
   # udev
   services.udev.extraRules = ''
     SUBSYSTEM=="power_supply", ATTR{type}=="Mains", RUN+="${config.systemd.package}/bin/systemctl start --no-block voyager-power.service comin-power.service"
-    ACTION=="add", SUBSYSTEM=="nvme", ATTR{power/control}="auto"
-    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x14c3", ATTR{device}=="0x7922", ATTR{power/control}="auto"
   '';
 }
