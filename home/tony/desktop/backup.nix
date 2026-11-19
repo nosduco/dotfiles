@@ -32,6 +32,8 @@ let
     ".gradle"
     ".next"
     ".turbo"
+    # agents
+    "shell_snapshots"
     # temp
     "*.swp"
     "*.part"
