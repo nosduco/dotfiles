@@ -5,7 +5,7 @@ Install a host from another machine with one command. The target only runs the N
 ## Requirements
 
 - The host is in `flake.nix` with `hosts/<host>/disko.nix` and a placeholder `hosts/<host>/hardware-configuration.nix` (`{ }`). The app refuses any other host.
-- The host's secrets are in `secrets/secrets.yaml`: `syncthing-cert-<host>`, `syncthing-key-<host>`, `kopia-password-<host>`.
+- The host's secrets are in `secrets/secrets.yaml`: `syncthing-cert-<host>`, `syncthing-key-<host>`, and on desktops `kopia-password-<host>`.
 - A workstation's SSH key is in `keys/allowed_signers` and `keys/authorized_keys`. daemon's key stays out of both, because agents run there as tony.
 - The driving machine has this repo committed and pushed, working commit signing, and the dotfiles age key at `~/.config/sops/age/dotfiles.txt` (or `AGE_KEY=<path>`).
 
@@ -22,7 +22,7 @@ Install a host from another machine with one command. The target only runs the N
 nix run .#install -- <host> <ip>
 ```
 
-It asks for the installer root password, the host name to confirm the wipe, and, for LUKS hosts, the disk passphrase twice (hosts with `encrypt = false` in `disko.nix` skip it). It commits and pushes the generated `hardware-configuration.nix` before installing, so comin (voyager) deploys the same commit on first boot. It ends by rebooting the target into firmware setup (Secure Boot hosts) or a normal reboot.
+It asks for the installer root password, the host name to confirm the wipe, and, for LUKS hosts, the disk passphrase twice (hosts with `encrypt = false` in `disko.nix` skip it). It commits and pushes the generated `hardware-configuration.nix` before installing, so comin (voyager, daemon) deploys the same commit on first boot. It ends by rebooting the target into firmware setup (Secure Boot hosts) or a normal reboot.
 
 ## 3. Target: Secure Boot
 

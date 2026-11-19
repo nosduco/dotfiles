@@ -14,7 +14,7 @@ if [[ " $HOSTS " != *" $host "* ]]; then
   exit 1
 fi
 if ! root=$(git rev-parse --show-toplevel 2>/dev/null) || [[ ! -f $root/hosts/$host/disko.nix ]]; then
-  echo "run this from the nixos-config repo" >&2
+  echo "run this from the dotfiles repo" >&2
   exit 1
 fi
 cd "$root"
