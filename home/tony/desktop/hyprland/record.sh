@@ -11,16 +11,13 @@ running() {
 start() {
   local monitor
   monitor="$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')"
-  systemd-run --user -q --collect --unit="$1" -p ExecStopPost="-$(command -v systemctl) ${REFRESH[*]}" \
+  systemd-run --user -q --collect --unit="$1" -p KillSignal=SIGINT -p ExecStopPost="-$(command -v systemctl) ${REFRESH[*]}" \
     gpu-screen-recorder -w "$monitor" -f 60 -a "default_output|default_input" "${@:2}"
   systemctl "${REFRESH[@]}" || true
 }
 
 stop() {
-  systemctl --user kill -s INT "$1"
-  while running "$1"; do
-    sleep 0.2
-  done
+  systemctl --user stop "$1"
 }
 
 finish() {
