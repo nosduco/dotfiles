@@ -22,7 +22,8 @@ in
     ".aws/credentials".source = secret "aws-credentials";
     ".snowsql/config".source = secret "snowsql-config";
     ".snowflake/connections.toml".source = secret "snowflake-connections";
-    ".edge-cli.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.edge-cli/config.toml";
+    ".edge-cli.toml".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.edge-cli/config.toml";
   };
 
   # apps

@@ -52,5 +52,6 @@
       };
     };
   };
-  xdg.configFile."dunst/dunstrc".onChange = "${lib.getExe' config.services.dunst.package "dunstctl"} reload || true";
+  xdg.configFile."dunst/dunstrc".onChange =
+    "${lib.getExe' config.services.dunst.package "dunstctl"} reload || true";
 }

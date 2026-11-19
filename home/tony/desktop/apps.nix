@@ -58,7 +58,9 @@ in
       run install -m644 ${livesync}/* "$plugin"/
       run install -m600 ${osConfig.sops.templates."obsidian-livesync.json".path} "$plugin/data.json"
       if [ ! -e ${notes}/.obsidian/community-plugins.json ]; then
-        run install -m644 ${pkgs.writeText "community-plugins.json" (builtins.toJSON [ "obsidian-livesync" ])} ${notes}/.obsidian/community-plugins.json
+        run install -m644 ${
+          pkgs.writeText "community-plugins.json" (builtins.toJSON [ "obsidian-livesync" ])
+        } ${notes}/.obsidian/community-plugins.json
       fi
       run touch ${notes}/flag_fetch.md
     fi
