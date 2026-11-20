@@ -133,7 +133,8 @@ for i = 1, 4 do
   hl.bind(mod .. " + " .. i, hl.dsp.focus({ workspace = i }), { description = "Workspace " .. i })
   hl.bind(mod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }), { description = "Move window to workspace " .. i })
 end
-local function wheel(sign, pass)
+local m = require("monitors")
+local function wheel(col, step, pass)
   return function()
     local mon = hl.get_monitor_at_cursor()
     local ws = mon and mon.active_workspace
@@ -143,18 +144,21 @@ local function wheel(sign, pass)
         local win = hovered()
         hl.dispatch(hl.dsp.focus(win and { window = win } or { monitor = mon.name }))
       end
-      hl.dispatch(hl.dsp.layout("move " .. sign .. "col"))
-    elseif pass then
+      hl.dispatch(hl.dsp.layout("move " .. col .. "col"))
+    elseif pass and not (mon and mon.name == m.main) then
       return { pass_event = true }
     else
-      hl.dispatch(hl.dsp.focus({ workspace = "e" .. sign .. "1" }))
+      local target = ws and ws.id and hl.get_workspace(ws.id + step)
+      if target and target.monitor and target.monitor.name == mon.name then
+        hl.dispatch(hl.dsp.focus({ workspace = target.id }))
+      end
     end
   end
 end
-hl.bind(mod .. " + mouse_down", wheel("+"))
-hl.bind(mod .. " + mouse_up", wheel("-"))
-hl.bind("mouse_right", wheel("-", true))
-hl.bind("mouse_left", wheel("+", true))
+hl.bind(mod .. " + mouse_down", wheel("+", 1))
+hl.bind(mod .. " + mouse_up", wheel("-", -1))
+hl.bind("mouse_right", wheel("-", 1, true))
+hl.bind("mouse_left", wheel("+", -1, true))
 
 -- mouse
 hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
