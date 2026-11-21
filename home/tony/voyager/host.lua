@@ -45,10 +45,3 @@ end)
 
 -- gestures
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
-
--- autostart
-hl.on("hyprland.start", function()
-  hl.timer(function()
-    hl.exec_cmd("uwsm app -- obsidian")
-  end, { timeout = 5000, type = "oneshot" })
-end)
