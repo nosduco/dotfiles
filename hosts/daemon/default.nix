@@ -34,6 +34,17 @@
     enable = true;
     setSocketVariable = true;
   };
+  systemd.user.services.docker-prune = {
+    description = "Prune unused docker images and build cache";
+    after = [ "docker.service" ];
+    environment.DOCKER_HOST = "unix://%t/docker.sock";
+    path = [ config.virtualisation.docker.rootless.package ];
+    script = ''
+      docker image prune -a -f --filter until=48h
+      docker builder prune -f --filter until=48h
+    '';
+    startAt = "daily";
+  };
 
   # auth logs
   services.rsyslogd = {
