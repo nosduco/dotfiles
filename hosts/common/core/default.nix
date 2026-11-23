@@ -1,4 +1,10 @@
-{ inputs, pkgs, ... }: {
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+{
   # state
   system.stateVersion = "26.05";
   system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
@@ -66,12 +72,21 @@
   programs.fish.enable = true;
   programs.nh = {
     enable = true;
+    package = pkgs.symlinkJoin {
+      inherit (pkgs.nh) pname version meta;
+      paths = [ pkgs.nh ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = "wrapProgram $out/bin/nh --unset TMUX";
+    };
     flake = "/home/tony/.dotfiles";
     clean = {
       enable = true;
       extraArgs = "--keep 5 --keep-since 7d";
     };
   };
+  warnings =
+    lib.optional (lib.versions.majorMinor pkgs.nh.version != "4.5")
+      "nh ${pkgs.nh.version}: check nh#881 for a rom option to draw live under tmux, then drop the TMUX wrapper or bump this check";
 
   # environment
   environment.localBinInPath = true;
