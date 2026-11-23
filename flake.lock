@@ -64,11 +64,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795363040,
-        "narHash": "sha256-ObE/sz9hlFWYLj01bek2r3+Gr793DJS5waGpAnbjIUY=",
+        "lastModified": 1795403359,
+        "narHash": "sha256-GY1wPWLzfacsdw1wln0VW1VGYDD0r0B8hTbVCqBA3Q8=",
         "owner": "patrickjaja",
         "repo": "claude-desktop-extra",
-        "rev": "8f287106734e89260f017b2e1a9db340bc0ef71e",
+        "rev": "24ed63ce5d114c411cb2425aedf9fb4a61ada2c4",
         "type": "github"
       },
       "original": {
@@ -210,11 +210,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795294473,
-        "narHash": "sha256-R/nreI9LwJkrzGMn1Ty5o+OUKFdONAFuF0rUq9kv4v4=",
+        "lastModified": 1795446590,
+        "narHash": "sha256-r5RpoYZOwd5y+LwcveGzMNNuapXIK6dSOqb9tXOD4KA=",
         "owner": "amaanq",
         "repo": "helium-flake",
-        "rev": "a3f2a905050e19c50d367260d4f732a142e1b369",
+        "rev": "b13d85a06c1c4c189504cc9da87790541d096698",
         "type": "github"
       },
       "original": {
