@@ -1,7 +1,7 @@
 local m = require("monitors")
 
 -- monitors
-local laptop = { output = m.main, mode = "highrr", position = "0x0", scale = 1.066667 }
+local laptop = { output = m.main, mode = "highrr", position = "0x0", scale = 1 }
 hl.monitor(laptop)
 
 -- workspaces
