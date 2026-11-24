@@ -34,6 +34,9 @@
   # stream deck
   programs.streamcontroller.enable = true;
 
+  # esp32 usb serial flashing
+  users.users.tony.extraGroups = [ "dialout" ];
+
   # udev
   services.udev.packages = [
     pkgs.oversteer
