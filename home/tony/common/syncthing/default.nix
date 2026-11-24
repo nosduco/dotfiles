@@ -27,6 +27,13 @@ let
       dir = ".config/PrusaSlicer";
     };
   }
+  // lib.optionalAttrs osConfig.programs.hyprland.enable {
+    wallpapers = {
+      id = "wallpapers";
+      label = "Wallpapers";
+      dir = "pictures/wallpapers";
+    };
+  }
   // lib.optionalAttrs osConfig.programs.steam.enable {
     wow = {
       id = "wow";
