@@ -11,6 +11,9 @@ in
   # obsidian
   programs.obsidian.package = pkgs.obsidian.override { commandLineArgs = "--disable-gpu"; };
 
+  # battle.net
+  programs.steam.config.nonSteamApps."Battle.net".id = 2882025012;
+
   # firefox
   programs.firefox.profiles.default.settings."media.hardware-video-decoding.force-enabled" = true;
 

@@ -42,7 +42,8 @@ let
     '';
   };
   accent = colors.hsl.accent;
-  battlenet = "${config.xdg.dataHome}/Steam/steamapps/compatdata/2882025012/pfx/drive_c/Program Files (x86)";
+  prefix = "${config.home.homeDirectory}/games/battlenet";
+  battlenet = "${prefix}/pfx/drive_c/Program Files (x86)";
 in
 {
   imports = [
@@ -154,8 +155,8 @@ in
   programs.steam.config = {
     enable = true;
     nonSteamApps."Battle.net" = {
-      id = 2882025012;
       target = "${battlenet}/Battle.net/Battle.net Launcher.exe";
+      prefixPath = prefix;
       compatTool = "GE-Proton";
       env = {
         PROTON_ENABLE_WAYLAND = 1;

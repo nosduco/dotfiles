@@ -38,7 +38,7 @@ let
     wow = {
       id = "wow";
       label = "WoW";
-      dir = ".local/share/Steam/steamapps/compatdata/2882025012/pfx/drive_c/Program Files (x86)/World of Warcraft/_forever_";
+      dir = "games/battlenet/pfx/drive_c/Program Files (x86)/World of Warcraft/_forever_";
     };
   };
   ignore = name: ./ignores + "/${name}.stignore";
