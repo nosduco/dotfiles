@@ -55,6 +55,10 @@
     # aws vpn client
     awsvpnclient-nix.url = "github:AddG0/awsvpnclient-nix/b187895a5f5998adc9bbc14ca8cdaa24e39ddd5a";
     awsvpnclient-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # steam config
+    steam-config-nix.url = "github:different-name/steam-config-nix";
+    steam-config-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

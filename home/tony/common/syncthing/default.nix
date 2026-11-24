@@ -26,6 +26,13 @@ let
       label = "PrusaSlicer";
       dir = ".config/PrusaSlicer";
     };
+  }
+  // lib.optionalAttrs osConfig.programs.steam.enable {
+    wow = {
+      id = "wow";
+      label = "WoW";
+      dir = ".local/share/Steam/steamapps/compatdata/2882025012/pfx/drive_c/Program Files (x86)/World of Warcraft/_forever_";
+    };
   };
   ignore = name: ./ignores + "/${name}.stignore";
   ignored = lib.filterAttrs (name: _: builtins.pathExists (ignore name)) folders;

@@ -42,9 +42,13 @@ let
     '';
   };
   accent = colors.hsl.accent;
+  battlenet = "${config.xdg.dataHome}/Steam/steamapps/compatdata/2882025012/pfx/drive_c/Program Files (x86)";
 in
 {
-  imports = [ inputs.spicetify-nix.homeManagerModules.spicetify ];
+  imports = [
+    inputs.spicetify-nix.homeManagerModules.spicetify
+    inputs.steam-config-nix.homeModules.default
+  ];
 
   # obsidian
   programs.obsidian = {
@@ -145,6 +149,26 @@ in
       };
     };
   };
+
+  # battle.net
+  programs.steam.config = {
+    enable = true;
+    nonSteamApps."Battle.net" = {
+      id = 2882025012;
+      target = "${battlenet}/Battle.net/Battle.net Launcher.exe";
+      compatTool = "GE-Proton";
+      env = {
+        PROTON_ENABLE_WAYLAND = 1;
+        WAYLANDDRV_PRIMARY_MONITOR = config.host.monitors.main;
+      };
+      args = [
+        "--in-process-gpu"
+        "--disable-gpu"
+      ];
+      artwork.icon = ./battlenet.png;
+    };
+  };
+  home.file."games/wow".source = config.lib.file.mkOutOfStoreSymlink "${battlenet}/World of Warcraft";
 
   # media
   programs.mpv = {

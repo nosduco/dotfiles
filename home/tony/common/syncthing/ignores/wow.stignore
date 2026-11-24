@@ -1,0 +1,9 @@
+// --- addons + their saved settings; Config.wtf (graphics), caches and game files stay per machine ---
+!/Interface/AddOns
+!/Interface/AddOns/**
+!/WTF/Account
+!/WTF/Account/**
+!/WTF/SavedVariables
+!/WTF/SavedVariables/**
+
+*
