@@ -132,6 +132,9 @@
     ];
   };
 
+  # coredumps: agent tooling crash-loops (tsserver heap OOM) wrote ~250 MB cores nobody reads
+  systemd.coredump.settings.Coredump.Storage = "none";
+
   # zram
   zramSwap.memoryPercent = 100;
 
